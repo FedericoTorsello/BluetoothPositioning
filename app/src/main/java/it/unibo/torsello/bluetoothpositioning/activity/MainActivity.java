@@ -29,6 +29,8 @@ import it.unibo.torsello.bluetoothpositioning.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    String tag;
+
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
                 @Override
@@ -36,13 +38,8 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
-                            assert pager != null;
-                            if (getFragments().get(pager.getCurrentItem()) instanceof DeviceFrag) {
-                                String tag = "android:switcher:" + R.id.viewpager + ":" + pager.getCurrentItem();
-                                DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(tag);
-                                deviceFrag.addDevice(device);
-                            }
+                            DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(tag);
+                            deviceFrag.addDevice(device);
                         }
                     });
                 }
@@ -83,6 +80,12 @@ public class MainActivity extends AppCompatActivity
         ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
         assert pager != null;
         pager.setAdapter(pageAdapter);
+
+        for (int i = 0; i < getFragments().size(); i++) {
+            if (getFragments().get(i) instanceof DeviceFrag) {
+                tag = "android:switcher:" + R.id.viewpager + ":" + i;
+            }
+        }
 
         BluetoothAdapter mBluetooth = BluetoothAdapter.getDefaultAdapter();
         mBluetooth.startLeScan(mLeScanCallback);

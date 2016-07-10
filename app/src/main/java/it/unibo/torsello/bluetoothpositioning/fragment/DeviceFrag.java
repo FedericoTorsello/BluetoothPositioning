@@ -23,21 +23,20 @@ public class DeviceFrag extends Fragment {
 
     private DeviceListAdapter deviceListAdapter;
 
-	public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE1";
+    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE1";
 
-	public static DeviceFrag newInstance(String message)
-	{
+    public static DeviceFrag newInstance(String message) {
         DeviceFrag f = new DeviceFrag();
-		Bundle bdl = new Bundle();
+        Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
-	    f.setArguments(bdl);
-	    return f;
-	}
+        f.setArguments(bdl);
+        return f;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getArguments() != null) {
+        if (getArguments() != null) {
             mTitle = getArguments().getString(EXTRA_MESSAGE);
         }
         setHasOptionsMenu(true);
@@ -45,8 +44,8 @@ public class DeviceFrag extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, 
-        Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 //		String message = getArguments().getString(EXTRA_MESSAGE);
 //		View v = inflater.inflate(R.layout.scan_beacon_layout, container, false);
 //		TextView messageTextView = (TextView)v.findViewById(R.id.textView);
@@ -59,7 +58,7 @@ public class DeviceFrag extends Fragment {
         return rootView;
     }
 
-    public void addDevice(BluetoothDevice bluetoothDevice){
+    public void addDevice(BluetoothDevice bluetoothDevice) {
         deviceListAdapter.add(bluetoothDevice);
     }
 
