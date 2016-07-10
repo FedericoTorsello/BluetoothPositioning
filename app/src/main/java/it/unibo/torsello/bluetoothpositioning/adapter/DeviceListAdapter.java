@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning;
+package it.unibo.torsello.bluetoothpositioning.adapter;
 
 
 import android.bluetooth.BluetoothDevice;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import it.unibo.torsello.bluetoothpositioning.R;
 
 
 /**
@@ -81,12 +83,11 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
         ImageView row_color;
     }
 
-    //    @Override
-//    public void addDevice(BluetoothDevice device) {
-//        if (!myList.contains(device)) {
-//            myList.add(device);
-//            notifyDataSetChanged();
-//        }
-//
-//    }
+    @Override
+    public void add(BluetoothDevice device) {
+        if (!myList.contains(device)) {
+            myList.add(device);
+            notifyDataSetChanged();
+        }
+    }
 }

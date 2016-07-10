@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,16 +21,13 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibo.torsello.bluetoothpositioning.ArrayBoh;
-import it.unibo.torsello.bluetoothpositioning.MyFragment;
-import it.unibo.torsello.bluetoothpositioning.MyFragmentVerMia;
-import it.unibo.torsello.bluetoothpositioning.MyPageAdapter;
+import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
+import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    ArrayBoh bluetoothDevices;
 
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
@@ -38,7 +36,13 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            bluetoothDevices.add(device);
+                            for (int i = 0; i < getFragments().size(); i++) {
+                                if (getFragments().get(i) instanceof DeviceFrag) {
+                                    String tag = "android:switcher:" + R.id.viewpager + ":" + i;
+                                    DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(tag);
+                                    deviceFrag.addDevice(device);
+                                }
+                            }
                         }
                     });
                 }
@@ -75,12 +79,12 @@ public class MainActivity extends AppCompatActivity
         List<Fragment> fragments = getFragments();
 
         MyPageAdapter pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
+        Log.i("current", pageAdapter.toString());
 
-        ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
+        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
         assert pager != null;
         pager.setAdapter(pageAdapter);
-
-        bluetoothDevices = ArrayBoh.getInstance();
+//        Log.i("current",pager.getAdapter() + "");
 
         BluetoothAdapter mBluetooth = BluetoothAdapter.getDefaultAdapter();
         mBluetooth.startLeScan(mLeScanCallback);
@@ -145,12 +149,13 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private List<Fragment> getFragments(){
+    private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-
+        fList.add(DeviceFrag.newInstance("ciao"));
         fList.add(MyFragment.newInstance("Fragment 1"));
-        fList.add(MyFragment.newInstance("Fragment 2"));
-        fList.add(MyFragmentVerMia.newInstance("ciao"));
+
+
+//        fList.add(MyFragment.newInstance("Fragment 2"));
 
         return fList;
     }
