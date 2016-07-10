@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int i = 0; i < getFragments().size(); i++) {
-                                if (getFragments().get(i) instanceof DeviceFrag) {
-                                    String tag = "android:switcher:" + R.id.viewpager + ":" + i;
-                                    DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(tag);
-                                    deviceFrag.addDevice(device);
-                                }
+                            ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+                            assert pager != null;
+                            if (getFragments().get(pager.getCurrentItem()) instanceof DeviceFrag) {
+                                String tag = "android:switcher:" + R.id.viewpager + ":" + pager.getCurrentItem();
+                                DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(tag);
+                                deviceFrag.addDevice(device);
                             }
                         }
                     });
@@ -79,12 +79,10 @@ public class MainActivity extends AppCompatActivity
         List<Fragment> fragments = getFragments();
 
         MyPageAdapter pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
-        Log.i("current", pageAdapter.toString());
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
         assert pager != null;
         pager.setAdapter(pageAdapter);
-//        Log.i("current",pager.getAdapter() + "");
 
         BluetoothAdapter mBluetooth = BluetoothAdapter.getDefaultAdapter();
         mBluetooth.startLeScan(mLeScanCallback);
@@ -151,12 +149,8 @@ public class MainActivity extends AppCompatActivity
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFrag.newInstance("ciao"));
         fList.add(MyFragment.newInstance("Fragment 1"));
-
-
-//        fList.add(MyFragment.newInstance("Fragment 2"));
-
+        fList.add(DeviceFrag.newInstance("ciao"));
         return fList;
     }
 }
