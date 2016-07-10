@@ -51,8 +51,8 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
                     .findViewById(R.id.row_minor);
             viewHolder.row_uuid = (TextView) convertView
                     .findViewById(R.id.row_UUID);
-//            viewHolder.row_color = (ImageView) convertView
-//                    .findViewById(R.id.row_color);
+            viewHolder.row_color = (ImageView) convertView
+                    .findViewById(R.id.row_color);
             convertView.setTag(viewHolder);
         }
 

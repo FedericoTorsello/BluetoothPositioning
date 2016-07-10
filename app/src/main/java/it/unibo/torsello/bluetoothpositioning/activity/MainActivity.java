@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,17 +76,15 @@ public class MainActivity extends AppCompatActivity
 
         List<Fragment> fragments = getFragments();
 
-        MyPageAdapter pageAdapter = new MyPageAdapter(getSupportFragmentManager(), fragments);
-
-        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
-        assert pager != null;
-        pager.setAdapter(pageAdapter);
-
-        for (int i = 0; i < getFragments().size(); i++) {
-            if (getFragments().get(i) instanceof DeviceFrag) {
+        for (int i = 0; i < fragments.size(); i++) {
+            if (fragments.get(i) instanceof DeviceFrag) {
                 tag = "android:switcher:" + R.id.viewpager + ":" + i;
             }
         }
+
+        ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        assert pager != null;
+        pager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), fragments));
 
         BluetoothAdapter mBluetooth = BluetoothAdapter.getDefaultAdapter();
         mBluetooth.startLeScan(mLeScanCallback);

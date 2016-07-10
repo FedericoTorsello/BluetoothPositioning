@@ -17,7 +17,7 @@ public class MyFragment extends Fragment {
 
     public static MyFragment newInstance(String message) {
         MyFragment f = new MyFragment();
-        Bundle bdl = new Bundle(1);
+        Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         f.setArguments(bdl);
         return f;

@@ -23,7 +23,7 @@ public class DeviceFrag extends Fragment {
 
     private DeviceListAdapter deviceListAdapter;
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE1";
+    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     public static DeviceFrag newInstance(String message) {
         DeviceFrag f = new DeviceFrag();
@@ -46,11 +46,6 @@ public class DeviceFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//		String message = getArguments().getString(EXTRA_MESSAGE);
-//		View v = inflater.inflate(R.layout.scan_beacon_layout, container, false);
-//		TextView messageTextView = (TextView)v.findViewById(R.id.textView);
-//		messageTextView.setText(message);
-
         View rootView = inflater.inflate(R.layout.scan_beacon_layout, container, false);
         ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
         deviceListAdapter = new DeviceListAdapter(getActivity(), R.id.listView_scan_disp, new ArrayList<BluetoothDevice>());
