@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">BluetoothPositioning</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- IBEACON ADAPTER -->
+    <string name="name">Name:</string>
+    <string name="address">Address:</string>
+    <string name="major">Major:</string>
+    <string name="minor">Minor:</string>
+    <string name="uuid">UUID:</string>
+    <string name="rssi">RSSI:</string>
+    <string name="accuracy">Accuracy:</string>
+    <string name="color">color</string>
+
+
+    <string name="string_scan_title">iBeacon trovati</string>
+    <string name="string_scan_subtext">Numero dispositivi rilevati:%s</string>
+</resources>
