@@ -1,15 +1,20 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,18 +25,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.estimote.sdk.SystemRequirementsChecker;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.logic.MyDevice;
+import it.unibo.torsello.bluetoothpositioning.logic.Plain;
 
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,8 +44,31 @@ public class MainActivity extends AppCompatActivity
     private boolean isBackPressed = false;
     private static long back_pressed;
     private static final long DOUBLE_PRESS_INTERVAL = 2000;
+    private boolean isRunScan = false;
 
-    BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private enum plainNum {ZERO, ONE}
+
+    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+    private ScanCallback mScanCallback = new ScanCallback() {
+        @Override
+        public void onScanResult(final int callbackType, final ScanResult result) {
+            final DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(deviceFragTag);
+            if (deviceFrag != null) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        deviceFrag.addDevice(result);
+                    }
+                });
+            }
+        }
+
+        @Override
+        public void onScanFailed(int errorCode) {
+            Log.e("Scan Failed", "Error Code: " + errorCode);
+        }
+    };
 
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
@@ -75,11 +102,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBluetootTurnOn();
-                bluetoothAdapter.startLeScan(mLeScanCallback);
+                checkBluetoothTurnOn();
 
-                Snackbar.make(view, "Scanning enabled", Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                isRunScan = !isRunScan;
+                scanLeDevice(isRunScan);
+                String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -95,7 +123,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         List<Fragment> fragments = getFragments();
-
         for (int i = 0; i < fragments.size(); i++) {
             if (fragments.get(i) instanceof DeviceFrag) {
                 deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
@@ -106,25 +133,16 @@ public class MainActivity extends AppCompatActivity
         assert mViewPager != null;
         mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), fragments));
 
-        Snackbar.make(mViewPager, "Push the button to start scanning", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Action", null).show();
+        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
+
+        Plain plainZero = new Plain(plainNum.ZERO.ordinal(), getBeacons(plainNum.ZERO.ordinal()));
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        checkBluetootTurnOn();
-    }
-
-    public void checkBluetootTurnOn() {
-        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) {
-            ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-            assert mViewPager != null;
-            Snackbar.make(mViewPager, "Push the button to restart scanning", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Action", null).show();
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, BluetoothAdapter.STATE_ON);
-        }
+        checkBluetoothTurnOn();
     }
 
     @Override
@@ -138,8 +156,7 @@ public class MainActivity extends AppCompatActivity
         } else if (mViewPager.getCurrentItem() == 0 || mViewPager.getCurrentItem() == 1) {
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
-                Snackbar.make(mViewPager, R.string.exit, Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
+                Snackbar.make(mViewPager, R.string.exit, Snackbar.LENGTH_SHORT).show();
             } else {
                 finish();
             }
@@ -202,16 +219,52 @@ public class MainActivity extends AppCompatActivity
         return fList;
     }
 
-//    private void setDevice(){
-//        Map<String,MyDevice> deviceArrayMap = new ArrayMap<>();
-//        List<MyDevice> beacons = new ArrayList<>();
-//
-//        beacons.add(new MyDevice("mint1","fa6b721eeb46","B9407F30-F5F8-466E-AFF9-25556B57FE6D:60230:29214"));
-//        beacons.add(new MyDevice("mint2","d98000b71678","B9407F30-F5F8-466E-AFF9-25556B57FE6D:5752:183"));
-//        beacons.add(new MyDevice("blueberry1","dbf6f50c23bf","B9407F30-F5F8-466E-AFF9-25556B57FE6D:9151:62732"));
-//        beacons.add(new MyDevice("blueberry2","fa6b721eeb46","B9407F30-F5F8-466E-AFF9-25556B57FE6D:31039:3830"));
-//        beacons.add(new MyDevice("ice1","c19bb0b9019e","B9407F30-F5F8-466E-AFF9-25556B57FE6D:414:45241"));
-//        beacons.add(new MyDevice("ice2","d1bee2e967a6","B9407F30-F5F8-466E-AFF9-25556B57FE6D:26534:58089"));
-//
-//    }
+    private List<MyDevice> getBeacons(int numPlain) {
+        List<MyDevice> beacons = new ArrayList<>();
+
+        switch (numPlain) {
+            case 0:
+                beacons.add(new MyDevice("mint1", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:60230:29214"));
+                beacons.add(new MyDevice("mint2", "d98000b71678", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:5752:183"));
+                beacons.add(new MyDevice("blueberry1", "dbf6f50c23bf", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:9151:62732"));
+                beacons.add(new MyDevice("blueberry2", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:31039:3830"));
+                beacons.add(new MyDevice("ice1", "c19bb0b9019e", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:414:45241"));
+                beacons.add(new MyDevice("ice2", "d1bee2e967a6", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:26534:58089"));
+                break;
+        }
+
+        return beacons;
+    }
+
+    public void checkBluetoothTurnOn() {
+        if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+            ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
+            assert mViewPager != null;
+            Snackbar.make(mViewPager, "Push the button to restart scanning", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Action", null).show();
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, BluetoothAdapter.STATE_ON);
+        }
+    }
+
+    public void scanLeDevice(boolean isEnabled) {
+        List<ScanFilter> filters = new ArrayList<>();
+        ScanSettings settings = new ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                .build();
+
+        if (isEnabled) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                mBluetoothAdapter.startLeScan(mLeScanCallback);
+            } else {
+                mBluetoothAdapter.getBluetoothLeScanner().startScan(filters, settings, mScanCallback);
+            }
+        } else {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            } else {
+                mBluetoothAdapter.getBluetoothLeScanner().stopScan(mScanCallback);
+            }
+        }
+    }
 }

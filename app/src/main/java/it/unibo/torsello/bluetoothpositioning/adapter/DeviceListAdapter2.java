@@ -1,9 +1,11 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
 
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.ScanResult;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,12 @@ import it.unibo.torsello.bluetoothpositioning.R;
 /**
  * Created by federico on 25/01/16.
  */
+@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+public class DeviceListAdapter2 extends ArrayAdapter<ScanResult> {
 
-public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
+    private List<ScanResult> myList = null;
 
-    private List<BluetoothDevice> myList = null;
-
-    public DeviceListAdapter(Context context, int textViewResourceId, List<BluetoothDevice> objects) {
+    public DeviceListAdapter2(Context context, int textViewResourceId, List<ScanResult> objects) {
         super(context, textViewResourceId, objects);
         this.myList = objects;
     }
@@ -57,14 +59,14 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
             convertView.setTag(viewHolder);
         }
 
-        final BluetoothDevice myIBeacon = getItem(position);
+        final ScanResult myIBeacon = getItem(position);
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
 
-        viewHolder.row_name.setText(String.format("%s %s", getContext().getString(R.string.name), myIBeacon.getName()));
+        viewHolder.row_name.setText(String.format("%s %s", getContext().getString(R.string.name), myIBeacon.getDevice().getName()));
 //        viewHolder.row_name.setTextColor(myIBeacon.getColor());
 //        viewHolder.row_accuracy.setText(String.format("%s %.2f m", getContext().getString(R.string.accuracy), myIBeacon.getAccuracy()));
 //        viewHolder.row_rssi.setText(String.format("%s %s", getContext().getString(R.string.rssi), myIBeacon.getRssi()));
-        viewHolder.row_addr.setText(String.format("%s %s", getContext().getString(R.string.address), myIBeacon.getAddress()));
+        viewHolder.row_addr.setText(String.format("%s %s", getContext().getString(R.string.address), myIBeacon.getDevice().getAddress()));
 //        viewHolder.row_major.setText(String.format("%s %s", getContext().getString(R.string.major), myIBeacon.getMajor()));
 //        viewHolder.row_minor.setText(String.format("%s %s", getContext().getString(R.string.minor), myIBeacon.getMinor()));
 //        viewHolder.row_uuid.setText(String.format("%s %s", getContext().getString(R.string.uuid), myIBeacon.getUUID()));
@@ -85,11 +87,10 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
     }
 
     @Override
-    public void add(BluetoothDevice device) {
+    public void add(ScanResult device) {
         if (!myList.contains(device)) {
             myList.add(device);
             notifyDataSetChanged();
         }
     }
-
 }

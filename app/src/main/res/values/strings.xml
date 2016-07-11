@@ -19,4 +19,11 @@
 
     <string name="string_scan_title">iBeacon trovati</string>
     <string name="string_scan_subtext">Numero dispositivi rilevati:%s</string>
+
+
+    <string name="scanning_enabled">Scanning enabled</string>
+    <string name="scanning_disabled">Scanning disabled</string>
+    <string name="info_start_scanning">Push the button to start scanning</string>
+
+
 </resources>
