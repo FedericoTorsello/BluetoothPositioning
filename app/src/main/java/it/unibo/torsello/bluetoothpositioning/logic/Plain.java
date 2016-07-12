@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Plain implements Plains {
 
-    List<MyDevice> beacons;
+    List<MyBluetoothDevice> beacons;
     int numberPlan;
 
     public Plain(int numberPlan) {
@@ -16,23 +16,23 @@ public class Plain implements Plains {
         beacons = new ArrayList<>();
     }
 
-    public Plain(int numberPlan, List<MyDevice> beacons) {
+    public Plain(int numberPlan, List<MyBluetoothDevice> beacons) {
         this.numberPlan = numberPlan;
         this.beacons = beacons;
     }
 
     @Override
-    public void setDevice(MyDevice device) {
+    public void setDevice(MyBluetoothDevice device) {
         beacons.add(device);
     }
 
     @Override
-    public void setAllDevice(List<MyDevice> allDevice) {
+    public void setAllDevice(List<MyBluetoothDevice> allDevice) {
         beacons = allDevice;
     }
 
     @Override
-    public List<MyDevice> getAllDevice() {
+    public List<MyBluetoothDevice> getAllDevice() {
         return beacons;
     }
 }

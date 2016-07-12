@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -32,35 +33,38 @@ import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.logic.MyDevice;
+import it.unibo.torsello.bluetoothpositioning.logic.MyBluetoothDevice;
 import it.unibo.torsello.bluetoothpositioning.logic.Plain;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public final String TAG_CLASS = getClass().getSimpleName();
+    private final String TAG_CLASS = getClass().getSimpleName();
+    private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    private final long DOUBLE_PRESS_INTERVAL = 2000;
     private String deviceFragTag;
     private boolean isBackPressed = false;
-    private static long back_pressed;
-    private static final long DOUBLE_PRESS_INTERVAL = 2000;
     private boolean isRunScan = false;
+    private long back_pressed;
+    private ArrayMap<BluetoothDevice, Integer> bluetoothDeviceMap;
 
     private enum plainNum {ZERO, ONE}
 
-    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
-        public void onScanResult(final int callbackType, final ScanResult result) {
+        public void onScanResult(final int callbackType, final ScanResult device) {
             final DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(deviceFragTag);
-            if (deviceFrag != null) {
+            try {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        deviceFrag.addDevice(result);
+                        bluetoothDeviceMap.put(device.getDevice(), device.getRssi());
+                        deviceFrag.addDevices(bluetoothDeviceMap);
                     }
                 });
+            } catch (NullPointerException e) {
+                e.getStackTrace();
             }
         }
 
@@ -75,16 +79,16 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
                     final DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager().findFragmentByTag(deviceFragTag);
-                    if (deviceFrag != null) {
+                    try {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                MyDevice a = new MyDevice(device, rssi, scanRecord);
-                                List<MyDevice> myDevices = new ArrayList<MyDevice>();
-                                myDevices.add(a);
-                                deviceFrag.addDevice(a.getDevice());
+                                bluetoothDeviceMap.put(device, rssi);
+                                deviceFrag.addDevices(bluetoothDeviceMap);
                             }
                         });
+                    } catch (NullPointerException e) {
+                        e.getStackTrace();
                     }
                 }
             };
@@ -93,6 +97,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bluetoothDeviceMap = new ArrayMap<>();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -136,8 +142,8 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
 
         Plain plainZero = new Plain(plainNum.ZERO.ordinal(), getBeacons(plainNum.ZERO.ordinal()));
-    }
 
+    }
 
     @Override
     protected void onResume() {
@@ -219,17 +225,17 @@ public class MainActivity extends AppCompatActivity
         return fList;
     }
 
-    private List<MyDevice> getBeacons(int numPlain) {
-        List<MyDevice> beacons = new ArrayList<>();
+    private List<MyBluetoothDevice> getBeacons(int numPlain) {
+        List<MyBluetoothDevice> beacons = new ArrayList<>();
 
         switch (numPlain) {
             case 0:
-                beacons.add(new MyDevice("mint1", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:60230:29214"));
-                beacons.add(new MyDevice("mint2", "d98000b71678", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:5752:183"));
-                beacons.add(new MyDevice("blueberry1", "dbf6f50c23bf", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:9151:62732"));
-                beacons.add(new MyDevice("blueberry2", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:31039:3830"));
-                beacons.add(new MyDevice("ice1", "c19bb0b9019e", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:414:45241"));
-                beacons.add(new MyDevice("ice2", "d1bee2e967a6", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:26534:58089"));
+                beacons.add(new MyBluetoothDevice("mint1", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:60230:29214"));
+                beacons.add(new MyBluetoothDevice("mint2", "d98000b71678", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:5752:183"));
+                beacons.add(new MyBluetoothDevice("blueberry1", "dbf6f50c23bf", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:9151:62732"));
+                beacons.add(new MyBluetoothDevice("blueberry2", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:31039:3830"));
+                beacons.add(new MyBluetoothDevice("ice1", "c19bb0b9019e", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:414:45241"));
+                beacons.add(new MyBluetoothDevice("ice2", "d1bee2e967a6", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:26534:58089"));
                 break;
         }
 
@@ -267,4 +273,5 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 }

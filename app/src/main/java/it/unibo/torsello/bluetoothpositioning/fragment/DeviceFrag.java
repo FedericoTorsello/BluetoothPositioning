@@ -1,31 +1,25 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanResult;
-import android.os.Build;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import it.unibo.torsello.bluetoothpositioning.adapter.DeviceListAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.adapter.DeviceListAdapter2;
-
+import it.unibo.torsello.bluetoothpositioning.adapter.MyMapAdapter;
 
 public class DeviceFrag extends Fragment {
 
     private String mTitle;
 
-    private DeviceListAdapter deviceListAdapter;
-    private DeviceListAdapter2 deviceListAdapter2;
+    private MyMapAdapter myMapAdapter;
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
@@ -51,26 +45,18 @@ public class DeviceFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.scan_beacon_layout, container, false);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-            deviceListAdapter = new DeviceListAdapter(getActivity(), R.id.listView_scan_disp, new ArrayList<BluetoothDevice>());
-            mDeviceListView.setAdapter(deviceListAdapter);
-        } else {
-            ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-            deviceListAdapter2 = new DeviceListAdapter2(getActivity(), R.id.listView_scan_disp, new ArrayList<ScanResult>());
-            mDeviceListView.setAdapter(deviceListAdapter2);
-        }
+
+        ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
+        myMapAdapter = new MyMapAdapter(getContext(), new ArrayMap<BluetoothDevice, Integer>());
+        mDeviceListView.setAdapter(myMapAdapter);
 
         return rootView;
     }
 
-    public void addDevice(BluetoothDevice bluetoothDevice) {
-        deviceListAdapter.add(bluetoothDevice);
-
-    }
-
-    public void addDevice(ScanResult bluetoothDevice) {
-        deviceListAdapter2.add(bluetoothDevice);
+    public void addDevices(ArrayMap<BluetoothDevice, Integer> bluetoothDevice) {
+        myMapAdapter.notifyDataSetInvalidated();
+        myMapAdapter.setData(bluetoothDevice);
+        myMapAdapter.notifyDataSetChanged();
     }
 
 }

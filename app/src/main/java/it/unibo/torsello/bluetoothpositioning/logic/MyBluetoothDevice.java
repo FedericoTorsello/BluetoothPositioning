@@ -8,19 +8,17 @@ import java.util.ArrayList;
 /**
  * Created by federico on 11/07/16.
  */
-public class MyDevice {
+public class MyBluetoothDevice {
 
     BluetoothDevice device;
     int rssi;
-    byte[] scanRecord;
 
-    public MyDevice(BluetoothDevice device, int rssi, byte[] scanRecord) {
+    public MyBluetoothDevice(BluetoothDevice device, int rssi) {
         this.device = device;
         this.rssi = rssi;
-        this.scanRecord = scanRecord;
     }
 
-    public MyDevice(String name, String identifier, String ProximityUUID) {
+    public MyBluetoothDevice(String name, String identifier, String ProximityUUID) {
 
     }
 
@@ -32,7 +30,4 @@ public class MyDevice {
         return rssi;
     }
 
-    public byte[] getScanRecord() {
-        return scanRecord;
-    }
 }
