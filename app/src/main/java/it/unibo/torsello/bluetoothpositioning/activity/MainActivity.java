@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
-import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -8,9 +7,7 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +15,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -31,26 +27,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.logic.IBeaconService;
 import it.unibo.torsello.bluetoothpositioning.logic.MyBluetoothDevice;
 import it.unibo.torsello.bluetoothpositioning.logic.Plain;
-import uk.co.alt236.bluetoothlelib.device.BluetoothLeDevice;
-import uk.co.alt236.bluetoothlelib.device.beacon.BeaconType;
-import uk.co.alt236.bluetoothlelib.device.beacon.BeaconUtils;
-import uk.co.alt236.bluetoothlelib.device.beacon.ibeacon.IBeaconDevice;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+        , DeviceFrag.OnItemSelectedListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -59,7 +49,18 @@ public class MainActivity extends AppCompatActivity
     private boolean isBackPressed = false;
     private boolean isRunScan = false;
     private long back_pressed;
-    private ArrayMap<String, IBeaconDevice> bluetoothDeviceMap;
+    //    private ArrayMap<String, IBeacon> bluetoothDeviceMap;
+    private ArrayMap<String, BluetoothDevice> bluetoothDeviceMap;
+
+    @Override
+    public void onRssItemSelected(ArrayMap<String, BluetoothDevice> bluetoothDevice) {
+        DeviceFrag fragment = (DeviceFrag) getSupportFragmentManager()
+                .findFragmentByTag(deviceFragTag);
+//        DeviceFrag fragment = (DeviceFrag) getSupportFragmentManager()
+//                .findFragmentById(R.id.viewpager);
+        fragment.addDevices(bluetoothDeviceMap);
+    }
+
 
     private enum plainNum {ZERO, ONE}
 
@@ -72,22 +73,27 @@ public class MainActivity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         if (device.getScanRecord().getBytes() != null) {
-                            BluetoothLeDevice deviceLe =
-                                    new BluetoothLeDevice(device.getDevice(),
-                                            device.getRssi(),
-                                            device.getScanRecord().getBytes(),
-                                            System.currentTimeMillis());
-//
-                            if (BeaconUtils.getBeaconType(deviceLe) == BeaconType.IBEACON) {
-                                IBeaconDevice iBeaconDevice = new IBeaconDevice(deviceLe);
-                                bluetoothDeviceMap.put(deviceLe.getAddress(), iBeaconDevice);
-                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
+                            bluetoothDeviceMap.put(device.getDevice().getAddress(), device.getDevice());
+                            onRssItemSelected(bluetoothDeviceMap);
+
+
+//                            BluetoothLeDevice deviceLe =
+//                                    new BluetoothLeDevice(device.getDevice(),
+//                                            device.getRssi(),
+//                                            device.getScanRecord().getBytes(),
+//                                            System.currentTimeMillis());
+////
+//                            if (BeaconUtils.getBeaconType(deviceLe) == BeaconType.IBEACON) {
+//                                IBeaconDevice iBeaconDevice = new IBeaconDevice(deviceLe);
+//                                bluetoothDeviceMap.put(deviceLe.getAddress(), iBeaconDevice);
+//                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
 
 //                                MyBluetoothDevice myDevice = new MyBluetoothDevice(device);
 //                                bluetoothDeviceMap.put(myDevice.getScanResult().getDevice().getAddress(), myDevice);
 //                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
-                            }
+//                            }
                         }
                     }
                 });
@@ -133,17 +139,33 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final IBeaconService iBeaconService = new IBeaconService(getApplicationContext());
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                checkBluetoothTurnOn();
+//                checkBluetoothTurnOn();
 
                 isRunScan = !isRunScan;
                 scanLeDevice(isRunScan);
-                String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
-                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
+
+
+//                if (isRunScan) {
+////                    iBeaconService.registerListener(this);
+////                    iBeaconService.startScanning();
+//                    Snackbar.make(view, R.string.scanning_enabled, Snackbar.LENGTH_SHORT).show();
+////                    iBeaconService.registerListener();
+//                } else {
+////                    iBeaconService.unregisterListener(this);
+//                    Snackbar.make(view, R.string.scanning_disabled, Snackbar.LENGTH_SHORT).show();
+////                    iBeaconService.unregisterListener(iBeaconListener);
+//                }
+
+//                String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+//                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
+
             }
         });
 
