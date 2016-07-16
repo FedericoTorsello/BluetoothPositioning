@@ -1,12 +1,9 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
 import android.annotation.TargetApi;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.os.Build;
 import android.support.v4.util.ArrayMap;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +22,15 @@ import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MyMapAdapter extends BaseAdapter {
-    private ArrayMap<String, BluetoothDevice> mData = new ArrayMap<>();
+    private ArrayMap<String, IBeacon> mData = new ArrayMap<>();
     private Context context;
 
-    public MyMapAdapter(Context context, ArrayMap<String, BluetoothDevice> data) {
+    public MyMapAdapter(Context context, ArrayMap<String, IBeacon> data) {
         this.context = context;
         this.mData = data;
     }
 
-    public void setData(ArrayMap<String, BluetoothDevice> map) {
+    public void setData(ArrayMap<String, IBeacon> map) {
         mData = map;
     }
 
@@ -81,20 +78,19 @@ public class MyMapAdapter extends BaseAdapter {
         }
 
         String deviceAddress = mData.keyAt(position);
-        BluetoothDevice device = mData.valueAt(position);
-//        IBeacon device1 = mData.valueAt(position);
+        IBeacon device = mData.valueAt(position);
 
         ViewHolder viewHolder = (ViewHolder) convertView.getTag();
 
 ////        viewHolder.row_color.setBackgroundColor(myIBeacon.getColor());
 ////        viewHolder.row_name.setTextColor(myIBeacon.getColor());
-        viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.getName()));
-//        viewHolder.row_accuracy.setText(String.format(Locale.getDefault(), "%s %.2f m", context.getString(R.string.accuracy), device1.getDistanceInMetres()));
-//        viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device1.getLastRssi()));
-//        viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.getAddress()));
-//        viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device1.getMajor()));
-//        viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device1.getMinor()));
-//        viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device1.getUuid()));
+        viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.getDevice().getName()));
+        viewHolder.row_accuracy.setText(String.format(Locale.getDefault(), "%s %.2f m", context.getString(R.string.accuracy), device.getAccuracyInMetres()));
+        viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getLastRssi()));
+        viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.getDevice().getAddress()));
+        viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device.getMajor()));
+        viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device.getMinor()));
+        viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device.getUuid()));
 
 
         return convertView;

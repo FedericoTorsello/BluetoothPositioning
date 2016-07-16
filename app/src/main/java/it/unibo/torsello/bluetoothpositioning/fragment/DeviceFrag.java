@@ -1,9 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanResult;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,20 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import java.util.Collection;
-
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyMapAdapter;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
-import it.unibo.torsello.bluetoothpositioning.logic.IBeaconListener;
 
 public class DeviceFrag extends Fragment {
 
-    private String mTitle;
-
-    private MyMapAdapter myMapAdapter;
-
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private String mTitle;
+    private MyMapAdapter myMapAdapter;
+    private OnAddDevicesListener listener;
 
     public static DeviceFrag newInstance(String message) {
         DeviceFrag f = new DeviceFrag();
@@ -53,38 +46,34 @@ public class DeviceFrag extends Fragment {
         View rootView = inflater.inflate(R.layout.scan_beacon_layout, container, false);
 
         ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-        myMapAdapter = new MyMapAdapter(getContext(), new ArrayMap<String, BluetoothDevice>());
+        myMapAdapter = new MyMapAdapter(getContext(), new ArrayMap<String, IBeacon>());
         mDeviceListView.setAdapter(myMapAdapter);
 
         return rootView;
-    }
-
-
-    private OnItemSelectedListener listener;
-
-    public void addDevices(ArrayMap<String, BluetoothDevice> bluetoothDevice) {
-        myMapAdapter.notifyDataSetInvalidated();
-        myMapAdapter.setData(bluetoothDevice);
-        myMapAdapter.notifyDataSetChanged();
-    }
-
-    // Define the events that the fragment will use to communicate
-    public interface OnItemSelectedListener {
-        // This can be any number of events to be sent to the activity
-        public void onRssItemSelected(ArrayMap<String, BluetoothDevice> bluetoothDevice);
     }
 
     // Store the listener (activity) that will have events fired once the fragment is attached
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnItemSelectedListener) {
-            listener = (OnItemSelectedListener) context;
-//            listener.onRssItemSelected(new ArrayMap<String, BluetoothDevice>());
+        if (context instanceof OnAddDevicesListener) {
+            listener = (OnAddDevicesListener) context;
         } else {
             throw new ClassCastException(context.toString()
-                    + " must implement MyListFragment.OnItemSelectedListener");
+                    + " must implement the OnAddDevicesListener");
         }
+    }
+
+    // Define the events that the fragment will use to communicate
+    public interface OnAddDevicesListener {
+        // This can be any number of events to be sent to the activity
+        void onAddDevices(ArrayMap<String, IBeacon> bluetoothDevice);
+    }
+
+    public void addDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
+        myMapAdapter.notifyDataSetInvalidated();
+        myMapAdapter.setData(bluetoothDevice);
+        myMapAdapter.notifyDataSetChanged();
     }
 
 }

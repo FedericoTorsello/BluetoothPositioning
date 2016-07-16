@@ -1,8 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.logic;
 
 import android.bluetooth.BluetoothDevice;
-import android.util.Log;
-import android.util.SparseArray;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,26 +14,30 @@ import it.unibo.torsello.bluetoothpositioning.utils.IBeaconConstants;
 public class IBeacon {
     private final String TAG = getClass().getSimpleName();
 
+    private BluetoothDevice device;
+    private int lastRssi;
     private String uuid;
     private int major;
     private int minor;
     private int txPower;
-    private String hash;
-    private BluetoothDevice device;
+    private long currentTime;
+    //    private String hash;
 
     private long lastReport;
-    private double lastRssi;
     private double distanceInMetres;
 
-    public IBeacon(BluetoothDevice device, int rssi, String uuid, int major, int minor, int txPower) {
+    public IBeacon(BluetoothDevice device, int rssi, String uuid, int major, int minor, int txPower, long currentTime) {
+        this.device = device;
+        this.lastRssi = rssi;
         this.uuid = uuid;
         this.major = major;
         this.minor = minor;
         this.txPower = txPower;
-        this.hash = uuid + ":" + major + ":" + minor;
+        this.currentTime = currentTime;
+//        this.hash = uuid + ":" + major + ":" + minor;
     }
 
-    protected static boolean isBeacon(byte[] scanRecord) {
+    public static boolean isBeacon(byte[] scanRecord) {
         Integer[] headerBytes = new Integer[9];
 
         for (int i = 0; i < headerBytes.length; i++) {
@@ -45,56 +47,54 @@ public class IBeacon {
         return Collections.indexOfSubList(Arrays.asList(headerBytes), IBeaconConstants.IBEACON_HEADER) == IBeaconConstants.IBEACON_HEADER_INDEX;
     }
 
-//    protected static IBeacon from(BluetoothDevice device, int rssi, byte[] scanRecord) {
-//
-//        String uuid = parseUUIDFrom(scanRecord);
-//
-//        int major = (scanRecord[IBeaconConstants.MAJOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MAJOR_INDEX+1] & 0xff);
-//        int minor = (scanRecord[IBeaconConstants.MINOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MINOR_INDEX+1] & 0xff);
-//        int txPower = (int)scanRecord[IBeaconConstants.TXPOWER_INDEX];
-//
-////        Log.d("BEACON", "\n\tName  " + device.getAddress() + "  UUID: " + uuid
-////                + "\n  Major: " + major + "  Minor: " + minor + "  TxPower: " + txPower);
-//
-//        return new IBeacon(device, rssi, uuid, major, minor, txPower);
-//    }
+    public static IBeacon generateNewIBeacon(BluetoothDevice device, int rssi, byte[] scanRecord, long currentTime) {
 
-//    private static String parseUUIDFrom(byte[] scanRecord) {
-//        int[] proximityUuidBytes = new int[16];
-//        char[] proximityUuidChars = new char[proximityUuidBytes.length * 2];
-//
-//        for (int i = 0; i < proximityUuidBytes.length; i++) {
-//            proximityUuidBytes[i] = scanRecord[i + IBeaconConstants.PROXIMITY_UUID_INDEX] & 0xFF;
-//            proximityUuidChars[i * 2] = IBeaconConstants.HEX_ARRAY[proximityUuidBytes[i] >>> 4];
-//            proximityUuidChars[i * 2 + 1] = IBeaconConstants.HEX_ARRAY[proximityUuidBytes[i] & 0x0F];
-//        }
-//
-//        String proximityUuidHexString = new String(proximityUuidChars);
-//        StringBuilder builder = new StringBuilder();
-//        builder.append(proximityUuidHexString.substring(0, 8));
-//        builder.append("-");
-//        builder.append(proximityUuidHexString.substring(8, 12));
-//        builder.append("-");
-//        builder.append(proximityUuidHexString.substring(12, 16));
-//        builder.append("-");
-//        builder.append(proximityUuidHexString.substring(16, 20));
-//        builder.append("-");
-//        builder.append(proximityUuidHexString.substring(20, 32));
-//
-//        return builder.toString();
-//    }
+        String uuid = parseUUIDFrom(scanRecord);
+
+        int major = (scanRecord[IBeaconConstants.MAJOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MAJOR_INDEX + 1] & 0xff);
+        int minor = (scanRecord[IBeaconConstants.MINOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MINOR_INDEX + 1] & 0xff);
+        int txPower = (int) scanRecord[IBeaconConstants.TXPOWER_INDEX];
+
+        return new IBeacon(device, rssi, uuid, major, minor, txPower, currentTime);
+    }
+
+
+    private static String parseUUIDFrom(byte[] scanRecord) {
+        int[] proximityUuidBytes = new int[16];
+        char[] proximityUuidChars = new char[proximityUuidBytes.length * 2];
+
+        for (int i = 0; i < proximityUuidBytes.length; i++) {
+            proximityUuidBytes[i] = scanRecord[i + IBeaconConstants.PROXIMITY_UUID_INDEX] & 0xFF;
+            proximityUuidChars[i * 2] = IBeaconConstants.HEX_ARRAY[proximityUuidBytes[i] >>> 4];
+            proximityUuidChars[i * 2 + 1] = IBeaconConstants.HEX_ARRAY[proximityUuidBytes[i] & 0x0F];
+        }
+
+        String proximityUuidHexString = new String(proximityUuidChars);
+        StringBuilder builder = new StringBuilder();
+        builder.append(proximityUuidHexString.substring(0, 8));
+        builder.append("-");
+        builder.append(proximityUuidHexString.substring(8, 12));
+        builder.append("-");
+        builder.append(proximityUuidHexString.substring(12, 16));
+        builder.append("-");
+        builder.append(proximityUuidHexString.substring(16, 20));
+        builder.append("-");
+        builder.append(proximityUuidHexString.substring(20, 32));
+
+        return builder.toString();
+    }
 
     public void calculateDistanceFrom(double rssi, IBeacon existingBeacon) {
-        double filteredRssi = KalmanFilter.filter(rssi, hash);
+        double filteredRssi = KalmanFilter.filter(rssi, device.getAddress());
 
         double distanceInMetres = distanceFrom(filteredRssi, txPower);
 
         if (existingBeacon != null) {
-            distanceInMetres = filteredDistance(distanceInMetres, existingBeacon.getDistanceInMetres());
+            distanceInMetres = filteredDistance(distanceInMetres, existingBeacon.getAccuracyInMetres());
         }
 
         this.distanceInMetres = distanceInMetres;
-        this.lastRssi = filteredRssi;
+        this.lastRssi = (int) filteredRssi;
         this.lastReport = System.currentTimeMillis();
     }
 
@@ -132,9 +132,9 @@ public class IBeacon {
         return txPower;
     }
 
-    public String getHash() {
-        return hash;
-    }
+//    public String getHash() {
+//        return hash;
+//    }
 
     public long getLastReport() {
         return lastReport;
@@ -144,11 +144,15 @@ public class IBeacon {
         return lastRssi;
     }
 
-    public double getDistanceInMetres() {
+    public double getAccuracyInMetres() {
         return distanceInMetres;
     }
 
     public BluetoothDevice getDevice() {
         return device;
+    }
+
+    public long getCurrentTime() {
+        return currentTime;
     }
 }

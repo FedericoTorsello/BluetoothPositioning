@@ -10,6 +10,8 @@ import android.bluetooth.le.ScanSettings;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -33,73 +35,57 @@ import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.logic.IBeaconService;
+import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
 import it.unibo.torsello.bluetoothpositioning.logic.MyBluetoothDevice;
 import it.unibo.torsello.bluetoothpositioning.logic.Plain;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener
-        , DeviceFrag.OnItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, DeviceFrag.OnAddDevicesListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    private final long DOUBLE_PRESS_INTERVAL = 1000;
-    private String deviceFragTag;
     private boolean isBackPressed = false;
     private boolean isRunScan = false;
     private long back_pressed;
-    //    private ArrayMap<String, IBeacon> bluetoothDeviceMap;
-    private ArrayMap<String, BluetoothDevice> bluetoothDeviceMap;
+    private ArrayMap<String, IBeacon> bluetoothDeviceMap;
 
     @Override
-    public void onRssItemSelected(ArrayMap<String, BluetoothDevice> bluetoothDevice) {
-        DeviceFrag fragment = (DeviceFrag) getSupportFragmentManager()
-                .findFragmentByTag(deviceFragTag);
-//        DeviceFrag fragment = (DeviceFrag) getSupportFragmentManager()
-//                .findFragmentById(R.id.viewpager);
-        fragment.addDevices(bluetoothDeviceMap);
-    }
+    public void onAddDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
 
+        List<Fragment> fragments = getFragments();
+        String deviceFragTag = "";
+        for (int i = 0; i < fragments.size(); i++) {
+            if (fragments.get(i) instanceof DeviceFrag) {
+                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
+            }
+        }
+        DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
+                .findFragmentByTag(deviceFragTag);
+        deviceFrag.addDevices(bluetoothDeviceMap);
+
+    }
 
     private enum plainNum {ZERO, ONE}
 
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
         public void onScanResult(final int callbackType, final ScanResult device) {
-            final DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
-                    .findFragmentByTag(deviceFragTag);
-            try {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        IBeacon scannedBeacon =
+                                IBeacon.generateNewIBeacon(device.getDevice(), device.getRssi(),
+                                        device.getScanRecord().getBytes(), System.currentTimeMillis());
+                        bluetoothDeviceMap.put(scannedBeacon.getDevice().getAddress(), scannedBeacon);
+                        onAddDevices(bluetoothDeviceMap);
 
-                        if (device.getScanRecord().getBytes() != null) {
-                            bluetoothDeviceMap.put(device.getDevice().getAddress(), device.getDevice());
-                            onRssItemSelected(bluetoothDeviceMap);
-
-
-//                            BluetoothLeDevice deviceLe =
-//                                    new BluetoothLeDevice(device.getDevice(),
-//                                            device.getRssi(),
-//                                            device.getScanRecord().getBytes(),
-//                                            System.currentTimeMillis());
-////
-//                            if (BeaconUtils.getBeaconType(deviceLe) == BeaconType.IBEACON) {
-//                                IBeaconDevice iBeaconDevice = new IBeaconDevice(deviceLe);
-//                                bluetoothDeviceMap.put(deviceLe.getAddress(), iBeaconDevice);
-//                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
-
-//                                MyBluetoothDevice myDevice = new MyBluetoothDevice(device);
-//                                bluetoothDeviceMap.put(myDevice.getScanResult().getDevice().getAddress(), myDevice);
-//                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
-//                            }
-                        }
+                    } catch (NullPointerException e) {
+                        e.getStackTrace();
                     }
-                });
-            } catch (NullPointerException e) {
-                e.getStackTrace();
-            }
+                }
+            });
         }
 
         @Override
@@ -108,24 +94,24 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
                 @Override
                 public void onLeScan(final BluetoothDevice device, final int rssi, final byte[] scanRecord) {
-                    final DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
-                            .findFragmentByTag(deviceFragTag);
-                    try {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-//                                MyBluetoothDevice myDevice = new MyBluetoothDevice(device, rssi);
-//                                bluetoothDeviceMap.put(device.getAddress(), myDevice);
-//                                deviceFrag.addDevicesMyBluetooth(bluetoothDeviceMap);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                IBeacon scannedBeacon =
+                                        IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
+                                bluetoothDeviceMap.put(scannedBeacon.getDevice().getAddress(), scannedBeacon);
+                                onAddDevices(bluetoothDeviceMap);
+                            } catch (NullPointerException e) {
+                                e.getStackTrace();
                             }
-                        });
-                    } catch (NullPointerException e) {
-                        e.getStackTrace();
-                    }
+                        }
+                    });
                 }
             };
 
@@ -139,32 +125,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final IBeaconService iBeaconService = new IBeaconService(getApplicationContext());
-
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                checkBluetoothTurnOn();
+                checkBluetoothTurnOn();
 
                 isRunScan = !isRunScan;
+
                 scanLeDevice(isRunScan);
-
-
-//                if (isRunScan) {
-////                    iBeaconService.registerListener(this);
-////                    iBeaconService.startScanning();
-//                    Snackbar.make(view, R.string.scanning_enabled, Snackbar.LENGTH_SHORT).show();
-////                    iBeaconService.registerListener();
-//                } else {
-////                    iBeaconService.unregisterListener(this);
-//                    Snackbar.make(view, R.string.scanning_disabled, Snackbar.LENGTH_SHORT).show();
-////                    iBeaconService.unregisterListener(iBeaconListener);
-//                }
-
-//                String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
-//                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
+                String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
 
             }
         });
@@ -180,16 +152,9 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        List<Fragment> fragments = getFragments();
-        for (int i = 0; i < fragments.size(); i++) {
-            if (fragments.get(i) instanceof DeviceFrag) {
-                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
-            }
-        }
-
         ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
         assert mViewPager != null;
-        mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), fragments));
+        mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
 
         Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
 
@@ -212,6 +177,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            final long DOUBLE_PRESS_INTERVAL = 1000;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
                 Snackbar.make(mViewPager, R.string.exit, Snackbar.LENGTH_SHORT).show();
@@ -272,8 +238,9 @@ public class MainActivity extends AppCompatActivity
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(MyFragment.newInstance("Fragment 1"));
         fList.add(DeviceFrag.newInstance("ciao"));
+        fList.add(MyFragment.newInstance("Fragment 1"));
+
         return fList;
     }
 
@@ -305,13 +272,13 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void scanLeDevice(boolean isEnabled) {
+    public void scanLeDevice(boolean isScanEnabled) {
         List<ScanFilter> filters = new ArrayList<>();
         ScanSettings settings = new ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                 .build();
 
-        if (isEnabled) {
+        if (isScanEnabled) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 mBluetoothAdapter.startLeScan(mLeScanCallback);
             } else {
