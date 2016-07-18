@@ -55,7 +55,7 @@ public class MyMapAdapter extends BaseAdapter {
         // reuse views
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.list_row_layout, parent, false);
+            convertView = inflater.inflate(R.layout.device_item2, parent, false);
             // configure view holder
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.row_name = (TextView) convertView
@@ -74,26 +74,36 @@ public class MyMapAdapter extends BaseAdapter {
                     .findViewById(R.id.row_UUID);
             viewHolder.row_color = (ImageView) convertView
                     .findViewById(R.id.row_color);
+
             convertView.setTag(viewHolder);
-        }
+        } else {
 
-        String deviceAddress = mData.keyAt(position);
-        IBeacon device = mData.valueAt(position);
+            String deviceAddress = mData.keyAt(position);
+            IBeacon device = mData.valueAt(position);
 
-        ViewHolder viewHolder = (ViewHolder) convertView.getTag();
+//            IBeacon existingBeacon = bluetoothDeviceMap.get(scannedBeacon.address);
+//                            scannedBeacon.calculateDistanceKalmanFilter();
 
-////        viewHolder.row_color.setBackgroundColor(myIBeacon.getColor());
+            ViewHolder viewHolder = (ViewHolder) convertView.getTag();
+            ////        viewHolder.row_color.setBackgroundColor(myIBeacon.getColor());
 ////        viewHolder.row_name.setTextColor(myIBeacon.getColor());
-        viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.getDevice().getName()));
-        viewHolder.row_accuracy.setText(String.format(Locale.getDefault(), "%s %.2f m", context.getString(R.string.accuracy), device.getAccuracyInMetres()));
-        viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getLastRssi()));
-        viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.getDevice().getAddress()));
-        viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device.getMajor()));
-        viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device.getMinor()));
-        viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device.getUuid()));
+            viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.device.getName()));
+            viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.address));
+            viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device.major));
+            viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device.minor));
+            viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device.uuid));
 
+//            viewHolder.row_accuracy.setText(String.format(Locale.getDefault(), "%s %.2f m"
+// , context.getString(R.string.accuracy), device.getDistanceInMetresKalmanFilter()));
 
+            viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getLastRssi()));
+            viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
+                    "%s KF%.2f m NOF%.2f m XXX%.2f m", context.getString(R.string.accuracy),
+                    device.getDistanceInMetresKalmanFilter(), device.getDistanceInMetresNoFiltered(), device.xxx));
+
+        }
         return convertView;
+
     }
 
 

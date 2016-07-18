@@ -1,5 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.filter;
 
+import android.support.v4.util.ArrayMap;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,8 +10,8 @@ import java.util.Map;
  */
 public class KalmanFilter {
     public static double KALMAN_VALUE = 2D;
-    private static final Map<String, Double> mPredictedSignals = new HashMap<String, Double>();
-    private static final Map<String, Double> mPredictedVelocities = new HashMap<String, Double>();
+    private static final ArrayMap<String, Double> mPredictedSignals = new ArrayMap<>();
+    private static final ArrayMap<String, Double> mPredictedVelocities = new ArrayMap<>();
 
     public static double filter(double newSignalValue, String identifier) {
         Double predictedSignal = mPredictedSignals.get(identifier);

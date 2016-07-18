@@ -15,9 +15,5 @@ public class IBeaconConstants {
     public static final int TXPOWER_INDEX = 29;
 
     public static final double FILTER_FACTOR = 0.1;
-
-    public static final char[] HEX_ARRAY = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
-
-    public static final int UPDATE_PERIOD = 1000;
-    public static final int CULL_DELAY = 3000;
+    public static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 }

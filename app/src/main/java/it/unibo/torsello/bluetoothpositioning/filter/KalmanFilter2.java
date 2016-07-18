@@ -1,0 +1,69 @@
+package it.unibo.torsello.bluetoothpositioning.filter;
+
+public class KalmanFilter2 {
+
+    private int numOfMeasurements;
+
+    private double processVariance, estimationVariance;
+
+    private double observations;
+
+    public KalmanFilter2(double observations, double processVariance) {
+        this.observations = observations;
+        this.processVariance = processVariance;
+        this.numOfMeasurements = 1;
+        this.estimationVariance = 0.5;
+    }
+
+    public double filter() {
+//        public double[] filter() {
+
+        // Number of measurements
+        int N = numOfMeasurements;
+
+        // measurements with mean = .5, sigma = .1;
+        double z = observations;
+
+
+        double Q = processVariance,
+                //	Math.min(1.0, StatUtils.populationVariance(observations)),
+
+                //	R = StatUtils.populationVariance(observations);
+                R = estimationVariance;
+        // Estimation variance
+
+        double[] xhat = new double[N],    // estimated true value (posteri)
+                xhat_prime = new double[N],   // estimated true value (priori)
+                p = new double[N],    // estimated error (posteri)
+                p_prime = new double[N],    // estimated error (priori)
+                k = new double[N];    // kalman gain
+
+        double cur_ave = 0;
+
+        // Initial guesses
+        xhat[0] = observations;
+        p[0] = observations;
+
+        //	System.out.println(xhat.length);
+        //	System.out.println(observations.length);
+
+        for (int i = 1; i <= N - 1; i++) {
+            // time update
+            xhat_prime[i] = xhat[i - 1];
+            p_prime[i] = p[i - 1] + Q;
+
+            // measurement update
+            k[i] = p_prime[i] / (p_prime[i] + R);
+            xhat[i] = xhat_prime[i] + k[i] * (z - xhat_prime[i]);
+            p[i] = (1 - k[i]) * p_prime[i];
+
+            // calculate running average
+            cur_ave = (cur_ave * (i - 1) + z) / ((double) i);
+
+            //System.out.printf("%04f;%04f;%04f\n", z[i], xhat[i], cur_ave);
+        }
+        //System.err(xhat);
+//        return xhat;
+        return xhat[0];
+    }
+}

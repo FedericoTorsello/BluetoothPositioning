@@ -13,7 +13,7 @@
     <string name="minor">Minor:</string>
     <string name="uuid">UUID:</string>
     <string name="rssi">RSSI:</string>
-    <string name="accuracy">Accuracy:</string>
+    <string name="accuracy">Dist:</string>
     <string name="color">color</string>
 
 

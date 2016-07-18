@@ -58,7 +58,7 @@ public class MyBluetoothDevice {
 
     /**
      * Calculates the accuracy of an RSSI reading.
-     * <p/>
+     * <p>
      * The code was taken from <a href="http://stackoverflow.com/questions/20416218/understanding-ibeacon-distancing" /a>
      *
      * @param txPower the calibrated TX power of an iBeacon

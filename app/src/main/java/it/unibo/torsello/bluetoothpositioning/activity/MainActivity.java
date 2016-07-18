@@ -10,8 +10,6 @@ import android.bluetooth.le.ScanSettings;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -31,6 +29,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibo.torsello.bluetoothpositioning.filter.D1Kalman;
 import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
@@ -50,37 +49,27 @@ public class MainActivity extends AppCompatActivity
     private long back_pressed;
     private ArrayMap<String, IBeacon> bluetoothDeviceMap;
 
-    @Override
-    public void onAddDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
-
-        List<Fragment> fragments = getFragments();
-        String deviceFragTag = "";
-        for (int i = 0; i < fragments.size(); i++) {
-            if (fragments.get(i) instanceof DeviceFrag) {
-                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
-            }
-        }
-        DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
-                .findFragmentByTag(deviceFragTag);
-        deviceFrag.addDevices(bluetoothDeviceMap);
-
-    }
-
     private enum plainNum {ZERO, ONE}
 
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
-        public void onScanResult(final int callbackType, final ScanResult device) {
+        public void onScanResult(final int callbackType, final ScanResult scanResult) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                        IBeacon scannedBeacon =
-                                IBeacon.generateNewIBeacon(device.getDevice(), device.getRssi(),
-                                        device.getScanRecord().getBytes(), System.currentTimeMillis());
-                        bluetoothDeviceMap.put(scannedBeacon.getDevice().getAddress(), scannedBeacon);
-                        onAddDevices(bluetoothDeviceMap);
+                        if (IBeacon.isBeacon(scanResult.getScanRecord().getBytes())) {
+                            IBeacon scannedBeacon =
+                                    IBeacon.generateNewIBeacon(scanResult, System.currentTimeMillis());
 
+                            IBeacon existingBeacon = bluetoothDeviceMap.get(scannedBeacon.address);
+                            scannedBeacon.calculateDistanceKalmanFilter(existingBeacon);
+
+                            scannedBeacon.calcXXX();
+
+                            bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
+                            onAddDevices(bluetoothDeviceMap);
+                        }
                     } catch (NullPointerException e) {
                         e.getStackTrace();
                     }
@@ -103,10 +92,14 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             try {
-                                IBeacon scannedBeacon =
-                                        IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
-                                bluetoothDeviceMap.put(scannedBeacon.getDevice().getAddress(), scannedBeacon);
-                                onAddDevices(bluetoothDeviceMap);
+                                if (IBeacon.isBeacon(scanRecord)) {
+                                    IBeacon scannedBeacon =
+                                            IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
+
+
+                                    bluetoothDeviceMap.put(scannedBeacon.device.getAddress(), scannedBeacon);
+                                    onAddDevices(bluetoothDeviceMap);
+                                }
                             } catch (NullPointerException e) {
                                 e.getStackTrace();
                             }
@@ -159,6 +152,7 @@ public class MainActivity extends AppCompatActivity
         Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
 
         Plain plainZero = new Plain(plainNum.ZERO.ordinal(), getBeacons(plainNum.ZERO.ordinal()));
+//        Plain plainOne= new Plain(plainNum.ONE.ordinal(), getBeacons(plainNum.ONE.ordinal()));
 
     }
 
@@ -236,6 +230,22 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onAddDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
+
+        List<Fragment> fragments = getFragments();
+        String deviceFragTag = "";
+        for (int i = 0; i < fragments.size(); i++) {
+            if (fragments.get(i) instanceof DeviceFrag) {
+                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
+            }
+        }
+        DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
+                .findFragmentByTag(deviceFragTag);
+        deviceFrag.addDevices(bluetoothDeviceMap);
+
+    }
+
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
         fList.add(DeviceFrag.newInstance("ciao"));
@@ -245,8 +255,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private List<MyBluetoothDevice> getBeacons(int numPlain) {
-        List<MyBluetoothDevice> beacons = new ArrayList<>();
 
+        List<MyBluetoothDevice> beacons = new ArrayList<>();
         switch (numPlain) {
             case 0:
                 beacons.add(new MyBluetoothDevice("mint1", "fa6b721eeb46", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:60230:29214"));
@@ -256,8 +266,10 @@ public class MainActivity extends AppCompatActivity
                 beacons.add(new MyBluetoothDevice("ice1", "c19bb0b9019e", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:414:45241"));
                 beacons.add(new MyBluetoothDevice("ice2", "d1bee2e967a6", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:26534:58089"));
                 break;
+            case 1:
+                beacons.add(new MyBluetoothDevice("mint2", "d98000b71678", "B9407F30-F5F8-466E-AFF9-25556B57FE6D:5752:183"));
+                break;
         }
-
         return beacons;
     }
 

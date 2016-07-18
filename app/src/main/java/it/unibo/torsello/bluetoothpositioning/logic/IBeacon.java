@@ -1,11 +1,17 @@
 package it.unibo.torsello.bluetoothpositioning.logic;
 
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.le.ScanResult;
+import android.os.Build;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Collections;
 
+import it.unibo.torsello.bluetoothpositioning.filter.D1Kalman;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
+import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
 import it.unibo.torsello.bluetoothpositioning.utils.IBeaconConstants;
 
 /**
@@ -14,19 +20,20 @@ import it.unibo.torsello.bluetoothpositioning.utils.IBeaconConstants;
 public class IBeacon {
     private final String TAG = getClass().getSimpleName();
 
-    private BluetoothDevice device;
+    public final BluetoothDevice device;
+    public final String uuid;
+    public final int major;
+    public final int minor;
+    public final String address;
+    public final int txPower;
+
     private int lastRssi;
-    private String uuid;
-    private int major;
-    private int minor;
-    private int txPower;
     private long currentTime;
-    //    private String hash;
+    private double distanceInMetresKalmanFilter;
+    private double distanceInMetresFiltered;
+    private double distanceInMetresNoFiltered;
 
-    private long lastReport;
-    private double distanceInMetres;
-
-    public IBeacon(BluetoothDevice device, int rssi, String uuid, int major, int minor, int txPower, long currentTime) {
+    private IBeacon(BluetoothDevice device, int rssi, String uuid, int major, int minor, int txPower, long currentTime) {
         this.device = device;
         this.lastRssi = rssi;
         this.uuid = uuid;
@@ -34,7 +41,7 @@ public class IBeacon {
         this.minor = minor;
         this.txPower = txPower;
         this.currentTime = currentTime;
-//        this.hash = uuid + ":" + major + ":" + minor;
+        this.address = device.getAddress();
     }
 
     public static boolean isBeacon(byte[] scanRecord) {
@@ -47,17 +54,26 @@ public class IBeacon {
         return Collections.indexOfSubList(Arrays.asList(headerBytes), IBeaconConstants.IBEACON_HEADER) == IBeaconConstants.IBEACON_HEADER_INDEX;
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static IBeacon generateNewIBeacon(ScanResult scanResult, long currentTime) {
+        byte[] scanRecord = scanResult.getScanRecord().getBytes();
+        String uuid = parseUUIDFrom(scanRecord);
+        int major = (scanRecord[IBeaconConstants.MAJOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MAJOR_INDEX + 1] & 0xff);
+        int minor = (scanRecord[IBeaconConstants.MINOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MINOR_INDEX + 1] & 0xff);
+        int txPower = (int) scanRecord[IBeaconConstants.TXPOWER_INDEX];
+
+        return new IBeacon(scanResult.getDevice(), scanResult.getRssi(), uuid, major, minor, txPower, currentTime);
+    }
+
     public static IBeacon generateNewIBeacon(BluetoothDevice device, int rssi, byte[] scanRecord, long currentTime) {
 
         String uuid = parseUUIDFrom(scanRecord);
-
         int major = (scanRecord[IBeaconConstants.MAJOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MAJOR_INDEX + 1] & 0xff);
         int minor = (scanRecord[IBeaconConstants.MINOR_INDEX] & 0xff) * 0x100 + (scanRecord[IBeaconConstants.MINOR_INDEX + 1] & 0xff);
         int txPower = (int) scanRecord[IBeaconConstants.TXPOWER_INDEX];
 
         return new IBeacon(device, rssi, uuid, major, minor, txPower, currentTime);
     }
-
 
     private static String parseUUIDFrom(byte[] scanRecord) {
         int[] proximityUuidBytes = new int[16];
@@ -84,72 +100,74 @@ public class IBeacon {
         return builder.toString();
     }
 
-    public void calculateDistanceFrom(double rssi, IBeacon existingBeacon) {
-        double filteredRssi = KalmanFilter.filter(rssi, device.getAddress());
+    public double calcXXX() {
+        D1Kalman d1Kalman = new D1Kalman();
+        d1Kalman.addRssi(lastRssi);
+        return xxx = d1Kalman.getEstimatedRssi();
+    }
 
-        double distanceInMetres = distanceFrom(filteredRssi, txPower);
+    public double xxx;
+
+    public void calculateDistanceNoFilter(IBeacon existingBeacon) {
+
+        double accuracy = KalmanFilter.filter(lastRssi, address);
+        double newDistanceInMeters = distanceFrom(accuracy);
 
         if (existingBeacon != null) {
-            distanceInMetres = filteredDistance(distanceInMetres, existingBeacon.getAccuracyInMetres());
+            double previousAccuracy = existingBeacon.getDistanceInMetresKalmanFilter();
+            newDistanceInMeters = previousAccuracy * (1 - IBeaconConstants.FILTER_FACTOR)
+                    + newDistanceInMeters * IBeaconConstants.FILTER_FACTOR;
         }
 
-        this.distanceInMetres = distanceInMetres;
-        this.lastRssi = (int) filteredRssi;
-        this.lastReport = System.currentTimeMillis();
+        distanceInMetresKalmanFilter = newDistanceInMeters;
     }
 
-    private double distanceFrom(double rssi, int txPower) {
+    public void calculateDistanceKalmanFilter(IBeacon existingBeacon) {
+        double newDistanceInMeters = distanceFrom(lastRssi);
+
+        if (existingBeacon != null) {
+            newDistanceInMeters = distanceFrom(existingBeacon.lastRssi);
+            newDistanceInMeters = new KalmanFilter2(newDistanceInMeters, 0.05).filter();
+        }
+
+        distanceInMetresKalmanFilter = newDistanceInMeters;
+
+    }
+
+    /**
+     * Calculates the accuracy of an RSSI reading.
+     * <p>
+     * The code was taken from <a href="http://stackoverflow.com/questions/20416218/understanding-ibeacon-distancing" /a>
+     *
+     * @param rssi the RSSI value of the iBeacon
+     * @return the calculated Accuracy
+     */
+
+    private double distanceFrom(double rssi) {
         if (rssi == 0) {
-            return -1;
+            return -1.0; // if we cannot determine accuracy, return -1.
         }
 
-        double ratio = rssi / txPower;
+        double ratio = rssi * 1.0 / txPower;
 
-        if (ratio < 1) {
+        if (ratio < 1.0) {
             return Math.pow(ratio, 10);
-        } else {
-            return 0.89976 * Math.pow(ratio, 7.7095) + 0.111;
         }
-    }
 
-    private static double filteredDistance(double newAccuracy, double previousAccuracy) {
-        return previousAccuracy * (1 - IBeaconConstants.FILTER_FACTOR) + newAccuracy * IBeaconConstants.FILTER_FACTOR;
-    }
+        return (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
 
-    public String getUuid() {
-        return uuid;
-    }
-
-    public int getMajor() {
-        return major;
-    }
-
-    public int getMinor() {
-        return minor;
-    }
-
-    public int getTxPower() {
-        return txPower;
-    }
-
-//    public String getHash() {
-//        return hash;
-//    }
-
-    public long getLastReport() {
-        return lastReport;
     }
 
     public double getLastRssi() {
         return lastRssi;
     }
 
-    public double getAccuracyInMetres() {
-        return distanceInMetres;
+    public double getDistanceInMetresKalmanFilter() {
+        return distanceInMetresKalmanFilter;
     }
 
-    public BluetoothDevice getDevice() {
-        return device;
+    public double getDistanceInMetresNoFiltered() {
+        return distanceInMetresNoFiltered = distanceFrom(lastRssi);
     }
 
     public long getCurrentTime() {

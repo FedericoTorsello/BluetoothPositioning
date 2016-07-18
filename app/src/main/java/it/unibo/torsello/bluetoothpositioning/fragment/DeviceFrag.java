@@ -71,7 +71,7 @@ public class DeviceFrag extends Fragment {
     }
 
     public void addDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
-        myMapAdapter.notifyDataSetInvalidated();
+//        myMapAdapter.notifyDataSetInvalidated();
         myMapAdapter.setData(bluetoothDevice);
         myMapAdapter.notifyDataSetChanged();
     }
