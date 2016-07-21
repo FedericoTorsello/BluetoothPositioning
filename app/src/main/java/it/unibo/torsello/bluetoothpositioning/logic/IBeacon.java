@@ -30,8 +30,10 @@ public class IBeacon {
     private int lastRssi;
     private long currentTime;
     private double distanceInMetresKalmanFilter;
-    private double distanceInMetresFiltered;
-    private double distanceInMetresNoFiltered;
+//    private double distanceInMetresFiltered;
+//    private double distanceInMetresNoFiltered;
+
+    private double dist;
 
     private IBeacon(BluetoothDevice device, int rssi, String uuid, int major, int minor, int txPower, long currentTime) {
         this.device = device;
@@ -52,6 +54,28 @@ public class IBeacon {
         }
 
         return Collections.indexOfSubList(Arrays.asList(headerBytes), IBeaconConstants.IBEACON_HEADER) == IBeaconConstants.IBEACON_HEADER_INDEX;
+    }
+
+    public double calculateDistance(double txPower, double rssi) {
+        double n = 2.0;   // Signal propogation exponent
+        double d0 = 1;  // Reference distance in meters
+        double C = 0;   // Gaussian variable for mitigating flat fading
+
+        // model specific adjustments for Samsung S3 as per Android Beacon Library
+        double mReceiverRssiSlope = 0;
+        double mReceiverRssiOffset = -2;
+
+        // calculation of adjustment
+        double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
+        double adjustedRssi = rssi - adjustment;
+
+
+        // Log-distance path loss model
+        return dist = d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
+    }
+
+    public double getDist() {
+        return dist;
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -167,7 +191,7 @@ public class IBeacon {
     }
 
     public double getDistanceInMetresNoFiltered() {
-        return distanceInMetresNoFiltered = distanceFrom(lastRssi);
+        return distanceFrom(lastRssi);
     }
 
     public long getCurrentTime() {

@@ -97,9 +97,13 @@ public class MyMapAdapter extends BaseAdapter {
 // , context.getString(R.string.accuracy), device.getDistanceInMetresKalmanFilter()));
 
             viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getLastRssi()));
+//            viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
+//                    "%s KF%.2f m NOF%.2f m XXX%.2f m", context.getString(R.string.accuracy),
+//                    device.getDistanceInMetresKalmanFilter(), device.getDistanceInMetresNoFiltered(), device.xxx));
+
             viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
-                    "%s KF%.2f m NOF%.2f m XXX%.2f m", context.getString(R.string.accuracy),
-                    device.getDistanceInMetresKalmanFilter(), device.getDistanceInMetresNoFiltered(), device.xxx));
+                    "%s NOF%.2f m  KF%.2f m ", context.getString(R.string.accuracy),
+                    device.getDistanceInMetresNoFiltered(), device.getDist()));
 
         }
         return convertView;
