@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.ScanResult;
 import android.os.Build;
-import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +12,9 @@ import it.unibo.torsello.bluetoothpositioning.filter.D1Kalman;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
 import it.unibo.torsello.bluetoothpositioning.utils.IBeaconConstants;
+
+import static java.lang.StrictMath.log10;
+import static java.lang.StrictMath.pow;
 
 /**
  * Created by thenathanjones on 24/01/2014.
@@ -172,14 +174,18 @@ public class IBeacon {
             return -1.0; // if we cannot determine accuracy, return -1.
         }
 
-        double ratio = rssi * 1.0 / txPower;
+//        double ratio = (rssi * 1.0) / txPower;
+        double ratio = rssi / txPower;
 
+        double distance;
         if (ratio < 1.0) {
-            return Math.pow(ratio, 10);
+            distance = Math.pow(ratio, 10);
+        } else {
+//        return (0.89976) * Math.pow(ratio, 7.7095) + 0.125;
+//            distance =  Math.pow(10.0,(rssi - txPower)/-25.0);
+            distance = Math.pow(10.0, ((-rssi + txPower) / 10 * 0.25));
         }
-
-        return (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
-
+        return distance;
     }
 
     public double getLastRssi() {

@@ -1,46 +1,51 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
+import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter2;
+import it.unibo.torsello.bluetoothpositioning.adapter.MyArrayAdapter;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
 
 /**
  * Created by federico on 21/07/16.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevicesListener {
+public class BLEPositioning extends MainActivity
+        implements DeviceFrag.OnAddDevicesListener {
 
+    private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayMap<String, IBeacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
+    private boolean sortByDistance = false;
 
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
@@ -60,7 +65,8 @@ public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevi
                             scannedBeacon.calculateDistance(scannedBeacon.txPower, scannedBeacon.getLastRssi());
 
                             bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
-                            onAddDevices(bluetoothDeviceMap);
+                            onAddDevices(bluetoothDeviceMap.values());
+
                         }
                     } catch (NullPointerException e) {
                         e.getStackTrace();
@@ -88,9 +94,8 @@ public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevi
                                     IBeacon scannedBeacon =
                                             IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
 
-
-                                    bluetoothDeviceMap.put(scannedBeacon.device.getAddress(), scannedBeacon);
-                                    onAddDevices(bluetoothDeviceMap);
+                                    bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
+                                    onAddDevices(bluetoothDeviceMap.values());
                                 }
                             } catch (NullPointerException e) {
                                 e.getStackTrace();
@@ -99,6 +104,7 @@ public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevi
                     });
                 }
             };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,7 +136,7 @@ public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevi
     }
 
     @Override
-    public void onAddDevices(ArrayMap<String, IBeacon> bluetoothDevice) {
+    public void onAddDevices(Collection<IBeacon> bluetoothDevice) {
 
         List<Fragment> fragments = getFragments();
         String deviceFragTag = "";
@@ -139,9 +145,27 @@ public class BLEPositioning extends MainActivity implements DeviceFrag.OnAddDevi
                 deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
             }
         }
+
         DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
                 .findFragmentByTag(deviceFragTag);
-        deviceFrag.addDevices(bluetoothDeviceMap);
+
+        List<IBeacon> list = new ArrayList<>();
+        list.addAll(bluetoothDevice);
+
+        Comparator<IBeacon> comparator = new Comparator<IBeacon>() {
+            public int compare(IBeacon c1, IBeacon c2) {
+                if (sortByDistance) {
+                    return Double.compare(c1.getDist(), c2.getDist());
+                }
+                return 0;
+            }
+        };
+        Collections.sort(list, comparator);
+
+        LeDeviceListAdapter2 leDeviceListAdapter = deviceFrag.getLeDeviceListAdapter();
+        leDeviceListAdapter.clear();
+        leDeviceListAdapter.addAll(list);
+        leDeviceListAdapter.notifyDataSetChanged();
 
     }
 

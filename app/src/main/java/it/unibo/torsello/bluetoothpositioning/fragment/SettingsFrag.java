@@ -49,7 +49,7 @@ public class SettingsFrag extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.settings_fragment, container, false);
 
 //        dependentSwitch = (Switch) view.findViewById(R.id.dependentSwitch);
 //        autoSwitch = (Switch) view.findViewById(R.id.automaticallySwitch);

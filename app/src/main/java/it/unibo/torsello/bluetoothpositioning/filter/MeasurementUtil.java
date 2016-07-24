@@ -3,15 +3,13 @@ package it.unibo.torsello.bluetoothpositioning.filter;
 import android.os.Environment;
 import android.util.Log;
 
-//import com.lth.thesis.blepublictransport.Config.BeaconConstants;
-//
-//import org.altbeacon.beacon.Beacon;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
-import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
+//import com.lth.thesis.blepublictransport.Config.BeaconConstants;
+//
+//import org.altbeacon.beacon.Beacon;
 
 /**
  * Utility class for performing measurements on a test beacon

@@ -2,9 +2,6 @@ package it.unibo.torsello.bluetoothpositioning.filter;
 
 import android.support.v4.util.ArrayMap;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by thenathanjones on 16/02/2014.
  */

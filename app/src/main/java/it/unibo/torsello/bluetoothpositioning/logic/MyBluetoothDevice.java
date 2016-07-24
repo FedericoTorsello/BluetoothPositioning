@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.logic;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.ScanResult;
-import android.graphics.PointF;
 import android.os.Build;
 
 /**
