@@ -31,7 +31,6 @@ public class LeDeviceListAdapter2 extends ArrayAdapter<IBeacon> {
     public LeDeviceListAdapter2(Context context, int textViewResourceId, List<IBeacon> objects) {
         super(context, textViewResourceId, objects);
         this.inflater = LayoutInflater.from(context);
-        this.context = context;
         this.myList = objects;
     }
 

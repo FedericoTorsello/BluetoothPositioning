@@ -60,7 +60,6 @@ public class DeviceFrag extends Fragment {
         leDeviceListAdapter = new LeDeviceListAdapter2(getContext(), R.layout.device_item, new ArrayList<IBeacon>());
         mDeviceListView.setAdapter(leDeviceListAdapter);
 
-
         return rootView;
     }
 
