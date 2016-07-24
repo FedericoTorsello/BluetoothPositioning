@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
-import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter2;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyArrayAdapter;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
 
@@ -24,7 +23,7 @@ public class DeviceFrag extends Fragment {
     private String mTitle;
     private MyArrayAdapter myArrayAdapter;
     private OnAddDevicesListener listener;
-    private LeDeviceListAdapter2 leDeviceListAdapter;
+    private LeDeviceListAdapter leDeviceListAdapter;
 //    private LeDeviceListAdapter leDeviceListAdapter;
 
     public static DeviceFrag newInstance(String message) {
@@ -57,7 +56,7 @@ public class DeviceFrag extends Fragment {
 //        leDeviceListAdapter = new LeDeviceListAdapter(getActivity());
 //        mDeviceListView.setAdapter(leDeviceListAdapter);
 
-        leDeviceListAdapter = new LeDeviceListAdapter2(getContext(), R.layout.device_item, new ArrayList<IBeacon>());
+        leDeviceListAdapter = new LeDeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<IBeacon>());
         mDeviceListView.setAdapter(leDeviceListAdapter);
 
         return rootView;
@@ -96,7 +95,7 @@ public class DeviceFrag extends Fragment {
 //        return leDeviceListAdapter;
 //    }
 
-    public LeDeviceListAdapter2 getLeDeviceListAdapter() {
+    public LeDeviceListAdapter getLeDeviceListAdapter() {
         return leDeviceListAdapter;
     }
 }

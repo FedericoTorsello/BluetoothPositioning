@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -15,22 +16,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
+import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
-import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter2;
-import it.unibo.torsello.bluetoothpositioning.adapter.MyArrayAdapter;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
 
@@ -110,6 +107,10 @@ public class BLEPositioning extends MainActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        Point point = new Point(1, 1);
+        point.getX();
+
         bluetoothDeviceMap = new ArrayMap<>();
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -162,7 +163,7 @@ public class BLEPositioning extends MainActivity
         };
         Collections.sort(list, comparator);
 
-        LeDeviceListAdapter2 leDeviceListAdapter = deviceFrag.getLeDeviceListAdapter();
+        LeDeviceListAdapter leDeviceListAdapter = deviceFrag.getLeDeviceListAdapter();
         leDeviceListAdapter.clear();
         leDeviceListAdapter.addAll(list);
         leDeviceListAdapter.notifyDataSetChanged();
