@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.config;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -9,6 +8,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,33 +16,47 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
-import android.test.suitebuilder.annotation.Suppress;
 import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
+import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
+import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 
 /**
  * Created by federico on 21/07/16.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BLEPositioning extends MainActivity
-        implements DeviceFrag.OnAddDevicesListener {
+        implements SettingsFrag.OnWalkDetectionListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private ArrayMap<String, IBeacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
     private boolean sortByDistance = false;
+    private WalkDetection walkDetection;
+    private SharedPreferences settings;
+    private OnAddDevicesListener listener;
+
+    public interface OnAddDevicesListener {
+        void addDevices(Collection<IBeacon> iBeacons);
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if (fragment instanceof DeviceFrag) {
+            listener = (OnAddDevicesListener) fragment;
+        }
+    }
 
     private ScanCallback mScanCallback = new ScanCallback() {
         @Override
@@ -62,7 +76,7 @@ public class BLEPositioning extends MainActivity
                             scannedBeacon.calculateDistance(scannedBeacon.txPower, scannedBeacon.getLastRssi());
 
                             bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
-                            onAddDevices(bluetoothDeviceMap.values());
+                            listener.addDevices(bluetoothDeviceMap.values());
 
                         }
                     } catch (NullPointerException e) {
@@ -78,7 +92,6 @@ public class BLEPositioning extends MainActivity
         }
     };
 
-
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
                 @Override
@@ -92,7 +105,7 @@ public class BLEPositioning extends MainActivity
                                             IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
 
                                     bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
-                                    onAddDevices(bluetoothDeviceMap.values());
+                                    listener.addDevices(bluetoothDeviceMap.values());
                                 }
                             } catch (NullPointerException e) {
                                 e.getStackTrace();
@@ -102,14 +115,21 @@ public class BLEPositioning extends MainActivity
                 }
             };
 
+    @Override
+    public void updateWalkDetectionListener(boolean enabled) {
+        if (enabled) walkDetection.startDetection();
+        else walkDetection.killDetection();
+    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
-        Point point = new Point(1, 1);
-        point.getX();
+        walkDetection = new WalkDetection(getApplication());
+//        updateWalkDetectionListener(settings.getBoolean(SettingConstants.WALK_DETECTION, false));
 
         bluetoothDeviceMap = new ArrayMap<>();
 
@@ -134,40 +154,6 @@ public class BLEPositioning extends MainActivity
     protected void onResume() {
         super.onResume();
         checkBluetoothTurnOn();
-    }
-
-    @Override
-    public void onAddDevices(Collection<IBeacon> bluetoothDevice) {
-
-        List<Fragment> fragments = getFragments();
-        String deviceFragTag = "";
-        for (int i = 0; i < fragments.size(); i++) {
-            if (fragments.get(i) instanceof DeviceFrag) {
-                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
-            }
-        }
-
-        DeviceFrag deviceFrag = (DeviceFrag) getSupportFragmentManager()
-                .findFragmentByTag(deviceFragTag);
-
-        List<IBeacon> list = new ArrayList<>();
-        list.addAll(bluetoothDevice);
-
-        Comparator<IBeacon> comparator = new Comparator<IBeacon>() {
-            public int compare(IBeacon c1, IBeacon c2) {
-                if (sortByDistance) {
-                    return Double.compare(c1.getDist(), c2.getDist());
-                }
-                return 0;
-            }
-        };
-        Collections.sort(list, comparator);
-
-        LeDeviceListAdapter leDeviceListAdapter = deviceFrag.getLeDeviceListAdapter();
-        leDeviceListAdapter.clear();
-        leDeviceListAdapter.addAll(list);
-        leDeviceListAdapter.notifyDataSetChanged();
-
     }
 
     private void checkBluetoothTurnOn() {

@@ -36,7 +36,7 @@ import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Observer {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private boolean isBackPressed = false;
@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
 
         Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
-
 
     }
 
@@ -146,10 +145,5 @@ public class MainActivity extends AppCompatActivity
         fList.add(MyFragment.newInstance("Fragment 2"));
 
         return fList;
-    }
-
-    @Override
-    public void update(Observable observable, Object data) {
-
     }
 }

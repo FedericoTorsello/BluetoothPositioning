@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -37,6 +38,7 @@ public class SettingsFrag extends Fragment {
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     private String mTitle;
+    OnWalkDetectionListener listener;
 
     public static SettingsFrag newInstance(String message) {
         SettingsFrag f = new SettingsFrag();
@@ -46,29 +48,39 @@ public class SettingsFrag extends Fragment {
         return f;
     }
 
+    //     Store the listener (activity) that will have events fired once the fragment is attached
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnWalkDetectionListener) {
+            listener = (OnWalkDetectionListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement the OnAddDevicesListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
 
-//        dependentSwitch = (Switch) view.findViewById(R.id.dependentSwitch);
-//        autoSwitch = (Switch) view.findViewById(R.id.automaticallySwitch);
-//        subscriptionSwitch = (Switch) view.findViewById(R.id.subscriptionSwitch);
         kalmanSeek = (SeekBar) view.findViewById(R.id.kalmanSeek);
         kalmanFilterValue = (TextView) view.findViewById(R.id.kalmanValue);
         selfCorrectionSwitch = (Switch) view.findViewById(R.id.selfCorrectionSwitch);
         wdSwitch = (Switch) view.findViewById(R.id.walkDetectionSwitch);
-//        gateSimulationSwitch = (Switch) view.findViewById(R.id.gateSimulationSwitch);
 
         settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
-//        setUpDependentPriceSwitch();
-//        setUpAutomaticPaymentSwitch();
-//        setUpSubscriptionSwitch();
         setUpKalmanSeek();
         setUpSelfcorrectingSwitch();
         setUpWalkDetectionSwitch();
-//        setUpGateSimulationSwitch();
 
         return view;
 
@@ -131,9 +143,13 @@ public class SettingsFrag extends Fragment {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
                 editor.apply();
-//                ((BLEPublicTransport) getActivity().getApplication()).updateWalkDetectionListener(isChecked);
                 wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
+                listener.updateWalkDetectionListener(isChecked);
             }
         });
+    }
+
+    public interface OnWalkDetectionListener {
+        void updateWalkDetectionListener(boolean isChecked);
     }
 }

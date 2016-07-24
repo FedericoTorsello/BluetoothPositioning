@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,20 +10,21 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.activity.BLEPositioning;
 import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyArrayAdapter;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
 
-public class DeviceFrag extends Fragment {
+public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private String mTitle;
-    private MyArrayAdapter myArrayAdapter;
-    private OnAddDevicesListener listener;
     private LeDeviceListAdapter leDeviceListAdapter;
-//    private LeDeviceListAdapter leDeviceListAdapter;
 
     public static DeviceFrag newInstance(String message) {
         DeviceFrag f = new DeviceFrag();
@@ -50,53 +50,31 @@ public class DeviceFrag extends Fragment {
         View rootView = inflater.inflate(R.layout.beacon_item_fragment, container, false);
 
         ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-//        myArrayAdapter = new MyArrayAdapter(getContext(), R.layout.beacon_item_fragment, new ArrayList<IBeacon>());
-//        mDeviceListView.setAdapter(myArrayAdapter);
-
-//        leDeviceListAdapter = new LeDeviceListAdapter(getActivity());
-//        mDeviceListView.setAdapter(leDeviceListAdapter);
-
         leDeviceListAdapter = new LeDeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<IBeacon>());
         mDeviceListView.setAdapter(leDeviceListAdapter);
 
         return rootView;
     }
 
-
-    //     Store the listener (activity) that will have events fired once the fragment is attached
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnAddDevicesListener) {
-            listener = (OnAddDevicesListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + " must implement the OnAddDevicesListener");
-        }
-    }
+    public void addDevices(Collection<IBeacon> iBeacons) {
+        List<IBeacon> list = new ArrayList<>();
+        list.addAll(iBeacons);
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        listener = null;
-    }
+        Comparator<IBeacon> comparator = new Comparator<IBeacon>() {
+            public int compare(IBeacon c1, IBeacon c2) {
+//                if (sortByDistance) {
+//                    return Double.compare(c1.getDist(), c2.getDist());
+//                }
+                return 0;
+            }
+        };
+        Collections.sort(list, comparator);
 
-    // Define the events that the fragment will use to communicate
-    public interface OnAddDevicesListener {
-        // This can be any number of events to be sent to the activity
-        void onAddDevices(Collection<IBeacon> bluetoothDevice);
-    }
+        leDeviceListAdapter.clear();
+        leDeviceListAdapter.addAll(list);
+        leDeviceListAdapter.notifyDataSetChanged();
 
-//    public MyArrayAdapter getMyAdapter() {
-//        return myArrayAdapter;
-//    }
-
-//    public LeDeviceListAdapter getLeDeviceListAdapter() {
-//        return leDeviceListAdapter;
-//    }
-
-    public LeDeviceListAdapter getLeDeviceListAdapter() {
-        return leDeviceListAdapter;
     }
 }
 

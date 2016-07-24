@@ -11,10 +11,7 @@ import java.util.Collections;
 import it.unibo.torsello.bluetoothpositioning.filter.D1Kalman;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
-import it.unibo.torsello.bluetoothpositioning.utils.IBeaconConstants;
-
-import static java.lang.StrictMath.log10;
-import static java.lang.StrictMath.pow;
+import it.unibo.torsello.bluetoothpositioning.config.IBeaconConstants;
 
 /**
  * Created by thenathanjones on 24/01/2014.
