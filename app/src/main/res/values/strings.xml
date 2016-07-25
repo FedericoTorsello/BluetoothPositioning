@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">BLEPositioning</string>
+    <string name="developer">Federico Torsello</string>
+    <string name="email">federico.torsello@studio.unibo.it</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -26,19 +28,10 @@
     <string name="info_start_scanning">Push the button to start scanning</string>
 
     <!-- SettingsFrag fragment -->
-    <string name="settings_depending_status">Independent/Dependent prices</string>
-    <string name="settings_dependent_text">Prices depends on destination</string>
-    <string name="settings_independent_text">"Prices are independent of destination"</string>
-    <string name="settings_automatic_status">Manually/automatically</string>
-    <string name="settings_automatic_text">Pay automatically when approaching gate</string>
-    <string name="settings_manually_text">Pay manually when approaching gate</string>
-    <string name="settings_subscription_status">Has subscription?</string>
-    <string name="settings_subscription_text">You have paid for a subscription</string>
-    <string name="settings_no_subscription_text">You have not paid for a subscription</string>
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
     <string name="settings_kalman_value">5.0</string>
     <string name="settings_wd_status">Walk detection?</string>
-    <string name="settings_gate_simulation_status">Simulate a gate at Spår 2</string>
+    <string name="settings_sort_by_distance">Sort by distance?</string>
     <string name="settings_enabled">Enabled</string>
     <string name="settings_disabled">Disabled</string>
     <string name="settings_selfcorrection_status">Self-correcting beacon</string>

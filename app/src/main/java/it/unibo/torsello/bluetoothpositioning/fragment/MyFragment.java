@@ -13,8 +13,6 @@ import it.unibo.torsello.bluetoothpositioning.R;
 public class MyFragment extends Fragment {
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
-    private String mTitle;
-
     public static MyFragment newInstance(String message) {
         MyFragment f = new MyFragment();
         Bundle bdl = new Bundle();
@@ -26,9 +24,6 @@ public class MyFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mTitle = getArguments().getString(EXTRA_MESSAGE);
-        }
         setHasOptionsMenu(true);
     }
 
@@ -38,7 +33,7 @@ public class MyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.myfragment_layout, container, false);
         TextView messageTextView = (TextView) v.findViewById(R.id.textView);
-        messageTextView.setText(mTitle);
+        messageTextView.setText("wooow");
 
         return v;
     }

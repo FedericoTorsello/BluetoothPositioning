@@ -28,4 +28,9 @@ public class MyPageAdapter extends FragmentPagerAdapter {
         return this.fragments.size();
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return fragments.get(position).getArguments().getString("EXTRA_MESSAGE");
+    }
+
 }

@@ -159,7 +159,7 @@ public class IBeacon {
 
     /**
      * Calculates the accuracy of an RSSI reading.
-     * <p>
+     * <p/>
      * The code was taken from <a href="http://stackoverflow.com/questions/20416218/understanding-ibeacon-distancing" /a>
      *
      * @param rssi the RSSI value of the iBeacon

@@ -50,7 +50,6 @@ public class WalkDetection implements SensorEventListener {
     private List<List<Double>> raw;
     private List<Double> rawBatch;
     private int lastBatchNumber = 0;
-    private boolean isEnabled = false;
 
     // needed for accurate timestamps
     private long[] events = new long[2];
@@ -69,17 +68,12 @@ public class WalkDetection implements SensorEventListener {
 
     public void startDetection() {
         mSensorManager.registerListener(this, mSensor, 1000);
-        isEnabled = true;
     }
 
     public void killDetection() {
         mSensorManager.unregisterListener(this);
-        isEnabled = false;
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
-    }
 
     public int getState() {
         return currentState == STATE_PENDING ? STATE_IDLE : currentState;

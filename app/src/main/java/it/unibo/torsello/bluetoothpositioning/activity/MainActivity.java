@@ -1,19 +1,26 @@
 package it.unibo.torsello.bluetoothpositioning.activity;
 
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -30,6 +37,7 @@ import java.util.TreeSet;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
+import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
@@ -65,8 +73,11 @@ public class MainActivity extends AppCompatActivity
         assert mViewPager != null;
         mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
 
-        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        assert tabLayout != null;
+        tabLayout.setupWithViewPager(mViewPager);
 
+        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
     }
 
 
@@ -115,6 +126,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -135,14 +147,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
-    protected List<Fragment> getFragments() {
+    private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFrag.newInstance("ciao"));
-        fList.add(SettingsFrag.newInstance("Fragment 1"));
-        fList.add(MyFragment.newInstance("Fragment 2"));
+        fList.add(DeviceFrag.newInstance("Scan Device"));
+        fList.add(SettingsFrag.newInstance("Setting"));
 
         return fList;
     }

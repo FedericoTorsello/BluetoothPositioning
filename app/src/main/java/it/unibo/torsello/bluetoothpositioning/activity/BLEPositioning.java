@@ -22,9 +22,13 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
+import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
+import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
@@ -35,27 +39,20 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class BLEPositioning extends MainActivity
-        implements SettingsFrag.OnWalkDetectionListener {
+        implements SettingsFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    private ArrayMap<String, IBeacon> bluetoothDeviceMap;
+    private Map<String, IBeacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
-    private boolean sortByDistance = false;
-    private WalkDetection walkDetection;
+    //    private boolean selfCorrection;
+    private double processNoise;
     private SharedPreferences settings;
     private OnAddDevicesListener listener;
+    private WalkDetection walkDetection;
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<IBeacon> iBeacons);
-    }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-        if (fragment instanceof DeviceFrag) {
-            listener = (OnAddDevicesListener) fragment;
-        }
     }
 
     private ScanCallback mScanCallback = new ScanCallback() {
@@ -77,7 +74,6 @@ public class BLEPositioning extends MainActivity
 
                             bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
                             listener.addDevices(bluetoothDeviceMap.values());
-
                         }
                     } catch (NullPointerException e) {
                         e.getStackTrace();
@@ -116,22 +112,15 @@ public class BLEPositioning extends MainActivity
             };
 
     @Override
-    public void updateWalkDetectionListener(boolean enabled) {
-        if (enabled) walkDetection.startDetection();
-        else walkDetection.killDetection();
-    }
-
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bluetoothDeviceMap = new ArrayMap<>();
 
         settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
         walkDetection = new WalkDetection(getApplication());
-//        updateWalkDetectionListener(settings.getBoolean(SettingConstants.WALK_DETECTION, false));
-
-        bluetoothDeviceMap = new ArrayMap<>();
+        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+            walkDetection.startDetection();
+        }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -154,6 +143,37 @@ public class BLEPositioning extends MainActivity
     protected void onResume() {
         super.onResume();
         checkBluetoothTurnOn();
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        if (fragment instanceof DeviceFrag) {
+            listener = (OnAddDevicesListener) fragment;
+        }
+    }
+
+    @Override
+    public void updateWalkDetectionListener(boolean isChecked) {
+        if (isChecked) {
+            walkDetection.startDetection();
+        } else {
+            walkDetection.killDetection();
+        }
+    }
+
+//    @Override
+//    public void updateSelfCorrectionListener(boolean isChecked) {
+//        selfCorrection = isChecked;
+//    }
+
+    @Override
+    public void updateProcessNoise(int valueSeekBar) {
+        processNoise = KalmanFilter3.getCalculatedNoise(valueSeekBar);
+    }
+
+    public double getProcessNoise() {
+        return processNoise;
     }
 
     private void checkBluetoothTurnOn() {
