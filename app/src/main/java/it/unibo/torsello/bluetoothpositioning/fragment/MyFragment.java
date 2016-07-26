@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
 
-public class MyFragment extends Fragment {
+public class MyFragment extends Fragment implements Magnetometer.OnCompassOrientationListener {
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private Magnetometer magnetometer;
 
     public static MyFragment newInstance(String message) {
         MyFragment f = new MyFragment();
@@ -21,21 +23,35 @@ public class MyFragment extends Fragment {
         return f;
     }
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        magnetometer = new Magnetometer(getActivity().getApplication());
+        magnetometer.startDetection();
+        magnetometer.setListener(this);
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        magnetometer.killDetection();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.myfragment_layout, container, false);
         TextView messageTextView = (TextView) v.findViewById(R.id.textView);
-        messageTextView.setText("wooow");
+        messageTextView.setText("");
 
         return v;
     }
 
+    @Override
+    public void setCompassOrientationString(String compassOrientationString) {
+        TextView messageTextView = (TextView) getActivity().findViewById(R.id.textView);
+        messageTextView.setText(compassOrientationString);
+    }
 }

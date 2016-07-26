@@ -18,6 +18,7 @@ import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,7 @@ import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
+import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 
 /**
@@ -50,6 +52,7 @@ public class BLEPositioning extends MainActivity
     private SharedPreferences settings;
     private OnAddDevicesListener listener;
     private WalkDetection walkDetection;
+
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<IBeacon> iBeacons);
@@ -82,11 +85,34 @@ public class BLEPositioning extends MainActivity
             });
         }
 
+        //Scan error codes.
         @Override
         public void onScanFailed(int errorCode) {
-            Log.e("Scan Failed", "Error Code: " + errorCode);
+            switch (errorCode) {
+                case SCAN_FAILED_ALREADY_STARTED:
+                    logErrorAndShowToast("SCAN_FAILED_ALREADY_STARTED");
+                    break;
+                case SCAN_FAILED_APPLICATION_REGISTRATION_FAILED:
+                    logErrorAndShowToast("SCAN_FAILED_APPLICATION_REGISTRATION_FAILED");
+                    break;
+                case SCAN_FAILED_FEATURE_UNSUPPORTED:
+                    logErrorAndShowToast("SCAN_FAILED_FEATURE_UNSUPPORTED");
+                    break;
+                case SCAN_FAILED_INTERNAL_ERROR:
+                    logErrorAndShowToast("SCAN_FAILED_INTERNAL_ERROR");
+                    break;
+                default:
+                    logErrorAndShowToast("Scan failed, unknown error code");
+                    break;
+            }
         }
+
     };
+
+    private void logErrorAndShowToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Log.e(TAG_CLASS, message);
+    }
 
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
@@ -117,6 +143,8 @@ public class BLEPositioning extends MainActivity
         bluetoothDeviceMap = new ArrayMap<>();
 
         settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+
+
         walkDetection = new WalkDetection(getApplication());
         if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
@@ -143,6 +171,12 @@ public class BLEPositioning extends MainActivity
     protected void onResume() {
         super.onResume();
         checkBluetoothTurnOn();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        walkDetection.killDetection();
     }
 
     @Override

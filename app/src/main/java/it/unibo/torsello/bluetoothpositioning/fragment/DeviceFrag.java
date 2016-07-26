@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +26,7 @@ import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyArrayAdapter;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
+import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
 
 public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
@@ -62,6 +64,7 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
                 Snackbar.make(view, String.valueOf(position), Snackbar.LENGTH_SHORT).show();
             }
         });
+
         return rootView;
     }
 

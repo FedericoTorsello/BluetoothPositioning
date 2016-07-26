@@ -59,7 +59,6 @@ public class WalkDetection implements SensorEventListener {
     private boolean sensorClockCalibrated = false;
 
     public WalkDetection(Application app) {
-
         mSensorManager = (SensorManager) app.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         raw = new ArrayList<>();
@@ -75,9 +74,9 @@ public class WalkDetection implements SensorEventListener {
     }
 
 
-    public int getState() {
-        return currentState == STATE_PENDING ? STATE_IDLE : currentState;
-    }
+//    public int getState() {
+//        return currentState == STATE_PENDING ? STATE_IDLE : currentState;
+//    }
 
     /**
      * Called when sensor values have changed.
@@ -133,6 +132,18 @@ public class WalkDetection implements SensorEventListener {
                 }
             }
         }
+    }
+
+    /**
+     * Called when the accuracy of the registered sensor has changed.
+     *
+     * @param sensor
+     * @param accuracy The new accuracy of this sensor, one of
+     *                 {@code SensorManager.SENSOR_STATUS_*}
+     */
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        // Unneeded
     }
 
     private void addRawReadingToBatches(SensorEvent event) {
@@ -247,18 +258,6 @@ public class WalkDetection implements SensorEventListener {
                 break;
         }
         return eventResult;
-    }
-
-    /**
-     * Called when the accuracy of the registered sensor has changed.
-     *
-     * @param sensor
-     * @param accuracy The new accuracy of this sensor, one of
-     *                 {@code SensorManager.SENSOR_STATUS_*}
-     */
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Unneeded
     }
 
     private void initSensorClock(long sys) {

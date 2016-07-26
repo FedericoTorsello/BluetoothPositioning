@@ -155,6 +155,8 @@ public class MainActivity extends AppCompatActivity
         List<Fragment> fList = new ArrayList<>();
         fList.add(DeviceFrag.newInstance("Scan Device"));
         fList.add(SettingsFrag.newInstance("Setting"));
+        fList.add(MyFragment.newInstance("Settingsdss"));
+        fList.add(Compass.newInstance("Settingsdss"));
 
         return fList;
     }

@@ -37,6 +37,13 @@ public class SettingsFrag extends Fragment {
         return f;
     }
 
+    public interface OnSettingsListener {
+        void updateWalkDetectionListener(boolean isChecked);
+
+        //        void updateSelfCorrectionListener(boolean isChecked);
+        void updateProcessNoise(int valueSeekBar);
+    }
+
     //     Store the listener (activity) that will have events fired once the fragment is attached
     @Override
     public void onAttach(Context context) {
@@ -45,7 +52,7 @@ public class SettingsFrag extends Fragment {
             listener = (OnSettingsListener) context;
         } else {
             throw new ClassCastException(context.toString()
-                    + " must implement the OnAddDevicesListener");
+                    + " must implement the Listener " + listener.toString());
         }
     }
 
@@ -157,10 +164,4 @@ public class SettingsFrag extends Fragment {
         });
     }
 
-    public interface OnSettingsListener {
-        void updateWalkDetectionListener(boolean isChecked);
-
-        //        void updateSelfCorrectionListener(boolean isChecked);
-        void updateProcessNoise(int valueSeekBar);
-    }
 }
