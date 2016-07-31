@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.activity;
+package it.unibo.torsello.bluetoothpositioning.main;
 
 /**
  * Created by federico on 24/07/16.

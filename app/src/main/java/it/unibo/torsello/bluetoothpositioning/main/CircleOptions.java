@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.activity;
+package it.unibo.torsello.bluetoothpositioning.main;
 
 import android.os.Parcel;
 import android.os.Parcelable;

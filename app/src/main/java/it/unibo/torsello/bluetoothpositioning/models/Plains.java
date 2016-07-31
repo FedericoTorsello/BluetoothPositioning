@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.logic;
+package it.unibo.torsello.bluetoothpositioning.models;
 
 import java.util.List;
 

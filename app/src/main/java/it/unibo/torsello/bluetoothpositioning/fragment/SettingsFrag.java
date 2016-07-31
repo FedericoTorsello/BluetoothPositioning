@@ -27,7 +27,7 @@ public class SettingsFrag extends Fragment {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SharedPreferences settings;
-    private OnSettingsListener listener;
+//    private OnSettingsListener onSettingsListener;
 
     public static SettingsFrag newInstance(String message) {
         SettingsFrag f = new SettingsFrag();
@@ -37,29 +37,29 @@ public class SettingsFrag extends Fragment {
         return f;
     }
 
-    public interface OnSettingsListener {
-        void updateWalkDetectionListener(boolean isChecked);
+//    public interface OnSettingsListener {
+//        void updateWalkDetectionListener(boolean isChecked);
 
-        //        void updateSelfCorrectionListener(boolean isChecked);
-        void updateProcessNoise(int valueSeekBar);
-    }
+    //        void updateSelfCorrectionListener(boolean isChecked);
+//        void updateProcessNoise(int valueSeekBar);
+//    }
 
-    //     Store the listener (activity) that will have events fired once the fragment is attached
+    //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnSettingsListener) {
-            listener = (OnSettingsListener) context;
-        } else {
-            throw new ClassCastException(context.toString()
-                    + " must implement the Listener " + listener.toString());
-        }
+//        if (context instanceof OnSettingsListener) {
+//            onSettingsListener = (OnSettingsListener) context;
+//        } else {
+//            throw new ClassCastException(context.toString()
+//                    + " must implement the Listener " + onSettingsListener.toString());
+//        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+//        onSettingsListener = null;
     }
 
     @Nullable
@@ -84,7 +84,7 @@ public class SettingsFrag extends Fragment {
 
     }
 
-    /* Sets the correct text and adds a onChange listener to the kalman filter seekbar */
+    /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setUpKalmanSeek(SeekBar kalmanSeek, final TextView kalmanFilterValue) {
         int kalmanSeekValue = settings.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(kalmanSeekValue);
@@ -108,12 +108,12 @@ public class SettingsFrag extends Fragment {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, seekBar.getProgress());
                 editor.apply();
-                listener.updateProcessNoise(seekBar.getProgress());
+//                onSettingsListener.updateProcessNoise(seekBar.getProgress());
             }
         });
     }
 
-    /* Sets the correct text and adds an onCheckedChange listener to the self-correcting beacon switch */
+    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
     private void setUpSelfcorrectingSwitch(final Switch selfCorrectionSwitch) {
         boolean selfCorrection = settings.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
         selfCorrectionSwitch.setChecked(selfCorrection);
@@ -124,13 +124,13 @@ public class SettingsFrag extends Fragment {
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
                 editor.apply();
-//                listener.updateSelfCorrectionListener(isChecked);
+//                onSettingsListener.updateSelfCorrectionListener(isChecked);
                 selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
             }
         });
     }
 
-    /* Sets the correct text and adds an onCheckedChange listener to the walk detection switch */
+    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
     private void setUpWalkDetectionSwitch(final Switch wdSwitch) {
         boolean walkDetection = settings.getBoolean(SettingConstants.WALK_DETECTION, false);
         wdSwitch.setChecked(walkDetection);
@@ -142,7 +142,7 @@ public class SettingsFrag extends Fragment {
                 editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
                 editor.apply();
                 wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-                listener.updateWalkDetectionListener(isChecked);
+//                onSettingsListener.updateWalkDetectionListener(isChecked);
             }
         });
     }
@@ -159,7 +159,7 @@ public class SettingsFrag extends Fragment {
                 editor.putBoolean(SettingConstants.SORT_BY_DISTANCE, isChecked);
                 editor.apply();
                 sortByDistanceSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-//                listener.updateSelfCorrectionListener(isChecked);
+//                onSettingsListener.updateSelfCorrectionListener(isChecked);
             }
         });
     }

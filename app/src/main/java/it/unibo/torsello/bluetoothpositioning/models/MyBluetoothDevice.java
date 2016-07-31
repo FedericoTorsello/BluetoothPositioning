@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.logic;
+package it.unibo.torsello.bluetoothpositioning.models;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothDevice;

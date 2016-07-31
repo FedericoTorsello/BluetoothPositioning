@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.activity;
+package it.unibo.torsello.bluetoothpositioning.main;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
@@ -27,32 +27,27 @@ import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
-import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
-import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
-import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
+import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
+import it.unibo.torsello.bluetoothpositioning.models.IBeacon;
 
 /**
  * Created by federico on 21/07/16.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class BLEPositioning extends MainActivity
-        implements SettingsFrag.OnSettingsListener {
+public class BLEPositioning extends MainActivity {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private Map<String, IBeacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
     //    private boolean selfCorrection;
-    private double processNoise;
+//    private double processNoise;
     private SharedPreferences settings;
-    private OnAddDevicesListener listener;
-    private WalkDetection walkDetection;
+    private OnAddDevicesListener onAddDevicesListener;
+//    private WalkDetection walkDetection;
 
+    private BeaconStatistics beaconStatistics;
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<IBeacon> iBeacons);
@@ -65,18 +60,33 @@ public class BLEPositioning extends MainActivity
                 @Override
                 public void run() {
                     try {
-                        if (IBeacon.isBeacon(scanResult.getScanRecord().getBytes())) {
+                        byte[] scanRecord = scanResult.getScanRecord().getBytes();
+                        String name = scanResult.getDevice().getName();
+                        String address = scanResult.getDevice().getAddress();
+                        int rssi = scanResult.getRssi();
+                        long time = System.currentTimeMillis();
+
+                        if (IBeacon.isBeacon(scanRecord)) {
                             IBeacon scannedBeacon =
-                                    IBeacon.generateNewIBeacon(scanResult, System.currentTimeMillis());
+                                    IBeacon.generateNewIBeacon(name, address, rssi, scanRecord, time);
 
-                            IBeacon existingBeacon = bluetoothDeviceMap.get(scannedBeacon.address);
-                            scannedBeacon.calculateDistanceKalmanFilter(existingBeacon);
+//                            IBeacon existingBeacon = bluetoothDeviceMap.get(scannedBeacon.getAddress());
+//                            scannedBeacon.calculateDistanceKalmanFilter(existingBeacon);
 
-                            scannedBeacon.calcXXX();
-                            scannedBeacon.calculateDistance(scannedBeacon.txPower, scannedBeacon.getLastRssi());
+//                            scannedBeacon.calcXXX();
+//                            scannedBeacon.calculateDistanceMIo(scannedBeacon.getTxPower(), scannedBeacon.getRssi());
 
-                            bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
-                            listener.addDevices(bluetoothDeviceMap.values());
+//                            beaconStatistics.updateDistance(scannedBeacon,1,20);
+//                            Log.d(TAG_CLASS , beaconStatistics.getDistance() + "<-- " + scannedBeacon.address);
+
+                            if (address.equals("D1:BE:E2:E9:67:A6")) {
+                                bluetoothDeviceMap.put(address, scannedBeacon);
+                                Log.d("dist", scannedBeacon.getDistanceApprox() + "<--");
+
+                                beaconStatistics.updateDistance(scannedBeacon);
+                                onAddDevicesListener.addDevices(bluetoothDeviceMap.values());
+                            }
+
                         }
                     } catch (NullPointerException e) {
                         e.getStackTrace();
@@ -88,32 +98,28 @@ public class BLEPositioning extends MainActivity
         //Scan error codes.
         @Override
         public void onScanFailed(int errorCode) {
+            String messageError;
             switch (errorCode) {
                 case SCAN_FAILED_ALREADY_STARTED:
-                    logErrorAndShowToast("SCAN_FAILED_ALREADY_STARTED");
+                    messageError = "SCAN_FAILED_ALREADY_STARTED";
                     break;
                 case SCAN_FAILED_APPLICATION_REGISTRATION_FAILED:
-                    logErrorAndShowToast("SCAN_FAILED_APPLICATION_REGISTRATION_FAILED");
+                    messageError = "SCAN_FAILED_APPLICATION_REGISTRATION_FAILED";
                     break;
                 case SCAN_FAILED_FEATURE_UNSUPPORTED:
-                    logErrorAndShowToast("SCAN_FAILED_FEATURE_UNSUPPORTED");
+                    messageError = "SCAN_FAILED_FEATURE_UNSUPPORTED";
                     break;
                 case SCAN_FAILED_INTERNAL_ERROR:
-                    logErrorAndShowToast("SCAN_FAILED_INTERNAL_ERROR");
+                    messageError = "SCAN_FAILED_INTERNAL_ERROR";
                     break;
                 default:
-                    logErrorAndShowToast("Scan failed, unknown error code");
+                    messageError = "Scan failed, unknown error code";
                     break;
             }
+            Toast.makeText(getApplication(), messageError, Toast.LENGTH_SHORT).show();
         }
 
     };
-
-    private void logErrorAndShowToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        Log.e(TAG_CLASS, message);
-    }
-
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
                 @Override
@@ -122,12 +128,15 @@ public class BLEPositioning extends MainActivity
                         @Override
                         public void run() {
                             try {
+                                String name = device.getName();
+                                String address = device.getAddress();
+                                long time = System.currentTimeMillis();
+
                                 if (IBeacon.isBeacon(scanRecord)) {
                                     IBeacon scannedBeacon =
-                                            IBeacon.generateNewIBeacon(device, rssi, scanRecord, System.currentTimeMillis());
-
-                                    bluetoothDeviceMap.put(scannedBeacon.address, scannedBeacon);
-                                    listener.addDevices(bluetoothDeviceMap.values());
+                                            IBeacon.generateNewIBeacon(name, address, rssi, scanRecord, time);
+                                    bluetoothDeviceMap.put(address, scannedBeacon);
+                                    onAddDevicesListener.addDevices(bluetoothDeviceMap.values());
                                 }
                             } catch (NullPointerException e) {
                                 e.getStackTrace();
@@ -144,11 +153,12 @@ public class BLEPositioning extends MainActivity
 
         settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
+        beaconStatistics = new BeaconStatistics();
 
-        walkDetection = new WalkDetection(getApplication());
-        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
-            walkDetection.startDetection();
-        }
+//        walkDetection = new WalkDetection(getApplication());
+//        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+//            walkDetection.startDetection();
+//        }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -176,39 +186,20 @@ public class BLEPositioning extends MainActivity
     @Override
     protected void onPause() {
         super.onPause();
-        walkDetection.killDetection();
+//        walkDetection.killDetection();
     }
 
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
         if (fragment instanceof DeviceFrag) {
-            listener = (OnAddDevicesListener) fragment;
+            onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
     }
 
-    @Override
-    public void updateWalkDetectionListener(boolean isChecked) {
-        if (isChecked) {
-            walkDetection.startDetection();
-        } else {
-            walkDetection.killDetection();
-        }
-    }
-
-//    @Override
-//    public void updateSelfCorrectionListener(boolean isChecked) {
-//        selfCorrection = isChecked;
+//    public double getProcessNoise() {
+//        return processNoise;
 //    }
-
-    @Override
-    public void updateProcessNoise(int valueSeekBar) {
-        processNoise = KalmanFilter3.getCalculatedNoise(valueSeekBar);
-    }
-
-    public double getProcessNoise() {
-        return processNoise;
-    }
 
     private void checkBluetoothTurnOn() {
         if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {

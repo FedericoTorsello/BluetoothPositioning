@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.logic;
+package it.unibo.torsello.bluetoothpositioning.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,17 @@ import java.util.List;
 /**
  * Created by federico on 11/07/16.
  */
-public class Plain implements Plains {
+public class PlainOld implements Plains {
 
     List<MyBluetoothDevice> beacons;
     int numberPlan;
 
-    public Plain(int numberPlan) {
+    public PlainOld(int numberPlan) {
         this.numberPlan = numberPlan;
         beacons = new ArrayList<>();
     }
 
-    public Plain(int numberPlan, List<MyBluetoothDevice> beacons) {
+    public PlainOld(int numberPlan, List<MyBluetoothDevice> beacons) {
         this.numberPlan = numberPlan;
         this.beacons = beacons;
     }

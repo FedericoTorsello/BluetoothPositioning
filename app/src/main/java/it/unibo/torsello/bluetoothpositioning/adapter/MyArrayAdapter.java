@@ -3,21 +3,18 @@ package it.unibo.torsello.bluetoothpositioning.adapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.logic.IBeacon;
+import it.unibo.torsello.bluetoothpositioning.models.IBeacon;
 
 
 /**
@@ -78,23 +75,23 @@ public class MyArrayAdapter extends ArrayAdapter<IBeacon> {
 
         ////        viewHolder.row_color.setBackgroundColor(myIBeacon.getColor());
 ////        viewHolder.row_name.setTextColor(myIBeacon.getColor());
-        viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.device.getName()));
-        viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.address));
-        viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device.major));
-        viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device.minor));
-        viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device.uuid));
+        viewHolder.row_name.setText(String.format("%s %s", context.getString(R.string.name), device.getName()));
+        viewHolder.row_addr.setText(String.format("%s %s", context.getString(R.string.address), device.getAddress()));
+        viewHolder.row_major.setText(String.format("%s %s", context.getString(R.string.major), device.getMajor()));
+        viewHolder.row_minor.setText(String.format("%s %s", context.getString(R.string.minor), device.getMinor()));
+        viewHolder.row_uuid.setText(String.format("%s %s", context.getString(R.string.uuid), device.getUuid()));
 
 //            viewHolder.row_accuracy.setText(String.format(Locale.getDefault(), "%s %.2f m"
 // , context.getString(R.string.accuracy), device.getDistanceInMetresKalmanFilter()));
 
-        viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getLastRssi()));
+        viewHolder.row_rssi.setText(String.format("%s %s", context.getString(R.string.rssi), device.getRssi()));
 //            viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
 //                    "%s KF%.2f m NOF%.2f m XXX%.2f m", context.getString(R.string.accuracy),
 //                    device.getDistanceInMetresKalmanFilter(), device.getDistanceInMetresNoFiltered(), device.xxx));
 
-        viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
-                "%s NOF%.2f m  KF%.2f m ", context.getString(R.string.accuracy),
-                device.getDistanceInMetresNoFiltered(), device.getDist()));
+//        viewHolder.row_accuracy.setText(String.format(Locale.getDefault(),
+//                "%s NOF%.2f m  KF%.2f m ", context.getString(R.string.accuracy),
+//                device.getDistanceInMetresNoFiltered(), device.getDist()));
 
 
         return convertView;
