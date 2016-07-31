@@ -74,7 +74,7 @@ public class DeviceFrag extends Fragment implements BLEPositioning2.OnAddDevices
 //                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
 //                    return Double.compare(b1.getDist(), b2.getDist());
 //                } else {
-                    return 0;
+                return 0;
 //                }
             }
         };

@@ -1,14 +1,9 @@
 package it.unibo.torsello.bluetoothpositioning.main;
 
 import android.annotation.TargetApi;
-import android.app.Application;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.le.ScanCallback;
-import android.bluetooth.le.ScanFilter;
-import android.bluetooth.le.ScanResult;
-import android.bluetooth.le.ScanSettings;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,42 +12,26 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
-import org.altbeacon.beacon.Identifier;
-import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
-import org.altbeacon.beacon.distance.AndroidModel;
 import org.altbeacon.beacon.distance.ModelSpecificDistanceCalculator;
 import org.altbeacon.beacon.distance.PathLossDistanceCalculator;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
-import org.altbeacon.beacon.service.ArmaRssiFilter;
-import org.altbeacon.beacon.service.RangedBeacon;
-import org.altbeacon.beacon.startup.BootstrapNotifier;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
-import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.filter.BLA;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
-import it.unibo.torsello.bluetoothpositioning.models.IBeacon;
-import it.unibo.torsello.bluetoothpositioning.models.MyBeacon;
 
 /**
  * Created by federico on 21/07/16.
@@ -75,6 +54,10 @@ public class BLEPositioning2 extends MainActivity implements
     private BeaconManager beaconManager;
     private RegionBootstrap regionBootstrap;
 
+    public static final String STANDARD_APPLE_BEACON = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
+    public static final String ESTIMOTE_NEARABLE = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
+            "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
+
     public interface OnAddDevicesListener {
         void addDevices(Collection<Beacon> iBeacons);
     }
@@ -82,24 +65,63 @@ public class BLEPositioning2 extends MainActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        BeaconManager.setRssiFilterImplClass(ArmaRssiFilter.class);
-
-        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(
-                PathLossDistanceCalculator.class);
-//        beaconManager.setDebug(true);
-//        RangedBeacon.setSampleExpirationMilliseconds(5000);
-
+        verifyBluetooth();
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
 
-        // Simply constructing this class and holding a reference to it
-        // in your custom Application class enables auto battery saving of about 60%
-        new BackgroundPowerSaver(this.getApplication());
+        // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
+        // find a different type of beacon, you must specify the byte layout for that beacon's
+        // advertisement with a line like below.  The example shows how to find a beacon with the
+        // same byte layout as AltBeacon but with a beaconTypeCode of 0xaabb.  To find the proper
+        // layout expression for other beacon types, do a web search for "setBeaconLayout"
+        // including the quotes.
+
+        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(PathLossDistanceCalculator.class);
+
+        beaconManager.getBeaconParsers().clear();
+
+        // Alt beacon
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
+        // Detect the main identifier (UID) frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+        // Detect the telemetry (TLM) frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
+        // Detect the URL frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser().
+                setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
+        // Standard Apple iBeacon
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(STANDARD_APPLE_BEACON));
+        // Estimote Nearable
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(ESTIMOTE_NEARABLE));
+
+
+        // simply constructing this class and holding a reference to it in your custom Application
+        // class will automatically cause the BeaconLibrary to save battery whenever the application
+        // is not visible.  This reduces bluetooth power usage by about 60%
+        new BackgroundPowerSaver(this.getApplicationContext());
+
+        //beaconManager.setDebug(true);
+
+//        BeaconManager.setRssiFilterImplClass(ArmaRssiFilter.class);
+
+
+//        beaconManager.setDebug(true);
+//        RangedBeacon.setSampleExpirationMilliseconds(5000);
+
+
+//        // Simply constructing this class and holding a reference to it
+//        // in your custom Application class enables auto battery saving of about 60%
+//        new BackgroundPowerSaver(this.getApplication());
 
 
 // Add AltBeacons Parser for iBeacon
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
+//        beaconManager.getBeaconParsers().add(new BeaconParser()
+//                .setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
 //        beaconManager.getBeaconParsers().add(new BeaconParser()
 //                .setBeaconLayout("s:0-1=feaa,m:2-2=00,p:3-3:-41,i:4-13,i:14-19"));
         beaconManager.setForegroundScanPeriod(200L);
@@ -132,6 +154,7 @@ public class BLEPositioning2 extends MainActivity implements
                 Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override
@@ -188,6 +211,41 @@ public class BLEPositioning2 extends MainActivity implements
             e.printStackTrace();
         }
 
+    }
+
+    private void verifyBluetooth() {
+
+        try {
+            if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Bluetooth not enabled");
+                builder.setMessage("Please enable bluetooth in settings and restart this application.");
+                builder.setPositiveButton(android.R.string.ok, null);
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        finish();
+                        System.exit(0);
+                    }
+                });
+                builder.show();
+            }
+        } catch (RuntimeException e) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Bluetooth LE not available");
+            builder.setMessage("Sorry, this device does not support Bluetooth LE.");
+            builder.setPositiveButton(android.R.string.ok, null);
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    finish();
+                    System.exit(0);
+                }
+
+            });
+            builder.show();
+        }
     }
 
 }

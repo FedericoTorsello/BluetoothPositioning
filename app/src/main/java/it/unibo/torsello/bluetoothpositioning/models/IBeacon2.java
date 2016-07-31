@@ -32,17 +32,17 @@ import android.bluetooth.BluetoothDevice;
 /**
  * The <code>IBeacon</code> class represents a single hardware iBeacon detected by
  * an Android device.
- *
+ * <p/>
  * <pre>An iBeacon is identified by a three part identifier based on the fields
  * proximityUUID - a string UUID typically identifying the owner of a
  *                 number of ibeacons
  * major - a 16 bit integer indicating a group of iBeacons
  * minor - a 16 bit integer identifying a single iBeacon</pre>
- *
+ * <p/>
  * An iBeacon sends a Bluetooth Low Energy (BLE) advertisement that contains these
  * three identifiers, along with the calibrated tx power (in RSSI) of the
  * iBeacon's Bluetooth transmitter.
- *
+ * <p/>
  * This class may only be instantiated from a BLE packet, and an RSSI measurement for
  * the packet.  The class parses out the three part identifier, along with the calibrated
  * tx power.  It then uses the measured RSSI and calibrated tx power to do a rough
@@ -50,7 +50,7 @@ import android.bluetooth.BluetoothDevice;
  * distance (the proximity field.)
  *
  * @author David G. Young
-//* @see     Region#matchesIBeacon(IBeacon iBeacon)
+ *         //* @see     Region#matchesIBeacon(IBeacon iBeacon)
  */
 public class IBeacon2 {
     /**
@@ -75,7 +75,7 @@ public class IBeacon2 {
 
     /**
      * A 16 byte UUID that typically represents the company owning a number of iBeacons
-     * Example: E2C56DB5-DFFB-48D2-B060-D0F5A71096E0 
+     * Example: E2C56DB5-DFFB-48D2-B060-D0F5A71096E0
      */
     protected String proximityUuid;
     /**
@@ -88,6 +88,7 @@ public class IBeacon2 {
     protected int minor;
     /**
      * An integer with four possible values representing a general idea of how far the iBeacon is away
+     *
      * @see #PROXIMITY_IMMEDIATE
      * @see #PROXIMITY_NEAR
      * @see #PROXIMITY_FAR
@@ -127,8 +128,8 @@ public class IBeacon2 {
 //	protected static IBeaconDataFactory iBeaconDataFactory = new NullIBeaconDataFactory();
 
     /**
-     * @see #accuracy
      * @return accuracy
+     * @see #accuracy
      */
     public double getAccuracy() {
         if (accuracy == null) {
@@ -138,24 +139,24 @@ public class IBeacon2 {
     }
 
     /**
-     * @see #major
      * @return major
+     * @see #major
      */
     public int getMajor() {
         return major;
     }
 
     /**
-     * @see #minor
      * @return minor
+     * @see #minor
      */
     public int getMinor() {
         return minor;
     }
 
     /**
-     * @see #proximity
      * @return proximity
+     * @see #proximity
      */
     public int getProximity() {
         if (proximity == null) {
@@ -165,32 +166,32 @@ public class IBeacon2 {
     }
 
     /**
-     * @see #rssi
      * @return rssi
+     * @see #rssi
      */
     public int getRssi() {
         return rssi;
     }
 
     /**
-     * @see #txPower
      * @return txPowwer
+     * @see #txPower
      */
     public int getTxPower() {
         return txPower;
     }
 
     /**
-     * @see #proximityUuid
      * @return proximityUuid
+     * @see #proximityUuid
      */
     public String getProximityUuid() {
         return proximityUuid;
     }
 
     /**
-     * @see #bluetoothAddress
      * @return bluetoothAddress
+     * @see #bluetoothAddress
      */
     public String getBluetoothAddress() {
         return bluetoothAddress;
@@ -218,7 +219,7 @@ public class IBeacon2 {
      * Construct an iBeacon from a Bluetooth LE packet collected by Android's Bluetooth APIs
      *
      * @param scanData The actual packet bytes
-     * @param rssi The measured signal strength of the packet
+     * @param rssi     The measured signal strength of the packet
      * @return An instance of an <code>IBeacon</code>
      */
     public static IBeacon2 fromScanData(byte[] scanData, int rssi) {
@@ -230,8 +231,8 @@ public class IBeacon2 {
      * including the raw bluetooth device info
      *
      * @param scanData The actual packet bytes
-     * @param rssi The measured signal strength of the packet
-     * @param device The bluetooth device that was detected
+     * @param rssi     The measured signal strength of the packet
+     * @param device   The bluetooth device that was detected
      * @return An instance of an <code>IBeacon</code>
      */
     @TargetApi(5)
