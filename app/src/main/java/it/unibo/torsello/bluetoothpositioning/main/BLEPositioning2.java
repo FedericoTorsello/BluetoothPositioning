@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 
 import com.estimote.sdk.EstimoteSDK;
@@ -22,8 +23,16 @@ import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
+
+import org.altbeacon.beacon.distance.CurveFittedDistanceCalculator;
 //import org.altbeacon.beacon.distance.PathLossDistanceCalculator;
+import org.altbeacon.beacon.distance.ModelSpecificDistanceCalculator;
+import org.altbeacon.beacon.distance.ModelSpecificDistanceUpdater;
+import org.altbeacon.beacon.logging.LogManager;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
+//import org.altbeacon.beacon.service.MyArmaRssiFilter;
+import org.altbeacon.beacon.service.ArmaRssiFilter;
+import org.altbeacon.beacon.service.RunningAverageRssiFilter;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 
 import java.util.Collection;
@@ -31,6 +40,7 @@ import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 //import it.unibo.torsello.bluetoothpositioning.filter.BLA;
+import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
 
@@ -38,12 +48,9 @@ import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
  * Created by federico on 21/07/16.
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class BLEPositioning2 extends MainActivity implements
-//        BootstrapNotifier
-        BeaconConsumer {
+public class BLEPositioning2 extends MainActivity implements BeaconConsumer {
 
     private final String TAG_CLASS = getClass().getSimpleName();
-    private final BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private Map<String, Beacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
     //    private boolean selfCorrection;
@@ -68,8 +75,11 @@ public class BLEPositioning2 extends MainActivity implements
         super.onCreate(savedInstanceState);
         verifyBluetooth();
 
+        String appId = "federico-torsello-studio-u-6yo";
+        String appToken = "57c8cf3bef60d9258fd9123556dace89";
+
         //  App ID & App Token can be taken from App section of Estimote Cloud.
-        EstimoteSDK.initialize(getApplicationContext(), "federico-torsello-studio-u-6yo", "57c8cf3bef60d9258fd9123556dace89");
+        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
         // Optional, debug logging.
         EstimoteSDK.enableDebugLogging(true);
 
@@ -77,10 +87,10 @@ public class BLEPositioning2 extends MainActivity implements
 
 //        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(PathLossDistanceCalculator.class);
 
-        beaconManager.getBeaconParsers().clear();
         // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
         // find a different type of beacon, you must specify the byte layout for that beacon's
         // advertisement with a line like below.
+        beaconManager.getBeaconParsers().clear();
 
         // Alt beacon
         beaconManager.getBeaconParsers().add(new BeaconParser("ALTBEACON").
@@ -103,27 +113,22 @@ public class BLEPositioning2 extends MainActivity implements
 
         beaconManager.bind(this);
 
-        // simply constructing this class and holding a reference to it in your custom Application
-        // class will automatically cause the BeaconLibrary to save battery whenever the application
-        // is not visible.  This reduces bluetooth power usage by about 60%
-        new BackgroundPowerSaver(this.getApplicationContext());
-
-        //beaconManager.setDebug(true);
-//        BeaconManager.setRssiFilterImplClass(ArmaRssiFilter.class);
+        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
 //        RangedBeacon.setSampleExpirationMilliseconds(5000);
-
-//        // Simply constructing this class and holding a reference to it
-//        // in your custom Application class enables auto battery saving of about 60%
-//        new BackgroundPowerSaver(this.getApplication());
 
         beaconManager.setForegroundScanPeriod(200L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
         beaconManager.setBackgroundScanPeriod(200L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
 
-//        regionBootstrap = new RegionBootstrap(this, BeaconConstants.REGIONS);
+        // simply constructing this class and holding a reference to it in your custom Application
+        // class will automatically cause the BeaconLibrary to save battery whenever the application
+        // is not visible.  This reduces bluetooth power usage by about 60%
+        new BackgroundPowerSaver(this.getApplicationContext());
+//
+// regionBootstrap = new RegionBootstrap(this, BeaconConstants.REGIONS);
 
-//        settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
         bluetoothDeviceMap = new ArrayMap<>();
 //        beaconStatistics = new BeaconStatistics();
 
@@ -132,7 +137,6 @@ public class BLEPositioning2 extends MainActivity implements
 //            walkDetection.startDetection();
 //        }
 
-//        Region region = new Region("com.example.myapp.boostrapRegion", null, null, null);
 //        regionBootstrap = new RegionBootstrap(this, region);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -163,6 +167,7 @@ public class BLEPositioning2 extends MainActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+        verifyBluetooth();
     }
 
     @Override
