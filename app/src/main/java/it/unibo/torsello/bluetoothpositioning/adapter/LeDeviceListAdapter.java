@@ -84,7 +84,8 @@ public class LeDeviceListAdapter extends ArrayAdapter<Beacon> {
 
         String a = "";
         if (b.getServiceUuid() == 0xfeaa) {
-            if (b.getBeaconTypeCode() == 0x00) {
+//            if (b.getBeaconTypeCode() == 0x00) {
+            if (b.getParserIdentifier().equals("Eddystone-UID")) {
                 // Eddystone-UID
                 a = "Eddystone-UID";
                 holder.row_uuid.setText(String.format("NameSpace: %s", b.getId1()));

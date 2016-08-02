@@ -14,14 +14,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
 import android.view.View;
 
+import com.estimote.sdk.EstimoteSDK;
+
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
-import org.altbeacon.beacon.distance.ModelSpecificDistanceCalculator;
-import org.altbeacon.beacon.distance.PathLossDistanceCalculator;
+//import org.altbeacon.beacon.distance.PathLossDistanceCalculator;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
 import org.altbeacon.beacon.startup.RegionBootstrap;
 
@@ -29,7 +30,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.filter.BLA;
+//import it.unibo.torsello.bluetoothpositioning.filter.BLA;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
 
@@ -54,8 +55,8 @@ public class BLEPositioning2 extends MainActivity implements
     private BeaconManager beaconManager;
     private RegionBootstrap regionBootstrap;
 
-    public static final String STANDARD_APPLE_BEACON = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
-    public static final String ESTIMOTE_NEARABLE = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
+    public static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
+    public static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
 
     public interface OnAddDevicesListener {
@@ -66,39 +67,41 @@ public class BLEPositioning2 extends MainActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         verifyBluetooth();
+
+        //  App ID & App Token can be taken from App section of Estimote Cloud.
+        EstimoteSDK.initialize(getApplicationContext(), "federico-torsello-studio-u-6yo", "57c8cf3bef60d9258fd9123556dace89");
+        // Optional, debug logging.
+        EstimoteSDK.enableDebugLogging(true);
+
         beaconManager = BeaconManager.getInstanceForApplication(this);
-        beaconManager.bind(this);
 
-        // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
-        // find a different type of beacon, you must specify the byte layout for that beacon's
-        // advertisement with a line like below.  The example shows how to find a beacon with the
-        // same byte layout as AltBeacon but with a beaconTypeCode of 0xaabb.  To find the proper
-        // layout expression for other beacon types, do a web search for "setBeaconLayout"
-        // including the quotes.
-
-        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(PathLossDistanceCalculator.class);
+//        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(PathLossDistanceCalculator.class);
 
         beaconManager.getBeaconParsers().clear();
+        // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
+        // find a different type of beacon, you must specify the byte layout for that beacon's
+        // advertisement with a line like below.
 
         // Alt beacon
-        beaconManager.getBeaconParsers().add(new BeaconParser().
+        beaconManager.getBeaconParsers().add(new BeaconParser("ALTBEACON").
                 setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
         // Detect the main identifier (UID) frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+        beaconManager.getBeaconParsers().add(new BeaconParser("EDDYSTONE_UID")
+                .setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
         // Detect the telemetry (TLM) frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser().
+        beaconManager.getBeaconParsers().add(new BeaconParser("EDDYSTONE").
                 setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
         // Detect the URL frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser().
+        beaconManager.getBeaconParsers().add(new BeaconParser("EDDYSTONE").
                 setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
         // Standard Apple iBeacon
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(STANDARD_APPLE_BEACON));
+        beaconManager.getBeaconParsers().add(new BeaconParser("APPLE_BEACON")
+                .setBeaconLayout(APPLE_BEACON_LAYOUT));
         // Estimote Nearable
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(ESTIMOTE_NEARABLE));
+        beaconManager.getBeaconParsers().add(new BeaconParser("ESTIMOTE_NEARABLE")
+                .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
 
+        beaconManager.bind(this);
 
         // simply constructing this class and holding a reference to it in your custom Application
         // class will automatically cause the BeaconLibrary to save battery whenever the application
@@ -106,24 +109,13 @@ public class BLEPositioning2 extends MainActivity implements
         new BackgroundPowerSaver(this.getApplicationContext());
 
         //beaconManager.setDebug(true);
-
 //        BeaconManager.setRssiFilterImplClass(ArmaRssiFilter.class);
-
-
-//        beaconManager.setDebug(true);
 //        RangedBeacon.setSampleExpirationMilliseconds(5000);
-
 
 //        // Simply constructing this class and holding a reference to it
 //        // in your custom Application class enables auto battery saving of about 60%
 //        new BackgroundPowerSaver(this.getApplication());
 
-
-// Add AltBeacons Parser for iBeacon
-//        beaconManager.getBeaconParsers().add(new BeaconParser()
-//                .setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
-//        beaconManager.getBeaconParsers().add(new BeaconParser()
-//                .setBeaconLayout("s:0-1=feaa,m:2-2=00,p:3-3:-41,i:4-13,i:14-19"));
         beaconManager.setForegroundScanPeriod(200L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
         beaconManager.setBackgroundScanPeriod(200L);
@@ -149,7 +141,18 @@ public class BLEPositioning2 extends MainActivity implements
             @Override
             public void onClick(View view) {
                 isRunScan = !isRunScan;
-//                scanLeDevice(isRunScan);
+
+                Region region = new Region("com.example.myapp.boostrapRegion", null, null, null);
+                try {
+                    if (isRunScan) {
+                        beaconManager.startRangingBeaconsInRegion(region);
+                    } else {
+                        beaconManager.stopRangingBeaconsInRegion(region);
+                    }
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
                 String statusScan = isRunScan ? getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
                 Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
             }
@@ -184,7 +187,7 @@ public class BLEPositioning2 extends MainActivity implements
 
     @Override
     public void onBeaconServiceConnect() {
-        beaconManager.setRangeNotifier(new RangeNotifier() {
+        beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, final Region region) {
                 runOnUiThread(new Runnable() {
@@ -192,29 +195,16 @@ public class BLEPositioning2 extends MainActivity implements
                     public void run() {
                         for (Beacon b : beacons) {
                             bluetoothDeviceMap.put(b.getBluetoothAddress(), b);
-
                         }
 
                         onAddDevicesListener.addDevices(bluetoothDeviceMap.values());
                     }
                 });
-
-//                if (beacons.size() > 0) {
-//                    Log.i(TAG_CLASS, "The first beacon I see is about "+beacons.iterator().next().getDistance()+" meters away.");
-//                }
             }
         });
-
-        try {
-            beaconManager.startRangingBeaconsInRegion(new Region("com.example.myapp.boostrapRegion", null, null, null));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void verifyBluetooth() {
-
         try {
             if (!BeaconManager.getInstanceForApplication(this).checkAvailability()) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
