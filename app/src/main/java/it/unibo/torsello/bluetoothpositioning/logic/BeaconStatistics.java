@@ -1,14 +1,12 @@
 package it.unibo.torsello.bluetoothpositioning.logic;
 
+import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.config.IBeaconConstants;
-import it.unibo.torsello.bluetoothpositioning.filter.D1Kalman;
 import it.unibo.torsello.bluetoothpositioning.filter.KFBuilder;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
 import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
-import it.unibo.torsello.bluetoothpositioning.models.IBeacon;
 
 /**
  * A helper class
@@ -27,9 +25,10 @@ public class BeaconStatistics {
     private static final int WINDOW = 20;
 
     private double dist;
-    private double dist2;
     private double distInMetresKalmanFilter;
     private double distInMetresNoFilter;
+
+    public static final double FILTER_FACTOR = 0.1;
 
     public BeaconStatistics() {
 
@@ -53,7 +52,8 @@ public class BeaconStatistics {
                 .build();
     }
 
-    public void updateDistance(IBeacon b) {
+
+    public void updateDistance(Beacon b, double processNoise, int movementState) {
 //        public void updateDistance(IBeacon b, double movementState, double processNoise) {
         double lastFilteredReading = -1;
 
@@ -65,19 +65,14 @@ public class BeaconStatistics {
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
             kf.setMeasurementNoise(mNoise);
         }
-//        kf.setProcessNoise(processNoise);
-//        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
-
-        kf.setProcessNoise(5);
-        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), 1);
+        kf.setProcessNoise(processNoise);
+        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
 
         lastCalculatedDistance = calculateDistance(mostRecentTxPower.getPercentile(50), lastFilteredReading);
         lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
         lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
 
         dist = calculateDistanceMIo(b.getTxPower(), b.getRssi());
-
-        dist2 = calcXXX(b.getRssi());
 
         distInMetresNoFilter = calculateDistanceNoFilter(b);
 
@@ -120,28 +115,23 @@ public class BeaconStatistics {
         return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
     }
 
-    public double calcXXX(double rssi) {
-        D1Kalman d1Kalman = new D1Kalman();
-        d1Kalman.addRssi(rssi);
-        return d1Kalman.getEstimatedRssi();
-    }
 
-    public double calculateDistanceNoFilter(IBeacon b) {
+    public double calculateDistanceNoFilter(Beacon b) {
 
-        double accuracy = KalmanFilter.filter(b.getRssi(), b.getAddress());
+        double accuracy = KalmanFilter.filter(b.getRssi(), b.getBluetoothAddress());
         double newDistanceInMeters = distanceFrom(accuracy, b.getTxPower());
 
         if (b != null) {
 //            double previousAccuracy = b.getDistanceInMetresKalmanFilter();
             double previousAccuracy = distInMetresKalmanFilter;
-            newDistanceInMeters = previousAccuracy * (1 - IBeaconConstants.FILTER_FACTOR)
-                    + newDistanceInMeters * IBeaconConstants.FILTER_FACTOR;
+            newDistanceInMeters = previousAccuracy * (1 - FILTER_FACTOR)
+                    + newDistanceInMeters * FILTER_FACTOR;
         }
 
         return newDistanceInMeters;
     }
 
-    public double calculateDistanceKalmanFilter(IBeacon b) {
+    public double calculateDistanceKalmanFilter(Beacon b) {
         double newDistanceInMeters = distanceFrom(b.getRssi(), b.getTxPower());
 
         if (b != null) {
@@ -207,10 +197,6 @@ public class BeaconStatistics {
 
     public double getDistanceWOSC() {
         return lastWOSC;
-    }
-
-    public double getDist2() {
-        return dist2;
     }
 
     public double getDistInMetresKalmanFilter() {

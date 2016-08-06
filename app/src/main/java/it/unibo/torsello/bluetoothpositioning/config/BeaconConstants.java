@@ -2,12 +2,15 @@ package it.unibo.torsello.bluetoothpositioning.config;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by federico on 28/07/16.
  */
 public class BeaconConstants {
+
 
     private enum Plain {ONE, TWO, THREE, FOUR, FIVE}
 
@@ -51,6 +54,38 @@ public class BeaconConstants {
         addresses.add("DB:F6:F5:0C:23:BF"); //bluebarry1
         addresses.add("E7:E4:0E:F6:79:3F"); //bleubarry2
         PLAIN_ONE = Collections.unmodifiableList(addresses);
+    }
+
+//    private static final Identifier DEVICE_1 = Identifier.parse("C1:9B:B0:B9:01:9E");
+//
+//    // Beacons
+//    public static final Map<Identifier, Device> BEACON_LIST;
+//    static {
+//        Map<Identifier, Device> map = new HashMap<>();
+//        map.put(DEVICE_1, new Device(DEVICE_1, "Kundservice"));
+//        BEACON_LIST = Collections.unmodifiableMap(map);
+//    }
+
+    private static final String DEVICE_1 = "C1:9B:B0:B9:01:9E"; //ice1
+    private static final String DEVICE_2 = "D1:BE:E2:E9:67:A6"; //ice2
+    private static final String DEVICE_3 = "FA:6B:72:1E:EB:46"; //mint1
+    private static final String DEVICE_4 = "D9:80:00:B7:16:78"; //mint2
+    private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //bluebarry1
+    private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //bleubarry2
+
+    // Beacons
+    public static final Map<String, Device> BEACON_LIST;
+
+    static {
+        Map<String, Device> map = new HashMap<>();
+        map.put(DEVICE_1, new Device(DEVICE_1, "Kundservice"));
+        map.put(DEVICE_2, new Device(DEVICE_2, "Kundservice"));
+        map.put(DEVICE_3, new Device(DEVICE_3, "Kundservice"));
+        map.put(DEVICE_4, new Device(DEVICE_4, "Kundservice"));
+        map.put(DEVICE_5, new Device(DEVICE_5, "Kundservice"));
+        map.put(DEVICE_6, new Device(DEVICE_6, "Kundservice"));
+
+        BEACON_LIST = Collections.unmodifiableMap(map);
     }
 
 }

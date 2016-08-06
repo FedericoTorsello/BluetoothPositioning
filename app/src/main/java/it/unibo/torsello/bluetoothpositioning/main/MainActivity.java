@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,10 +97,11 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
+//        noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -140,5 +142,17 @@ public class MainActivity extends AppCompatActivity
         fList.add(Compass.newInstance("Settingsdss"));
 
         return fList;
+    }
+
+    private DeviceFrag getScanFrag() {
+        List<Fragment> fragments = getFragments();
+        String deviceFragTag = "";
+        for (int i = 0; i < fragments.size(); i++) {
+            if (fragments.get(i) instanceof DeviceFrag) {
+                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
+            }
+        }
+        return (DeviceFrag) getSupportFragmentManager()
+                .findFragmentByTag(deviceFragTag);
     }
 }

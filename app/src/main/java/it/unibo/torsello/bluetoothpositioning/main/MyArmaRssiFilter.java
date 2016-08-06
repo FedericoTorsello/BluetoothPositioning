@@ -17,7 +17,7 @@ public class MyArmaRssiFilter implements RssiFilter {
 
     @Override
     public void addMeasurement(Integer rssi) {
-        Log.d("MyArmaRssiFilter", "adding rssi: " + rssi);
+//        Log.d("MyArmaRssiFilter", "adding rssi: " + rssi);
 
         if (isEnabled) {
             if (!isInitialized) {
@@ -26,7 +26,7 @@ public class MyArmaRssiFilter implements RssiFilter {
             }
 
             armaMeasurement = (int) (armaMeasurement - armaSpeed * (armaMeasurement - rssi));
-            Log.d("MyArmaRssiFilter", "armaMeasurement: " + armaMeasurement);
+//            Log.d("MyArmaRssiFilter", "armaMeasurement: " + armaMeasurement);
         } else {
             armaMeasurement = rssi;
         }
