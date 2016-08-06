@@ -98,21 +98,16 @@ public class BeaconStatistics {
     }
 
     public double calculateDistanceMIo(double txPower, double rssi) {
-        double n = 2.0;   // Signal propogation exponent
-        double d0 = 1;  // Reference distance in meters
-        double C = 0;   // Gaussian variable for mitigating flat fading
+        if (rssi == 0) {
+            return -1.0; // if we cannot determine accuracy, return -1.
+        }
 
-        // model specific adjustments for Samsung S3 as per Android Beacon Library
-        double mReceiverRssiSlope = 0;
-        double mReceiverRssiOffset = -2;
-
-        // calculation of adjustment
-        double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
-        double adjustedRssi = rssi - adjustment;
-
-
-        // Log-distance path loss model
-        return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
+        final double ratio = rssi * 1.0 / txPower;
+        if (ratio < 1.0) {
+            return Math.pow(ratio, 10);
+        } else {
+            return (0.89976) * Math.pow(ratio, 7.7095) + 0.111;
+        }
     }
 
 

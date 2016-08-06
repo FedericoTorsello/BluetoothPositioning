@@ -1,6 +1,7 @@
-package it.unibo.torsello.bluetoothpositioning.config;
+package it.unibo.torsello.bluetoothpositioning.models;
 
 import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.Identifier;
 
 import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
 
@@ -62,5 +63,20 @@ public class Device {
 
     public double getDistanceWOSC() {
         return stats.getDistanceWOSC();
+    }
+
+    public void accuracy() {
+//        double accuracy = Math.pow(12.0, 1.5 * ((rssi / measuredPower) - 1));
+//        String proximity = null;
+//
+//        if (accuracy < 0) {
+//            proximity = "unknown";
+//        } else if (accuracy < 0.5) {
+//            proximity = "immediate";
+//        } else if (accuracy < 4.0) {
+//            proximity = "near";
+//        } else {
+//            proximity = "far";
+//        }
     }
 }

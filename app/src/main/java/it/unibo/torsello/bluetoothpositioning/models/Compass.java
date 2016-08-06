@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.main;
+package it.unibo.torsello.bluetoothpositioning.models;
 
 import android.content.Context;
 import android.hardware.Sensor;

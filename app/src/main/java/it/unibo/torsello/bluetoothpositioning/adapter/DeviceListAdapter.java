@@ -16,19 +16,18 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.config.Device;
-import it.unibo.torsello.bluetoothpositioning.models.MyBeacon;
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
  * Created by federico on 21/07/16.
  * Displays basic information about beacon.
  */
-public class LeDeviceListAdapter extends ArrayAdapter<Device> {
+public class DeviceListAdapter extends ArrayAdapter<Device> {
 
     private LayoutInflater inflater;
     private DecimalFormat df;
 
-    public LeDeviceListAdapter(Context context, int textViewResourceId, List<Device> objects) {
+    public DeviceListAdapter(Context context, int textViewResourceId, List<Device> objects) {
         super(context, textViewResourceId, objects);
         this.inflater = LayoutInflater.from(context);
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());

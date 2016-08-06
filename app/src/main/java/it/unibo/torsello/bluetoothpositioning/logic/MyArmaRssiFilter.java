@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.main;//
+package it.unibo.torsello.bluetoothpositioning.logic;//
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //

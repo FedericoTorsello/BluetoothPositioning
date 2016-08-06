@@ -17,15 +17,15 @@ import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.config.Device;
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.main.BLEPositioning;
-import it.unibo.torsello.bluetoothpositioning.adapter.LeDeviceListAdapter;
+import it.unibo.torsello.bluetoothpositioning.adapter.DeviceListAdapter;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 
 public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private LeDeviceListAdapter leDeviceListAdapter;
+    private DeviceListAdapter deviceListAdapter;
     private SharedPreferences settings;
 
     public static DeviceFrag newInstance(String message) {
@@ -43,15 +43,14 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
         settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.beacon_item_fragment, container, false);
 
         ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-        leDeviceListAdapter = new LeDeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<Device>());
-        mDeviceListView.setAdapter(leDeviceListAdapter);
+        deviceListAdapter = new DeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<Device>());
+        mDeviceListView.setAdapter(deviceListAdapter);
         mDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -61,29 +60,6 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
 
         return rootView;
     }
-
-//    @Override
-//    public void addDevices(Collection<MyBeacon> iBeacons) {
-//        List<MyBeacon> list = new ArrayList<>();
-//        list.addAll(iBeacons);
-//
-//        Comparator<MyBeacon> comparator = new Comparator<MyBeacon>() {
-//            public int compare(MyBeacon b1, MyBeacon b2) {
-////                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
-////                    return Double.compare(b1.getDist(), b2.getDist());
-////                } else {
-//                return 0;
-////                }
-//            }
-//        };
-//        Collections.sort(list, comparator);
-//
-//
-//        leDeviceListAdapter.clear();
-//        leDeviceListAdapter.addAll(list);
-//        leDeviceListAdapter.notifyDataSetChanged();
-//
-//    }
 
     @Override
     public void addDevices(Collection<Device> iBeacons) {
@@ -101,16 +77,14 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
         };
         Collections.sort(list, comparator);
 
-
-        leDeviceListAdapter.clear();
-        leDeviceListAdapter.addAll(list);
-        leDeviceListAdapter.notifyDataSetChanged();
-
+        deviceListAdapter.clear();
+        deviceListAdapter.addAll(list);
+        deviceListAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void clearList() {
-        leDeviceListAdapter.clear();
+        deviceListAdapter.clear();
     }
 }
 

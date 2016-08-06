@@ -11,12 +11,12 @@ import android.widget.TextView;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
 
-public class MyFragment extends Fragment implements Magnetometer.OnCompassOrientationListener {
+public class CompassFrag extends Fragment implements Magnetometer.OnCompassOrientationListener {
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private Magnetometer magnetometer;
 
-    public static MyFragment newInstance(String message) {
-        MyFragment f = new MyFragment();
+    public static CompassFrag newInstance(String message) {
+        CompassFrag f = new CompassFrag();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         f.setArguments(bdl);

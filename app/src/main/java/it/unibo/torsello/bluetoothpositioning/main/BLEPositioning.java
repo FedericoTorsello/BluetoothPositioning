@@ -9,7 +9,6 @@ import android.os.RemoteException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.ArrayMap;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -25,15 +24,13 @@ import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
 
 import java.util.Collection;
-import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
-import it.unibo.torsello.bluetoothpositioning.config.Device;
+import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.logic.BeaconHelper;
-import it.unibo.torsello.bluetoothpositioning.models.MyBeacon;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 
 /**
@@ -43,7 +40,6 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 public class BLEPositioning extends MainActivity implements BeaconConsumer {
 
     private final String TAG_CLASS = getClass().getSimpleName();
-    private Map<String, MyBeacon> bluetoothDeviceMap;
     private boolean isRunScan = false;
     private boolean selfCorrection;
     private double processNoise;
@@ -51,18 +47,13 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
     private OnAddDevicesListener onAddDevicesListener;
     private WalkDetection walkDetection;
     private BeaconManager beaconManager;
-    private BeaconHelper beaconHelper;
 
     public static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     public static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
 
     public interface OnAddDevicesListener {
-//        void addDevices(Collection<MyBeacon> iBeacons);
-//        void addDevice(MyBeacon iBeacons);
-
         void addDevices(Collection<Device> iBeacons);
-
         void clearList();
     }
 
@@ -140,13 +131,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
         // is not visible.  This reduces bluetooth power usage by about 60%
         new BackgroundPowerSaver(this.getApplicationContext());
 
-// regionBootstrap = new RegionBootstrap(this, BeaconConstants.REGIONS);
-
         settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
-        beaconHelper = new BeaconHelper();
-
-        bluetoothDeviceMap = new ArrayMap<>();
 
         walkDetection = new WalkDetection(getApplication());
 //        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
@@ -214,14 +199,6 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
-//                        for (Beacon b : beacons) {
-//                            MyBeacon myB = new MyBeacon(b);
-//                            bluetoothDeviceMap.put(myB.getBluetoothAddress(), myB);
-//                        }
-//
-//                        onAddDevicesListener.addDevices(bluetoothDeviceMap.values());
-
                         try {
                             for (Beacon b : beacons) {
                                 Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
@@ -262,20 +239,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
 //                    builder.show();
 //                }
 //            } catch (RuntimeException e) {
-//                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                builder.setTitle("Bluetooth LE not available");
-//                builder.setMessage("Sorry, this device does not support Bluetooth LE.");
-//                builder.setPositiveButton(android.R.string.ok, null);
-//                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//
-//                    @Override
-//                    public void onDismiss(DialogInterface dialog) {
-//                        finish();
-//                        System.exit(0);
-//                    }
-//
-//                });
-//                builder.show();
+//                e.getStackTrace();
 //            }
     }
 

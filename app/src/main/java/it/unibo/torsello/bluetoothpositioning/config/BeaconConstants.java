@@ -1,18 +1,18 @@
 package it.unibo.torsello.bluetoothpositioning.config;
 
-import java.util.ArrayList;
+import android.support.v4.util.ArrayMap;
+
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
  * Created by federico on 28/07/16.
  */
 public class BeaconConstants {
 
-
-    private enum Plain {ONE, TWO, THREE, FOUR, FIVE}
+//    private enum Plain {ONE, TWO, THREE, FOUR, FIVE}
 
 //    private static final Identifier ID_DEVICE_1 = Identifier.parse("C19BB0B9019E");//ice1
 //    private static final Identifier ID_DEVICE_2 = Identifier.parse("D1BEE2E967A6");//ice2
@@ -27,43 +27,25 @@ public class BeaconConstants {
 //        deviceID.add(ID_DEVICE_1);
 //        deviceID.add(ID_DEVICE_2);
 //        deviceID.add(ID_DEVICE_3);
-//        BEACON_ADRESSES1 = Collections.unmodifiableList(deviceID);
-//    }
-//
-//    public static final List<Identifier> BEACON_ADRESSES2;
-//    static {
-//        List<Identifier> deviceID = new ArrayList<>();
 //        deviceID.add(ID_DEVICE_4);
 //        deviceID.add(ID_DEVICE_5);
 //        deviceID.add(ID_DEVICE_6);
-//        BEACON_ADRESSES2 = Collections.unmodifiableList(deviceID);
+//        BEACON_ADRESSES1 = Collections.unmodifiableList(deviceID);
 //    }
 //
 //    public static final Region REGION_1 = new Region(Plain.ONE.name(), BEACON_ADRESSES1, null);
-//    public static final Region REGION_2 = new Region(Plain.TWO.name(), BEACON_ADRESSES2, null);
 //    public static final List<Region> REGIONS = Arrays.asList(REGION_1, REGION_2);
 
-    public static final List<String> PLAIN_ONE;
-
-    static {
-        List<String> addresses = new ArrayList<>();
-        addresses.add("C1:9B:B0:B9:01:9E"); //ice1
-        addresses.add("D1:BE:E2:E9:67:A6"); //ice2
-        addresses.add("FA:6B:72:1E:EB:46"); //mint1
-        addresses.add("D9:80:00:B7:16:78"); //mint2
-        addresses.add("DB:F6:F5:0C:23:BF"); //bluebarry1
-        addresses.add("E7:E4:0E:F6:79:3F"); //bleubarry2
-        PLAIN_ONE = Collections.unmodifiableList(addresses);
-    }
-
-//    private static final Identifier DEVICE_1 = Identifier.parse("C1:9B:B0:B9:01:9E");
-//
-//    // Beacons
-//    public static final Map<Identifier, Device> BEACON_LIST;
+//    public static final List<String> PLAIN_ONE;
 //    static {
-//        Map<Identifier, Device> map = new HashMap<>();
-//        map.put(DEVICE_1, new Device(DEVICE_1, "Kundservice"));
-//        BEACON_LIST = Collections.unmodifiableMap(map);
+//        List<String> addresses = new ArrayList<>();
+//        addresses.add("C1:9B:B0:B9:01:9E"); //ice1
+//        addresses.add("D1:BE:E2:E9:67:A6"); //ice2
+//        addresses.add("FA:6B:72:1E:EB:46"); //mint1
+//        addresses.add("D9:80:00:B7:16:78"); //mint2
+//        addresses.add("DB:F6:F5:0C:23:BF"); //bluebarry1
+//        addresses.add("E7:E4:0E:F6:79:3F"); //bleubarry2
+//        PLAIN_ONE = Collections.unmodifiableList(addresses);
 //    }
 
     private static final String DEVICE_1 = "C1:9B:B0:B9:01:9E"; //ice1
@@ -75,16 +57,14 @@ public class BeaconConstants {
 
     // Beacons
     public static final Map<String, Device> BEACON_LIST;
-
     static {
-        Map<String, Device> map = new HashMap<>();
+        Map<String, Device> map = new ArrayMap<>();
         map.put(DEVICE_1, new Device(DEVICE_1, "Kundservice"));
         map.put(DEVICE_2, new Device(DEVICE_2, "Kundservice"));
         map.put(DEVICE_3, new Device(DEVICE_3, "Kundservice"));
         map.put(DEVICE_4, new Device(DEVICE_4, "Kundservice"));
         map.put(DEVICE_5, new Device(DEVICE_5, "Kundservice"));
         map.put(DEVICE_6, new Device(DEVICE_6, "Kundservice"));
-
         BEACON_LIST = Collections.unmodifiableMap(map);
     }
 

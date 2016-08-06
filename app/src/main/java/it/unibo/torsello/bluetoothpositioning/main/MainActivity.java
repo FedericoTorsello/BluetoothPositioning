@@ -13,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,9 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.MyFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.CompassFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
+import it.unibo.torsello.bluetoothpositioning.models.Compass;
 
 
 public class MainActivity extends AppCompatActivity
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         List<Fragment> fList = new ArrayList<>();
         fList.add(DeviceFrag.newInstance("Scan Device"));
         fList.add(SettingsFrag.newInstance("Setting"));
-        fList.add(MyFragment.newInstance("Settingsdss"));
+        fList.add(CompassFrag.newInstance("Settingsdss"));
         fList.add(Compass.newInstance("Settingsdss"));
 
         return fList;
