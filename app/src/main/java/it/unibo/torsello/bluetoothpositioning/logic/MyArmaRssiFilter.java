@@ -4,8 +4,6 @@ package it.unibo.torsello.bluetoothpositioning.logic;//
 //
 
 
-import android.util.Log;
-
 import org.altbeacon.beacon.service.RssiFilter;
 
 public class MyArmaRssiFilter implements RssiFilter {

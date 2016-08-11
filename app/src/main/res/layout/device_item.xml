@@ -5,6 +5,7 @@
 
     <ImageView
         android:id="@+id/imageBeacon"
+        android:contentDescription="beaconImage"
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
@@ -19,7 +20,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/row_name"
+            android:id="@+id/simple_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/row_default_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/row_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold" />

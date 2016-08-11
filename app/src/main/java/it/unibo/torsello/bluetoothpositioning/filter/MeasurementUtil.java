@@ -32,7 +32,7 @@ public class MeasurementUtil {
 //            lastDistance = BeaconConstants.BEACON_LIST.get(b.getId2()).getDistanceAltBeacon();
 //            Log.d("testy", "" + lastDistance);
 //            lastRawDistance = BeaconConstants.BEACON_LIST.get(b.getId2()).getRawDistance();
-//            lastDistanceWOSC = BeaconConstants.BEACON_LIST.get(b.getId2()).getDistanceWOSC();
+//            lastDistanceWOSC = BeaconConstants.BEACON_LIST.get(b.getId2()).getDistKalmanFilter4();
 //            lastAltBeaconDistance = b.getDistanceAltBeacon();
 //            processNoise = bh.getProcessNoise();
 //        }

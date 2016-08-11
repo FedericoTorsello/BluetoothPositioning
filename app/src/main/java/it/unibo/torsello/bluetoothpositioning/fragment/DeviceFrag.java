@@ -17,10 +17,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
-import it.unibo.torsello.bluetoothpositioning.main.BLEPositioning;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceListAdapter;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.main.BLEPositioning;
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
@@ -46,7 +46,7 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.beacon_item_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.beacon_frag, container, false);
 
         ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
         deviceListAdapter = new DeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<Device>());

@@ -19,10 +19,11 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.CompassFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.CompassMagnometerFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.CountPassFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
-import it.unibo.torsello.bluetoothpositioning.models.Compass;
 
 
 public class MainActivity extends AppCompatActivity
@@ -137,9 +138,10 @@ public class MainActivity extends AppCompatActivity
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
         fList.add(DeviceFrag.newInstance("Scan Device"));
-        fList.add(SettingsFrag.newInstance("Setting"));
-        fList.add(CompassFrag.newInstance("Settingsdss"));
-        fList.add(Compass.newInstance("Settingsdss"));
+        fList.add(CompassMagnometerFrag.newInstance("CompassMagnometerFrag"));
+        fList.add(CompassFrag.newInstance("CompassFrag"));
+        fList.add(CountPassFrag.newInstance("CountPassFrag"));
+        fList.add(SettingsFrag.newInstance("SettingsFrag"));
 
         return fList;
     }

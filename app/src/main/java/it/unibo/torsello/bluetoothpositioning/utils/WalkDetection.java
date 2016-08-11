@@ -69,14 +69,14 @@ public class WalkDetection implements SensorEventListener {
         mSensorManager.registerListener(this, mSensor, 1000);
     }
 
-    public void killDetection() {
+    public void stopDetection() {
         mSensorManager.unregisterListener(this);
     }
 
 
-//    public int getState() {
-//        return currentState == STATE_PENDING ? STATE_IDLE : currentState;
-//    }
+    public int getState() {
+        return currentState == STATE_PENDING ? STATE_IDLE : currentState;
+    }
 
     /**
      * Called when sensor values have changed.
@@ -100,7 +100,9 @@ public class WalkDetection implements SensorEventListener {
                             if (motionWas(FOUND)) {
                                 currentState = STATE_PENDING;
                                 Log.i("walk", "PENDING");
-                            } else resetWindow();
+                            } else {
+                                resetWindow();
+                            }
                         }
                         break;
                     case STATE_PENDING:

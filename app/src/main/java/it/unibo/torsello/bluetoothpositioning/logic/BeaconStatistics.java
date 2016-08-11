@@ -18,15 +18,15 @@ public class BeaconStatistics {
 
     private DescriptiveStatistics mostRecentRSSI;
     private DescriptiveStatistics mostRecentTxPower;
-    private KalmanFilter3 kf;
     private double lastCalculatedDistance;
     private double lastRawDistance;
     private double lastWOSC;
     private static final int WINDOW = 20;
 
     private double dist;
-    private double distInMetresKalmanFilter;
-    private double distInMetresNoFilter;
+    private double distInMetresKalmanFilter2;
+    private double distInMetresKalmanFilter1;
+    private double distInternet;
 
     public static final double FILTER_FACTOR = 0.1;
 
@@ -38,48 +38,73 @@ public class BeaconStatistics {
         mostRecentTxPower = new DescriptiveStatistics();
         mostRecentTxPower.setWindowSize(WINDOW);
 
-        lastCalculatedDistance = 0;
-        lastRawDistance = 0;
-        lastWOSC = 0;
-
-        //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
-        // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
-        // il filtro (measuredValue) restituisce il valore calcolato
-        kf = new KFBuilder()
-                // filter for RSSI
-                .R(10) // Initial process noise
-                .Q(60.0) // Initial measurement noise
-                .build();
     }
 
-
     public void updateDistance(Beacon b, double processNoise, int movementState) {
-//        public void updateDistance(IBeacon b, double movementState, double processNoise) {
-        double lastFilteredReading = -1;
 
         mostRecentRSSI.addValue(b.getRssi());
         mostRecentTxPower.addValue(b.getTxPower());
 
         // Update measurement noise continually
-        double mNoise = Math.sqrt((100 * 9 / Math.log(10)) * Math.log(1 + Math.pow(mostRecentRSSI.getMean() / mostRecentRSSI.getStandardDeviation(), 2)));
+        double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
+                Math.log(1 + Math.pow(mostRecentRSSI.getMean() / mostRecentRSSI.getStandardDeviation(), 2)));
+
+        //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
+        // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
+        // il filtro (measuredValue) restituisce il valore calcolato
+        KalmanFilter3 kf = new KFBuilder()
+                // filter for RSSI
+                .R(10) // Initial process noise
+                .Q(60.0) // Initial measurement noise
+                .build();
+
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
             kf.setMeasurementNoise(mNoise);
         }
         kf.setProcessNoise(processNoise);
-        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
 
-        lastCalculatedDistance = calculateDistance(mostRecentTxPower.getPercentile(50), lastFilteredReading);
-        lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
-        lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
+        lastRawDistance = calculateDistanceNoFilter1(b.getTxPower(), b.getRssi());
+        double lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
+        lastCalculatedDistance = calculateDistanceNoFilter1(mostRecentTxPower.getPercentile(50), lastFilteredReading);
+        double lastFilteredReading1 = kf.filter(mostRecentTxPower.getPercentile(50), movementState);
+        lastWOSC = calculateDistanceNoFilter1(lastFilteredReading1, lastFilteredReading);
 
-        dist = calculateDistanceMIo(b.getTxPower(), b.getRssi());
+        dist = calculateDistanceNoFilter2(b);
+        distInternet = calculateDistanceNoFilter3(b);
 
-        distInMetresNoFilter = calculateDistanceNoFilter(b);
-
-        distInMetresKalmanFilter = calculateDistanceKalmanFilter(b);
+        distInMetresKalmanFilter1 = calculateDistanceKalmanFilter1(b);
+        distInMetresKalmanFilter2 = calculateDistanceKalmanFilter2(b);
     }
 
-    private double calculateDistance(double txPower, double rssi) {
+    public double getDist() {
+        return dist;
+    }
+
+    public double getRawDistance() {
+        return lastRawDistance;
+    }
+
+    public double getDistInternet() {
+        return distInternet;
+    }
+
+    public double getDistKalmanFilter1() {
+        return distInMetresKalmanFilter1;
+    }
+
+    public double getDistKalmanFilter2() {
+        return distInMetresKalmanFilter2;
+    }
+
+    public double getDistKalmanFilter3() {
+        return lastCalculatedDistance;
+    }
+
+    public double getDistKalmanFilter4() {
+        return lastWOSC;
+    }
+
+    private double calculateDistanceNoFilter1(double txPower, double rssi) {
         double n = 2.0;   // Signal propogation exponent
         double d0 = 1;  // Reference distance in meters
         double C = 0;   // Gaussian variable for mitigating flat fading
@@ -92,17 +117,16 @@ public class BeaconStatistics {
         double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
         double adjustedRssi = rssi - adjustment;
 
-
         // Log-distance path loss model
         return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
     }
 
-    public double calculateDistanceMIo(double txPower, double rssi) {
-        if (rssi == 0) {
+    private double calculateDistanceNoFilter2(Beacon b) {
+        if (b.getRssi() == 0) {
             return -1.0; // if we cannot determine accuracy, return -1.
         }
 
-        final double ratio = rssi * 1.0 / txPower;
+        final double ratio = b.getRssi() * 1.0 / b.getTxPower();
         if (ratio < 1.0) {
             return Math.pow(ratio, 10);
         } else {
@@ -110,95 +134,65 @@ public class BeaconStatistics {
         }
     }
 
-
-    public double calculateDistanceNoFilter(Beacon b) {
-
-        double accuracy = KalmanFilter.filter(b.getRssi(), b.getBluetoothAddress());
-        double newDistanceInMeters = distanceFrom(accuracy, b.getTxPower());
-
-        if (b != null) {
-//            double previousAccuracy = b.getDistanceInMetresKalmanFilter();
-            double previousAccuracy = distInMetresKalmanFilter;
-            newDistanceInMeters = previousAccuracy * (1 - FILTER_FACTOR)
-                    + newDistanceInMeters * FILTER_FACTOR;
-        }
-
-        return newDistanceInMeters;
-    }
-
-    public double calculateDistanceKalmanFilter(Beacon b) {
-        double newDistanceInMeters = distanceFrom(b.getRssi(), b.getTxPower());
-
-        if (b != null) {
-            newDistanceInMeters = distanceFrom(b.getRssi(), b.getTxPower());
-            newDistanceInMeters = new KalmanFilter2(newDistanceInMeters, 0.05).filter();
-        }
-
-        return newDistanceInMeters;
-
-    }
-
-
-//    double getDistanceInternet(int rssi, int txPower) {
-//    /*
-//     * RSSI = TxPower - 10 * n * lg(d)
-//     * n = 2 (in free space)
-//     *
-//     * d = 10 ^ ((TxPower - RSSI) / (10 * n))
-//     */
-//
-//        return Math.pow(10d, ((double) txPower - rssi) / (10 * 2));
-//    }
-
-
-    /**
-     * Calculates the accuracy of an RSSI reading.
-     * <p/>
-     * The code was taken from <a href="http://stackoverflow.com/questions/20416218/understanding-ibeacon-distancing" /a>
-     *
-     * @param rssi the RSSI value of the iBeacon
-     * @return the calculated Accuracy
+    private double calculateDistanceNoFilter3(Beacon b) {
+    /*
+     * RSSI = TxPower - 10 * n * lg(d)
+     * n = 2 (in free space)
+     * d = 10 ^ ((TxPower - RSSI) / (10 * n))
      */
 
-    private double distanceFrom(double rssi, int txPower) {
-        if (rssi == 0) {
-            return -1.0; // if we cannot determine accuracy, return -1.
+        return Math.pow(10d, ((double) b.getTxPower() - b.getRssi()) / (10 * 2));
+    }
+
+    private double calculateDistanceKalmanFilter1(Beacon b) {
+
+        double accuracy = KalmanFilter.filter(b.getRssi(), b.getBluetoothAddress());
+        double newDistanceInMeters = calculateDistanceFrom(accuracy, b.getTxPower());
+
+        double previousAccuracy = distInMetresKalmanFilter2;
+        newDistanceInMeters = previousAccuracy * (1 - FILTER_FACTOR)
+                + newDistanceInMeters * FILTER_FACTOR;
+
+        return newDistanceInMeters;
+    }
+
+    private double calculateDistanceKalmanFilter2(Beacon b) {
+
+        double newDistanceInMeters = calculateDistanceFrom(b.getRssi(), b.getTxPower());
+        newDistanceInMeters = new KalmanFilter2(newDistanceInMeters, 0.05).filter();
+
+        return newDistanceInMeters;
+    }
+
+    private double calculateDistanceFrom(double rssi, int txPower) {
+        if (rssi == 0.0D) {
+            return -1.0D; // if we cannot determine accuracy, return -1.
         }
 
-        double ratio = rssi / txPower;
+        double ratio = (rssi * 1.0D) / ((double) txPower);
+        if (ratio < 1.0D) {
+            return Math.pow(ratio, 10.0D);
+        }
 
-        double distance;
-        if (ratio < 1.0) {
-            distance = Math.pow(ratio, 10);
-        } else {
-//        return (0.89976) * Math.pow(ratio, 7.7095) + 0.125;
+//        return (0.89976d) * Math.pow(ratio, 7.7095d) + 0.125d;
+        return (0.89976d * Math.pow(ratio, 7.7095D)) + 0.111D;
 //            distance =  Math.pow(10.0,(rssi - txPower)/-25.0);
-            distance = Math.pow(10.0, ((-rssi + txPower) / 10 * 0.25));
+//            distance = Math.pow(10.0, ((-rssi + txPower) / 10 * 0.25));
+    }
+
+    //radiousNetwork
+    private double calculateAccuracy(int txPower, double rssi) {
+        if (rssi == 0.0d) {
+            return -1.0d;
         }
-        return distance;
+
+        double ratio = (rssi * 1.0d) / ((double) txPower);
+        if (ratio < 1.0d) {
+            return Math.pow(ratio, 10.0d);
+        }
+
+        return (0.89976d * Math.pow(ratio, 7.7095d)) + 0.111d;
     }
 
-    public double getDist() {
-        return dist;
-    }
 
-    public double getDistance() {
-        return lastCalculatedDistance;
-    }
-
-    public double getRawDistance() {
-        return lastRawDistance;
-    }
-
-    public double getDistanceWOSC() {
-        return lastWOSC;
-    }
-
-    public double getDistInMetresKalmanFilter() {
-        return distInMetresKalmanFilter;
-    }
-
-    public double getDistInMetresNoFilter() {
-        return distInMetresNoFilter;
-    }
 }

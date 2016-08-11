@@ -1,19 +1,36 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.Magnetometer;
 
-public class CompassFrag extends Fragment implements Magnetometer.OnCompassOrientationListener {
+/**
+ * Created by federico on 25/07/16.
+ */
+public class CompassFrag extends Fragment implements SensorEventListener {
+    private SensorManager mSensorManager;
+    private Sensor mAccelerometer;
+    private Sensor mMagnetometer;
+    private Sensor mGiroscope;
+    private Sensor mOrientation;
+
+    private float[] accelValues;
+    private float[] magnetValues;
+
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private Magnetometer magnetometer;
 
     public static CompassFrag newInstance(String message) {
         CompassFrag f = new CompassFrag();
@@ -23,35 +40,79 @@ public class CompassFrag extends Fragment implements Magnetometer.OnCompassOrien
         return f;
     }
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-        magnetometer = new Magnetometer(getActivity().getApplication());
-        magnetometer.startDetection();
-        magnetometer.setListener(this);
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (mAccelerometer != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST,
+                        SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
+            } else {
+                mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+            }
+        }
+
+        if (mMagnetometer != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                mSensorManager.registerListener(this, mMagnetometer, SensorManager.SENSOR_DELAY_FASTEST,
+                        SensorManager.SENSOR_STATUS_ACCURACY_HIGH);
+            } else {
+                mSensorManager.registerListener(this, mMagnetometer, SensorManager.SENSOR_DELAY_FASTEST);
+            }
+        }
+    }
+
     public void onPause() {
         super.onPause();
-        magnetometer.killDetection();
+        mSensorManager.unregisterListener(this, mAccelerometer);
+        mSensorManager.unregisterListener(this, mMagnetometer);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.myfragment_layout, container, false);
-        TextView messageTextView = (TextView) v.findViewById(R.id.textView);
-        messageTextView.setText("");
-
-        return v;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.compass_frag, container, false);
     }
 
     @Override
-    public void setCompassOrientationString(String compassOrientationString) {
-        TextView messageTextView = (TextView) getActivity().findViewById(R.id.textView);
-        messageTextView.setText(compassOrientationString);
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor == mAccelerometer) {
+            accelValues = event.values;
+        } else if (event.sensor == mMagnetometer) {
+            magnetValues = event.values;
+        }
+
+        if (accelValues != null && magnetValues != null) {
+            float[] rotationMatrix = new float[16];
+            float[] orientation = new float[16];
+
+            SensorManager.getRotationMatrix(rotationMatrix, null, accelValues, magnetValues);
+            SensorManager.getOrientation(rotationMatrix, orientation);
+
+            float pitch = (float) Math.toDegrees(-orientation[0]);
+
+            RotateAnimation ra = new RotateAnimation(
+                    pitch, pitch,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            ra.setDuration(250);
+            ra.setFillAfter(true);
+
+            ImageView mPointer = (ImageView) getActivity().findViewById(R.id.pointer);
+            mPointer.startAnimation(ra);
+
+        }
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 }

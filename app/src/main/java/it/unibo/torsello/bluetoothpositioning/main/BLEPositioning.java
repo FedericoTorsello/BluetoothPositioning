@@ -1,18 +1,22 @@
 package it.unibo.torsello.bluetoothpositioning.main;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.estimote.sdk.EstimoteSDK;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -20,40 +24,67 @@ import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
-
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
-import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
+import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
+import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
+
+//import com.estimote.sdk.EstimoteSDK;
 
 /**
  * Created by federico on 21/07/16.
  */
-@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-public class BLEPositioning extends MainActivity implements BeaconConsumer {
+
+public class BLEPositioning extends MainActivity implements BeaconConsumer, SettingsFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
+    private WalkDetection walkDetection;
+    private BeaconManager beaconManager;
     private boolean isRunScan = false;
     private boolean selfCorrection;
     private double processNoise;
     private SharedPreferences settings;
     private OnAddDevicesListener onAddDevicesListener;
-    private WalkDetection walkDetection;
-    private BeaconManager beaconManager;
+
+    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     public static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     public static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
 
+    @Override
+    public void updateWalkDetectionListener(boolean isChecked) {
+        if (isChecked) {
+            walkDetection.startDetection();
+        } else {
+            walkDetection.stopDetection();
+        }
+    }
+
+    @Override
+    public void updateSelfCorrectionListener(boolean isChecked) {
+
+    }
+
+    @Override
+    public void updateProcessNoise(int valueSeekBar) {
+        processNoise = valueSeekBar;
+        Log.d("wo", "wo" + processNoise);
+    }
+
     public interface OnAddDevicesListener {
         void addDevices(Collection<Device> iBeacons);
+
         void clearList();
     }
 
@@ -73,25 +104,26 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+        checkAndroidPermission();
 
         beaconManager = BeaconManager.getInstanceForApplication(this);
+        beaconManager.bind(this);
 
-        verifyBluetooth();
+        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
 
-        String appId = "federico-torsello-studio-u-6yo";
-        String appToken = "57c8cf3bef60d9258fd9123556dace89";
+//        String appId = "federico-torsello-studio-u-6yo";
+//        String appToken = "57c8cf3bef60d9258fd9123556dace89";
 
         //  App ID & App Token can be taken from App section of Estimote Cloud.
-        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
+//        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
         // Optional, debug logging.
-        EstimoteSDK.enableDebugLogging(true);
+//        EstimoteSDK.enableDebugLogging(true);
 
-//        ModelSpecificDistanceCalculator.setDistanceCalculatorClass(PathLossDistanceCalculator.class);
 
         // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
         // find a different type of beacon, you must specify the byte layout for that beacon's
@@ -117,14 +149,10 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
         beaconManager.getBeaconParsers().add(new BeaconParser()
                 .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
 
-//        RangedBeacon.setSampleExpirationMilliseconds(5000);
-
         beaconManager.setForegroundScanPeriod(200L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
         beaconManager.setBackgroundScanPeriod(200L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
-
-        beaconManager.bind(this);
 
         // simply constructing this class and holding a reference to it in your custom Application
         // class will automatically cause the BeaconLibrary to save battery whenever the application
@@ -134,11 +162,9 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
         settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
         walkDetection = new WalkDetection(getApplication());
-//        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
-//            walkDetection.startDetection();
-//        }
-
-        final Region region = new Region("com.example.myapp.boostrapRegion", null, null, null);
+        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+            walkDetection.startDetection();
+        }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -147,14 +173,19 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
             public void onClick(View view) {
                 isRunScan = !isRunScan;
 
-                try {
-                    if (isRunScan) {
-                        beaconManager.startRangingBeaconsInRegion(region);
-                    } else {
-                        beaconManager.stopRangingBeaconsInRegion(region);
+                Region a = new Region("myRangingUniqueId", null, null, null);
+                if (isRunScan) {
+                    try {
+                        beaconManager.startRangingBeaconsInRegion(a);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
                     }
-                } catch (RemoteException e) {
-                    e.printStackTrace();
+                } else {
+                    try {
+                        beaconManager.stopRangingBeaconsInRegion(a);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 String statusScan = isRunScan ?
@@ -166,15 +197,17 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        verifyBluetooth();
+    protected void onPause() {
+        super.onPause();
+        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(true);
+        walkDetection.stopDetection();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-//        walkDetection.killDetection();
+    protected void onResume() {
+        super.onResume();
+        verifyBluetooth();
+        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(false);
     }
 
     @Override
@@ -207,7 +240,6 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
                                     device.updateDistance(processNoise, 1);
                                 }
                             }
-
                         } catch (NullPointerException e) {
                             e.getStackTrace();
                         }
@@ -218,30 +250,88 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer {
         });
     }
 
-    private void verifyBluetooth() {
-        if (!beaconManager.checkAvailability()) {
-            BluetoothAdapter.getDefaultAdapter().enable();
-        }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
+                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
+                        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                        builder.setTitle("Functionality limited");
+                        builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons when in the background.");
+                        builder.setPositiveButton(android.R.string.ok, null);
+                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-//            try {
-//                if (!beaconManager.checkAvailability()) {
-//                    final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//                    builder.setTitle("Bluetooth not enabled");
-//                    builder.setMessage("Please enable bluetooth in settings and restart this application.");
-//                    builder.setPositiveButton(android.R.string.ok, null);
-//                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-//                        @Override
-//                        public void onDismiss(DialogInterface dialog) {
-//                            finish();
-//                            System.exit(0);
-//                        }
-//                    });
-//                    builder.show();
-//                }
-//            } catch (RuntimeException e) {
-//                e.getStackTrace();
-//            }
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                            }
+
+                        });
+                        builder.show();
+                    }
+                }
+            }
+            break;
+            default: {
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
+        }
     }
 
+    private void verifyBluetooth() {
+        try {
+            if (!beaconManager.checkAvailability()) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Bluetooth not enabled");
+                builder.setMessage("Press OK to enable Bluetooth.");
+                builder.setPositiveButton(android.R.string.ok, null);
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        BluetoothAdapter.getDefaultAdapter().enable();
+                    }
+                });
+                builder.show();
+            }
+        } catch (RuntimeException e) {
+            e.getStackTrace();
+        }
+    }
 
+    @TargetApi(23)
+    private void checkAndroidPermission() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            final List<String> permissions = new ArrayList<>();
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+
+            if (!permissions.isEmpty()) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("This app needs location access");
+                builder.setMessage("Please grant location access so this app can detect beacons.");
+                builder.setPositiveButton(android.R.string.ok, null);
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        requestPermissions(permissions.toArray(new String[permissions.size()]),
+                                REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                    }
+
+                });
+                builder.show();
+            }
+        }
+    }
 }

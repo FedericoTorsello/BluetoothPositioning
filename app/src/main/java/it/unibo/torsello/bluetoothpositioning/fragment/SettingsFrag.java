@@ -27,7 +27,8 @@ public class SettingsFrag extends Fragment {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SharedPreferences settings;
-//    private OnSettingsListener onSettingsListener;
+    private OnSettingsListener onSettingsListener;
+    private SharedPreferences.Editor editor;
 
     public static SettingsFrag newInstance(String message) {
         SettingsFrag f = new SettingsFrag();
@@ -37,37 +38,40 @@ public class SettingsFrag extends Fragment {
         return f;
     }
 
-//    public interface OnSettingsListener {
-//        void updateWalkDetectionListener(boolean isChecked);
+    public interface OnSettingsListener {
+        void updateWalkDetectionListener(boolean isChecked);
 
-    //        void updateSelfCorrectionListener(boolean isChecked);
-//        void updateProcessNoise(int valueSeekBar);
-//    }
+        void updateSelfCorrectionListener(boolean isChecked);
+
+        void updateProcessNoise(int valueSeekBar);
+    }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnSettingsListener) {
-//            onSettingsListener = (OnSettingsListener) context;
-//        } else {
-//            throw new ClassCastException(context.toString()
-//                    + " must implement the Listener " + onSettingsListener.toString());
-//        }
+        if (context instanceof OnSettingsListener) {
+            onSettingsListener = (OnSettingsListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + " must implement the Listener " + onSettingsListener.toString());
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-//        onSettingsListener = null;
+        onSettingsListener = null;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.settings_fragment, container, false);
+        View view = inflater.inflate(R.layout.settings_frag, container, false);
 
         settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        editor = settings.edit();
+        editor.apply();
 
         SeekBar kalmanSeek = (SeekBar) view.findViewById(R.id.kalmanSeek);
         TextView kalmanFilterValue = (TextView) view.findViewById(R.id.kalmanValue);
@@ -88,14 +92,12 @@ public class SettingsFrag extends Fragment {
     private void setUpKalmanSeek(SeekBar kalmanSeek, final TextView kalmanFilterValue) {
         int kalmanSeekValue = settings.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(kalmanSeekValue);
-        DecimalFormat df = new DecimalFormat("#.##");
+        final DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
         kalmanFilterValue.setText(df.format(KalmanFilter3.getCalculatedNoise(kalmanSeekValue)));
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                DecimalFormat df = new DecimalFormat("#.##");
-                df.setRoundingMode(RoundingMode.CEILING);
                 kalmanFilterValue.setText(df.format(KalmanFilter3.getCalculatedNoise(progress)));
             }
 
@@ -105,10 +107,9 @@ public class SettingsFrag extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SharedPreferences.Editor editor = settings.edit();
                 editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, seekBar.getProgress());
                 editor.apply();
-//                onSettingsListener.updateProcessNoise(seekBar.getProgress());
+                onSettingsListener.updateProcessNoise(seekBar.getProgress());
             }
         });
     }
@@ -121,11 +122,10 @@ public class SettingsFrag extends Fragment {
         selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
                 editor.apply();
-//                onSettingsListener.updateSelfCorrectionListener(isChecked);
                 selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
+                onSettingsListener.updateSelfCorrectionListener(isChecked);
             }
         });
     }
@@ -138,11 +138,10 @@ public class SettingsFrag extends Fragment {
         wdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
                 editor.apply();
                 wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-//                onSettingsListener.updateWalkDetectionListener(isChecked);
+                onSettingsListener.updateWalkDetectionListener(isChecked);
             }
         });
     }
@@ -155,11 +154,10 @@ public class SettingsFrag extends Fragment {
         sortByDistanceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.SORT_BY_DISTANCE, isChecked);
                 editor.apply();
                 sortByDistanceSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-//                onSettingsListener.updateSelfCorrectionListener(isChecked);
+                onSettingsListener.updateSelfCorrectionListener(isChecked);
             }
         });
     }
