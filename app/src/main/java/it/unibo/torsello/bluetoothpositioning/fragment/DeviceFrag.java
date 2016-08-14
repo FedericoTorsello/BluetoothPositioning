@@ -29,11 +29,11 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
     private SharedPreferences settings;
 
     public static DeviceFrag newInstance(String message) {
-        DeviceFrag f = new DeviceFrag();
+        DeviceFrag fragment = new DeviceFrag();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
-        f.setArguments(bdl);
-        return f;
+        fragment.setArguments(bdl);
+        return fragment;
     }
 
     @Override
@@ -68,13 +68,14 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
 
         Comparator<Device> comparator = new Comparator<Device>() {
             public int compare(Device b1, Device b2) {
-//                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
-//                    return Double.compare(b1.getDist(), b2.getDist());
-//                } else {
-                return 0;
-//                }
+                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
+                    return Double.compare(b1.getDist(), b2.getDist());
+                } else {
+                    return 0;
+                }
             }
         };
+
         Collections.sort(list, comparator);
 
         deviceListAdapter.clear();

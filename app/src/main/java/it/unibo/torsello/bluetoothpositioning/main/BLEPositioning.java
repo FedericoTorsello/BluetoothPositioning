@@ -45,7 +45,8 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  * Created by federico on 21/07/16.
  */
 
-public class BLEPositioning extends MainActivity implements BeaconConsumer, SettingsFrag.OnSettingsListener {
+public class BLEPositioning extends MainActivity implements BeaconConsumer,
+        SettingsFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private WalkDetection walkDetection;
@@ -56,54 +57,17 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
     private SharedPreferences settings;
     private OnAddDevicesListener onAddDevicesListener;
 
-    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+    private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
-    public static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
-    public static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
+    private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
+    private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
-
-    @Override
-    public void updateWalkDetectionListener(boolean isChecked) {
-        if (isChecked) {
-            walkDetection.startDetection();
-        } else {
-            walkDetection.stopDetection();
-        }
-    }
-
-    @Override
-    public void updateSelfCorrectionListener(boolean isChecked) {
-
-    }
-
-    @Override
-    public void updateProcessNoise(int valueSeekBar) {
-        processNoise = valueSeekBar;
-        Log.d("wo", "wo" + processNoise);
-    }
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<Device> iBeacons);
 
         void clearList();
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // noinspection SimplifiableIfStatement
-        if (id == R.id.action_clear) {
-            onAddDevicesListener.clearList();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -213,7 +177,8 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        beaconManager.unbind(this);
+        onAddDevicesListener = null;
+        if (beaconManager.isBound(this)) beaconManager.unbind(this);
     }
 
     @Override
@@ -234,16 +199,18 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
                     public void run() {
                         try {
                             for (Beacon b : beacons) {
+
                                 Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
                                 if (b.getBluetoothAddress().equals(device.getAddress())) {
                                     device.setBeacon(b);
-                                    device.updateDistance(processNoise, 1);
+                                    int movementState = 1;
+                                    device.updateDistance(processNoise, movementState);
                                 }
                             }
+                            onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
                         } catch (NullPointerException e) {
                             e.getStackTrace();
                         }
-                        onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
                     }
                 });
             }
@@ -260,9 +227,11 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
                         Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
                     } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
                         Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
-                        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+                        final android.app.AlertDialog.Builder builder =
+                                new android.app.AlertDialog.Builder(this);
                         builder.setTitle("Functionality limited");
-                        builder.setMessage("Since location access has not been granted, this app will not be able to discover beacons when in the background.");
+                        builder.setMessage("Since location access has not been granted, " +
+                                "this app will not be able to discover beacons when in the background.");
                         builder.setPositiveButton(android.R.string.ok, null);
                         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -279,6 +248,41 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
             default: {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        // noinspection SimplifiableIfStatement
+        if (id == R.id.action_clear) {
+            onAddDevicesListener.clearList();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void updateKalmanNoise(double value) {
+        processNoise = value;
+    }
+
+    @Override
+    public void isSelfCorrection(boolean isChecked) {
+        selfCorrection = isChecked;
+    }
+
+    @Override
+    public void isWalkDetection(boolean isChecked) {
+        if (isChecked) {
+            walkDetection.startDetection();
+        } else {
+            walkDetection.stopDetection();
         }
     }
 
@@ -308,11 +312,13 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer, Sett
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             final List<String> permissions = new ArrayList<>();
 
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             }
 
-            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
 

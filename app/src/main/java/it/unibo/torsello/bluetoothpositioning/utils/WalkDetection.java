@@ -52,7 +52,7 @@ public class WalkDetection implements SensorEventListener {
     private int lastBatchNumber = 0;
 
     // needed for accurate timestamps
-    private long[] events = new long[2];
+    private long events[] = new long[2];
     private int it = 0;
     private long divisor; // to get from timestamp to milliseconds
     private long offset; // to get from event milliseconds to system milliseconds
@@ -70,6 +70,7 @@ public class WalkDetection implements SensorEventListener {
     }
 
     public void stopDetection() {
+        currentState = STATE_PENDING;
         mSensorManager.unregisterListener(this);
     }
 
@@ -163,8 +164,7 @@ public class WalkDetection implements SensorEventListener {
         int maxBatch = FastMath.toIntExact(maxLag) / 100 + 1;
         maxBatch = maxBatch > raw.size() ? raw.size() : maxBatch;
         for (int i = 0; i < maxBatch; i++)
-            for (double d :
-                    raw.get(i)) {
+            for (double d : raw.get(i)) {
                 stats.addValue(d);
             }
         return stats;
@@ -172,8 +172,7 @@ public class WalkDetection implements SensorEventListener {
 
     private DescriptiveStatistics getStatsForDataSegment(List<Double> array) {
         DescriptiveStatistics stats = new DescriptiveStatistics();
-        for (double d :
-                array) {
+        for (double d : array) {
             stats.addValue(d);
         }
         return stats;

@@ -3,8 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.main;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,16 +12,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.adapter.MyPageAdapter;
-import it.unibo.torsello.bluetoothpositioning.fragment.CompassFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.CompassMagnometerFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.CountPassFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.Settings2Frag;
+import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
 
 
 public class MainActivity extends AppCompatActivity
@@ -52,15 +43,16 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        assert mViewPager != null;
-        mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
+//        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
+//        assert mViewPager != null;
+//        mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
+//
+//        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+//        assert tabLayout != null;
+//        tabLayout.setupWithViewPager(mViewPager);
+//
+//        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        assert tabLayout != null;
-        tabLayout.setupWithViewPager(mViewPager);
-
-        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
     }
 
 
@@ -123,9 +115,21 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.prova, Settings2Frag.newInstance())
+                    .commit();
+
+
+//            getFragmentManager().beginTransaction()
+//                    .replace(R.id.prova, new Settings2Frag())
+//                    .commit();
+
 
         } else if (id == R.id.nav_send) {
 
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.prova, ViewPagerFrag.newInstance())
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -133,28 +137,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
-    }
-
-    private List<Fragment> getFragments() {
-        List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFrag.newInstance("Scan Device"));
-        fList.add(CompassMagnometerFrag.newInstance("CompassMagnometerFrag"));
-        fList.add(CompassFrag.newInstance("CompassFrag"));
-        fList.add(CountPassFrag.newInstance("CountPassFrag"));
-        fList.add(SettingsFrag.newInstance("SettingsFrag"));
-
-        return fList;
-    }
-
-    private DeviceFrag getScanFrag() {
-        List<Fragment> fragments = getFragments();
-        String deviceFragTag = "";
-        for (int i = 0; i < fragments.size(); i++) {
-            if (fragments.get(i) instanceof DeviceFrag) {
-                deviceFragTag = "android:switcher:" + R.id.viewpager + ":" + i;
-            }
-        }
-        return (DeviceFrag) getSupportFragmentManager()
-                .findFragmentByTag(deviceFragTag);
     }
 }

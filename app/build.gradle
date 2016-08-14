@@ -23,12 +23,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-v4:+'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'org.apache.commons:commons-math3:3.6.1'
     //    compile 'uk.co.alt236:ic_launcher_bluetooth-le-library-android:1.0.0'
-    compile 'org.altbeacon:android-beacon-library:2.9'
     //    compile 'com.jakewharton:butterknife:8.1.0'
     //    apt 'com.jakewharton:butterknife-compiler:8.1.0'
 //    compile('com.mapbox.mapboxsdk:mapbox-android-services:1.2.1@aar') {
@@ -36,6 +31,12 @@ dependencies {
 //    }
     //    compile project(':android-beacon-library-debug')
 //    compile 'com.estimote:sdk:0.11.0@aar'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:preference-v7:23.4.0'
+    compile 'org.apache.commons:commons-math3:3.6.1'
+    compile 'org.altbeacon:android-beacon-library:2.9'
 }
 
 

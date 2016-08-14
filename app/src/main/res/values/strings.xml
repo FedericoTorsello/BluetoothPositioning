@@ -37,5 +37,18 @@
     <string name="settings_disabled">Disabled</string>
     <string name="settings_selfcorrection_status">Self-correcting beacon</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_checkbox_preference">check</string>
+    <string name="title_first_section">title</string>
+    <string name="default_checkbox_preference">check</string>
+    <string name="title_edittext_preference">edittext</string>
+    <string name="summary_edittext_preference">edittext2</string>
+    <string name="dialog_title_edittext_preference">dial1</string>
+    <string name="title_second_section">title1</string>
+    <string name="title_list_preference">pref</string>
+    <string name="dialog_title_list_preference">dial1</string>
+    <string name="title_intent_preference">boh</string>
+
 
 </resources>

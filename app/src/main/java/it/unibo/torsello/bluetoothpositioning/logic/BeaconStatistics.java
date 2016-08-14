@@ -19,15 +19,16 @@ public class BeaconStatistics {
     private DescriptiveStatistics mostRecentRSSI;
     private DescriptiveStatistics mostRecentTxPower;
     private double lastCalculatedDistance;
+    private KalmanFilter3 kf;
     private double lastRawDistance;
     private double lastWOSC;
-    private static final int WINDOW = 20;
 
+    private static final int WINDOW = 20;
     private double dist;
     private double distInMetresKalmanFilter2;
     private double distInMetresKalmanFilter1;
-    private double distInternet;
 
+    private double distInternet;
     public static final double FILTER_FACTOR = 0.1;
 
     public BeaconStatistics() {
@@ -37,6 +38,15 @@ public class BeaconStatistics {
         mostRecentRSSI.setWindowSize(WINDOW);
         mostRecentTxPower = new DescriptiveStatistics();
         mostRecentTxPower.setWindowSize(WINDOW);
+
+        //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
+        // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
+        // il filtro (measuredValue) restituisce il valore calcolato
+        kf = new KFBuilder()
+                // filter for RSSI
+                .R(10) // Initial process noise
+                .Q(60.0) // Initial measurement noise
+                .build();
 
     }
 
@@ -49,14 +59,6 @@ public class BeaconStatistics {
         double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
                 Math.log(1 + Math.pow(mostRecentRSSI.getMean() / mostRecentRSSI.getStandardDeviation(), 2)));
 
-        //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
-        // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
-        // il filtro (measuredValue) restituisce il valore calcolato
-        KalmanFilter3 kf = new KFBuilder()
-                // filter for RSSI
-                .R(10) // Initial process noise
-                .Q(60.0) // Initial measurement noise
-                .build();
 
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
             kf.setMeasurementNoise(mNoise);

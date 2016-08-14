@@ -24,11 +24,9 @@ public class CompassFrag extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
-    private Sensor mGiroscope;
-    private Sensor mOrientation;
 
-    private float[] accelValues;
-    private float[] magnetValues;
+    private float accelValues[];
+    private float magnetValues[];
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
@@ -77,7 +75,8 @@ public class CompassFrag extends Fragment implements SensorEventListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.compass_frag, container, false);
     }
 
@@ -96,10 +95,10 @@ public class CompassFrag extends Fragment implements SensorEventListener {
             SensorManager.getRotationMatrix(rotationMatrix, null, accelValues, magnetValues);
             SensorManager.getOrientation(rotationMatrix, orientation);
 
-            float pitch = (float) Math.toDegrees(-orientation[0]);
+            float azimuthDegree = (float) Math.toDegrees(-orientation[0]);
 
             RotateAnimation ra = new RotateAnimation(
-                    pitch, pitch,
+                    azimuthDegree, azimuthDegree,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
             ra.setDuration(250);

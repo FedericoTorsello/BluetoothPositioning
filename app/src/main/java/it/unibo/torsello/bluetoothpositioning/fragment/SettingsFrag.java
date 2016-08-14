@@ -1,9 +1,9 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,25 +25,56 @@ import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
  */
 public class SettingsFrag extends Fragment {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SharedPreferences settings;
-    private OnSettingsListener onSettingsListener;
-    private SharedPreferences.Editor editor;
 
-    public static SettingsFrag newInstance(String message) {
-        SettingsFrag f = new SettingsFrag();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
-        f.setArguments(bdl);
-        return f;
-    }
+    private OnSettingsListener onSettingsListener;
 
     public interface OnSettingsListener {
-        void updateWalkDetectionListener(boolean isChecked);
+        void updateKalmanNoise(double value);
 
-        void updateSelfCorrectionListener(boolean isChecked);
+        void isSelfCorrection(boolean isChecked);
 
-        void updateProcessNoise(int valueSeekBar);
+        void isWalkDetection(boolean isChecked);
+    }
+
+    public interface Listener {
+        public void isWalkDetection(boolean isChecked);
+    }
+
+    private Listener mListener;
+
+    public void setListener(Listener listener) {
+        mListener = listener;
+    }
+
+
+    public static SettingsFrag newInstance(String message) {
+        SettingsFrag fragment = new SettingsFrag();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, message);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setUpKalmanSeek();
+        setUpSelfcorrectingSwitch();
+        setUpWalkDetectionSwitch();
+        setSortByDistance();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.settings_frag, container, false);
     }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached
@@ -54,7 +85,7 @@ public class SettingsFrag extends Fragment {
             onSettingsListener = (OnSettingsListener) context;
         } else {
             throw new ClassCastException(context.toString()
-                    + " must implement the Listener " + onSettingsListener.toString());
+                    + " must implement the Listener ");
         }
     }
 
@@ -64,32 +95,11 @@ public class SettingsFrag extends Fragment {
         onSettingsListener = null;
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.settings_frag, container, false);
-
-        settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-        editor = settings.edit();
-        editor.apply();
-
-        SeekBar kalmanSeek = (SeekBar) view.findViewById(R.id.kalmanSeek);
-        TextView kalmanFilterValue = (TextView) view.findViewById(R.id.kalmanValue);
-        Switch selfCorrectionSwitch = (Switch) view.findViewById(R.id.selfCorrectionSwitch);
-        Switch wdSwitch = (Switch) view.findViewById(R.id.walkDetectionSwitch);
-        Switch sortByDistanceSwitch = (Switch) view.findViewById(R.id.sortByDistanceSwitch);
-
-        setUpKalmanSeek(kalmanSeek, kalmanFilterValue);
-        setUpSelfcorrectingSwitch(selfCorrectionSwitch);
-        setUpWalkDetectionSwitch(wdSwitch);
-        setSortByDistance(sortByDistanceSwitch);
-
-        return view;
-
-    }
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
-    private void setUpKalmanSeek(SeekBar kalmanSeek, final TextView kalmanFilterValue) {
+    private void setUpKalmanSeek() {
+        final SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
+        final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
         int kalmanSeekValue = settings.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(kalmanSeekValue);
         final DecimalFormat df = new DecimalFormat("#.##");
@@ -107,57 +117,63 @@ public class SettingsFrag extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, seekBar.getProgress());
+                SharedPreferences.Editor editor = settings.edit();
+                int progress = seekBar.getProgress();
+                editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, progress);
                 editor.apply();
-                onSettingsListener.updateProcessNoise(seekBar.getProgress());
+                onSettingsListener.updateKalmanNoise(KalmanFilter3.getCalculatedNoise(progress));
             }
         });
     }
 
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
-    private void setUpSelfcorrectingSwitch(final Switch selfCorrectionSwitch) {
+    private void setUpSelfcorrectingSwitch() {
+        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
         boolean selfCorrection = settings.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
         selfCorrectionSwitch.setChecked(selfCorrection);
         selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
         selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
                 editor.apply();
                 selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-                onSettingsListener.updateSelfCorrectionListener(isChecked);
             }
         });
     }
 
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
-    private void setUpWalkDetectionSwitch(final Switch wdSwitch) {
+    private void setUpWalkDetectionSwitch() {
+        final Switch wdSwitch = (Switch) getActivity().findViewById(R.id.walkDetectionSwitch);
         boolean walkDetection = settings.getBoolean(SettingConstants.WALK_DETECTION, false);
         wdSwitch.setChecked(walkDetection);
         wdSwitch.setText((walkDetection) ? R.string.settings_enabled : R.string.settings_disabled);
         wdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
                 editor.apply();
                 wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-                onSettingsListener.updateWalkDetectionListener(isChecked);
+                onSettingsListener.isWalkDetection(isChecked);
             }
         });
     }
 
 
-    private void setSortByDistance(final Switch sortByDistanceSwitch) {
+    private void setSortByDistance() {
+        final Switch sortByDistanceSwitch = (Switch) getActivity().findViewById(R.id.sortByDistanceSwitch);
         boolean setSortByDistance = settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, true);
         sortByDistanceSwitch.setChecked(setSortByDistance);
         sortByDistanceSwitch.setText((setSortByDistance) ? R.string.settings_enabled : R.string.settings_disabled);
         sortByDistanceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = settings.edit();
                 editor.putBoolean(SettingConstants.SORT_BY_DISTANCE, isChecked);
                 editor.apply();
                 sortByDistanceSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-                onSettingsListener.updateSelfCorrectionListener(isChecked);
             }
         });
     }

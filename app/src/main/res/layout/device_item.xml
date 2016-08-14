@@ -5,7 +5,6 @@
 
     <ImageView
         android:id="@+id/imageBeacon"
-        android:contentDescription="beaconImage"
         android:layout_width="60dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
