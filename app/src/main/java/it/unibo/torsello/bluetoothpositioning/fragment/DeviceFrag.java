@@ -2,12 +2,14 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,8 +27,8 @@ import it.unibo.torsello.bluetoothpositioning.models.Device;
 public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private DeviceListAdapter deviceListAdapter;
     private SharedPreferences settings;
+    private DeviceListAdapter deviceListAdapter;
 
     public static DeviceFrag newInstance(String message) {
         DeviceFrag fragment = new DeviceFrag();
@@ -41,15 +43,16 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        deviceListAdapter = new DeviceListAdapter(getActivity(),
+                R.layout.device_item, new ArrayList<Device>());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.beacon_frag, container, false);
+        View root = inflater.inflate(R.layout.beacon_frag, container, false);
 
-        ListView mDeviceListView = (ListView) rootView.findViewById(R.id.listView_scan_disp);
-        deviceListAdapter = new DeviceListAdapter(getContext(), R.layout.device_item, new ArrayList<Device>());
+        ListView mDeviceListView = (ListView) root.findViewById(R.id.listView_scan_disp);
         mDeviceListView.setAdapter(deviceListAdapter);
         mDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -58,7 +61,7 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
             }
         });
 
-        return rootView;
+        return root;
     }
 
     @Override

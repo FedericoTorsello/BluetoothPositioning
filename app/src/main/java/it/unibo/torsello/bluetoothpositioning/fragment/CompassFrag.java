@@ -104,8 +104,12 @@ public class CompassFrag extends Fragment implements SensorEventListener {
             ra.setDuration(250);
             ra.setFillAfter(true);
 
-            ImageView mPointer = (ImageView) getActivity().findViewById(R.id.pointer);
-            mPointer.startAnimation(ra);
+            try {
+                ImageView mPointer = (ImageView) getActivity().findViewById(R.id.pointer);
+                mPointer.startAnimation(ra);
+            } catch (NullPointerException e) {
+                e.getStackTrace();
+            }
 
         }
 

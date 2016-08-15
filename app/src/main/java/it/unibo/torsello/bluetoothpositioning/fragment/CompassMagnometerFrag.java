@@ -12,7 +12,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 
@@ -77,7 +76,7 @@ public class CompassMagnometerFrag extends Fragment implements SensorEventListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.myfragment_frag, container, false);
+        return inflater.inflate(R.layout.compass_text_frag, container, false);
     }
 
     @Override
@@ -97,10 +96,9 @@ public class CompassMagnometerFrag extends Fragment implements SensorEventListen
             SensorManager.getRotationMatrix(rotation, null, accelValues, magnetValues);
             SensorManager.getOrientation(rotation, orientation);
 
-            float orientationDegree = 0f;
-            float azimuthDegree = (float) (Math.toDegrees(orientation[0]) + 360) % 360;
-            orientationDegree = Math.round(azimuthDegree);
 
+            float azimuthDegree = (float) (Math.toDegrees(orientation[0]) + 360) % 360;
+            float orientationDegree = Math.round(azimuthDegree);
 
             String compassOrientation;
             if (orientationDegree >= 0 && orientationDegree < 90) {
@@ -113,8 +111,12 @@ public class CompassMagnometerFrag extends Fragment implements SensorEventListen
                 compassOrientation = "W";
             }
 
-            TextView messageTextView = (TextView) getActivity().findViewById(R.id.textView);
-            messageTextView.setText(compassOrientation);
+//            try {
+//                TextView messageTextView = (TextView) getActivity().findViewById(R.id.compass);
+//                messageTextView.setText(compassOrientation);
+//            }catch (NullPointerException e){
+//                e.getStackTrace();
+//            }
         }
     }
 

@@ -135,26 +135,31 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                isRunScan = !isRunScan;
 
-                Region a = new Region("myRangingUniqueId", null, null, null);
-                if (isRunScan) {
-                    try {
-                        beaconManager.startRangingBeaconsInRegion(a);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
+                if (verifyBluetooth()) {
+                    isRunScan = !isRunScan;
+
+                    Region region = new Region("myRangingUniqueId", null, null, null);
+                    if (isRunScan) {
+                        fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
+                        try {
+                            beaconManager.startRangingBeaconsInRegion(region);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+                        try {
+                            beaconManager.stopRangingBeaconsInRegion(region);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } else {
-                    try {
-                        beaconManager.stopRangingBeaconsInRegion(a);
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
+
+                    String statusScan = isRunScan ?
+                            getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+                    Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
                 }
-
-                String statusScan = isRunScan ?
-                        getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
-                Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -199,7 +204,6 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                     public void run() {
                         try {
                             for (Beacon b : beacons) {
-
                                 Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
                                 if (b.getBluetoothAddress().equals(device.getAddress())) {
                                     device.setBeacon(b);
@@ -256,12 +260,12 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
         // noinspection SimplifiableIfStatement
-        if (id == R.id.action_clear) {
-            onAddDevicesListener.clearList();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_clear:
+                onAddDevicesListener.clearList();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -286,9 +290,12 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         }
     }
 
-    private void verifyBluetooth() {
+    private boolean verifyBluetooth() {
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         try {
             if (!beaconManager.checkAvailability()) {
+
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Bluetooth not enabled");
                 builder.setMessage("Press OK to enable Bluetooth.");
@@ -296,14 +303,18 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialog) {
+                        fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
                         BluetoothAdapter.getDefaultAdapter().enable();
                     }
                 });
                 builder.show();
+                fab.setImageResource(R.drawable.ic_bluetooth_disabled_black_24dp);
+                return false;
             }
         } catch (RuntimeException e) {
             e.getStackTrace();
         }
+        return true;
     }
 
     @TargetApi(23)

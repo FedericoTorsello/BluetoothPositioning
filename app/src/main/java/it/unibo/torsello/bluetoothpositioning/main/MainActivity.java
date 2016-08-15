@@ -3,6 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.main;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.Settings2Frag;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
 
 
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity
     private final String TAG_CLASS = getClass().getSimpleName();
     private boolean isBackPressed = false;
     private long back_pressed;
+
+    Fragment aa, bb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +48,12 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-//        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-//        assert mViewPager != null;
-//        mViewPager.setAdapter(new MyPageAdapter(getSupportFragmentManager(), getFragments()));
-//
-//        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-//        assert tabLayout != null;
-//        tabLayout.setupWithViewPager(mViewPager);
-//
-//        Snackbar.make(mViewPager, R.string.info_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
+        aa = ViewPagerFrag.newInstance("pro");
+        bb = Settings2Frag.newInstance();
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_main_all, aa)
+                .commit();
     }
 
 
@@ -83,53 +84,48 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-//        noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//
+////        noinspection SimplifiableIfStatement
+////        if (id == R.id.action_settings) {
+////            return true;
+////        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.prova, Settings2Frag.newInstance())
-                    .commit();
-
-
-//            getFragmentManager().beginTransaction()
-//                    .replace(R.id.prova, new Settings2Frag())
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.contentFragment, pro)
 //                    .commit();
 
+//                getFragmentManager()
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_main_all, aa)
+                        .commit();
+                break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_main_all, bb)
+                        .commit();
+                break;
+            case R.id.nav_share:
+                break;
+            case R.id.nav_send:
 
-        } else if (id == R.id.nav_send) {
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.prova, ViewPagerFrag.newInstance())
-                    .commit();
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
