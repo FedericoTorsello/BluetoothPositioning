@@ -13,7 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.fragment.CompassFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.CompassMagnometerFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.CountPassFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.Settings2Frag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
@@ -25,9 +32,6 @@ public class MainActivity extends AppCompatActivity
     private final String TAG_CLASS = getClass().getSimpleName();
     private boolean isBackPressed = false;
     private long back_pressed;
-
-    Fragment aa, bb;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +51,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
-        aa = ViewPagerFrag.newInstance("pro");
-        bb = Settings2Frag.newInstance();
+    private List<Fragment> getFragments() {
+        List<Fragment> fList = new ArrayList<>();
+        fList.add(DeviceFrag.newInstance("Scan Device"));
+        fList.add(CompassFrag.newInstance("Compass1"));
+        fList.add(CompassMagnometerFrag.newInstance("Compass2"));
+        fList.add(CountPassFrag.newInstance("CountPass"));
+        fList.add(SettingsFrag.newInstance("Settings"));
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_main_all, aa)
-                .commit();
+        return fList;
     }
 
 
@@ -84,22 +92,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//
-////        noinspection SimplifiableIfStatement
-////        if (id == R.id.action_settings) {
-////            return true;
-////        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -107,18 +99,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.contentFragment, pro)
-//                    .commit();
 
-//                getFragmentManager()
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main_all, aa)
+                        .replace(R.id.content_main_all, ViewPagerFrag.newInstance(getFragments()))
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.nav_settings:
+
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main_all, bb)
+                        .replace(R.id.content_main_all, SettingsFrag.newInstance("Settings"))
+                        .addToBackStack(null)
                         .commit();
                 break;
             case R.id.nav_share:

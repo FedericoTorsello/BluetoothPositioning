@@ -41,7 +41,7 @@
     <!--android:id="@+id/fragment"-->
     <!--android:layout_alignParentTop="true"-->
     <!--android:layout_alignParentStart="true"-->
-    <!--tools:layout="@layout/view_pager_frag" />-->
+    <!--tools:layout="@layout/frag_viewpager" />-->
 
     <!--<FrameLayout-->
     <!--android:id="@+id/FlashBarLayout"-->

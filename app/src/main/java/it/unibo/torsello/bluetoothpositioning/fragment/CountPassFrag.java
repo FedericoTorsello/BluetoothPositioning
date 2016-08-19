@@ -94,7 +94,7 @@ public class CountPassFrag extends Fragment implements SensorEventListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.count_pass_frag, container, false);
+        return inflater.inflate(R.layout.frag_count_pass, container, false);
     }
 
     @Override

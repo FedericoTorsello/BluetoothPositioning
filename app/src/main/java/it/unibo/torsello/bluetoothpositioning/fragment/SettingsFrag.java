@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -74,7 +73,7 @@ public class SettingsFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.settings_frag, container, false);
+        return inflater.inflate(R.layout.frag_settings, container, false);
     }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached

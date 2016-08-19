@@ -77,7 +77,7 @@ public class CompassFrag extends Fragment implements SensorEventListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.compass_frag, container, false);
+        return inflater.inflate(R.layout.frag_compass, container, false);
     }
 
     @Override
@@ -97,20 +97,20 @@ public class CompassFrag extends Fragment implements SensorEventListener {
 
             float azimuthDegree = (float) Math.toDegrees(-orientation[0]);
 
-            RotateAnimation ra = new RotateAnimation(
+            RotateAnimation rotateAnimation = new RotateAnimation(
                     azimuthDegree, azimuthDegree,
                     Animation.RELATIVE_TO_SELF, 0.5f,
                     Animation.RELATIVE_TO_SELF, 0.5f);
-            ra.setDuration(250);
-            ra.setFillAfter(true);
+            rotateAnimation.setDuration(250);
+            rotateAnimation.setFillAfter(true);
+
 
             try {
                 ImageView mPointer = (ImageView) getActivity().findViewById(R.id.pointer);
-                mPointer.startAnimation(ra);
+                mPointer.startAnimation(rotateAnimation);
             } catch (NullPointerException e) {
                 e.getStackTrace();
             }
-
         }
 
     }

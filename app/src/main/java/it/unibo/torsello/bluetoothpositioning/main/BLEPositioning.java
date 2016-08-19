@@ -35,6 +35,7 @@ import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
@@ -168,7 +169,9 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     @Override
     protected void onPause() {
         super.onPause();
-        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(true);
+        if (beaconManager.isBound(this)) {
+            beaconManager.setBackgroundMode(true);
+        }
         walkDetection.stopDetection();
     }
 
@@ -176,14 +179,18 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     protected void onResume() {
         super.onResume();
         verifyBluetooth();
-        if (beaconManager.isBound(this)) beaconManager.setBackgroundMode(false);
+        if (beaconManager.isBound(this)) {
+            beaconManager.setBackgroundMode(false);
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         onAddDevicesListener = null;
-        if (beaconManager.isBound(this)) beaconManager.unbind(this);
+        if (beaconManager.isBound(this)) {
+            beaconManager.unbind(this);
+        }
     }
 
     @Override
@@ -262,6 +269,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         // as you specify a parent activity in AndroidManifest.xml.
 
         // noinspection SimplifiableIfStatement
+
         switch (item.getItemId()) {
             case R.id.action_clear:
                 onAddDevicesListener.clearList();

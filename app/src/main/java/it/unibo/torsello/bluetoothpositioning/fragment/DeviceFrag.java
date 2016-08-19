@@ -2,14 +2,12 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -41,18 +39,21 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
         settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-        deviceListAdapter = new DeviceListAdapter(getActivity(),
-                R.layout.device_item, new ArrayList<Device>());
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.beacon_frag, container, false);
+        View root = inflater.inflate(R.layout.frag_beacon, container, false);
 
+        deviceListAdapter = new DeviceListAdapter(getActivity(),
+                R.layout.list_item, new ArrayList<Device>());
         ListView mDeviceListView = (ListView) root.findViewById(R.id.listView_scan_disp);
+
+        mDeviceListView.setAddStatesFromChildren(true);
         mDeviceListView.setAdapter(deviceListAdapter);
         mDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

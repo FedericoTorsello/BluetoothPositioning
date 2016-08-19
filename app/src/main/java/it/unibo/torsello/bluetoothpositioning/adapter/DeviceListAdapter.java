@@ -37,7 +37,7 @@ public class DeviceListAdapter extends ArrayAdapter<Device> {
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder holder;
         if (view == null) {
-            view = inflater.inflate(R.layout.device_item, parent, false);
+            view = inflater.inflate(R.layout.list_item, parent, false);
             holder = new ViewHolder(view);
             view.setTag(holder);
         } else {
