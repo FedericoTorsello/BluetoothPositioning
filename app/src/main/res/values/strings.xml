@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BLEPositioning</string>
     <string name="developer">Federico Torsello</string>
-    <string name="email">federico.torsello@studio.unibo.it</string>
+    <string name="developer_email">federico.torsello@studio.unibo.it</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -11,18 +11,15 @@
 
     <!-- IBEACON ADAPTER -->
     <string name="name">Name:</string>
-    <string name="address">Address:</string>
+    <string name="mac_address">MAC Address:</string>
     <string name="major">Major:</string>
     <string name="minor">Minor:</string>
     <string name="uuid">UUID:</string>
     <string name="rssi">RSSI:</string>
-    <string name="accuracy">Dist:</string>
-    <string name="color">color</string>
+    <string name="distance">Dist:</string>
+    <string name="color">Color</string>
 
-
-    <string name="string_scan_title">iBeacon trovati</string>
-    <string name="string_scan_subtext">Numero dispositivi rilevati:%s</string>
-
+    <string name="string_scan_subtext">Number of iBeacons discovered: %s</string>
 
     <string name="scanning_enabled">Scanning enabled</string>
     <string name="scanning_disabled">Scanning disabled</string>
@@ -55,5 +52,11 @@
     <string name="share">Share</string>
     <string name="send">Send</string>
 
+
+    <string name="menu_night_mode">Night mode</string>
+    <string name="menu_night_mode_system">Follow system</string>
+    <string name="menu_night_mode_day">Day (always)</string>
+    <string name="menu_night_mode_night">Night (always)</string>
+    <string name="menu_night_mode_auto">Auto</string>
 
 </resources>

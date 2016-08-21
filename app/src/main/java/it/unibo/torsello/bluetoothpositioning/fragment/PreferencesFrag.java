@@ -37,15 +37,15 @@ public class PreferencesFrag extends Fragment {
         void isWalkDetection(boolean isChecked);
     }
 
-    public interface Listener {
-        public void isWalkDetection(boolean isChecked);
-    }
-
-    private Listener mListener;
-
-    public void setListener(Listener listener) {
-        mListener = listener;
-    }
+//    public interface Listener {
+//        public void isWalkDetection(boolean isChecked);
+//    }
+//
+//    private Listener mListener;
+//
+//    public void setListener(Listener listener) {
+//        mListener = listener;
+//    }
 
 
     public static PreferencesFrag newInstance(String message) {
@@ -73,7 +73,7 @@ public class PreferencesFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_preferences, container, false);
+        return inflater.inflate(R.layout.frag_preferences2, container, false);
     }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached

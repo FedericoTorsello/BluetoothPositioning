@@ -1,6 +1,8 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
@@ -14,7 +16,6 @@ import org.altbeacon.beacon.Beacon;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,21 +26,24 @@ import it.unibo.torsello.bluetoothpositioning.models.Device;
  * Created by federico on 21/08/16.
  */
 public class RecyclerViewAdapter
-        extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+        extends RecyclerView.Adapter<RecyclerViewAdapter.DeviceViewHolder> {
 
     private DecimalFormat df;
     private final TypedValue mTypedValue;
     private List<Device> devices;
+    private int mBackground;
 
     public RecyclerViewAdapter(FragmentActivity activity, List<Device> deviceList) {
         devices = deviceList;
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
         mTypedValue = new TypedValue();
         activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+        mBackground = mTypedValue.resourceId;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        //        final View mView;
+    protected static class DeviceViewHolder extends RecyclerView.ViewHolder {
+
+        public final View mView;
         private final TextView macTextView;
         private final TextView majorTextView;
         private final TextView minorTextView;
@@ -51,9 +55,9 @@ public class RecyclerViewAdapter
         private final TextView row_uuid;
         private final ImageView imageView;
 
-        private ViewHolder(View view) {
+        private DeviceViewHolder(View view) {
             super(view);
-//            mView = view;
+            mView = view;
             defaultNameTextView = (TextView) view.findViewById(R.id.row_default_name);
             distanceTextView = (TextView) view.findViewById(R.id.row_distance);
             macTextView = (TextView) view.findViewById(R.id.row_address);
@@ -68,23 +72,34 @@ public class RecyclerViewAdapter
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item, parent, false);
-        return new ViewHolder(view);
+                .inflate(R.layout.list_item2, parent, false);
+        view.setBackgroundResource(mBackground);
+        return new DeviceViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final DeviceViewHolder holder, final int position) {
 
         try {
             Device device = devices.get(position);
             Beacon beacon = devices.get(position).getBeacon();
 
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    Context context = v.getContext();
+//                    Intent intent = new Intent(context, CheeseDetailActivity.class);
+//                    intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
+//                    context.startActivity(intent);
+                    Snackbar.make(v, String.valueOf(holder.getAdapterPosition()), Snackbar.LENGTH_SHORT).show();
+                }
+            });
+
             holder.simpleNameTextView.setText(String.format("Friendly name: %s", device.getSimpleName()));
             holder.defaultNameTextView.setText(String.format("Default name: %s", beacon.getBluetoothName()));
-
-            holder.macTextView.setText(String.format("MAC: %s", beacon.getBluetoothAddress()));
+            holder.macTextView.setText(String.format("MAC address: %s", beacon.getBluetoothAddress()));
             holder.distanceTextView.setText(String.format(Locale.getDefault(),
                     "DIST_KF1: %sm \n" +
                             "DIST_KF2: %sm \n" +

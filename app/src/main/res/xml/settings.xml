@@ -1,5 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <PreferenceCategory android:title="@string/title_first_section">
 
         <CheckBoxPreference
@@ -26,13 +27,12 @@
             android:entryValues="@array/entryvalues_list_preference" />
 
         <Preference android:title="@string/title_intent_preference">
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://codepath.com/" />
+            <!--<intent-->
+            <!--android:action="android.intent.action.VIEW"-->
+            <!--android:data="http://codepath.com/" />-->
         </Preference>
 
 
     </PreferenceCategory>
-
 
 </PreferenceScreen>

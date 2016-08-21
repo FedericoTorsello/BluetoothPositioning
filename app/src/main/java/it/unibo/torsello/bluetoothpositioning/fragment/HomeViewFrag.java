@@ -1,6 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -39,6 +40,7 @@ public class HomeViewFrag extends Fragment {
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
+
 
         return root;
     }

@@ -1,20 +1,19 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/fab"-->
+    <!--<TextView-->
+    <!--android:id="@+id/scan_subtext"-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="bottom|end"-->
-    <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:src="@drawable/ic_bluetooth_white_24dp"-->
-    <!--app:layout_behavior=".utils.FABScrollingBehavior" />-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:text="@string/string_scan_subtext"-->
+    <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/scan_subtext"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
