@@ -28,7 +28,7 @@
     <string name="scanning_disabled">Scanning disabled</string>
     <string name="info_start_scanning">Push the button to start scanning</string>
 
-    <!-- SettingsFrag fragment -->
+    <!-- PreferencesFrag fragment -->
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
     <string name="settings_kalman_value">5.0</string>
     <string name="settings_wd_status">Walk detection?</string>

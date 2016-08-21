@@ -17,13 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.CompassFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.CompassMagnometerFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.CountPassFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.Settings2Frag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
 
 
 public class MainActivity extends AppCompatActivity
@@ -51,15 +48,20 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.frameLayout, HomeViewFrag.newInstance(getFragments()))
+                .addToBackStack(null)
+                .commit();
     }
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFrag.newInstance("Scan Device"));
-        fList.add(CompassFrag.newInstance("Compass1"));
-        fList.add(CompassMagnometerFrag.newInstance("Compass2"));
-        fList.add(CountPassFrag.newInstance("CountPass"));
-        fList.add(SettingsFrag.newInstance("Settings"));
+        fList.add(DeviceListFrag.newInstance("Scan Device"));
+        fList.add(PreferencesFrag.newInstance("Preferences"));
+//        fList.add(CompassFrag.newInstance("Compass1"));
+//        fList.add(CompassMagnometerFrag.newInstance("Compass2"));
+//        fList.add(CountPassFrag.newInstance("CountPass"));
 
         return fList;
     }
@@ -101,14 +103,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_home:
 
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main_all, ViewPagerFrag.newInstance(getFragments()))
+                        .replace(R.id.frameLayout, HomeViewFrag.newInstance(getFragments()))
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.nav_settings:
 
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main_all, SettingsFrag.newInstance("Settings"))
+                        .replace(R.id.frameLayout, SettingsFrag.newInstance())
                         .addToBackStack(null)
                         .commit();
                 break;

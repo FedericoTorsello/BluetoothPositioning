@@ -3,6 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.main;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -33,9 +35,8 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
 import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
@@ -47,7 +48,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  */
 
 public class BLEPositioning extends MainActivity implements BeaconConsumer,
-        SettingsFrag.OnSettingsListener {
+        PreferencesFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private WalkDetection walkDetection;
@@ -131,6 +132,10 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
             walkDetection.startDetection();
         }
 
+//        View view;
+//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        view = inflater.inflate(R.layout.frag_list_device, null);
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +201,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     @Override
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
-        if (fragment instanceof DeviceFrag) {
+        if (fragment instanceof DeviceListFrag) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
     }

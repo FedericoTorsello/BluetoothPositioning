@@ -52,8 +52,6 @@ public class DeviceFrag extends Fragment implements BLEPositioning.OnAddDevicesL
         deviceListAdapter = new DeviceListAdapter(getActivity(),
                 R.layout.list_item, new ArrayList<Device>());
         ListView mDeviceListView = (ListView) root.findViewById(R.id.listView_scan_disp);
-
-        mDeviceListView.setAddStatesFromChildren(true);
         mDeviceListView.setAdapter(deviceListAdapter);
         mDeviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

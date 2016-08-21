@@ -1,10 +1,12 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import org.altbeacon.beacon.Beacon;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -19,34 +22,64 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
- * Created by federico on 21/07/16.
- * Displays basic information about beacon.
+ * Created by federico on 21/08/16.
  */
-public class DeviceListAdapter extends ArrayAdapter<Device> {
+public class RecyclerViewAdapter
+        extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private LayoutInflater inflater;
     private DecimalFormat df;
+    private final TypedValue mTypedValue;
+    private List<Device> devices;
 
-    public DeviceListAdapter(Context context, int textViewResourceId, List<Device> objects) {
-        super(context, textViewResourceId, objects);
-        this.inflater = LayoutInflater.from(context);
+    public RecyclerViewAdapter(FragmentActivity activity, List<Device> deviceList) {
+        devices = deviceList;
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+        mTypedValue = new TypedValue();
+        activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        //        final View mView;
+        private final TextView macTextView;
+        private final TextView majorTextView;
+        private final TextView minorTextView;
+        private final TextView measuredPowerTextView;
+        private final TextView rssiTextView;
+        private final TextView simpleNameTextView;
+        private final TextView defaultNameTextView;
+        private final TextView distanceTextView;
+        private final TextView row_uuid;
+        private final ImageView imageView;
+
+        private ViewHolder(View view) {
+            super(view);
+//            mView = view;
+            defaultNameTextView = (TextView) view.findViewById(R.id.row_default_name);
+            distanceTextView = (TextView) view.findViewById(R.id.row_distance);
+            macTextView = (TextView) view.findViewById(R.id.row_address);
+            majorTextView = (TextView) view.findViewById(R.id.row_major);
+            minorTextView = (TextView) view.findViewById(R.id.row_minor);
+            measuredPowerTextView = (TextView) view.findViewById(R.id.row_power);
+            rssiTextView = (TextView) view.findViewById(R.id.row_rssi);
+            simpleNameTextView = (TextView) view.findViewById(R.id.simple_name);
+            row_uuid = (TextView) view.findViewById(R.id.row_UUID);
+            imageView = (ImageView) view.findViewById(R.id.imageBeacon);
+        }
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        ViewHolder holder;
-        if (view == null) {
-            view = inflater.inflate(R.layout.list_item, parent, false);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            holder = (ViewHolder) view.getTag();
-        }
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_item, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         try {
-            Device device = getItem(position);
-            Beacon beacon = getItem(position).getBeacon();
+            Device device = devices.get(position);
+            Beacon beacon = devices.get(position).getBeacon();
 
             holder.simpleNameTextView.setText(String.format("Friendly name: %s", device.getSimpleName()));
             holder.defaultNameTextView.setText(String.format("Default name: %s", beacon.getBluetoothName()));
@@ -98,7 +131,6 @@ public class DeviceListAdapter extends ArrayAdapter<Device> {
                 // AppleIBeacon
                 holder.majorTextView.setText(String.format("Major: %s", beacon.getId2()));
                 holder.minorTextView.setText(String.format("Minor: %s", beacon.getId3()));
-                ;
                 holder.row_uuid.setText(String.format("UUID: %s", beacon.getId1()));
             } else if (beacon.getBeaconTypeCode() == 0x0101) {
                 // EstimoteNearable
@@ -107,34 +139,10 @@ public class DeviceListAdapter extends ArrayAdapter<Device> {
         } catch (NullPointerException e) {
             e.getStackTrace();
         }
-        return view;
     }
 
-    static class ViewHolder {
-        final TextView macTextView;
-        final TextView majorTextView;
-        final TextView minorTextView;
-        final TextView measuredPowerTextView;
-        final TextView rssiTextView;
-        final TextView simpleNameTextView;
-        final TextView defaultNameTextView;
-        final TextView distanceTextView;
-        final TextView row_uuid;
-        final ImageView imageView;
-
-        ViewHolder(View view) {
-            defaultNameTextView = (TextView) view.findViewById(R.id.row_default_name);
-            distanceTextView = (TextView) view.findViewById(R.id.row_distance);
-            macTextView = (TextView) view.findViewById(R.id.row_address);
-            majorTextView = (TextView) view.findViewById(R.id.row_major);
-            minorTextView = (TextView) view.findViewById(R.id.row_minor);
-            measuredPowerTextView = (TextView) view.findViewById(R.id.row_power);
-            rssiTextView = (TextView) view.findViewById(R.id.row_rssi);
-            simpleNameTextView = (TextView) view.findViewById(R.id.simple_name);
-            row_uuid = (TextView) view.findViewById(R.id.row_UUID);
-            imageView = (ImageView) view.findViewById(R.id.imageBeacon);
-        }
+    @Override
+    public int getItemCount() {
+        return devices.size();
     }
-
-
 }
