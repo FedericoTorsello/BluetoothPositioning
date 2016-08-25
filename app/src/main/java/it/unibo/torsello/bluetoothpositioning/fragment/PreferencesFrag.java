@@ -66,14 +66,14 @@ public class PreferencesFrag extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setUpKalmanSeek();
-        setUpSelfcorrectingSwitch();
+//        setUpSelfcorrectingSwitch();
         setUpWalkDetectionSwitch();
         setSortByDistance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_preferences2, container, false);
+        return inflater.inflate(R.layout.frag_preferences, container, false);
     }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached
@@ -126,21 +126,21 @@ public class PreferencesFrag extends Fragment {
     }
 
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
-    private void setUpSelfcorrectingSwitch() {
-        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
-        boolean selfCorrection = settings.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
-        selfCorrectionSwitch.setChecked(selfCorrection);
-        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
-        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
-                editor.apply();
-                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-            }
-        });
-    }
+//    private void setUpSelfcorrectingSwitch() {
+//        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
+//        boolean selfCorrection = settings.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
+//        selfCorrectionSwitch.setChecked(selfCorrection);
+//        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
+//        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                SharedPreferences.Editor editor = settings.edit();
+//                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
+//                editor.apply();
+//                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
+//            }
+//        });
+//    }
 
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
     private void setUpWalkDetectionSwitch() {

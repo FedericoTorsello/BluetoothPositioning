@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.main;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,9 +14,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import org.altbeacon.beacon.Beacon;
@@ -48,7 +44,9 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  */
 
 public class BLEPositioning extends MainActivity implements BeaconConsumer,
-        PreferencesFrag.OnSettingsListener {
+        PreferencesFrag.OnSettingsListener
+//        , DeviceDetailActivity.MyCustomObjectListener
+{
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private WalkDetection walkDetection;
@@ -59,11 +57,44 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     private SharedPreferences settings;
     private OnAddDevicesListener onAddDevicesListener;
 
+//    DeviceDetailActivity object;
+
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
+
+//    @Override
+//    public void onObjectReady() {
+//        // Code to handle object ready
+//        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        assert fab != null;
+//        if (verifyBluetooth()) {
+//            isRunScan = !isRunScan;
+//
+//            Region region = new Region("myRangingUniqueId", null, null, null);
+//            if (isRunScan) {
+//                fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
+//                try {
+//                    beaconManager.startRangingBeaconsInRegion(region);
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
+//            } else {
+//                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+//                try {
+//                    beaconManager.stopRangingBeaconsInRegion(region);
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            String statusScan = isRunScan ?
+//                    getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+//            Snackbar.make(fab, statusScan, Snackbar.LENGTH_SHORT).show();
+//        }
+//    }
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<Device> iBeacons);
@@ -132,21 +163,24 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
             walkDetection.startDetection();
         }
 
-//        View view;
-//        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        view = inflater.inflate(R.layout.frag_list_device, null);
+//         object = new DeviceDetailActivity();
+//        // Step 4 - Setup the listener for this object
+//        object.setCustomObjectListener(this);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        Snackbar.make(fab, R.string.info_start_scanning, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                    onObjectReady();
 
                 if (verifyBluetooth()) {
-                    isRunScan = !isRunScan;
 
-                    Region region = new Region("myRangingUniqueId", null, null, null);
+                    isRunScan = !isRunScan;
+                    String idRegion = "myRangingUniqueId";
+                    Region region = new Region(idRegion, null, null, null);
+
                     if (isRunScan) {
                         fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
                         try {
@@ -164,12 +198,18 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                     }
 
                     String statusScan = isRunScan ?
-                            getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
+                            getString(R.string.snackbar_scanning_enabled) : getString(R.string.snackbar_scanning_disabled);
                     Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().popBackStackImmediate();
+        super.onBackPressed();
     }
 
     @Override
@@ -241,14 +281,13 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
             case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
                 for (int i = 0; i < permissions.length; i++) {
                     if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
+//                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
                     } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
+//                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
                         final android.app.AlertDialog.Builder builder =
                                 new android.app.AlertDialog.Builder(this);
-                        builder.setTitle("Functionality limited");
-                        builder.setMessage("Since location access has not been granted, " +
-                                "this app will not be able to discover beacons when in the background.");
+                        builder.setTitle(R.string.dialog_permissions_location_access_title);
+                        builder.setMessage(R.string.dialog_permissions_location_access_text);
                         builder.setPositiveButton(android.R.string.ok, null);
                         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
@@ -311,8 +350,8 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
             if (!beaconManager.checkAvailability()) {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Bluetooth not enabled");
-                builder.setMessage("Press OK to enable Bluetooth.");
+                builder.setTitle(R.string.dialog_bluetooth_title);
+                builder.setMessage(R.string.dialog_bluetooth_text);
                 builder.setPositiveButton(android.R.string.ok, null);
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
@@ -349,8 +388,8 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
 
             if (!permissions.isEmpty()) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("This app needs location access");
-                builder.setMessage("Please grant location access so this app can detect beacons.");
+                builder.setTitle(R.string.dialog_location_access_title);
+                builder.setMessage(R.string.dialog_bluetooth_text);
                 builder.setPositiveButton(android.R.string.ok, null);
                 builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
 

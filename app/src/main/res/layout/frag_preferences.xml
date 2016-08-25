@@ -59,20 +59,20 @@
                 android:layout_marginTop="@dimen/settings_margin"
                 android:text="@string/settings_disabled" />
 
-            <TextView
-                android:id="@+id/selfCorrectionStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_selfcorrection_status"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <!--<TextView-->
+            <!--android:id="@+id/selfCorrectionStatus"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/settings_margin"-->
+            <!--android:text="@string/settings_selfcorrection_status"-->
+            <!--android:textAppearance="?android:attr/textAppearanceMedium" />-->
 
-            <Switch
-                android:id="@+id/selfCorrectionSwitch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_enabled" />
+            <!--<Switch-->
+            <!--android:id="@+id/selfCorrectionSwitch"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/settings_margin"-->
+            <!--android:text="@string/settings_enabled" />-->
 
             <TextView
                 android:id="@+id/walkDetection"

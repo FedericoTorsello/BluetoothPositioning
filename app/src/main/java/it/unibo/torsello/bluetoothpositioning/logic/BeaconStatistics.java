@@ -16,8 +16,8 @@ import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
  */
 public class BeaconStatistics {
 
-    private DescriptiveStatistics mostRecentRSSI;
-    private DescriptiveStatistics mostRecentTxPower;
+    private DescriptiveStatistics recentRSSI;
+    private DescriptiveStatistics recentTxPower;
     private double lastCalculatedDistance;
     private KalmanFilter3 kf;
     private double lastRawDistance;
@@ -34,10 +34,10 @@ public class BeaconStatistics {
     public BeaconStatistics() {
 
         // limit on the number of values that can be stored in the dataset
-        mostRecentRSSI = new DescriptiveStatistics();
-        mostRecentRSSI.setWindowSize(WINDOW);
-        mostRecentTxPower = new DescriptiveStatistics();
-        mostRecentTxPower.setWindowSize(WINDOW);
+        recentRSSI = new DescriptiveStatistics();
+        recentRSSI.setWindowSize(WINDOW);
+        recentTxPower = new DescriptiveStatistics();
+        recentTxPower.setWindowSize(WINDOW);
 
         //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
         // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
@@ -52,13 +52,12 @@ public class BeaconStatistics {
 
     public void updateDistance(Beacon b, double processNoise, int movementState) {
 
-        mostRecentRSSI.addValue(b.getRssi());
-        mostRecentTxPower.addValue(b.getTxPower());
+        recentRSSI.addValue(b.getRssi());
+        recentTxPower.addValue(b.getTxPower());
 
         // Update measurement noise continually
         double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
-                Math.log(1 + Math.pow(mostRecentRSSI.getMean() / mostRecentRSSI.getStandardDeviation(), 2)));
-
+                Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
 
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
             kf.setMeasurementNoise(mNoise);
@@ -66,9 +65,9 @@ public class BeaconStatistics {
         kf.setProcessNoise(processNoise);
 
         lastRawDistance = calculateDistanceNoFilter1(b.getTxPower(), b.getRssi());
-        double lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
-        lastCalculatedDistance = calculateDistanceNoFilter1(mostRecentTxPower.getPercentile(50), lastFilteredReading);
-        double lastFilteredReading1 = kf.filter(mostRecentTxPower.getPercentile(50), movementState);
+        double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50), movementState);
+        lastCalculatedDistance = calculateDistanceNoFilter1(recentTxPower.getPercentile(50), lastFilteredReading);
+        double lastFilteredReading1 = kf.filter(recentTxPower.getPercentile(50), movementState);
         lastWOSC = calculateDistanceNoFilter1(lastFilteredReading1, lastFilteredReading);
 
         dist = calculateDistanceNoFilter2(b);

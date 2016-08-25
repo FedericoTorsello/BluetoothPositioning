@@ -18,19 +18,13 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-
-//import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +37,8 @@ import it.unibo.torsello.bluetoothpositioning.adapter.RecyclerViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.main.BLEPositioning;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
+
+//import com.bumptech.glide.Glide;
 
 public class DeviceListFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
 
@@ -69,12 +65,13 @@ public class DeviceListFrag extends Fragment implements BLEPositioning.OnAddDevi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final View root = inflater.inflate(R.layout.frag_list_device, container, false);
-        final RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View root = inflater.inflate(R.layout.frag_list_device, container, false);
 
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         bluetoothDeviceAdapter = new RecyclerViewAdapter(getActivity(), devices);
         recyclerView.setAdapter(bluetoothDeviceAdapter);
+
         return root;
     }
 
@@ -103,6 +100,7 @@ public class DeviceListFrag extends Fragment implements BLEPositioning.OnAddDevi
     @Override
     public void clearList() {
         devices.clear();
+        bluetoothDeviceAdapter.notifyDataSetChanged();
     }
 
 }

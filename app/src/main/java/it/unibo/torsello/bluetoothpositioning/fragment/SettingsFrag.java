@@ -1,13 +1,14 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceFragmentCompat;
+
+import it.unibo.torsello.bluetoothpositioning.R;
+
 //import android.preference.PreferenceCategory;
 //import android.preference.PreferenceFragment;
 //import android.preference.PreferenceManager;
 //import android.preference.PreferenceScreen;
-import android.support.v7.preference.PreferenceFragmentCompat;
-
-import it.unibo.torsello.bluetoothpositioning.R;
 
 /**
  * Created by federico on 13/08/16.

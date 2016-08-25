@@ -1,15 +1,14 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.altbeacon.beacon.Beacon;
@@ -20,6 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
@@ -32,49 +32,61 @@ public class RecyclerViewAdapter
     private final TypedValue mTypedValue;
     private List<Device> devices;
     private int mBackground;
+    private FragmentManager fragmentManager;
+    private FragmentActivity activity;
 
     public RecyclerViewAdapter(FragmentActivity activity, List<Device> deviceList) {
         devices = deviceList;
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
         mTypedValue = new TypedValue();
-        activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+        this.activity = activity;
+        fragmentManager = this.activity.getSupportFragmentManager();
+        this.activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mBackground = mTypedValue.resourceId;
     }
 
-    protected static class DeviceViewHolder extends RecyclerView.ViewHolder {
+    protected class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-        public final View mView;
+        private final View mView;
+        private final ImageView imageView;
         private final TextView macTextView;
         private final TextView majorTextView;
         private final TextView minorTextView;
         private final TextView measuredPowerTextView;
         private final TextView rssiTextView;
-        private final TextView simpleNameTextView;
+        private final TextView friendlyNameTextView;
         private final TextView defaultNameTextView;
         private final TextView distanceTextView;
-        private final TextView row_uuid;
-        private final ImageView imageView;
+        private final TextView uuidTextView;
+        private final TextView nameSpaceTextView;
+        private final TextView proximityTextView;
+        private final LinearLayout visibilityUUIDLinearLayout;
+        private final LinearLayout visibilityNameSpaceLinearLayout;
 
         private DeviceViewHolder(View view) {
             super(view);
             mView = view;
-            defaultNameTextView = (TextView) view.findViewById(R.id.row_default_name);
-            distanceTextView = (TextView) view.findViewById(R.id.row_distance);
-            macTextView = (TextView) view.findViewById(R.id.row_address);
-            majorTextView = (TextView) view.findViewById(R.id.row_major);
-            minorTextView = (TextView) view.findViewById(R.id.row_minor);
-            measuredPowerTextView = (TextView) view.findViewById(R.id.row_power);
-            rssiTextView = (TextView) view.findViewById(R.id.row_rssi);
-            simpleNameTextView = (TextView) view.findViewById(R.id.simple_name);
-            row_uuid = (TextView) view.findViewById(R.id.row_UUID);
             imageView = (ImageView) view.findViewById(R.id.imageBeacon);
+            defaultNameTextView = (TextView) view.findViewById(R.id.value_default_name);
+            friendlyNameTextView = (TextView) view.findViewById(R.id.value_friendly_name);
+            distanceTextView = (TextView) view.findViewById(R.id.value_distance);
+            macTextView = (TextView) view.findViewById(R.id.value_mac_address);
+            majorTextView = (TextView) view.findViewById(R.id.value_major);
+            minorTextView = (TextView) view.findViewById(R.id.value_minor);
+            measuredPowerTextView = (TextView) view.findViewById(R.id.value_power);
+            rssiTextView = (TextView) view.findViewById(R.id.value_rssi);
+            uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
+            nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
+            proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
+            visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
+            visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
         }
     }
 
     @Override
     public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item2, parent, false);
+                .inflate(R.layout.list_items, parent, false);
         view.setBackgroundResource(mBackground);
         return new DeviceViewHolder(view);
     }
@@ -83,28 +95,39 @@ public class RecyclerViewAdapter
     public void onBindViewHolder(final DeviceViewHolder holder, final int position) {
 
         try {
-            Device device = devices.get(position);
+            final Device device = devices.get(position);
             Beacon beacon = devices.get(position).getBeacon();
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    Context context = v.getContext();
-//                    Intent intent = new Intent(context, CheeseDetailActivity.class);
-//                    intent.putExtra(CheeseDetailActivity.EXTRA_NAME, holder.mBoundString);
+//                    Intent intent = new Intent(context, DeviceDetailActivity.class);
+//                    intent.putExtra(DeviceDetailActivity.EXTRA_NAME, device.getFriendlyName());
 //                    context.startActivity(intent);
-                    Snackbar.make(v, String.valueOf(holder.getAdapterPosition()), Snackbar.LENGTH_SHORT).show();
+
+                    fragmentManager.beginTransaction()
+                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance())
+                            .addToBackStack(null)
+                            .commit();
+
+//                    DetailDeviceFrag fragment = DetailDeviceFrag.newInstance();
+//                    fragment.show(fragmentManager,"ciao");
                 }
             });
 
-            holder.simpleNameTextView.setText(String.format("Friendly name: %s", device.getSimpleName()));
-            holder.defaultNameTextView.setText(String.format("Default name: %s", beacon.getBluetoothName()));
-            holder.macTextView.setText(String.format("MAC address: %s", beacon.getBluetoothAddress()));
+            holder.friendlyNameTextView.setText(device.getFriendlyName());
+            holder.defaultNameTextView.setText(beacon.getBluetoothName());
+            holder.macTextView.setText(beacon.getBluetoothAddress());
+            holder.measuredPowerTextView.setText(String.valueOf(beacon.getTxPower()));
+            holder.rssiTextView.setText(String.valueOf(beacon.getRssi()));
+            holder.proximityTextView.setText(device.getProximity());
+
             holder.distanceTextView.setText(String.format(Locale.getDefault(),
                     "DIST_KF1: %sm \n" +
                             "DIST_KF2: %sm \n" +
                             "DIST_KF3: %sm \n" +
-                            "DIST_KF4: %sm \n" +
+//                            "DIST_KF4: %sm \n" +
                             "DIST_A: %sm \n" +
                             "DIST_B: %sm \n" +
                             "DIST_C: %sm \n" +
@@ -112,14 +135,11 @@ public class RecyclerViewAdapter
                     df.format(device.getDistanceKalmanFilter1()),
                     df.format(device.getDistanceKalmanFilter2()),
                     df.format(device.getDistanceKalmanFilter3()),
-                    df.format(device.getDistanceKalmanFilter4()),
+//                    df.format(device.getDistanceKalmanFilter4()),
                     df.format(device.getDist()),
                     df.format(beacon.getDistance()),
                     df.format(device.getRawDistance()),
                     df.format(device.getDistanceInternet())));
-
-            holder.measuredPowerTextView.setText(String.format("MPower: %sdB", beacon.getTxPower()));
-            holder.rssiTextView.setText(String.format("RSSI: %sdB", beacon.getRssi()));
 
             if (device.getImageBeacon() != null) {
                 holder.imageView.setImageResource(device.getImageBeacon());
@@ -129,9 +149,11 @@ public class RecyclerViewAdapter
 
             if (beacon.getServiceUuid() == 0xfeaa) {
                 if (beacon.getBeaconTypeCode() == 0x00) {
+                    holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
+                    holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
+
                     // Eddystone-UID
-                    holder.row_uuid.setText(String.format("NameSpace: %s\n" +
-                            "ID: %s", beacon.getId1(), beacon.getId2()));
+                    holder.nameSpaceTextView.setText(beacon.getId1().toString());
                 } else if (beacon.getBeaconTypeCode() == 0x10) {
                     // Eddystone-URL
                     // String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
@@ -144,9 +166,9 @@ public class RecyclerViewAdapter
                 // AltBeacon
             } else if (beacon.getBeaconTypeCode() == 0x0215) { //533 in dec)
                 // AppleIBeacon
-                holder.majorTextView.setText(String.format("Major: %s", beacon.getId2()));
-                holder.minorTextView.setText(String.format("Minor: %s", beacon.getId3()));
-                holder.row_uuid.setText(String.format("UUID: %s", beacon.getId1()));
+                holder.uuidTextView.setText(beacon.getId1().toString());
+                holder.majorTextView.setText(beacon.getId2().toString());
+                holder.minorTextView.setText(beacon.getId3().toString());
             } else if (beacon.getBeaconTypeCode() == 0x0101) {
                 // EstimoteNearable
             }

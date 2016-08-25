@@ -6,24 +6,41 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="clear_list">Clear list</string>
+    <!--<string name="action_settings">Settings</string>-->
+    <!--<string name="action_clear_list">Clear list</string>-->
 
     <!-- IBEACON ADAPTER -->
-    <string name="name">Name:</string>
-    <string name="mac_address">MAC Address:</string>
+
+    <string name="friendly_name">Friendly name:</string>
+    <string name="default_name">Default name:</string>
+    <string name="mac_address">MAC Add:</string>
     <string name="major">Major:</string>
     <string name="minor">Minor:</string>
     <string name="uuid">UUID:</string>
-    <string name="rssi">RSSI:</string>
+    <string name="name_space">NameSpace:</string>
+    <string name="rssi">RSSI: dB</string>
+    <string name="power">Power: dB</string>
     <string name="distance">Dist:</string>
+    <string name="proximity">Proximity:</string>
     <string name="color">Color</string>
 
-    <string name="string_scan_subtext">Number of iBeacons discovered: %s</string>
+    <!--<string name="string_scan_subtext">Number of iBeacons discovered: %s</string>-->
 
-    <string name="scanning_enabled">Scanning enabled</string>
-    <string name="scanning_disabled">Scanning disabled</string>
-    <string name="info_start_scanning">Push the button to start scanning</string>
+    <string name="exit">"Press once again to exit!"</string>
+
+    <string name="snackbar_scanning_enabled">Scanning enabled</string>
+    <string name="snackbar_scanning_disabled">Scanning disabled</string>
+    <string name="snackbar_start_scanning">Push the button to start scanning</string>
+
+    <string name="dialog_bluetooth_title">Bluetooth not enabled</string>
+    <string name="dialog_bluetooth_text">Press OK to enable Bluetooth</string>
+
+    <string name="dialog_location_access_title">This app needs location access</string>
+    <string name="dialog_location_access_text">Please grant location access so this app can detect beacons</string>
+
+    <string name="dialog_permissions_location_access_title">Functionality limited</string>
+    <string name="dialog_permissions_location_access_text">Since location access has not been granted,
+        this app will not be able to discover beacons when in the background</string>
 
     <!-- PreferencesFrag fragment -->
     <string name="settings_kalman_status">Kalman Filter System Noise</string>

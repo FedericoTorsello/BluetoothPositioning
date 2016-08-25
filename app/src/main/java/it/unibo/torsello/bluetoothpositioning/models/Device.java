@@ -34,7 +34,7 @@ public class Device {
         return this.address;
     }
 
-    public String getSimpleName() {
+    public String getFriendlyName() {
         return simpleName;
     }
 
@@ -74,18 +74,20 @@ public class Device {
         return stats.getDistKalmanFilter4();
     }
 
-    public void getAccuracy() {
+    public String getProximity() {
+        double proximity = getDist();
 //        double accuracy = Math.pow(12.0, 1.5 * ((rssi / measuredPower) - 1));
-//        String proximity = null;
-//
-//        if (accuracy < 0) {
-//            proximity = "unknown";
-//        } else if (accuracy < 0.5) {
-//            proximity = "immediate";
-//        } else if (accuracy < 4.0) {
-//            proximity = "near";
-//        } else {
-//            proximity = "far";
-//        }
+        String accuracy = null;
+
+        if (proximity < 0) {
+            accuracy = "unknown";
+        } else if (proximity < 0.5) {
+            accuracy = "immediate";
+        } else if (proximity < 4.0) {
+            accuracy = "near";
+        } else {
+            accuracy = "far";
+        }
+        return accuracy;
     }
 }

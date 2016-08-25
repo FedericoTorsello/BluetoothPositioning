@@ -1,19 +1,14 @@
 package it.unibo.torsello.bluetoothpositioning.main;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,8 +18,8 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 
 
@@ -57,7 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.frameLayout, HomeViewFrag.newInstance(getFragments()))
-                .addToBackStack(null)
+//                .addToDistanceBackStack(null)
                 .commit();
     }
 
@@ -75,8 +70,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        assert mViewPager != null;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -85,9 +78,11 @@ public class MainActivity extends AppCompatActivity
             final long DOUBLE_PRESS_INTERVAL = 1000;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
-                Snackbar.make(mViewPager, R.string.exit, Snackbar.LENGTH_SHORT).show();
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                Snackbar.make(fab, R.string.exit, Snackbar.LENGTH_SHORT).show();
             } else {
-                finish();
+//                finish();
+                super.onBackPressed();
             }
             back_pressed = System.currentTimeMillis();
         }
@@ -104,27 +99,27 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+        Fragment fragment = null;
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout, HomeViewFrag.newInstance(getFragments()))
-                        .addToBackStack(null)
-                        .commit();
+                fragment = HomeViewFrag.newInstance(getFragments());
                 break;
             case R.id.nav_settings:
-
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout, SettingsFrag.newInstance())
-                        .addToBackStack(null)
-                        .commit();
+                fragment = SettingsFrag.newInstance();
                 break;
             case R.id.nav_share:
                 break;
             case R.id.nav_send:
 
                 break;
+        }
+
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, fragment)
+//                    .addToBackStack(null)
+                    .commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
