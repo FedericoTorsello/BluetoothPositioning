@@ -54,7 +54,7 @@ public class BeaconConstants {
     private static final String DEVICE_3 = "FA:6B:72:1E:EB:46"; //mint1
     private static final String DEVICE_4 = "D9:80:00:B7:16:78"; //mint2
     private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //bluebarry1
-    private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //bleubarry2
+    private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //bluebarry2
 
     // Beacons
     public static final Map<String, Device> BEACON_LIST;
@@ -66,7 +66,7 @@ public class BeaconConstants {
         map.put(DEVICE_3, new Device(DEVICE_3, "mint1", R.drawable.beacon_mint));
         map.put(DEVICE_4, new Device(DEVICE_4, "mint2", R.drawable.beacon_mint));
         map.put(DEVICE_5, new Device(DEVICE_5, "bluebarry1", R.drawable.beacon_blueberry));
-        map.put(DEVICE_6, new Device(DEVICE_6, "bleubarry2", R.drawable.beacon_blueberry));
+        map.put(DEVICE_6, new Device(DEVICE_6, "bluebarry2", R.drawable.beacon_blueberry));
         BEACON_LIST = Collections.unmodifiableMap(map);
     }
 

@@ -185,6 +185,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                         fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
                         try {
                             beaconManager.startRangingBeaconsInRegion(region);
+                            Snackbar.make(view, R.string.snackbar_scanning_enabled, Snackbar.LENGTH_SHORT).show();
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
@@ -192,14 +193,15 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                         fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
                         try {
                             beaconManager.stopRangingBeaconsInRegion(region);
+                            Snackbar.make(view, R.string.snackbar_scanning_disabled, Snackbar.LENGTH_INDEFINITE).show();
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
                     }
 
-                    String statusScan = isRunScan ?
-                            getString(R.string.snackbar_scanning_enabled) : getString(R.string.snackbar_scanning_disabled);
-                    Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
+//                    int statusScan = isRunScan ?
+//                            R.string.snackbar_scanning_enabled : R.string.snackbar_scanning_disabled;
+//                    Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
                 }
             }
         });

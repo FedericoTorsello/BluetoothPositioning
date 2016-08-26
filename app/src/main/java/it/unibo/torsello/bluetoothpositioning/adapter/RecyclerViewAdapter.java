@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.fragment.CollapsingToolbarLayoutFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
@@ -106,8 +107,13 @@ public class RecyclerViewAdapter
 //                    intent.putExtra(DeviceDetailActivity.EXTRA_NAME, device.getFriendlyName());
 //                    context.startActivity(intent);
 
+//                    fragmentManager.beginTransaction()
+//                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance())
+//                            .addToBackStack(null)
+//                            .commit();
+
                     fragmentManager.beginTransaction()
-                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance())
+                            .add(R.id.frameLayout, new CollapsingToolbarLayoutFragment())
                             .addToBackStack(null)
                             .commit();
 
@@ -165,6 +171,8 @@ public class RecyclerViewAdapter
             } else if (beacon.getServiceUuid() == 0xbeac) {
                 // AltBeacon
             } else if (beacon.getBeaconTypeCode() == 0x0215) { //533 in dec)
+                holder.visibilityUUIDLinearLayout.setVisibility(View.VISIBLE);
+                holder.visibilityNameSpaceLinearLayout.setVisibility(View.GONE);
                 // AppleIBeacon
                 holder.uuidTextView.setText(beacon.getId1().toString());
                 holder.majorTextView.setText(beacon.getId2().toString());
