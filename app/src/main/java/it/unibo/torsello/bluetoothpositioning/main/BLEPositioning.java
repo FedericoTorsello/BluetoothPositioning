@@ -128,7 +128,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
         }
-        
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_SHORT).show();
@@ -171,7 +171,10 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
 
     @Override
     public void onBackPressed() {
-        getSupportFragmentManager().popBackStackImmediate();
+        if (!getSupportFragmentManager().getFragments().isEmpty()) {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
+
         super.onBackPressed();
     }
 
@@ -215,7 +218,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, final Region region) {
-                
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -249,19 +252,17 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
 //                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
                     } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
 //                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
-                        final android.app.AlertDialog.Builder builder =
-                                new android.app.AlertDialog.Builder(this);
-                        builder.setTitle(R.string.dialog_permissions_location_access_title);
-                        builder.setMessage(R.string.dialog_permissions_location_access_text);
-                        builder.setPositiveButton(android.R.string.ok, null);
-                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setTitle(R.string.dialog_permissions_location_access_title)
+                                .setMessage(R.string.dialog_permissions_location_access_text)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                            }
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                    }
 
-                        });
-                        builder.show();
+                                }).show();
                     }
                 }
             }
@@ -309,23 +310,23 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     }
 
     private boolean verifyBluetooth() {
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
         try {
             if (!beaconManager.checkAvailability()) {
 
+                final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                assert fab != null;
+
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_bluetooth_title);
-                builder.setMessage(R.string.dialog_bluetooth_text);
-                builder.setPositiveButton(android.R.string.ok, null);
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
-                        BluetoothAdapter.getDefaultAdapter().enable();
-                    }
-                });
-                builder.show();
+                builder.setTitle(R.string.dialog_bluetooth_title)
+                        .setMessage(R.string.dialog_bluetooth_text)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+                                BluetoothAdapter.getDefaultAdapter().enable();
+                            }
+                        }).show();
                 fab.setImageResource(R.drawable.ic_bluetooth_disabled_black_24dp);
                 return false;
             }
@@ -353,19 +354,18 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
 
             if (!permissions.isEmpty()) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_location_access_title);
-                builder.setMessage(R.string.dialog_bluetooth_text);
-                builder.setPositiveButton(android.R.string.ok, null);
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                builder.setTitle(R.string.dialog_location_access_title)
+                        .setMessage(R.string.dialog_bluetooth_text)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        requestPermissions(permissions.toArray(new String[permissions.size()]),
-                                REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
-                    }
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                requestPermissions(permissions.toArray(new String[permissions.size()]),
+                                        REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                            }
 
-                });
-                builder.show();
+                        }).show();
             }
         }
     }

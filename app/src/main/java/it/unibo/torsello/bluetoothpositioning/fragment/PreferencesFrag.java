@@ -25,7 +25,7 @@ import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
 public class PreferencesFrag extends Fragment {
 
     private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private SharedPreferences settings;
+    private SharedPreferences preferences;
 
     private OnSettingsListener onSettingsListener;
 
@@ -59,7 +59,7 @@ public class PreferencesFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class PreferencesFrag extends Fragment {
     private void setUpKalmanSeek() {
         final SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
         final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
-        int kalmanSeekValue = settings.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
+        int kalmanSeekValue = preferences.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(kalmanSeekValue);
         final DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
@@ -116,7 +116,7 @@ public class PreferencesFrag extends Fragment {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SharedPreferences.Editor editor = settings.edit();
+                SharedPreferences.Editor editor = preferences.edit();
                 int progress = seekBar.getProgress();
                 editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, progress);
                 editor.apply();
@@ -128,13 +128,13 @@ public class PreferencesFrag extends Fragment {
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
 //    private void setUpSelfcorrectingSwitch() {
 //        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
-//        boolean selfCorrection = settings.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
+//        boolean selfCorrection = preferences.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
 //        selfCorrectionSwitch.setChecked(selfCorrection);
 //        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
 //        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                SharedPreferences.Editor editor = settings.edit();
+//                SharedPreferences.Editor editor = preferences.edit();
 //                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
 //                editor.apply();
 //                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
@@ -145,13 +145,13 @@ public class PreferencesFrag extends Fragment {
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
     private void setUpWalkDetectionSwitch() {
         final Switch wdSwitch = (Switch) getActivity().findViewById(R.id.walkDetectionSwitch);
-        boolean walkDetection = settings.getBoolean(SettingConstants.WALK_DETECTION, false);
+        boolean walkDetection = preferences.getBoolean(SettingConstants.WALK_DETECTION, false);
         wdSwitch.setChecked(walkDetection);
         wdSwitch.setText((walkDetection) ? R.string.settings_enabled : R.string.settings_disabled);
         wdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
+                SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
                 editor.apply();
                 wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
@@ -163,13 +163,13 @@ public class PreferencesFrag extends Fragment {
 
     private void setSortByDistance() {
         final Switch sortByDistanceSwitch = (Switch) getActivity().findViewById(R.id.sortByDistanceSwitch);
-        boolean setSortByDistance = settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, true);
+        boolean setSortByDistance = preferences.getBoolean(SettingConstants.SORT_BY_DISTANCE, true);
         sortByDistanceSwitch.setChecked(setSortByDistance);
         sortByDistanceSwitch.setText((setSortByDistance) ? R.string.settings_enabled : R.string.settings_disabled);
         sortByDistanceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = settings.edit();
+                SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean(SettingConstants.SORT_BY_DISTANCE, isChecked);
                 editor.apply();
                 sortByDistanceSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);

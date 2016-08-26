@@ -32,6 +32,7 @@ dependencies {
     //    compile project(':android-beacon-library-debug')
 //    compile 'com.estimote:sdk:0.11.0@aar'
     compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:support-v13:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:preference-v7:23.4.0'

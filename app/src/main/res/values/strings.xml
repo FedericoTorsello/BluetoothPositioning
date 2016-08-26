@@ -26,7 +26,7 @@
 
     <!--<string name="string_scan_subtext">Number of iBeacons discovered: %s</string>-->
 
-    <string name="exit">"Press once again to exit!"</string>
+    <string name="snackbar_exit">"Press once again to exit!"</string>
 
     <string name="snackbar_scanning_enabled">Scanning enabled</string>
     <string name="snackbar_scanning_disabled">Scanning disabled</string>
@@ -76,4 +76,20 @@
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
 
+
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+
+    <string name="intro_message">
+        <![CDATA[
+
+
+            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
+            you can display camera preview and take pictures.
+
+
+        ]]>
+    </string>
 </resources>

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                Snackbar.make(fab, R.string.exit, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
             } else {
 //                finish();
                 super.onBackPressed();
