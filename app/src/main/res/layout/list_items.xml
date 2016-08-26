@@ -15,12 +15,12 @@
 
             <ImageView
                 android:id="@+id/imageBeacon"
-                android:layout_width="60dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/image_margin"
+                android:layout_height="@dimen/image_margin"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/image_margin"
-                android:layout_marginEnd="@dimen/image_margin"
-                android:src="@drawable/beacon_unknown" />
+                android:layout_marginStart="@dimen/image_margin_lateral"
+                android:layout_marginEnd="@dimen/image_margin_lateral"
+                android:src="@drawable/unknown_beacon" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -58,6 +58,23 @@
 
                     <TextView
                         android:id="@+id/value_default_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color"
+                        android:layout_marginEnd="@dimen/text_margin"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/value_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

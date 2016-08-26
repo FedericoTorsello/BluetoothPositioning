@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.view.MenuItem;
 import android.view.View;
 
 import org.altbeacon.beacon.Beacon;
@@ -254,10 +255,12 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, final Region region) {
+                
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
+                            onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
                             for (Beacon b : beacons) {
                                 Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
                                 if (b.getBluetoothAddress().equals(device.getAddress())) {
@@ -266,12 +269,12 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                                     device.updateDistance(processNoise, movementState);
                                 }
                             }
-                            onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
                         } catch (NullPointerException e) {
                             e.getStackTrace();
                         }
                     }
                 });
+
             }
         });
     }
@@ -309,22 +312,22 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         }
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//
-//        // noinspection SimplifiableIfStatement
-//
-//        switch (item.getItemId()) {
-//            case R.id.action_clear:
-//                onAddDevicesListener.clearList();
-//                return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        // noinspection SimplifiableIfStatement
+
+        switch (item.getItemId()) {
+            case R.id.action_clear:
+                onAddDevicesListener.clearList();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void updateKalmanNoise(double value) {

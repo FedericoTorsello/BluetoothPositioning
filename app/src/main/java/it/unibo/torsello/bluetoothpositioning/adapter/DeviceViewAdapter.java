@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.adapter;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,50 +18,44 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.CollapsingToolbarLayoutFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
  * Created by federico on 21/08/16.
  */
-public class RecyclerViewAdapter
-        extends RecyclerView.Adapter<RecyclerViewAdapter.DeviceViewHolder> {
+public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.DeviceViewHolder> {
 
     private DecimalFormat df;
-    private final TypedValue mTypedValue;
-    private List<Device> devices;
-    private int mBackground;
+    private List<Device> deviceList;
     private FragmentManager fragmentManager;
-    private FragmentActivity activity;
+    private FragmentActivity fragmentActivity;
 
-    public RecyclerViewAdapter(FragmentActivity activity, List<Device> deviceList) {
-        devices = deviceList;
+    public DeviceViewAdapter(FragmentActivity fragmentActivity, List<Device> deviceList) {
+        this.deviceList = deviceList;
+        this.fragmentActivity = fragmentActivity;
+        fragmentManager = fragmentActivity.getSupportFragmentManager();
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
-        mTypedValue = new TypedValue();
-        this.activity = activity;
-        fragmentManager = this.activity.getSupportFragmentManager();
-        this.activity.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
-        mBackground = mTypedValue.resourceId;
     }
 
     protected class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-        private final View mView;
-        private final ImageView imageView;
-        private final TextView macTextView;
-        private final TextView majorTextView;
-        private final TextView minorTextView;
-        private final TextView measuredPowerTextView;
-        private final TextView rssiTextView;
-        private final TextView friendlyNameTextView;
-        private final TextView defaultNameTextView;
-        private final TextView distanceTextView;
-        private final TextView uuidTextView;
-        private final TextView nameSpaceTextView;
-        private final TextView proximityTextView;
-        private final LinearLayout visibilityUUIDLinearLayout;
-        private final LinearLayout visibilityNameSpaceLinearLayout;
+        private View mView;
+        private ImageView imageView;
+        private TextView macTextView;
+        private TextView majorTextView;
+        private TextView minorTextView;
+        private TextView measuredPowerTextView;
+        private TextView rssiTextView;
+        private TextView friendlyNameTextView;
+        private TextView defaultNameTextView;
+        private TextView distanceTextView;
+        private TextView uuidTextView;
+        private TextView nameSpaceTextView;
+        private TextView proximityTextView;
+        private TextView colorTextView;
+        private LinearLayout visibilityUUIDLinearLayout;
+        private LinearLayout visibilityNameSpaceLinearLayout;
 
         private DeviceViewHolder(View view) {
             super(view);
@@ -79,6 +72,7 @@ public class RecyclerViewAdapter
             uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
             nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
             proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
+            colorTextView = (TextView) view.findViewById(R.id.value_color);
             visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
             visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
         }
@@ -88,7 +82,6 @@ public class RecyclerViewAdapter
     public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_items, parent, false);
-        view.setBackgroundResource(mBackground);
         return new DeviceViewHolder(view);
     }
 
@@ -96,38 +89,57 @@ public class RecyclerViewAdapter
     public void onBindViewHolder(final DeviceViewHolder holder, final int position) {
 
         try {
-            final Device device = devices.get(position);
-            Beacon beacon = devices.get(position).getBeacon();
+            final Device device = deviceList.get(position);
+            Beacon beacon = deviceList.get(position).getBeacon();
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    Context context = v.getContext();
-//                    Intent intent = new Intent(context, DeviceDetailActivity.class);
-//                    intent.putExtra(DeviceDetailActivity.EXTRA_NAME, device.getFriendlyName());
-//                    context.startActivity(intent);
 
-//                    fragmentManager.beginTransaction()
-//                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance())
-//                            .addToBackStack(null)
-//                            .commit();
+            Integer imageBeacon = device.getImageBeacon();
+            if (imageBeacon != null) {
+                holder.imageView.setImageResource(imageBeacon);
+            } else {
+                holder.imageView.setImageResource(R.drawable.unknown_beacon);
+            }
 
-                    fragmentManager.beginTransaction()
-                            .add(R.id.frameLayout, new CollapsingToolbarLayoutFragment())
-                            .addToBackStack(null)
-                            .commit();
+            String txPower = String.valueOf(beacon.getTxPower());
+            holder.measuredPowerTextView.setText(txPower);
 
-//                    DetailDeviceFrag fragment = DetailDeviceFrag.newInstance();
-//                    fragment.show(fragmentManager,"ciao");
-                }
-            });
+            String rssi = String.valueOf(beacon.getRssi());
+            holder.rssiTextView.setText(String.valueOf(rssi));
 
-            holder.friendlyNameTextView.setText(device.getFriendlyName());
-            holder.defaultNameTextView.setText(beacon.getBluetoothName());
-            holder.macTextView.setText(beacon.getBluetoothAddress());
-            holder.measuredPowerTextView.setText(String.valueOf(beacon.getTxPower()));
-            holder.rssiTextView.setText(String.valueOf(beacon.getRssi()));
-            holder.proximityTextView.setText(device.getProximity());
+            String friendlyName = device.getFriendlyName();
+            if (friendlyName != null) {
+                holder.friendlyNameTextView.setText(friendlyName);
+            } else {
+                holder.friendlyNameTextView.setText(android.R.string.unknownName);
+            }
+
+            String bluetoothName = beacon.getBluetoothName();
+            if (bluetoothName != null) {
+                holder.defaultNameTextView.setText(bluetoothName);
+            } else {
+                holder.defaultNameTextView.setText(android.R.string.unknownName);
+            }
+
+            String bluetoothAddress = beacon.getBluetoothAddress();
+            if (bluetoothAddress != null) {
+                holder.macTextView.setText(bluetoothAddress);
+            } else {
+                holder.macTextView.setText(android.R.string.unknownName);
+            }
+
+            String proximity = device.getProximity();
+            if (proximity != null) {
+                holder.proximityTextView.setText(proximity);
+            } else {
+                holder.proximityTextView.setText(android.R.string.unknownName);
+            }
+
+            String color = device.getColor();
+            if (color != null) {
+                holder.colorTextView.setText(color);
+            } else {
+                holder.colorTextView.setText(android.R.string.unknownName);
+            }
 
             holder.distanceTextView.setText(String.format(Locale.getDefault(),
                     "DIST_KF1: %sm \n" +
@@ -147,19 +159,18 @@ public class RecyclerViewAdapter
                     df.format(device.getRawDistance()),
                     df.format(device.getDistanceInternet())));
 
-            if (device.getImageBeacon() != null) {
-                holder.imageView.setImageResource(device.getImageBeacon());
-            } else {
-                holder.imageView.setImageResource(R.drawable.beacon_unknown);
-            }
-
             if (beacon.getServiceUuid() == 0xfeaa) {
                 if (beacon.getBeaconTypeCode() == 0x00) {
                     holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
                     holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
 
                     // Eddystone-UID
-                    holder.nameSpaceTextView.setText(beacon.getId1().toString());
+                    if (beacon.getId1() != null) {
+                        holder.nameSpaceTextView.setText(beacon.getId1().toString());
+                    } else {
+                        holder.nameSpaceTextView.setText(android.R.string.unknownName);
+                    }
+
                 } else if (beacon.getBeaconTypeCode() == 0x10) {
                     // Eddystone-URL
                     // String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
@@ -174,12 +185,45 @@ public class RecyclerViewAdapter
                 holder.visibilityUUIDLinearLayout.setVisibility(View.VISIBLE);
                 holder.visibilityNameSpaceLinearLayout.setVisibility(View.GONE);
                 // AppleIBeacon
-                holder.uuidTextView.setText(beacon.getId1().toString());
-                holder.majorTextView.setText(beacon.getId2().toString());
-                holder.minorTextView.setText(beacon.getId3().toString());
+                if (beacon.getId1() != null) {
+                    holder.uuidTextView.setText(beacon.getId1().toString());
+                } else {
+                    holder.uuidTextView.setText(android.R.string.unknownName);
+                }
+
+                if (beacon.getId2() != null) {
+                    holder.majorTextView.setText(beacon.getId2().toString());
+                } else {
+                    holder.majorTextView.setText(android.R.string.unknownName);
+                }
+
+                if (beacon.getId3() != null) {
+                    holder.minorTextView.setText(beacon.getId3().toString());
+                } else {
+                    holder.minorTextView.setText(android.R.string.unknownName);
+                }
+
             } else if (beacon.getBeaconTypeCode() == 0x0101) {
                 // EstimoteNearable
             }
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String title;
+                    if (device.getFriendlyName() != null) {
+                        title = device.getFriendlyName();
+                    } else {
+                        title = device.getAddress();
+                    }
+
+                    fragmentManager.beginTransaction()
+                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance(title))
+                            .addToBackStack(null)
+                            .commit();
+                }
+            });
 
         } catch (NullPointerException e) {
             e.getStackTrace();
@@ -188,6 +232,6 @@ public class RecyclerViewAdapter
 
     @Override
     public int getItemCount() {
-        return devices.size();
+        return deviceList.size();
     }
 }

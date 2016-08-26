@@ -45,14 +45,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".main.DeviceDetailActivity"
-            android:parentActivityName=".main.BLEPositioning">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
-        </activity>
-
     </application>
 
 </manifest>

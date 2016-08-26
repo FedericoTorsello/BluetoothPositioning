@@ -11,15 +11,17 @@ public class Device {
 
     private BeaconStatistics stats;
     private String address;
-    private String simpleName;
+    private String friendlyName;
     private Beacon beacon;
     private Integer imageBeacon;
+    private String color;
 
-    public Device(String address, String simpleName, Integer imageBeacon) {
+    public Device(String address, String friendlyName, String color, Integer imageBeacon) {
         this.address = address;
-        this.simpleName = simpleName;
+        this.friendlyName = friendlyName;
         this.stats = new BeaconStatistics();
         this.imageBeacon = imageBeacon;
+        this.color = color;
     }
 
     public void setBeacon(Beacon beacon) {
@@ -30,12 +32,16 @@ public class Device {
         stats.updateDistance(beacon, processNoise, movementState);
     }
 
+    public String getColor() {
+        return color;
+    }
+
     public String getAddress() {
         return this.address;
     }
 
     public String getFriendlyName() {
-        return simpleName;
+        return friendlyName;
     }
 
     public Integer getImageBeacon() {

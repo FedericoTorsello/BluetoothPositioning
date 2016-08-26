@@ -13,6 +13,7 @@
 
     <string name="friendly_name">Friendly name:</string>
     <string name="default_name">Default name:</string>
+    <string name="color">Color:</string>
     <string name="mac_address">MAC Add:</string>
     <string name="major">Major:</string>
     <string name="minor">Minor:</string>
@@ -22,7 +23,6 @@
     <string name="power">Power: dB</string>
     <string name="distance">Dist:</string>
     <string name="proximity">Proximity:</string>
-    <string name="color">Color</string>
 
     <!--<string name="string_scan_subtext">Number of iBeacons discovered: %s</string>-->
 

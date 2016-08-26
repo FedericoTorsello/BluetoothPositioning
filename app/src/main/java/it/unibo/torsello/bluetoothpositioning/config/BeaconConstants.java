@@ -61,12 +61,12 @@ public class BeaconConstants {
 
     static {
         Map<String, Device> map = new ArrayMap<>();
-        map.put(DEVICE_1, new Device(DEVICE_1, "ice1", R.drawable.beacon_icy));
-        map.put(DEVICE_2, new Device(DEVICE_2, "ice2", R.drawable.beacon_icy));
-        map.put(DEVICE_3, new Device(DEVICE_3, "mint1", R.drawable.beacon_mint));
-        map.put(DEVICE_4, new Device(DEVICE_4, "mint2", R.drawable.beacon_mint));
-        map.put(DEVICE_5, new Device(DEVICE_5, "bluebarry1", R.drawable.beacon_blueberry));
-        map.put(DEVICE_6, new Device(DEVICE_6, "bluebarry2", R.drawable.beacon_blueberry));
+        map.put(DEVICE_1, new Device(DEVICE_1, "ice1", "icy marshmallow", R.drawable.beacon_icy));
+        map.put(DEVICE_2, new Device(DEVICE_2, "ice2", "icy marshmallow", R.drawable.beacon_icy));
+        map.put(DEVICE_3, new Device(DEVICE_3, "mint1", "mint coctail", R.drawable.beacon_mint));
+        map.put(DEVICE_4, new Device(DEVICE_4, "mint2", "mint coctail", R.drawable.beacon_mint));
+        map.put(DEVICE_5, new Device(DEVICE_5, "bluebarry1", "blueberry pie", R.drawable.beacon_blueberry));
+        map.put(DEVICE_6, new Device(DEVICE_6, "bluebarry2", "blueberry pie", R.drawable.beacon_blueberry));
         BEACON_LIST = Collections.unmodifiableMap(map);
     }
 
