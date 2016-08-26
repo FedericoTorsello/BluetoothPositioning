@@ -45,9 +45,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  */
 
 public class BLEPositioning extends MainActivity implements BeaconConsumer,
-        PreferencesFrag.OnSettingsListener
-//        , DeviceDetailActivity.MyCustomObjectListener
-{
+        PreferencesFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private WalkDetection walkDetection;
@@ -58,44 +56,11 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
     private SharedPreferences settings;
     private OnAddDevicesListener onAddDevicesListener;
 
-//    DeviceDetailActivity object;
-
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
     private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
-
-//    @Override
-//    public void onObjectReady() {
-//        // Code to handle object ready
-//        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        assert fab != null;
-//        if (verifyBluetooth()) {
-//            isRunScan = !isRunScan;
-//
-//            Region region = new Region("myRangingUniqueId", null, null, null);
-//            if (isRunScan) {
-//                fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
-//                try {
-//                    beaconManager.startRangingBeaconsInRegion(region);
-//                } catch (RemoteException e) {
-//                    e.printStackTrace();
-//                }
-//            } else {
-//                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
-//                try {
-//                    beaconManager.stopRangingBeaconsInRegion(region);
-//                } catch (RemoteException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            String statusScan = isRunScan ?
-//                    getString(R.string.scanning_enabled) : getString(R.string.scanning_disabled);
-//            Snackbar.make(fab, statusScan, Snackbar.LENGTH_SHORT).show();
-//        }
-//    }
 
     public interface OnAddDevicesListener {
         void addDevices(Collection<Device> iBeacons);
@@ -163,18 +128,13 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
         if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
         }
-
-//         object = new DeviceDetailActivity();
-//        // Step 4 - Setup the listener for this object
-//        object.setCustomObjectListener(this);
-
+        
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_SHORT).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                    onObjectReady();
 
                 if (verifyBluetooth()) {
 
