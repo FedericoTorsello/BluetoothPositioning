@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.filter;
+package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
 /**
  * Simple builder class for 1-dimensional Kalman filter with predefined

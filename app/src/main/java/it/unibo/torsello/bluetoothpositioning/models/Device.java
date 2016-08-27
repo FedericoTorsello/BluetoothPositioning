@@ -2,7 +2,7 @@ package it.unibo.torsello.bluetoothpositioning.models;
 
 import org.altbeacon.beacon.Beacon;
 
-import it.unibo.torsello.bluetoothpositioning.logic.BeaconStatistics;
+import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatistics;
 
 /**
  * Created by federico on 05/08/16.

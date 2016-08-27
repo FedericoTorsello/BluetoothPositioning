@@ -34,8 +34,8 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
-import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.main.BLEPositioning;
+import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.activities.BLEPositioning;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 public class DeviceListFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {

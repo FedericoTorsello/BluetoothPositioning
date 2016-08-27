@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.main;
+package it.unibo.torsello.bluetoothpositioning.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         fList.add(DeviceListFrag.newInstance("Scan Device"));
         fList.add(PreferencesFrag.newInstance("Preferences"));
 //        fList.add(CompassFrag.newInstance("Compass1"));
-//        fList.add(CompassMagnometerFrag.newInstance("Compass2"));
+//        fList.add(CompassMagnoFrag.newInstance("Compass2"));
 //        fList.add(CountPassFrag.newInstance("CountPass"));
 
         return fList;

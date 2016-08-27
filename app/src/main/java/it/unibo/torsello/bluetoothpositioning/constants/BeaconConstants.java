@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.config;
+package it.unibo.torsello.bluetoothpositioning.constants;
 
 import android.support.v4.util.ArrayMap;
 
@@ -19,8 +19,8 @@ public class BeaconConstants {
 //    private static final Identifier ID_DEVICE_2 = Identifier.parse("D1BEE2E967A6");//ice2
 //    private static final Identifier ID_DEVICE_3 = Identifier.parse("FA6B721EEB46");//mint1
 //    private static final Identifier ID_DEVICE_4 = Identifier.parse("D98000B71678");//mint2
-//    private static final Identifier ID_DEVICE_5 = Identifier.parse("DBF6F50C23BF");//bluebarry1
-//    private static final Identifier ID_DEVICE_6 = Identifier.parse("E7E40EF6793F");//bleubarry2
+//    private static final Identifier ID_DEVICE_5 = Identifier.parse("DBF6F50C23BF");//blueberry1
+//    private static final Identifier ID_DEVICE_6 = Identifier.parse("E7E40EF6793F");//blueberry2
 //
 //    public static final List<Identifier> BEACON_ADRESSES1;
 //    static {
@@ -44,8 +44,8 @@ public class BeaconConstants {
 //        addresses.add("D1:BE:E2:E9:67:A6"); //ice2
 //        addresses.add("FA:6B:72:1E:EB:46"); //mint1
 //        addresses.add("D9:80:00:B7:16:78"); //mint2
-//        addresses.add("DB:F6:F5:0C:23:BF"); //bluebarry1
-//        addresses.add("E7:E4:0E:F6:79:3F"); //bleubarry2
+//        addresses.add("DB:F6:F5:0C:23:BF"); //blueberry1
+//        addresses.add("E7:E4:0E:F6:79:3F"); //blueberry2
 //        PLAIN_ONE = Collections.unmodifiableList(addresses);
 //    }
 
@@ -53,20 +53,20 @@ public class BeaconConstants {
     private static final String DEVICE_2 = "D1:BE:E2:E9:67:A6"; //ice2
     private static final String DEVICE_3 = "FA:6B:72:1E:EB:46"; //mint1
     private static final String DEVICE_4 = "D9:80:00:B7:16:78"; //mint2
-    private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //bluebarry1
-    private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //bluebarry2
+    private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //blueberry1
+    private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //blueberry2
 
     // Beacons
     public static final Map<String, Device> BEACON_LIST;
 
     static {
         Map<String, Device> map = new ArrayMap<>();
-        map.put(DEVICE_1, new Device(DEVICE_1, "ice1", "icy marshmallow", R.drawable.beacon_icy));
-        map.put(DEVICE_2, new Device(DEVICE_2, "ice2", "icy marshmallow", R.drawable.beacon_icy));
-        map.put(DEVICE_3, new Device(DEVICE_3, "mint1", "mint coctail", R.drawable.beacon_mint));
-        map.put(DEVICE_4, new Device(DEVICE_4, "mint2", "mint coctail", R.drawable.beacon_mint));
-        map.put(DEVICE_5, new Device(DEVICE_5, "bluebarry1", "blueberry pie", R.drawable.beacon_blueberry));
-        map.put(DEVICE_6, new Device(DEVICE_6, "bluebarry2", "blueberry pie", R.drawable.beacon_blueberry));
+        map.put(DEVICE_1, new Device(DEVICE_1, "Ice1", "Icy Marshmallow", R.drawable.beacon_icy));
+        map.put(DEVICE_2, new Device(DEVICE_2, "Ice2", "Icy Marshmallow", R.drawable.beacon_icy));
+        map.put(DEVICE_3, new Device(DEVICE_3, "Mint1", "Mint Cocktail", R.drawable.beacon_mint));
+        map.put(DEVICE_4, new Device(DEVICE_4, "Mint2", "Mint Cocktail", R.drawable.beacon_mint));
+        map.put(DEVICE_5, new Device(DEVICE_5, "Blueberry1", "Blueberry Pie", R.drawable.beacon_blueberry));
+        map.put(DEVICE_6, new Device(DEVICE_6, "Blueberry2", "Blueberry Pie", R.drawable.beacon_blueberry));
         BEACON_LIST = Collections.unmodifiableMap(map);
     }
 

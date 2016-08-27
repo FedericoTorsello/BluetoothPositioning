@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.main;
+package it.unibo.torsello.bluetoothpositioning.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -30,11 +30,11 @@ import java.util.Collection;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.config.BeaconConstants;
-import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.constants.BeaconConstants;
+import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
-import it.unibo.torsello.bluetoothpositioning.logic.MyArmaRssiFilter;
+import it.unibo.torsello.bluetoothpositioning.utils.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 
@@ -237,6 +237,7 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                         }
                     }
                 });
+
 
             }
         });

@@ -1,12 +1,12 @@
-package it.unibo.torsello.bluetoothpositioning.logic;
+package it.unibo.torsello.bluetoothpositioning.utils;
 
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.filter.KFBuilder;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter2;
-import it.unibo.torsello.bluetoothpositioning.filter.KalmanFilter3;
+import it.unibo.torsello.bluetoothpositioning.kalman_filter.KFBuilder;
+import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter;
+import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter2;
+import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
 
 /**
  * A helper class
@@ -165,6 +165,7 @@ public class BeaconStatistics {
         return newDistanceInMeters;
     }
 
+    //radiousNetwork
     private double calculateDistanceFrom(double rssi, int txPower) {
         if (rssi == 0.0D) {
             return -1.0D; // if we cannot determine accuracy, return -1.
@@ -180,20 +181,5 @@ public class BeaconStatistics {
 //            distance =  Math.pow(10.0,(rssi - txPower)/-25.0);
 //            distance = Math.pow(10.0, ((-rssi + txPower) / 10 * 0.25));
     }
-
-    //radiousNetwork
-    private double calculateAccuracy(int txPower, double rssi) {
-        if (rssi == 0.0d) {
-            return -1.0d;
-        }
-
-        double ratio = (rssi * 1.0d) / ((double) txPower);
-        if (ratio < 1.0d) {
-            return Math.pow(ratio, 10.0d);
-        }
-
-        return (0.89976d * Math.pow(ratio, 7.7095d)) + 0.111d;
-    }
-
 
 }

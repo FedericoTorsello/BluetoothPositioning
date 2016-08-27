@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 
-public class CompassMagnometerFrag extends Fragment implements SensorEventListener {
+public class CompassMagnoFrag extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
@@ -25,8 +25,8 @@ public class CompassMagnometerFrag extends Fragment implements SensorEventListen
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
-    public static CompassMagnometerFrag newInstance(String message) {
-        CompassMagnometerFrag f = new CompassMagnometerFrag();
+    public static CompassMagnoFrag newInstance(String message) {
+        CompassMagnoFrag f = new CompassMagnoFrag();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         f.setArguments(bdl);

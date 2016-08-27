@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.filter;
+package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
 import org.apache.commons.math3.filter.DefaultMeasurementModel;
 import org.apache.commons.math3.filter.DefaultProcessModel;

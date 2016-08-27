@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.config;
+package it.unibo.torsello.bluetoothpositioning.constants;
 
 /**
  * A class containing constants for the SharedPreference objects.

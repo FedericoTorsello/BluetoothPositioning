@@ -1,30 +1,41 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.content.Context;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.CameraPreview;
 
 /**
- * Created by ocabafox on 7/8/2015.
+ * Created by federico on 27/08/16.
  */
-public class DetailDeviceFrag extends Fragment {
+public class DetailDeviceFrag extends Fragment implements TextureView.SurfaceTextureListener {
+    private Camera mCamera;
+    private Thread preview_thread;
+    private TextureView mTextureView;
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-
-    private Camera mCamera;
-    private CameraPreview mPreview;
-
+    private final String TAG_CLASS = getClass().getSimpleName();
 
     public static DetailDeviceFrag newInstance(String message) {
         DetailDeviceFrag fragment = new DetailDeviceFrag();
@@ -36,65 +47,74 @@ public class DetailDeviceFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View root = inflater.inflate(R.layout.frag_details, container, false);
+        View root = inflater.inflate(R.layout.frag_details, container, false);
+
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar);
 
         if (collapsingToolbarLayout != null) {
             String title = getArguments().getString(EXTRA_MESSAGE);
             collapsingToolbarLayout.setTitle(title);
-            //collapsingToolbarLayout.setCollapsedTitleTextColor(0xED1C24);
+//            collapsingToolbarLayout.setCollapsedTitleTextColor(0xED1C24);
             //collapsingToolbarLayout.setExpandedTitleColor(0xED1C24);
         }
 
-        checkCameraHardware(getContext());
-        mCamera = getCameraInstance();
+        if (checkCameraHardware()) {
+            mCamera = getCameraInstance();
+            mTextureView = new TextureView(getActivity());
+            mTextureView.requestLayout();
+            mTextureView.setSurfaceTextureListener(this);
+            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview1);
+            preview.addView(mTextureView);
+            preview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    safeCameraOpenInView(mTextureView.getSurfaceTexture());
+                }
+            });
 
-        // Create our Preview view and set it as the content of our activity.
-        mPreview = new CameraPreview(getContext(), mCamera);
-//                FrameLayout preview = (FrameLayout) getActivity().findViewById(R.id.camera_preview);
-//        FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview1);
-//        preview.addView(mPreview);
+            FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab2);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mCamera != null) {
+                        // get an image from the camera
+                        mCamera.takePicture(null, null, mPicture);
+                    }
+                }
+            });
+        }
 
-        final FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab2);
-        assert fab != null;
-//        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // create Intent to take a picture and return control to the calling application
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//
-//                // start the image capture Intent
-//                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
-//                Snackbar.make(view, "ciao", Snackbar.LENGTH_SHORT).show();
+        return root;
+    }
 
-
-//
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.frameLayout, mPreview)
-//                        .commit();
-
-
-                /** A safe way to get an instance of the Camera object. */
-
+    // Restart the camera preview.
+    private void safeCameraOpenInView(SurfaceTexture surface) {
+        if (mCamera != null) {
+            try {
+                mCamera.setPreviewTexture(surface);
+            } catch (IOException ioe) {
+                ioe.getStackTrace();
             }
 
-        });
-        return root;
+            // Something bad happened
+            preview_thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mCamera.startPreview();
+                }
+            }, "preview_thread");
+            preview_thread.start();
+
+        }
+
     }
 
     /**
      * Check if this device has a camera
      */
-    private boolean checkCameraHardware(Context context) {
-        if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-            // this device has a camera
-            return true;
-        } else {
-            // no camera on this device
-            return false;
-        }
+    private boolean checkCameraHardware() {
+        return (getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA));
     }
 
     /**
@@ -106,8 +126,103 @@ public class DetailDeviceFrag extends Fragment {
             c = Camera.open(); // attempt to get a Camera instance
         } catch (Exception e) {
             // Camera is not available (in use or does not exist)
+            e.getStackTrace();
         }
         return c; // returns null if camera is unavailable
+    }
+
+    @Override
+    public void onSurfaceTextureAvailable(final SurfaceTexture surface, int width, int height) {
+
+        if (surface == null) {
+            // preview surface does not exist
+            return;
+        }
+
+        safeCameraOpenInView(surface);
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+        // Ignored, Camera does all the work for us
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+            if (!preview_thread.isInterrupted()) {
+                preview_thread.interrupt();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+        // Invoked every time there's a new Camera preview frame
+    }
+
+    /**
+     * Picture Callback for handling a picture capture and saving it out to a file.
+     */
+    private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
+
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+
+            File pictureFile = getOutputMediaFile();
+            if (pictureFile == null) {
+                Toast.makeText(getActivity(), "Image retrieval failed.", Toast.LENGTH_SHORT)
+                        .show();
+                return;
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data);
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    /**
+     * Used to return the camera File output.
+     *
+     * @return
+     */
+    private File getOutputMediaFile() {
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), getString(R.string.app_name));
+
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.i("Camera Guide", "Required media storage does not exist");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                "IMG_" + timeStamp + ".jpg");
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle("Success!")
+                .setMessage("Your picture has been saved!")
+                .setCancelable(false)
+                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }).show();
+
+        return mediaFile;
     }
 
 }

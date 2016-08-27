@@ -1,8 +1,8 @@
-package it.unibo.torsello.bluetoothpositioning.filter;
+package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
 //import com.lth.thesis.blepublictransport.Config.SettingConstants;
 
-import it.unibo.torsello.bluetoothpositioning.config.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 
 /**
  * Originally written in JS by Wouter Bulten 2015
