@@ -16,6 +16,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
 
@@ -99,7 +100,7 @@ public class PreferencesFrag extends Fragment {
     private void setUpKalmanSeek() {
         final SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
         final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
-        int kalmanSeekValue = preferences.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
+        int kalmanSeekValue = preferences.getInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(kalmanSeekValue);
         final DecimalFormat df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
@@ -118,7 +119,7 @@ public class PreferencesFrag extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SharedPreferences.Editor editor = preferences.edit();
                 int progress = seekBar.getProgress();
-                editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, progress);
+                editor.putInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, progress);
                 editor.apply();
                 onSettingsListener.updateKalmanNoise(KalmanFilter3.getCalculatedNoise(progress));
             }

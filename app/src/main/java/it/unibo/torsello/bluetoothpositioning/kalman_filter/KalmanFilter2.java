@@ -16,7 +16,6 @@ public class KalmanFilter2 {
     }
 
     public double filter() {
-//        public double[] filter() {
 
         // Number of measurements
         int N = numOfMeasurements;
@@ -62,8 +61,7 @@ public class KalmanFilter2 {
 
             //System.out.printf("%04f;%04f;%04f\n", z[i], xhat[i], cur_ave);
         }
-        //System.err(xhat);
-//        return xhat;
+
         return xhat[0];
     }
 }

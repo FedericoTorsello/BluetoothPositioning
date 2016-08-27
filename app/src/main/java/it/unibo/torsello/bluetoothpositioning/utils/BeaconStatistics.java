@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.utils;
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.kalman_filter.KFBuilder;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter2;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
@@ -42,11 +41,15 @@ public class BeaconStatistics {
         //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
         // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
         // il filtro (measuredValue) restituisce il valore calcolato
-        kf = new KFBuilder()
-                // filter for RSSI
-                .R(10) // Initial process noise
-                .Q(60.0) // Initial measurement noise
-                .build();
+
+        //1-dimensional Kalman filter with predefined
+        double R = 10; // Initial process noise
+        double Q = 60.0; // Initial measurement noise
+        double A = 1;
+        double B = 0;
+        double C = 1;
+
+        kf = new KalmanFilter3(R, Q, A, B, C);
 
     }
 
