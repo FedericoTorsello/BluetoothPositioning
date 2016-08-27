@@ -11,9 +11,9 @@ import android.view.View;
 /**
  * Created by federico on 21/08/16.
  */
-public class FABScrollingBehavior extends FloatingActionButton.Behavior {
+public class FABBehaviorUtil extends FloatingActionButton.Behavior {
 
-    public FABScrollingBehavior(Context context, AttributeSet attrs) {
+    public FABBehaviorUtil(Context context, AttributeSet attrs) {
         super();
     }
 

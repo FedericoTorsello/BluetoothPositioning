@@ -1,36 +1,29 @@
 package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
+import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
+
 public class KalmanFilter2 {
 
-    private int numOfMeasurements;
+    private static KalmanFilter2 ourInstance = new KalmanFilter2();
 
-    private double processVariance, estimationVariance;
-
-    private double observations;
-
-    public KalmanFilter2(double observations, double processVariance) {
-        this.observations = observations;
-        this.processVariance = processVariance;
-        this.numOfMeasurements = 1;
-        this.estimationVariance = 0.5;
+    public static KalmanFilter2 getInstance() {
+        return ourInstance;
     }
 
-    public double filter() {
+    public double filter(double observations, double processVariance) {
 
         // Number of measurements
-        int N = numOfMeasurements;
+        int N = KalmanFilterConstansts.numOfMeasurements;
 
         // measurements with mean = .5, sigma = .1;
         double z = observations;
 
-
         double Q = processVariance,
                 //	Math.min(1.0, StatUtils.populationVariance(observations)),
-
                 //	R = StatUtils.populationVariance(observations);
-                R = estimationVariance;
-        // Estimation variance
+                R = KalmanFilterConstansts.estimationVariance;
 
+        // Estimation variance
         double[] xhat = new double[N],    // estimated true value (posteri)
                 xhat_prime = new double[N],   // estimated true value (priori)
                 p = new double[N],    // estimated error (posteri)

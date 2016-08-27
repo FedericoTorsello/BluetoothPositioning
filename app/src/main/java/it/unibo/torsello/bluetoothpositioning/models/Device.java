@@ -2,14 +2,14 @@ package it.unibo.torsello.bluetoothpositioning.models;
 
 import org.altbeacon.beacon.Beacon;
 
-import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatistics;
+import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
 
 /**
  * Created by federico on 05/08/16.
  */
 public class Device {
 
-    private BeaconStatistics stats;
+    private BeaconStatisticsUtil stats;
     private String address;
     private String friendlyName;
     private Beacon beacon;
@@ -19,7 +19,7 @@ public class Device {
     public Device(String address, String friendlyName, String color, Integer imageBeacon) {
         this.address = address;
         this.friendlyName = friendlyName;
-        this.stats = new BeaconStatistics();
+        this.stats = new BeaconStatisticsUtil();
         this.imageBeacon = imageBeacon;
         this.color = color;
     }

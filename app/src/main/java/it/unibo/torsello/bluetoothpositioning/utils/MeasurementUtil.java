@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.kalman_filter;
+package it.unibo.torsello.bluetoothpositioning.utils;
 
 import android.os.Environment;
 import android.util.Log;
@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
-//import com.lth.thesis.blepublictransport.Config.BeaconConstants;
-//
 //import org.altbeacon.beacon.Beacon;
 
 /**

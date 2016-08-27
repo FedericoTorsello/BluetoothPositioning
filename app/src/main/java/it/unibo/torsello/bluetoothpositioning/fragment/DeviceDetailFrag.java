@@ -29,7 +29,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
 /**
  * Created by federico on 27/08/16.
  */
-public class DetailDeviceFrag extends Fragment implements TextureView.SurfaceTextureListener {
+public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTextureListener {
     private Camera mCamera;
     private Thread preview_thread;
     private TextureView mTextureView;
@@ -37,8 +37,8 @@ public class DetailDeviceFrag extends Fragment implements TextureView.SurfaceTex
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private final String TAG_CLASS = getClass().getSimpleName();
 
-    public static DetailDeviceFrag newInstance(String message) {
-        DetailDeviceFrag fragment = new DetailDeviceFrag();
+    public static DeviceDetailFrag newInstance(String message) {
+        DeviceDetailFrag fragment = new DeviceDetailFrag();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);

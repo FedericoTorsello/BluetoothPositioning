@@ -35,6 +35,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_bluetooth_white_24dp"
-        app:layout_behavior=".utils.FABScrollingBehavior" />
+        app:layout_behavior=".utils.FABBehaviorUtil" />
 
 </android.support.design.widget.CoordinatorLayout>

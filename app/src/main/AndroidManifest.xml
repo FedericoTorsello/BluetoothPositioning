@@ -37,7 +37,7 @@
         <!-- Note:  the singleInstance below is important to keep two copies of your activity from getting launched on automatic startup -->
         <activity
             android:launchMode="singleInstance"
-            android:name=".activities.BLEPositioning"
+            android:name=".activities.ApplicationActivity"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="behind"

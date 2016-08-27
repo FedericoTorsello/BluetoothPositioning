@@ -3,10 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
 
 /**
- * Originally written in JS by Wouter Bulten 2015
- * Rewritten to Java by Jonathan Vidmar 2016
- * Copyright 2015 Wouter Bulten
- * GNU LESSER GENERAL PUBLIC LICENSE v3
+ * @author federico
  */
 public class KalmanFilter3 {
 
@@ -20,6 +17,12 @@ public class KalmanFilter3 {
     private double x1;
     private double x2;
 
+    private static KalmanFilter3 ourInstance = new KalmanFilter3();
+
+    public static KalmanFilter3 getInstance() {
+        return ourInstance;
+    }
+
     /**
      * Create 1-dimensional kalman filter
      *
@@ -29,18 +32,19 @@ public class KalmanFilter3 {
      * @param B Control vector
      * @param C Measurement vector
      */
-    public KalmanFilter3(double R, double Q, double A, double B, double C) {
+    public void build(double R, double Q, double A, double B, double C) {
 
         this.R = R;
         this.Q = Q;
         this.A = A;
         this.B = B;
         this.C = C;
+    }
 
+    private KalmanFilter3() {
         cov = Double.NaN;
         x = Double.NaN;
     }
-
 
     public double filter(double z) {
         return filter(z, 0);
@@ -108,8 +112,8 @@ public class KalmanFilter3 {
         R = noise;
     }
 
-    public static double getCalculatedNoise(int p) {
-        double percent = (double) p / 100.0;
+    public double getCalculatedNoise(int progressPosition) {
+        double percent = (double) progressPosition / 100.0;
         return KalmanFilterConstansts.KALMAN_NOISE_MIN +
                 (KalmanFilterConstansts.KALMAN_NOISE_MAX - KalmanFilterConstansts.KALMAN_NOISE_MIN) * percent;
     }

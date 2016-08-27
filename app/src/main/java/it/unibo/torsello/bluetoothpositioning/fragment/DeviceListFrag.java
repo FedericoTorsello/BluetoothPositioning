@@ -35,10 +35,10 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.activities.BLEPositioning;
+import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
-public class DeviceListFrag extends Fragment implements BLEPositioning.OnAddDevicesListener {
+public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceViewAdapter deviceViewAdapter;

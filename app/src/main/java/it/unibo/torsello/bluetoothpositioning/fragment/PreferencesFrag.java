@@ -29,6 +29,8 @@ public class PreferencesFrag extends Fragment {
     private SharedPreferences preferences;
 
     private OnSettingsListener onSettingsListener;
+    private DecimalFormat df;
+    private KalmanFilter3 kf;
 
     public interface OnSettingsListener {
         void updateKalmanNoise(double value);
@@ -61,6 +63,9 @@ public class PreferencesFrag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+        kf = KalmanFilter3.getInstance();
     }
 
     @Override
@@ -98,17 +103,19 @@ public class PreferencesFrag extends Fragment {
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setUpKalmanSeek() {
-        final SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
+        int seekValue = preferences.getInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, 83);
+
+        SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
+        kalmanSeek.setProgress(seekValue);
+
         final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
-        int kalmanSeekValue = preferences.getInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, 83);
-        kalmanSeek.setProgress(kalmanSeekValue);
-        final DecimalFormat df = new DecimalFormat("#.##");
-        df.setRoundingMode(RoundingMode.CEILING);
-        kalmanFilterValue.setText(df.format(KalmanFilter3.getCalculatedNoise(kalmanSeekValue)));
+
+        kalmanFilterValue.setText(df.format(kf.getCalculatedNoise(seekValue)));
+
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                kalmanFilterValue.setText(df.format(KalmanFilter3.getCalculatedNoise(progress)));
+            public void onProgressChanged(SeekBar seekBar, int seekValue, boolean fromUser) {
+                kalmanFilterValue.setText(df.format(kf.getCalculatedNoise(seekValue)));
             }
 
             @Override
@@ -121,7 +128,7 @@ public class PreferencesFrag extends Fragment {
                 int progress = seekBar.getProgress();
                 editor.putInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, progress);
                 editor.apply();
-                onSettingsListener.updateKalmanNoise(KalmanFilter3.getCalculatedNoise(progress));
+                onSettingsListener.updateKalmanNoise(kf.getCalculatedNoise(progress));
             }
         });
     }

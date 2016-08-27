@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
@@ -219,7 +219,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                     }
 
                     fragmentManager.beginTransaction()
-                            .add(R.id.frameLayout, DetailDeviceFrag.newInstance(title))
+                            .add(R.id.frameLayout, DeviceDetailFrag.newInstance(title))
                             .addToBackStack(null)
                             .commit();
                 }

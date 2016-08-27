@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BLEPositioning</string>
+    <string name="app_name">BLE Positioning</string>
     <string name="developer">Federico Torsello</string>
     <string name="developer_email">federico.torsello@studio.unibo.it</string>
 

@@ -44,7 +44,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  * Created by federico on 21/07/16.
  */
 
-public class BLEPositioning extends MainActivity implements BeaconConsumer,
+public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         PreferencesFrag.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
@@ -222,8 +222,14 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        try {
                             onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
+                    }
+                });
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
                             for (Beacon b : beacons) {
                                 Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
                                 if (b.getBluetoothAddress().equals(device.getAddress())) {
@@ -236,11 +242,10 @@ public class BLEPositioning extends MainActivity implements BeaconConsumer,
                             e.getStackTrace();
                         }
                     }
-                });
-
-
+                }).start();
             }
         });
+
     }
 
     @Override
