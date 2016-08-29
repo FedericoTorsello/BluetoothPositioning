@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
+import android.content.ClipData;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -85,13 +86,12 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         return new DeviceViewHolder(view);
     }
 
+
     @Override
-    public void onBindViewHolder(final DeviceViewHolder holder, final int position) {
+    public void onBindViewHolder(final DeviceViewHolder holder, int i) {
 
-        try {
-            final Device device = deviceList.get(position);
-            Beacon beacon = deviceList.get(position).getBeacon();
-
+        final Beacon beacon = deviceList.get(holder.getAdapterPosition()).getBeacon();
+        final Device device = deviceList.get(holder.getAdapterPosition());
 
             Integer imageBeacon = device.getImageBeacon();
             if (imageBeacon != null) {
@@ -104,7 +104,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             holder.measuredPowerTextView.setText(txPower);
 
             String rssi = String.valueOf(beacon.getRssi());
-            holder.rssiTextView.setText(String.valueOf(rssi));
+        holder.rssiTextView.setText(rssi);
 
             String friendlyName = device.getFriendlyName();
             if (friendlyName != null) {
@@ -224,10 +224,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                             .commit();
                 }
             });
-
-        } catch (NullPointerException e) {
-            e.getStackTrace();
-        }
     }
 
     @Override

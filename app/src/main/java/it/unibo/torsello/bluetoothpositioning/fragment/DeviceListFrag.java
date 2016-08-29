@@ -74,26 +74,25 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
     }
 
     @Override
-    public void addDevices(Collection<Device> iBeacons) {
-        List<Device> list = new ArrayList<>();
-        list.addAll(iBeacons);
-
-        Comparator<Device> comparator = new Comparator<Device>() {
-            public int compare(Device b1, Device b2) {
-                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
-                    return Double.compare(b1.getDist(), b2.getDist());
-                } else {
-                    return 0;
-                }
-            }
-        };
-
-        Collections.sort(list, comparator);
-
+    public void updateInfoDevices(List<Device> devices) {
         deviceList.clear();
-        deviceList.addAll(list);
+        deviceViewAdapter.notifyDataSetChanged();
+
+        if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
+            Comparator<Device> comparator = new Comparator<Device>() {
+                public int compare(Device b1, Device b2) {
+                    return Double.compare(b1.getDist(), b2.getDist());
+                }
+            };
+
+            Collections.sort(devices, comparator);
+            deviceList.addAll(devices);
+        } else {
+            deviceList.addAll(devices);
+        }
 
         deviceViewAdapter.notifyDataSetChanged();
+
     }
 
     @Override

@@ -55,6 +55,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private double processNoise;
     private SharedPreferences settings;
     private OnAddDevicesListener onAddDevicesListener;
+    private int movementState = 1;
 
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
@@ -62,8 +63,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
             "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
 
+    private List<Device> deviceList;
+
     public interface OnAddDevicesListener {
-        void addDevices(Collection<Device> iBeacons);
+        void updateInfoDevices(List<Device> iBeacons);
 
         void clearList();
     }
@@ -71,6 +74,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        deviceList = new ArrayList<>();
 
         checkAndroidPermission();
 
@@ -131,7 +136,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,10 +164,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                             e.printStackTrace();
                         }
                     }
-
-//                    int statusScan = isRunScan ?
-//                            R.string.snackbar_scanning_enabled : R.string.snackbar_scanning_disabled;
-//                    Snackbar.make(view, statusScan, Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -217,32 +218,38 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
-            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, final Region region) {
+            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                            onAddDevicesListener.addDevices(BeaconConstants.BEACON_LIST.values());
-                    }
-                });
+                if (onAddDevicesListener != null) {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
+                    new Thread() {
+                        @Override
+                        public void run() {
                             for (Beacon b : beacons) {
-                                Device device = BeaconConstants.BEACON_LIST.get(b.getBluetoothAddress());
-                                if (b.getBluetoothAddress().equals(device.getAddress())) {
+                                Device device = BeaconConstants.DEVICE_MAP.get(b.getBluetoothAddress());
+                                if (device != null) { //serve solo se la DEVICE_MAP è vuota
                                     device.setBeacon(b);
-                                    int movementState = 1;
                                     device.updateDistance(processNoise, movementState);
+                                    if (!deviceList.contains(device)) {
+                                        deviceList.add(device);
+                                    }
                                 }
                             }
-                        } catch (NullPointerException e) {
-                            e.getStackTrace();
                         }
-                    }
-                }).start();
+                    }.start();
+
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onAddDevicesListener.updateInfoDevices(deviceList);
+                                }
+                            });
+                        }
+                    }.start();
+                }
             }
         });
 

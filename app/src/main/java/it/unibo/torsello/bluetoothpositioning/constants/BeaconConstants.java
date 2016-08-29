@@ -56,8 +56,10 @@ public class BeaconConstants {
     private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //blueberry1
     private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //blueberry2
 
+    private static final String DEVICE_7 = "E7:E4:0E:F6:79:XX"; //blueberry2
+
     // Beacons
-    public static final Map<String, Device> BEACON_LIST;
+    public static final Map<String, Device> DEVICE_MAP;
 
     static {
         Map<String, Device> map = new ArrayMap<>();
@@ -67,7 +69,8 @@ public class BeaconConstants {
         map.put(DEVICE_4, new Device(DEVICE_4, "Mint2", "Mint Cocktail", R.drawable.beacon_mint));
         map.put(DEVICE_5, new Device(DEVICE_5, "Blueberry1", "Blueberry Pie", R.drawable.beacon_blueberry));
         map.put(DEVICE_6, new Device(DEVICE_6, "Blueberry2", "Blueberry Pie", R.drawable.beacon_blueberry));
-        BEACON_LIST = Collections.unmodifiableMap(map);
+        map.put(DEVICE_7, new Device(DEVICE_7, "Blueberry3", "Blueberry Pie", R.drawable.beacon_black));
+        DEVICE_MAP = Collections.unmodifiableMap(map);
     }
 
 }

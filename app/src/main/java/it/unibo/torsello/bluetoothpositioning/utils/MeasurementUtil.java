@@ -27,10 +27,10 @@ public class MeasurementUtil {
 
 //    public void update(IBeacon b, BeaconHelper bh) {
 //        if (b.getId2().equals(BeaconConstants.TEST_BEACON_INSTANCE)) {
-//            lastDistance = BeaconConstants.BEACON_LIST.get(b.getId2()).getDistanceAltBeacon();
+//            lastDistance = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistanceAltBeacon();
 //            Log.d("testy", "" + lastDistance);
-//            lastRawDistance = BeaconConstants.BEACON_LIST.get(b.getId2()).getRawDistance();
-//            lastDistanceWOSC = BeaconConstants.BEACON_LIST.get(b.getId2()).getDistKalmanFilter4();
+//            lastRawDistance = BeaconConstants.DEVICE_MAP.get(b.getId2()).getRawDistance();
+//            lastDistanceWOSC = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistKalmanFilter4();
 //            lastAltBeaconDistance = b.getDistanceAltBeacon();
 //            processNoise = bh.getProcessNoise();
 //        }
