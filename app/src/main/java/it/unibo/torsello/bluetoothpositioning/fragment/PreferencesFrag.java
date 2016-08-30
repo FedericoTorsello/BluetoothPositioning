@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
 
@@ -30,7 +29,7 @@ public class PreferencesFrag extends Fragment {
 
     private OnSettingsListener onSettingsListener;
     private DecimalFormat df;
-    private KalmanFilter3 kf;
+    private KalmanFilter3 kalmanFilter3;
 
     public interface OnSettingsListener {
         void updateKalmanNoise(double value);
@@ -39,17 +38,6 @@ public class PreferencesFrag extends Fragment {
 
         void isWalkDetection(boolean isChecked);
     }
-
-//    public interface Listener {
-//        public void isWalkDetection(boolean isChecked);
-//    }
-//
-//    private Listener mListener;
-//
-//    public void setListener(Listener listener) {
-//        mListener = listener;
-//    }
-
 
     public static PreferencesFrag newInstance(String message) {
         PreferencesFrag fragment = new PreferencesFrag();
@@ -65,7 +53,7 @@ public class PreferencesFrag extends Fragment {
         preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
         df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);
-        kf = KalmanFilter3.getInstance();
+        kalmanFilter3 = KalmanFilter3.getInstance();
     }
 
     @Override
@@ -103,19 +91,16 @@ public class PreferencesFrag extends Fragment {
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setUpKalmanSeek() {
-        int seekValue = preferences.getInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, 83);
-
         SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
+        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(seekValue);
 
         final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
-
-        kalmanFilterValue.setText(df.format(kf.getCalculatedNoise(seekValue)));
-
+        kalmanFilterValue.setText(df.format(kalmanFilter3.getCalculatedNoise(seekValue)));
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int seekValue, boolean fromUser) {
-                kalmanFilterValue.setText(df.format(kf.getCalculatedNoise(seekValue)));
+                kalmanFilterValue.setText(df.format(kalmanFilter3.getCalculatedNoise(seekValue)));
             }
 
             @Override
@@ -126,9 +111,9 @@ public class PreferencesFrag extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SharedPreferences.Editor editor = preferences.edit();
                 int progress = seekBar.getProgress();
-                editor.putInt(KalmanFilterConstansts.KALMAN_SEEK_VALUE, progress);
+                editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, progress);
                 editor.apply();
-                onSettingsListener.updateKalmanNoise(kf.getCalculatedNoise(progress));
+                onSettingsListener.updateKalmanNoise(kalmanFilter3.getCalculatedNoise(progress));
             }
         });
     }

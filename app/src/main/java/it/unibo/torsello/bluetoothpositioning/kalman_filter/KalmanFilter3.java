@@ -1,6 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
-import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
  * @author federico
@@ -114,8 +114,8 @@ public class KalmanFilter3 {
 
     public double getCalculatedNoise(int progressPosition) {
         double percent = (double) progressPosition / 100.0;
-        return KalmanFilterConstansts.KALMAN_NOISE_MIN +
-                (KalmanFilterConstansts.KALMAN_NOISE_MAX - KalmanFilterConstansts.KALMAN_NOISE_MIN) * percent;
+        return KFilterConstansts.KALMAN_NOISE_MIN +
+                (KFilterConstansts.KALMAN_NOISE_MAX - KFilterConstansts.KALMAN_NOISE_MIN) * percent;
     }
 }
 

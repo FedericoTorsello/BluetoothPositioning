@@ -2,63 +2,77 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/text_margin">
+    android:padding="@dimen/custom_margin">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/text_margin">
-
-            <TextView
-                android:id="@+id/kalmanStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_kalman_status"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:padding="@dimen/custom_margin">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:id="@+id/kalmanSeekContainer">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/custom_margin">
 
                 <TextView
-                    android:id="@+id/kalmanValue"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_kalman_value"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_horizontal" />
-
-                <SeekBar
-                    android:id="@+id/kalmanSeek"
+                    android:id="@+id/kalmanStatus"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="100"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_height="match_parent"
+                    android:text="@string/settings_kalman_status"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:id="@+id/kalmanSeekContainer">
+
+                    <TextView
+                        android:id="@+id/kalmanValue"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/settings_kalman_value"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_horizontal" />
+
+                    <SeekBar
+                        android:id="@+id/kalmanSeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="100"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/sortByDistance"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_sort_by_distance"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/custom_margin">
 
-            <Switch
-                android:id="@+id/sortByDistanceSwitch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_disabled" />
+                <TextView
+                    android:id="@+id/sortByDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:text="@string/settings_sort_by_distance"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Switch
+                    android:id="@+id/sortByDistanceSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:text="@string/settings_disabled" />
+            </LinearLayout>
 
             <!--<TextView-->
             <!--android:id="@+id/selfCorrectionStatus"-->
@@ -75,20 +89,66 @@
             <!--android:layout_marginTop="@dimen/settings_margin"-->
             <!--android:text="@string/settings_enabled" />-->
 
-            <TextView
-                android:id="@+id/walkDetection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_wd_status"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <Switch
-                android:id="@+id/walkDetectionSwitch"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/settings_margin"
-                android:text="@string/settings_disabled" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/custom_margin">
+
+                <TextView
+                    android:id="@+id/walkDetection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:text="@string/settings_wd_status"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Switch
+                    android:id="@+id/walkDetectionSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:text="@string/settings_disabled" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/custom_margin">
+
+                <TextView
+                    android:id="@+id/kalmanStatus2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/settings_kalman_status"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/settings_margin"
+                    android:id="@+id/varianceSeekContainer">
+
+                    <TextView
+                        android:id="@+id/kalmanValue2"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="@string/settings_kalman_value"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_horizontal" />
+
+                    <SeekBar
+                        android:id="@+id/varianceSeek"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="100"
+                        android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

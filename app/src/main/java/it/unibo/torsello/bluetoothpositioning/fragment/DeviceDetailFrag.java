@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -97,13 +98,12 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
                 ioe.getStackTrace();
             }
 
-            // Something bad happened
-            preview_thread = new Thread(new Runnable() {
+            preview_thread = new Thread() {
                 @Override
                 public void run() {
                     mCamera.startPreview();
                 }
-            }, "preview_thread");
+            };
             preview_thread.start();
 
         }
@@ -152,7 +152,6 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
         if (mCamera != null) {
             mCamera.stopPreview();
             mCamera.release();
-            mCamera = null;
             if (!preview_thread.isInterrupted()) {
                 preview_thread.interrupt();
             }
@@ -173,10 +172,12 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
+
             File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
-                Toast.makeText(getActivity(), "Image retrieval failed.", Toast.LENGTH_SHORT)
-                        .show();
+                final FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+                assert fab != null;
+                Snackbar.make(fab, "Image retrieval failed.", Snackbar.LENGTH_SHORT);
                 return;
             }
 
@@ -212,13 +213,12 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
         File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_" + timeStamp + ".jpg");
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle("Success!")
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Success!")
                 .setMessage("Your picture has been saved!")
-                .setCancelable(false)
-                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        dialog.dismiss();
                     }
                 }).show();
 

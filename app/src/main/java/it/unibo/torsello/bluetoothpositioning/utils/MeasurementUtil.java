@@ -29,8 +29,8 @@ public class MeasurementUtil {
 //        if (b.getId2().equals(BeaconConstants.TEST_BEACON_INSTANCE)) {
 //            lastDistance = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistanceAltBeacon();
 //            Log.d("testy", "" + lastDistance);
-//            lastRawDistance = BeaconConstants.DEVICE_MAP.get(b.getId2()).getRawDistance();
-//            lastDistanceWOSC = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistKalmanFilter4();
+//            lastRawDistance = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistNoFilter1();
+//            lastDistanceWOSC = BeaconConstants.DEVICE_MAP.get(b.getId2()).getDistKalmanFilter3_2();
 //            lastAltBeaconDistance = b.getDistanceAltBeacon();
 //            processNoise = bh.getProcessNoise();
 //        }

@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
-import android.content.ClipData;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -54,6 +53,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         private TextView uuidTextView;
         private TextView nameSpaceTextView;
         private TextView proximityTextView;
+        private TextView velocityTextView;
         private TextView colorTextView;
         private LinearLayout visibilityUUIDLinearLayout;
         private LinearLayout visibilityNameSpaceLinearLayout;
@@ -73,6 +73,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
             nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
             proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
+            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
             colorTextView = (TextView) view.findViewById(R.id.value_color);
             visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
             visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
@@ -93,137 +94,141 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         final Beacon beacon = deviceList.get(holder.getAdapterPosition()).getBeacon();
         final Device device = deviceList.get(holder.getAdapterPosition());
 
-            Integer imageBeacon = device.getImageBeacon();
-            if (imageBeacon != null) {
-                holder.imageView.setImageResource(imageBeacon);
-            } else {
-                holder.imageView.setImageResource(R.drawable.unknown_beacon);
-            }
+        holder.velocityTextView.setText(String.valueOf(device.getVelocity()));
 
-            String txPower = String.valueOf(beacon.getTxPower());
-            holder.measuredPowerTextView.setText(txPower);
+        Integer imageBeacon = device.getImageBeacon();
+        if (imageBeacon != null) {
+            holder.imageView.setImageResource(imageBeacon);
+        } else {
+            holder.imageView.setImageResource(R.drawable.unknown_beacon);
+        }
 
-            String rssi = String.valueOf(beacon.getRssi());
+        String txPower = String.valueOf(beacon.getTxPower());
+        holder.measuredPowerTextView.setText(txPower);
+
+        String rssi = String.valueOf(beacon.getRssi());
         holder.rssiTextView.setText(rssi);
 
-            String friendlyName = device.getFriendlyName();
-            if (friendlyName != null) {
-                holder.friendlyNameTextView.setText(friendlyName);
-            } else {
-                holder.friendlyNameTextView.setText(android.R.string.unknownName);
-            }
+        String friendlyName = device.getFriendlyName();
+        if (friendlyName != null) {
+            holder.friendlyNameTextView.setText(friendlyName);
+        } else {
+            holder.friendlyNameTextView.setText(android.R.string.unknownName);
+        }
 
-            String bluetoothName = beacon.getBluetoothName();
-            if (bluetoothName != null) {
-                holder.defaultNameTextView.setText(bluetoothName);
-            } else {
-                holder.defaultNameTextView.setText(android.R.string.unknownName);
-            }
+        String bluetoothName = beacon.getBluetoothName();
+        if (bluetoothName != null) {
+            holder.defaultNameTextView.setText(bluetoothName);
+        } else {
+            holder.defaultNameTextView.setText(android.R.string.unknownName);
+        }
 
-            String bluetoothAddress = beacon.getBluetoothAddress();
-            if (bluetoothAddress != null) {
-                holder.macTextView.setText(bluetoothAddress);
-            } else {
-                holder.macTextView.setText(android.R.string.unknownName);
-            }
+        String bluetoothAddress = beacon.getBluetoothAddress();
+        if (bluetoothAddress != null) {
+            holder.macTextView.setText(bluetoothAddress);
+        } else {
+            holder.macTextView.setText(android.R.string.unknownName);
+        }
 
-            String proximity = device.getProximity();
-            if (proximity != null) {
-                holder.proximityTextView.setText(proximity);
-            } else {
-                holder.proximityTextView.setText(android.R.string.unknownName);
-            }
+        String proximity = device.getProximity();
+        if (proximity != null) {
+            holder.proximityTextView.setText(proximity);
+        } else {
+            holder.proximityTextView.setText(android.R.string.unknownName);
+        }
 
-            String color = device.getColor();
-            if (color != null) {
-                holder.colorTextView.setText(color);
-            } else {
-                holder.colorTextView.setText(android.R.string.unknownName);
-            }
+        String color = device.getColor();
+        if (color != null) {
+            holder.colorTextView.setText(color);
+        } else {
+            holder.colorTextView.setText(android.R.string.unknownName);
+        }
 
-            holder.distanceTextView.setText(String.format(Locale.getDefault(),
-                    "DIST_KF1: %sm \n" +
-                            "DIST_KF2: %sm \n" +
-                            "DIST_KF3: %sm \n" +
-//                            "DIST_KF4: %sm \n" +
-                            "DIST_A: %sm \n" +
-                            "DIST_B: %sm \n" +
-                            "DIST_C: %sm \n" +
-                            "DIST_D: %sm",
-                    df.format(device.getDistanceKalmanFilter1()),
-                    df.format(device.getDistanceKalmanFilter2()),
-                    df.format(device.getDistanceKalmanFilter3()),
-//                    df.format(device.getDistanceKalmanFilter4()),
-                    df.format(device.getDist()),
-                    df.format(beacon.getDistance()),
-                    df.format(device.getRawDistance()),
-                    df.format(device.getDistanceInternet())));
+        holder.distanceTextView.setText(String.format(Locale.getDefault(),
+                "DIST_KF1: %sm \n" +
+                        "DIST_KF2: %sm \n" +
+                        "DIST_KF3_1: %sm \n" +
+                        "DIST_KF3_2: %sm \n" +
+                        "DIST_KF3_4: %sm \n" +
+                        "DIST_A: %sm \n" +
+                        "DIST_B: %sm \n" +
+                        "DIST_C: %sm \n" +
+                        "DIST_D: %sm",
+                df.format(device.getDistKalmanFilter1()),
+                df.format(device.getDistKalmanFilter2()),
+                df.format(device.getDistKalmanFilter3_1()),
+                df.format(device.getDistKalmanFilter3_2()),
+                df.format(device.getDistKalmanFilter4()),
+                df.format(beacon.getDistance()),
+                df.format(device.getDistNoFilter1()),
+                df.format(device.getDistNoFilter2()),
+                df.format(device.getDistNoFilter3())));
 
-            if (beacon.getServiceUuid() == 0xfeaa) {
-                if (beacon.getBeaconTypeCode() == 0x00) {
-                    holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
-                    holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
+        if (beacon.getServiceUuid() == 0xfeaa) {
+            if (beacon.getBeaconTypeCode() == 0x00) {
+                holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
+                holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
 
-                    // Eddystone-UID
-                    if (beacon.getId1() != null) {
-                        holder.nameSpaceTextView.setText(beacon.getId1().toString());
-                    } else {
-                        holder.nameSpaceTextView.setText(android.R.string.unknownName);
-                    }
-
-                } else if (beacon.getBeaconTypeCode() == 0x10) {
-                    // Eddystone-URL
-                    // String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
-                } else if (beacon.getBeaconTypeCode() == 0x20) {
-                    if (!beacon.getExtraDataFields().isEmpty()) {
-                        // Eddystone-TLM
-                    }
-                }
-            } else if (beacon.getServiceUuid() == 0xbeac) {
-                // AltBeacon
-            } else if (beacon.getBeaconTypeCode() == 0x0215) { //533 in dec)
-                holder.visibilityUUIDLinearLayout.setVisibility(View.VISIBLE);
-                holder.visibilityNameSpaceLinearLayout.setVisibility(View.GONE);
-                // AppleIBeacon
+                // Eddystone-UID
                 if (beacon.getId1() != null) {
-                    holder.uuidTextView.setText(beacon.getId1().toString());
+                    holder.nameSpaceTextView.setText(beacon.getId1().toString());
                 } else {
-                    holder.uuidTextView.setText(android.R.string.unknownName);
+                    holder.nameSpaceTextView.setText(android.R.string.unknownName);
                 }
 
-                if (beacon.getId2() != null) {
-                    holder.majorTextView.setText(beacon.getId2().toString());
-                } else {
-                    holder.majorTextView.setText(android.R.string.unknownName);
+            } else if (beacon.getBeaconTypeCode() == 0x10) {
+                // Eddystone-URL
+                // String url = UrlBeaconUrlCompressor.uncompress(beacon.getId1().toByteArray());
+            } else if (beacon.getBeaconTypeCode() == 0x20) {
+                if (!beacon.getExtraDataFields().isEmpty()) {
+                    // Eddystone-TLM
                 }
-
-                if (beacon.getId3() != null) {
-                    holder.minorTextView.setText(beacon.getId3().toString());
-                } else {
-                    holder.minorTextView.setText(android.R.string.unknownName);
-                }
-
-            } else if (beacon.getBeaconTypeCode() == 0x0101) {
-                // EstimoteNearable
+            }
+        } else if (beacon.getServiceUuid() == 0xbeac) {
+            // AltBeacon
+        } else if (beacon.getBeaconTypeCode() == 0x0215) { //533 in dec)
+            holder.visibilityUUIDLinearLayout.setVisibility(View.VISIBLE);
+            holder.visibilityNameSpaceLinearLayout.setVisibility(View.GONE);
+            // AppleIBeacon
+            if (beacon.getId1() != null) {
+                holder.uuidTextView.setText(beacon.getId1().toString());
+            } else {
+                holder.uuidTextView.setText(android.R.string.unknownName);
             }
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            if (beacon.getId2() != null) {
+                holder.majorTextView.setText(beacon.getId2().toString());
+            } else {
+                holder.majorTextView.setText(android.R.string.unknownName);
+            }
 
-                    String title;
-                    if (device.getFriendlyName() != null) {
-                        title = device.getFriendlyName();
-                    } else {
-                        title = device.getAddress();
-                    }
+            if (beacon.getId3() != null) {
+                holder.minorTextView.setText(beacon.getId3().toString());
+            } else {
+                holder.minorTextView.setText(android.R.string.unknownName);
+            }
 
-                    fragmentManager.beginTransaction()
-                            .add(R.id.frameLayout, DeviceDetailFrag.newInstance(title))
-                            .addToBackStack(null)
-                            .commit();
+        } else if (beacon.getBeaconTypeCode() == 0x0101) {
+            // EstimoteNearable
+        }
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String title;
+                if (device.getFriendlyName() != null) {
+                    title = device.getFriendlyName();
+                } else {
+                    title = device.getAddress();
                 }
-            });
+
+                fragmentManager.beginTransaction()
+                        .add(R.id.frameLayout, DeviceDetailFrag.newInstance(title))
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     @Override

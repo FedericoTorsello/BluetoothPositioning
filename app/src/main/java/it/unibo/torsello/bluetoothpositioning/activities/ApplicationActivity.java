@@ -53,7 +53,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private boolean isRunScan = false;
     private boolean selfCorrection;
     private double processNoise;
-    private SharedPreferences settings;
+    private SharedPreferences preferences;
     private OnAddDevicesListener onAddDevicesListener;
     private int movementState = 1;
 
@@ -127,10 +127,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         // is not visible.  This reduces bluetooth power usage by about 60%
         new BackgroundPowerSaver(this.getApplicationContext());
 
-        settings = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
         walkDetection = new WalkDetection(getApplication());
-        if (settings.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
         }
 
@@ -151,7 +151,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
                         try {
                             beaconManager.startRangingBeaconsInRegion(region);
-                            Snackbar.make(view, R.string.snackbar_scanning_enabled, Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(view, R.string.snackbar_scanning_enabled,
+                                    Snackbar.LENGTH_SHORT).show();
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
@@ -159,7 +160,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
                         try {
                             beaconManager.stopRangingBeaconsInRegion(region);
-                            Snackbar.make(view, R.string.snackbar_scanning_disabled, Snackbar.LENGTH_INDEFINITE).show();
+                            Snackbar.make(view, R.string.snackbar_scanning_disabled,
+                                    Snackbar.LENGTH_INDEFINITE).show();
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
@@ -220,14 +222,13 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
 
-                if (onAddDevicesListener != null) {
-
                     new Thread() {
                         @Override
                         public void run() {
                             for (Beacon b : beacons) {
                                 Device device = BeaconConstants.DEVICE_MAP.get(b.getBluetoothAddress());
                                 if (device != null) { //serve solo se la DEVICE_MAP è vuota
+                                    device.setApplication(getApplication());
                                     device.setBeacon(b);
                                     device.updateDistance(processNoise, movementState);
                                     if (!deviceList.contains(device)) {
@@ -244,12 +245,13 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    if (onAddDevicesListener != null) {
                                     onAddDevicesListener.updateInfoDevices(deviceList);
+                                    }
                                 }
                             });
                         }
                     }.start();
-                }
             }
         });
 
@@ -265,8 +267,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 //                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
                     } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
 //                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setTitle(R.string.dialog_permissions_location_access_title)
+                        new AlertDialog.Builder(this)
+                                .setTitle(R.string.dialog_permissions_location_access_title)
                                 .setMessage(R.string.dialog_permissions_location_access_text)
                                 .setPositiveButton(android.R.string.ok, null)
                                 .setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -329,8 +331,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                 final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 assert fab != null;
 
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_bluetooth_title)
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.dialog_bluetooth_title)
                         .setMessage(R.string.dialog_bluetooth_text)
                         .setPositiveButton(android.R.string.ok, null)
                         .setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -366,8 +368,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             }
 
             if (!permissions.isEmpty()) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(R.string.dialog_location_access_title)
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.dialog_location_access_title)
                         .setMessage(R.string.dialog_bluetooth_text)
                         .setPositiveButton(android.R.string.ok, null)
                         .setOnDismissListener(new DialogInterface.OnDismissListener() {

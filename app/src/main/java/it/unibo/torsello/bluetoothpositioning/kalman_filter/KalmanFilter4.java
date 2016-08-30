@@ -10,7 +10,7 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
-import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
  * Created by serhatalyurt on 21.4.2016.
@@ -27,6 +27,7 @@ public class KalmanFilter4 {
     private RealVector pNoise;
     private RealVector mNoise;
     private RealVector z;
+    private double txPower;
 
     private static KalmanFilter4 ourInstance = new KalmanFilter4();
 
@@ -35,22 +36,21 @@ public class KalmanFilter4 {
     }
 
     private KalmanFilter4() {
-        measurementNoise = KalmanFilterConstansts.numOfMeasurements;
-//        processNoise = 0.0001;
-        processNoise = KalmanFilterConstansts.estimationVariance;
+        measurementNoise = KFilterConstansts.NUMBER_OF_MEASUREMENTS;
+        processNoise = KFilterConstansts.PROCESS_NOISE;
 
         // A = [ 1 ]
-        A = new Array2DRowRealMatrix(new double[]{1d});
+        A = new Array2DRowRealMatrix(new double[]{1D});
         // B = null
         B = null;
         // H = [ 1 ]
-        H = new Array2DRowRealMatrix(new double[]{1d});
+        H = new Array2DRowRealMatrix(new double[]{1D});
         // x = [ 10 ]
-        x = new ArrayRealVector(new double[]{-65});
+        x = new ArrayRealVector(new double[]{txPower});
         // Q = [ 1e-5 ]
         Q = new Array2DRowRealMatrix(new double[]{processNoise});
         // P = [ 1 ]
-        P0 = new Array2DRowRealMatrix(new double[]{1d});
+        P0 = new Array2DRowRealMatrix(new double[]{1D});
         // R = [ 0.1 ]
         R = new Array2DRowRealMatrix(new double[]{measurementNoise});
 
@@ -61,6 +61,10 @@ public class KalmanFilter4 {
         // process and measurement noise vectors
         pNoise = new ArrayRealVector(1);
         mNoise = new ArrayRealVector(1);
+    }
+
+    public void setTxPower(double txPower) {
+        this.txPower = txPower;
     }
 
     public void addRssi(double rssi) {

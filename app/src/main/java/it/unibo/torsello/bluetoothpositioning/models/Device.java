@@ -1,5 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.models;
 
+import android.app.Application;
+
 import org.altbeacon.beacon.Beacon;
 
 import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
@@ -28,6 +30,10 @@ public class Device {
         this.beacon = beacon;
     }
 
+    public void setApplication(Application application) {
+        stats.setApplication(application);
+    }
+
     public void updateDistance(double processNoise, int movementState) {
         stats.updateDistance(beacon, processNoise, movementState);
     }
@@ -52,36 +58,44 @@ public class Device {
         return beacon;
     }
 
-    public double getDist() {
-        return stats.getDist();
+    public double getDistNoFilter1() {
+        return stats.getDistNoFilter1();
     }
 
-    public double getRawDistance() {
-        return stats.getRawDistance();
+    public double getDistNoFilter2() {
+        return stats.getDistNoFilter2();
     }
 
-    public double getDistanceInternet() {
-        return stats.getDistInternet();
+    public double getDistNoFilter3() {
+        return stats.getDistNoFilter3();
     }
 
-    public double getDistanceKalmanFilter1() {
+    public double getDistKalmanFilter1() {
         return stats.getDistKalmanFilter1();
     }
 
-    public double getDistanceKalmanFilter2() {
+    public double getDistKalmanFilter2() {
         return stats.getDistKalmanFilter2();
     }
 
-    public double getDistanceKalmanFilter3() {
-        return stats.getDistKalmanFilter3();
+    public double getDistKalmanFilter3_1() {
+        return stats.getDistKalmanFilter3_1();
     }
 
-    public double getDistanceKalmanFilter4() {
+    public double getDistKalmanFilter3_2() {
+        return stats.getDistKalmanFilter3_2();
+    }
+
+    public double getDistKalmanFilter4() {
         return stats.getDistKalmanFilter4();
     }
 
+    public double getVelocity() {
+        return stats.getVelocity();
+    }
+
     public String getProximity() {
-        double proximity = getDist();
+        double proximity = getDistNoFilter2();
 //        double accuracy = Math.pow(12.0, 1.5 * ((rssi / measuredPower) - 1));
         String accuracy = null;
 

@@ -27,7 +27,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -81,7 +80,7 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
         if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
             Comparator<Device> comparator = new Comparator<Device>() {
                 public int compare(Device b1, Device b2) {
-                    return Double.compare(b1.getDist(), b2.getDist());
+                    return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
                 }
             };
 

@@ -3,9 +3,8 @@ package it.unibo.torsello.bluetoothpositioning.constants;
 /**
  * Created by federico on 27/08/16.
  */
-public class KalmanFilterConstansts {
+public class KFilterConstansts {
 
-    public static final String KALMAN_SEEK_VALUE = "kalman_filter_mode";
     public static final double KALMAN_NOISE_MIN = 0.01;
     public static final double KALMAN_NOISE_MAX = 25.0;
     public static final double FILTER_FACTOR = 0.1;
@@ -19,6 +18,7 @@ public class KalmanFilterConstansts {
 
     public static double KALMAN_VALUE = 2D;
 
-    public static int numOfMeasurements = 1;
-    public static double estimationVariance = 0.5;
+    public static int NUMBER_OF_MEASUREMENTS = 1;
+    public static double ESTIMATION_VARIANCE = 0.5;
+    public static double PROCESS_NOISE = 0.0001;
 }

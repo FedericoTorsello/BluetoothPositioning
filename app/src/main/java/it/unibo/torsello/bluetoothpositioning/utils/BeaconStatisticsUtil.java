@@ -1,12 +1,15 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
+import android.app.Application;
+
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.constants.KalmanFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter1;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter2;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
+import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter4;
 
 /**
  * A helper class
@@ -15,98 +18,125 @@ import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
  */
 public class BeaconStatisticsUtil {
 
-    private DescriptiveStatistics recentRSSI;
+    private DescriptiveStatistics recentRssi;
     private DescriptiveStatistics recentTxPower;
-    private KalmanFilter3 kf;
-    private double lastCalculatedDistance;
-    private double lastRawDistance;
-    private double lastWOSC;
-    private double dist;
-    private double distInMetresKalmanFilter1;
-    private double distInMetresKalmanFilter2;
-    private double distInternet;
+    private KalmanFilter1 kalmanFilter1;
+    private KalmanFilter2 kalmanFilter2;
+    private KalmanFilter3 kalmanFilter3;
+    private KalmanFilter4 kalmanFilter4;
+    private double dist1;
+    private double dist2;
+    private double dist3;
+    private double filteredDist1;
+    private double filteredDist2;
+    private double filteredDist3_1;
+    private double filteredDist3_2;
+    private double filteredDist4;
+    private double velocity;
+    private Application application;
 
     public BeaconStatisticsUtil() {
 
         // limit on the number of values that can be stored in the dataset
-        recentRSSI = new DescriptiveStatistics();
-        recentRSSI.setWindowSize(KalmanFilterConstansts.WINDOW);
+        recentRssi = new DescriptiveStatistics();
+        recentRssi.setWindowSize(KFilterConstansts.WINDOW);
         recentTxPower = new DescriptiveStatistics();
-        recentTxPower.setWindowSize(KalmanFilterConstansts.WINDOW);
+        recentTxPower.setWindowSize(KFilterConstansts.WINDOW);
 
         //Sulla base della distanza costante dal beacon, cioè, la bassa interferenza dal sistema (R), la misura di alta interferenza (Q)
         // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
         // il filtro (measuredValue) restituisce il valore calcolato
 
         //1-dimensional Kalman filter with predefined
-        double R = KalmanFilterConstansts.R; // Initial process noise
-        double Q = KalmanFilterConstansts.Q; // Initial measurement noise
-        double A = KalmanFilterConstansts.A;
-        double B = KalmanFilterConstansts.B;
-        double C = KalmanFilterConstansts.C;
+        double R = KFilterConstansts.R; // Initial process noise
+        double Q = KFilterConstansts.Q; // Initial measurement noise
+        double A = KFilterConstansts.A;
+        double B = KFilterConstansts.B;
+        double C = KFilterConstansts.C;
 
-        kf = KalmanFilter3.getInstance();
-        kf.build(R, Q, A, B, C);
+        kalmanFilter1 = KalmanFilter1.getInstance();
+        kalmanFilter2 = KalmanFilter2.getInstance();
+        kalmanFilter3 = KalmanFilter3.getInstance();
+        kalmanFilter3.build(R, Q, A, B, C);
+        kalmanFilter4 = KalmanFilter4.getInstance();
 
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
     }
 
     public void updateDistance(Beacon b, double processNoise, int movementState) {
 
-        recentRSSI.addValue(b.getRssi());
-        recentTxPower.addValue(b.getTxPower());
+        int rssi = b.getRssi();
+        int txPower = b.getTxPower();
+
+        recentRssi.addValue(rssi);
+        recentTxPower.addValue(txPower);
 
         // Update measurement noise continually
         double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
-                Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
+                Math.log(1 + Math.pow(recentRssi.getMean() / recentRssi.getStandardDeviation(), 2)));
 
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
-            kf.setMeasurementNoise(mNoise);
+            kalmanFilter3.setMeasurementNoise(mNoise);
         }
-        kf.setProcessNoise(processNoise);
+        kalmanFilter3.setProcessNoise(processNoise);
 
-        lastRawDistance = calculateDistanceNoFilter1(b.getTxPower(), b.getRssi());
-        double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50), movementState);
-        lastCalculatedDistance = calculateDistanceNoFilter1(recentTxPower.getPercentile(50), lastFilteredReading);
+        dist1 = calculateDistanceNoFilter1(rssi, txPower);
+        dist2 = calculateDistanceNoFilter2(rssi, txPower);
+        dist3 = calculateDistanceNoFilter3(rssi, txPower);
 
-        double lastFilteredReading1 = kf.filter(recentTxPower.getPercentile(50), movementState);
-        lastWOSC = calculateDistanceNoFilter1(lastFilteredReading1, lastFilteredReading);
+        filteredDist1 = calculateDistanceKalmanFilter1(rssi, txPower, b.getBluetoothAddress());
+        filteredDist2 = calculateDistanceKalmanFilter2(rssi, txPower);
 
-        dist = calculateDistanceNoFilter2(b.getRssi(), b.getTxPower());
-        distInternet = calculateDistanceNoFilter3(b.getRssi(), b.getTxPower());
+        double rssiFiltered = kalmanFilter3.filter(recentRssi.getPercentile(50), movementState);
+        filteredDist3_1 = calculateDistanceNoFilter1(rssiFiltered, recentTxPower.getPercentile(50));
 
-        distInMetresKalmanFilter1 = calculateDistanceKalmanFilter1(b.getRssi(), b.getTxPower(), b.getBluetoothAddress());
-        distInMetresKalmanFilter2 = calculateDistanceKalmanFilter2(b.getRssi(), b.getTxPower());
+        double txPowerFiltered = kalmanFilter3.filter(recentTxPower.getPercentile(50), movementState);
+        filteredDist3_2 = calculateDistanceNoFilter1(rssiFiltered, txPowerFiltered);
+
+        filteredDist4 = calculateDistanceKalmanFilter4(rssi, txPower);
+
     }
 
-    public double getDist() {
-        return dist;
+    public double getDistNoFilter1() {
+        return dist1;
     }
 
-    public double getRawDistance() {
-        return lastRawDistance;
+    public double getDistNoFilter2() {
+        return dist2;
     }
 
-    public double getDistInternet() {
-        return distInternet;
+    public double getDistNoFilter3() {
+        return dist3;
     }
 
     public double getDistKalmanFilter1() {
-        return distInMetresKalmanFilter1;
+        return filteredDist1;
     }
 
     public double getDistKalmanFilter2() {
-        return distInMetresKalmanFilter2;
+        return filteredDist2;
     }
 
-    public double getDistKalmanFilter3() {
-        return lastCalculatedDistance;
+    public double getDistKalmanFilter3_1() {
+        return filteredDist3_1;
+    }
+
+    public double getDistKalmanFilter3_2() {
+        return filteredDist3_2;
     }
 
     public double getDistKalmanFilter4() {
-        return lastWOSC;
+        return filteredDist4;
     }
 
-    private double calculateDistanceNoFilter1(double txPower, double rssi) {
+    public double getVelocity() {
+        return velocity;
+    }
+
+    private double calculateDistanceNoFilter1(double rssi, double txPower) {
         double n = 2.0;   // Signal propogation exponent
         double d0 = 1;  // Reference distance in meters
         double C = 0;   // Gaussian variable for mitigating flat fading
@@ -123,7 +153,7 @@ public class BeaconStatisticsUtil {
         return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
     }
 
-    private double calculateDistanceNoFilter2(double rssi, int txPower) {
+    private double calculateDistanceNoFilter2(int rssi, int txPower) {
         if (rssi == 0) {
             return -1.0; // if we cannot determine accuracy, return -1.
         }
@@ -136,7 +166,7 @@ public class BeaconStatisticsUtil {
         }
     }
 
-    private double calculateDistanceNoFilter3(double rssi, int txPower) {
+    private double calculateDistanceNoFilter3(int rssi, int txPower) {
     /*
      * RSSI = TxPower - 10 * n * lg(d)
      * n = 2 (in free space)
@@ -148,24 +178,29 @@ public class BeaconStatisticsUtil {
 
     private double calculateDistanceKalmanFilter1(double rssi, int txPower, String bluetoothAddress) {
 
-        KalmanFilter1 kalmanFilter = KalmanFilter1.getInstance();
-        double accuracy = kalmanFilter.filter(rssi, bluetoothAddress);
-        double newDistanceInMeters = calculateDistanceStandard(accuracy, txPower);
+        kalmanFilter1.filter(rssi, bluetoothAddress);
+        double filteredRssi = kalmanFilter1.getMeasuredRssi();
+        velocity = kalmanFilter1.getMeasuredVelocity();
 
-        double previousAccuracy = distInMetresKalmanFilter2;
-        newDistanceInMeters = previousAccuracy * (1 - KalmanFilterConstansts.FILTER_FACTOR)
-                + newDistanceInMeters * KalmanFilterConstansts.FILTER_FACTOR;
+        double newDistanceInMeters = calculateDistanceStandard(filteredRssi, txPower);
 
-        return newDistanceInMeters;
+        return filteredDist2 * (1 - KFilterConstansts.FILTER_FACTOR)
+                + newDistanceInMeters * KFilterConstansts.FILTER_FACTOR;
     }
 
-    private double calculateDistanceKalmanFilter2(double rssi, int txPower) {
+    private double calculateDistanceKalmanFilter2(int rssi, int txPower) {
 
         double newDistanceInMeters = calculateDistanceStandard(rssi, txPower);
-        KalmanFilter2 kf = KalmanFilter2.getInstance();
-        newDistanceInMeters = kf.filter(newDistanceInMeters, KalmanFilterConstansts.estimationVariance);
 
-        return newDistanceInMeters;
+        return kalmanFilter2.filter(newDistanceInMeters, KFilterConstansts.ESTIMATION_VARIANCE);
+    }
+
+    private double calculateDistanceKalmanFilter4(int rssi, int txPower) {
+
+        kalmanFilter4.setTxPower(txPower);
+        kalmanFilter4.addRssi(rssi);
+
+        return calculateDistanceStandard(kalmanFilter4.getEstimatedRssi(), txPower);
     }
 
     //radiousNetwork
