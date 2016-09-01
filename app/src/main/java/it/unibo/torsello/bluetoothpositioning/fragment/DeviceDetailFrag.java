@@ -61,7 +61,11 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
         }
 
         if (checkCameraHardware()) {
-            mCamera = getCameraInstance();
+
+            if (mCamera == null) {
+                mCamera = getCameraInstance();
+            }
+
             mTextureView = new TextureView(getActivity());
             mTextureView.requestLayout();
             mTextureView.setSurfaceTextureListener(this);
@@ -84,6 +88,9 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
                     }
                 }
             });
+        } else {
+            Toast.makeText(getActivity(), "No camera on this device", Toast.LENGTH_LONG)
+                    .show();
         }
 
         return root;
@@ -121,13 +128,16 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
      * A safe way to get an instance of the Camera object.
      */
     public static Camera getCameraInstance() {
+
         Camera c = null;
+
         try {
             c = Camera.open(); // attempt to get a Camera instance
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             // Camera is not available (in use or does not exist)
             e.getStackTrace();
         }
+
         return c; // returns null if camera is unavailable
     }
 
@@ -172,21 +182,19 @@ public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTex
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
 
-
             File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
                 final FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
                 assert fab != null;
                 Snackbar.make(fab, "Image retrieval failed.", Snackbar.LENGTH_SHORT);
-                return;
-            }
-
-            try {
-                FileOutputStream fos = new FileOutputStream(pictureFile);
-                fos.write(data);
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                try {
+                    FileOutputStream fos = new FileOutputStream(pictureFile);
+                    fos.write(data);
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     };

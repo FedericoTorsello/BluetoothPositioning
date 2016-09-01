@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:application=".activities.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    tools:application=".activities.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -112,7 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right|end"
+        app:layout_anchorGravity="bottom|center"
         android:src="@drawable/ic_add_a_photo_white_24dp" />
 
 </android.support.design.widget.CoordinatorLayout>

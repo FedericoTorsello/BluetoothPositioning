@@ -30,7 +30,7 @@ public class KalmanFilter1 {
 
         Double predictedSignal = mPredictedSignals.get(identifier);
         if (predictedSignal == null) {
-            predictedSignal = -70D;
+            predictedSignal = KFilterConstansts.DEFAULT_RSSI_VALUE;
         }
 
         Double predictedVelocity = mPredictedVelocities.get(identifier);

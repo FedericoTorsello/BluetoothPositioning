@@ -18,7 +18,16 @@ public class KFilterConstansts {
 
     public static double KALMAN_VALUE = 2D;
 
+    public static double DEFAULT_RSSI_VALUE = -70D;
+
     public static int NUMBER_OF_MEASUREMENTS = 1;
-    public static double ESTIMATION_VARIANCE = 0.5;
-    public static double PROCESS_NOISE = 0.0001;
+    //        public static double ESTIMATION_VARIANCE = 0.5D;
+//    public static double ESTIMATION_VARIANCE = 0.1D; // Estimation variance
+    public static double ESTIMATION_VARIANCE = 0.01D; // Estimation variance
+
+
+    //        public static double PROCESS_NOISE = 0.0001D;
+//    public static double PROCESS_NOISE = 1e-5D;
+//    public static double PROCESS_NOISE = 0.000001D; // Process variance
+    public static double PROCESS_NOISE = 10;
 }

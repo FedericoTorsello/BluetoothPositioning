@@ -3,6 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,7 @@ public class PreferencesFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
         df = new DecimalFormat("#.##");
         df.setRoundingMode(RoundingMode.CEILING);

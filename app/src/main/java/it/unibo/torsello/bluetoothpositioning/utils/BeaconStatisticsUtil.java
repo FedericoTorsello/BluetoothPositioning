@@ -1,6 +1,8 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
 import android.app.Application;
+import android.app.LoaderManager;
+import android.util.Log;
 
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -47,17 +49,9 @@ public class BeaconStatisticsUtil {
         // I valori dovrebbero essere basati su misurazioni statistiche attuali, quindi,
         // il filtro (measuredValue) restituisce il valore calcolato
 
-        //1-dimensional Kalman filter with predefined
-        double R = KFilterConstansts.R; // Initial process noise
-        double Q = KFilterConstansts.Q; // Initial measurement noise
-        double A = KFilterConstansts.A;
-        double B = KFilterConstansts.B;
-        double C = KFilterConstansts.C;
-
         kalmanFilter1 = KalmanFilter1.getInstance();
         kalmanFilter2 = KalmanFilter2.getInstance();
         kalmanFilter3 = KalmanFilter3.getInstance();
-        kalmanFilter3.build(R, Q, A, B, C);
         kalmanFilter4 = KalmanFilter4.getInstance();
 
     }
@@ -97,6 +91,7 @@ public class BeaconStatisticsUtil {
         filteredDist3_2 = calculateDistanceNoFilter1(rssiFiltered, txPowerFiltered);
 
         filteredDist4 = calculateDistanceKalmanFilter4(rssi, txPower);
+
 
     }
 
@@ -192,8 +187,15 @@ public class BeaconStatisticsUtil {
 
         double newDistanceInMeters = calculateDistanceStandard(rssi, txPower);
 
-        return kalmanFilter2.filter(newDistanceInMeters, KFilterConstansts.ESTIMATION_VARIANCE);
+        return kalmanFilter2.filter(newDistanceInMeters);
     }
+
+//    private double calculateDistanceKalmanFilter3(int rssi, int txPower) {
+//
+//        double newDistanceInMeters = calculateDistanceStandard(rssi, txPower);
+//
+//        return calculateDistanceNoFilter1(rssiFiltered, txPowerFiltered);
+//    }
 
     private double calculateDistanceKalmanFilter4(int rssi, int txPower) {
 

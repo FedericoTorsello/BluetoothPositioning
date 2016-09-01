@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constants.BeaconConstants;
+import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
@@ -175,7 +175,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     @Override
     public void onBackPressed() {
         if (!getSupportFragmentManager().getFragments().isEmpty()) {
-            getSupportFragmentManager().popBackStackImmediate();
+            getSupportFragmentManager().popBackStack();
         }
 
         super.onBackPressed();
@@ -222,36 +222,31 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
 
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            for (Beacon b : beacons) {
-                                Device device = BeaconConstants.DEVICE_MAP.get(b.getBluetoothAddress());
-                                if (device != null) { //serve solo se la DEVICE_MAP è vuota
-                                    device.setApplication(getApplication());
-                                    device.setBeacon(b);
-                                    device.updateDistance(processNoise, movementState);
-                                    if (!deviceList.contains(device)) {
-                                        deviceList.add(device);
-                                    }
+                for (Beacon b : beacons) {
+                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
+                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
+                        device.setApplication(getApplication());
+                        device.setBeacon(b);
+                        device.updateDistance(processNoise, movementState);
+                        if (!deviceList.contains(device)) {
+                            deviceList.add(device);
+                        }
+                    }
+                }
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (onAddDevicesListener != null) {
+                                    onAddDevicesListener.updateInfoDevices(deviceList);
                                 }
                             }
-                        }
-                    }.start();
-
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (onAddDevicesListener != null) {
-                                    onAddDevicesListener.updateInfoDevices(deviceList);
-                                    }
-                                }
-                            });
-                        }
-                    }.start();
+                        });
+                    }
+                }.start();
             }
         });
 

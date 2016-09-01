@@ -36,8 +36,9 @@ public class HomeViewFrag extends Fragment {
         StatePagerAdapter myPageAdapter = new StatePagerAdapter(getFragmentManager(), fragments);
         mViewPager.setAdapter(myPageAdapter);
 
-        TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding_tabs);
+        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
+        tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(mViewPager);
 
         return root;

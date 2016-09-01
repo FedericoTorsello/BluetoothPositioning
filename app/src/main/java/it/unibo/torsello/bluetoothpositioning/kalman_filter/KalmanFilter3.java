@@ -1,5 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
 import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
@@ -17,6 +19,9 @@ public class KalmanFilter3 {
     private double x1;
     private double x2;
 
+    private DescriptiveStatistics recentRssi;
+    private DescriptiveStatistics recentTxPower;
+
     private static KalmanFilter3 ourInstance = new KalmanFilter3();
 
     public static KalmanFilter3 getInstance() {
@@ -25,25 +30,24 @@ public class KalmanFilter3 {
 
     /**
      * Create 1-dimensional kalman filter
-     *
-     * @param R Process noise
-     * @param Q Measurement noise
-     * @param A State vector
-     * @param B Control vector
-     * @param C Measurement vector
      */
-    public void build(double R, double Q, double A, double B, double C) {
-
-        this.R = R;
-        this.Q = Q;
-        this.A = A;
-        this.B = B;
-        this.C = C;
-    }
 
     private KalmanFilter3() {
+        //1-dimensional Kalman filter with predefined
+        R = KFilterConstansts.R; // Initial process noise
+        Q = KFilterConstansts.Q; // Initial measurement noise
+        A = KFilterConstansts.A; // State vector
+        B = KFilterConstansts.B; // Control vector
+        C = KFilterConstansts.C; // Measurement vector
+
         cov = Double.NaN;
         x = Double.NaN;
+
+        // limit on the number of values that can be stored in the dataset
+        recentRssi = new DescriptiveStatistics();
+        recentRssi.setWindowSize(KFilterConstansts.WINDOW);
+        recentTxPower = new DescriptiveStatistics();
+        recentTxPower.setWindowSize(KFilterConstansts.WINDOW);
     }
 
     public double filter(double z) {

@@ -1,8 +1,10 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,7 +91,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
 
 
     @Override
-    public void onBindViewHolder(final DeviceViewHolder holder, int i) {
+    public void onBindViewHolder(final DeviceViewHolder holder, final int i) {
 
         final Beacon beacon = deviceList.get(holder.getAdapterPosition()).getBeacon();
         final Device device = deviceList.get(holder.getAdapterPosition());
@@ -145,24 +147,28 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         }
 
         holder.distanceTextView.setText(String.format(Locale.getDefault(),
-                "DIST_KF1: %sm \n" +
-                        "DIST_KF2: %sm \n" +
-                        "DIST_KF3_1: %sm \n" +
-                        "DIST_KF3_2: %sm \n" +
-                        "DIST_KF3_4: %sm \n" +
-                        "DIST_A: %sm \n" +
-                        "DIST_B: %sm \n" +
-                        "DIST_C: %sm \n" +
-                        "DIST_D: %sm",
+                "DIST_KF1:\t%sm \n" +
+                        "DIST_KF2:\t%sm \n" +
+                        "DIST_KF3_1:\t%sm \n" +
+                        "DIST_KF3_2:\t%sm \n" +
+                        "DIST_KF4:\t%sm \n" +
+                        "DIST_A:\t%sm \n" +
+                        "DIST_B:\t%sm \n" +
+                        "DIST_C:\t%sm \n" +
+                        "DIST_D:\t%sm",
                 df.format(device.getDistKalmanFilter1()),
                 df.format(device.getDistKalmanFilter2()),
                 df.format(device.getDistKalmanFilter3_1()),
                 df.format(device.getDistKalmanFilter3_2()),
                 df.format(device.getDistKalmanFilter4()),
+
                 df.format(beacon.getDistance()),
                 df.format(device.getDistNoFilter1()),
                 df.format(device.getDistNoFilter2()),
                 df.format(device.getDistNoFilter3())));
+
+//        holder.distanceTextView.setText(String.valueOf("DIST_KF1: \n"+device.getDistKalmanFilter4() +
+//                "\nDIST_KF1: \n" + device.getDistNoFilter1()));
 
         if (beacon.getServiceUuid() == 0xfeaa) {
             if (beacon.getBeaconTypeCode() == 0x00) {
@@ -223,8 +229,10 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                     title = device.getAddress();
                 }
 
+                Fragment deviceDetailFrag = DeviceDetailFrag.newInstance(title);
+                if (!deviceDetailFrag.isInLayout())
                 fragmentManager.beginTransaction()
-                        .add(R.id.frameLayout, DeviceDetailFrag.newInstance(title))
+                        .add(R.id.frameLayout, deviceDetailFrag)
                         .addToBackStack(null)
                         .commit();
             }

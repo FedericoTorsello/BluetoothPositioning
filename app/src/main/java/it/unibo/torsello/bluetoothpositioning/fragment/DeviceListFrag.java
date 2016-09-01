@@ -74,8 +74,10 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
 
     @Override
     public void updateInfoDevices(List<Device> devices) {
-        deviceList.clear();
-        deviceViewAdapter.notifyDataSetChanged();
+
+        if (!deviceList.isEmpty()) {
+            deviceList.clear();
+        }
 
         if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
             Comparator<Device> comparator = new Comparator<Device>() {
@@ -85,18 +87,18 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
             };
 
             Collections.sort(devices, comparator);
-            deviceList.addAll(devices);
-        } else {
-            deviceList.addAll(devices);
         }
 
+        deviceList.addAll(devices);
         deviceViewAdapter.notifyDataSetChanged();
 
     }
 
     @Override
     public void clearList() {
-        deviceList.clear();
+        if (!deviceList.isEmpty()) {
+            deviceList.clear();
+        }
         deviceViewAdapter.notifyDataSetChanged();
     }
 

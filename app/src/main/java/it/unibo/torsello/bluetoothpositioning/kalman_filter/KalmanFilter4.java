@@ -17,17 +17,23 @@ import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
  */
 public class KalmanFilter4 {
 
-    private double measurementNoise;
-    private double processNoise;
-    private RealMatrix A, B, H, Q, P0, R;
-    private RealVector x;
+    private RealMatrix A; // A - state transition matrix
+    private RealMatrix B; // B - control input matrix
+    private RealMatrix H; // H - measurement matrix
+    private RealMatrix Q; // Q - process noise  matrix
+    private RealMatrix P0; // P - initial error covariance matrix
+    private RealMatrix R; // R - measurement noise covariance matrix
+    private RealVector x; // initial state estimate vector
     private ProcessModel pm;
     private MeasurementModel mm;
-    private KalmanFilter filter;
+    private KalmanFilter kalmanFilter;
     private RealVector pNoise;
     private RealVector mNoise;
     private RealVector z;
     private double txPower;
+
+    double measurementNoise;
+    double processNoise;
 
     private static KalmanFilter4 ourInstance = new KalmanFilter4();
 
@@ -36,27 +42,42 @@ public class KalmanFilter4 {
     }
 
     private KalmanFilter4() {
-        measurementNoise = KFilterConstansts.NUMBER_OF_MEASUREMENTS;
+
+        measurementNoise = KFilterConstansts.ESTIMATION_VARIANCE;
         processNoise = KFilterConstansts.PROCESS_NOISE;
 
         // A = [ 1 ]
         A = new Array2DRowRealMatrix(new double[]{1D});
-        // B = null
+
+        // B = null no control input
         B = null;
+//        B = new Array2DRowRealMatrix(new double[]{1D});
+
         // H = [ 1 ]
         H = new Array2DRowRealMatrix(new double[]{1D});
+
         // x = [ 10 ]
-        x = new ArrayRealVector(new double[]{txPower});
+//        x = new ArrayRealVector(new double[]{KFilterConstansts.DEFAULT_RSSI_VALUE}); // constant voltage
+//        x = new ArrayRealVector(new double[]{txPower}); // constant voltage
+        x = new ArrayRealVector(new double[]{1D}); // constant voltage
+
         // Q = [ 1e-5 ]
-        Q = new Array2DRowRealMatrix(new double[]{processNoise});
+        Q = new Array2DRowRealMatrix(new double[]{processNoise}); //process noise
+//        Q = new Array2DRowRealMatrix(new double[]{0}); //process noise
+
         // P = [ 1 ]
-        P0 = new Array2DRowRealMatrix(new double[]{1D});
+//        P0 = new Array2DRowRealMatrix(new double[]{1D});
+        P0 = new Array2DRowRealMatrix(new double[]{100000D});
+
         // R = [ 0.1 ]
-        R = new Array2DRowRealMatrix(new double[]{measurementNoise});
+//        R = new Array2DRowRealMatrix(new double[]{measurementNoise}); //measurement noise
+//        R = new Array2DRowRealMatrix(new double[]{1D}); //measurement noise
+        R = new Array2DRowRealMatrix(new double[]{0}); //measurement noise
+
 
         pm = new DefaultProcessModel(A, B, Q, x, P0);
         mm = new DefaultMeasurementModel(H, R);
-        filter = new KalmanFilter(pm, mm);
+        kalmanFilter = new KalmanFilter(pm, mm);
 
         // process and measurement noise vectors
         pNoise = new ArrayRealVector(1);
@@ -67,26 +88,32 @@ public class KalmanFilter4 {
         this.txPower = txPower;
     }
 
-    public void addRssi(double rssi) {
-        filter.predict();
+    public void addRssi(int rssi) {
+//        kalmanFilter.predict();
+//
+//        // process
+//        pNoise.setEntry(0, rssi * processNoise);
+//
+//        // x = A * x + p_noise
+//        x = A.operate(x).add(pNoise);
+//
+//        // measurement
+//        mNoise.setEntry(0, rssi * measurementNoise);
+//
+//        // z = H * x + m_noise
+//        z = H.operate(x).add(mNoise);
+//
+//        kalmanFilter.correct(z);
 
-        // simulate the process
-        pNoise.setEntry(0, rssi * processNoise);
+        /////////////
 
-        // x = A * x + p_noise
-        x = A.operate(x).add(pNoise);
+        kalmanFilter.predict();
+        kalmanFilter.correct(new ArrayRealVector(new double[]{rssi}));
 
-        // simulate the measurement
-        mNoise.setEntry(0, rssi * measurementNoise);
-
-        // z = H * x + m_noise
-        z = H.operate(x).add(mNoise);
-
-        filter.correct(z);
 
     }
 
     public double getEstimatedRssi() {
-        return filter.getStateEstimation()[0];
+        return kalmanFilter.getStateEstimation()[0];
     }
 }

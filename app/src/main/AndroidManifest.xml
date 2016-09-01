@@ -34,7 +34,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DesignDemo">
         <!--android:theme="@style/AppTheme">-->
-        <!-- Note:  the singleInstance below is important to keep two copies of your activity from getting launched on automatic startup -->
+        <!-- Note:  the singleInstance below is important to keep two copies
+        of your activity from getting launched on automatic startup -->
         <activity
             android:launchMode="singleInstance"
             android:name=".activities.ApplicationActivity"
