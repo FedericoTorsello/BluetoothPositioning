@@ -216,6 +216,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         }
     }
 
+
     @Override
     public void onBeaconServiceConnect() {
         beaconManager.addRangeNotifier(new RangeNotifier() {

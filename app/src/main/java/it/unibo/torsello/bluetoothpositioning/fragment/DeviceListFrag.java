@@ -25,6 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -79,15 +80,38 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
             deviceList.clear();
         }
 
-        if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
-            Comparator<Device> comparator = new Comparator<Device>() {
-                public int compare(Device b1, Device b2) {
-                    return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
-                }
-            };
+//        Collections.sort(devices, new Comparator<Device>() {
+//            public int compare(Device b1, Device b2) {
+//                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
+//                    return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
+//                } else {
+//                    return Double.compare(b1.getIndex(), b2.getIndex());
+//                }
+////                else {
+//////                    return Double.compare(b1.getColor(), b2.getColor());
+////                }
+//            }
+//        });
 
-            Collections.sort(devices, comparator);
-        }
+
+        Collections.sort(devices, new Comparator<Device>() {
+            public int compare(Device b1, Device b2) {
+
+                RadioGroup radioGroup = (RadioGroup) getActivity().findViewById(R.id.radioGroup);
+                int checkedRadioButton = radioGroup.getCheckedRadioButtonId();
+                switch (checkedRadioButton) {
+                    case R.id.radioButton1:
+                        return Double.compare(b1.getIndex(), b2.getIndex());
+                    case R.id.radioButton2:
+                        return Double.compare(b1.getColor(), b2.getColor());
+                    case R.id.radioButton3:
+                        return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
+                }
+                return 0;
+            }
+
+        });
+
 
         deviceList.addAll(devices);
         deviceViewAdapter.notifyDataSetChanged();

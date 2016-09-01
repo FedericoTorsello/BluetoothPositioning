@@ -16,10 +16,12 @@ import org.altbeacon.beacon.Beacon;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
@@ -34,6 +36,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
     private FragmentActivity fragmentActivity;
 
     public DeviceViewAdapter(FragmentActivity fragmentActivity, List<Device> deviceList) {
+        this.deviceList = new ArrayList<>();
         this.deviceList = deviceList;
         this.fragmentActivity = fragmentActivity;
         fragmentManager = fragmentActivity.getSupportFragmentManager();
@@ -139,7 +142,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             holder.proximityTextView.setText(android.R.string.unknownName);
         }
 
-        String color = device.getColor();
+        Integer color = device.getColor();
         if (color != null) {
             holder.colorTextView.setText(color);
         } else {
@@ -149,8 +152,8 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         holder.distanceTextView.setText(String.format(Locale.getDefault(),
                 "DIST_KF1:\t%sm \n" +
                         "DIST_KF2:\t%sm \n" +
-                        "DIST_KF3_1:\t%sm \n" +
-                        "DIST_KF3_2:\t%sm \n" +
+//                        "DIST_KF3_1:\t%sm \n" +
+//                        "DIST_KF3_2:\t%sm \n" +
                         "DIST_KF4:\t%sm \n" +
                         "DIST_A:\t%sm \n" +
                         "DIST_B:\t%sm \n" +
@@ -158,8 +161,8 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                         "DIST_D:\t%sm",
                 df.format(device.getDistKalmanFilter1()),
                 df.format(device.getDistKalmanFilter2()),
-                df.format(device.getDistKalmanFilter3_1()),
-                df.format(device.getDistKalmanFilter3_2()),
+//                df.format(device.getDistKalmanFilter3_1()),
+//                df.format(device.getDistKalmanFilter3_2()),
                 df.format(device.getDistKalmanFilter4()),
 
                 df.format(beacon.getDistance()),
@@ -222,19 +225,17 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             @Override
             public void onClick(View v) {
 
-                String title;
-                if (device.getFriendlyName() != null) {
-                    title = device.getFriendlyName();
-                } else {
+                String title = device.getFriendlyName();
+                if (title == null) {
                     title = device.getAddress();
                 }
 
                 Fragment deviceDetailFrag = DeviceDetailFrag.newInstance(title);
                 if (!deviceDetailFrag.isInLayout())
-                fragmentManager.beginTransaction()
-                        .add(R.id.frameLayout, deviceDetailFrag)
-                        .addToBackStack(null)
-                        .commit();
+                    fragmentManager.beginTransaction()
+                            .add(R.id.frameLayout, deviceDetailFrag)
+                            .addToBackStack(null)
+                            .commit();
             }
         });
     }

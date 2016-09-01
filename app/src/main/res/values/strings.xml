@@ -24,6 +24,13 @@
     <string name="distance">Dist:</string>
     <string name="proximity">Proximity:</string>
 
+    <!--Color devices-->
+    <string name="icy_marshmallow">"Icy Marshmallow"</string>
+    <string name="blueberry_pie">"Blueberry Pie"</string>
+    <string name="mint_cocktail">"Mint Cocktail""</string>
+    <!---->
+
+
     <!--<string name="string_scan_subtext">Number of iBeacons discovered: %s</string>-->
 
     <string name="snackbar_exit">"Press once again to exit!"</string>
@@ -46,7 +53,7 @@
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
     <string name="settings_kalman_value">5.0</string>
     <string name="settings_wd_status">Walk detection?</string>
-    <string name="settings_sort_by_distance">Sort by distance?</string>
+    <string name="settings_sorting">Select the sorting mode</string>
     <string name="settings_enabled">Enabled</string>
     <string name="settings_disabled">Disabled</string>
     <string name="settings_selfcorrection_status">Self-correcting beacon</string>
@@ -92,7 +99,11 @@
 
         ]]>
     </string>
+
     <string name="velocity">Velocity:</string>
+    <string name="radio1">Default sort (list device order)</string>
+    <string name="radio2">Sort by color</string>
+    <string name="radio3">Sort by distance</string>
 
 
 </resources>

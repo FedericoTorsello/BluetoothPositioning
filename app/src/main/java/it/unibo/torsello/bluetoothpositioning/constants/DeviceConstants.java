@@ -61,12 +61,14 @@ public class DeviceConstants {
 
     static {
         Map<String, Device> map = new ArrayMap<>();
-        map.put(DEVICE_1, new Device(DEVICE_1, "Ice1", "Icy Marshmallow", R.drawable.beacon_icy));
-        map.put(DEVICE_2, new Device(DEVICE_2, "Ice2", "Icy Marshmallow", R.drawable.beacon_icy));
-        map.put(DEVICE_3, new Device(DEVICE_3, "Mint1", "Mint Cocktail", R.drawable.beacon_mint));
-        map.put(DEVICE_4, new Device(DEVICE_4, "Mint2", "Mint Cocktail", R.drawable.beacon_mint));
-        map.put(DEVICE_5, new Device(DEVICE_5, "Blueberry1", "Blueberry Pie", R.drawable.beacon_blueberry));
-        map.put(DEVICE_6, new Device(DEVICE_6, "Blueberry2", "Blueberry Pie", R.drawable.beacon_blueberry));
+        map.put(DEVICE_1, new Device(1, DEVICE_1, "Ice1", R.string.icy_marshmallow, R.drawable.beacon_icy));
+        map.put(DEVICE_2, new Device(2, DEVICE_2, "Ice2", R.string.icy_marshmallow, R.drawable.beacon_icy));
+
+        map.put(DEVICE_5, new Device(3, DEVICE_5, "Blueberry1", R.string.blueberry_pie, R.drawable.beacon_blueberry));
+        map.put(DEVICE_6, new Device(4, DEVICE_6, "Blueberry2", R.string.blueberry_pie, R.drawable.beacon_blueberry));
+
+        map.put(DEVICE_3, new Device(5, DEVICE_3, "Mint1", R.string.mint_cocktail, R.drawable.beacon_mint));
+        map.put(DEVICE_4, new Device(6, DEVICE_4, "Mint2", R.string.mint_cocktail, R.drawable.beacon_mint));
         DEVICE_MAP = Collections.unmodifiableMap(map);
     }
 

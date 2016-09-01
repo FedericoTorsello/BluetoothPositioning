@@ -3,12 +3,12 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -64,7 +64,7 @@ public class PreferencesFrag extends Fragment {
         setUpKalmanSeek();
 //        setUpSelfcorrectingSwitch();
         setUpWalkDetectionSwitch();
-        setSortByDistance();
+        setSorting();
     }
 
     @Override
@@ -155,21 +155,19 @@ public class PreferencesFrag extends Fragment {
         });
     }
 
-
-    private void setSortByDistance() {
-        final Switch sortByDistanceSwitch = (Switch) getActivity().findViewById(R.id.sortByDistanceSwitch);
-        boolean setSortByDistance = preferences.getBoolean(SettingConstants.SORT_BY_DISTANCE, true);
-        sortByDistanceSwitch.setChecked(setSortByDistance);
-        sortByDistanceSwitch.setText((setSortByDistance) ? R.string.settings_enabled : R.string.settings_disabled);
-        sortByDistanceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    private void setSorting() {
+        final RadioGroup radioGroup = (RadioGroup) getActivity().findViewById(R.id.radioGroup);
+        int checkedRadioButton = preferences.getInt(SettingConstants.SORTING, radioGroup.getChildAt(0).getId());
+        radioGroup.check(checkedRadioButton);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putBoolean(SettingConstants.SORT_BY_DISTANCE, isChecked);
+                editor.putInt(SettingConstants.SORTING, checkedId);
                 editor.apply();
-                sortByDistanceSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
             }
         });
+
     }
 
 }
