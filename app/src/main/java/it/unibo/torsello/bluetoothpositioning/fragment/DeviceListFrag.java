@@ -38,6 +38,10 @@ import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
@@ -70,6 +74,7 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
         recyclerView.setAdapter(deviceViewAdapter);
 
+
         return root;
     }
 
@@ -80,31 +85,15 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
             deviceList.clear();
         }
 
-//        Collections.sort(devices, new Comparator<Device>() {
-//            public int compare(Device b1, Device b2) {
-//                if (settings.getBoolean(SettingConstants.SORT_BY_DISTANCE, false)) {
-//                    return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
-//                } else {
-//                    return Double.compare(b1.getIndex(), b2.getIndex());
-//                }
-////                else {
-//////                    return Double.compare(b1.getColor(), b2.getColor());
-////                }
-//            }
-//        });
-
-
         Collections.sort(devices, new Comparator<Device>() {
             public int compare(Device b1, Device b2) {
-
-                RadioGroup radioGroup = (RadioGroup) getActivity().findViewById(R.id.radioGroup);
-                int checkedRadioButton = radioGroup.getCheckedRadioButtonId();
-                switch (checkedRadioButton) {
-                    case R.id.radioButton1:
+                int sorting = settings.getInt(SettingConstants.SORTING, 0);
+                switch (sorting) {
+                    case R.id.radioButton_default_sorting:
                         return Double.compare(b1.getIndex(), b2.getIndex());
-                    case R.id.radioButton2:
+                    case R.id.radioButton_color_sorting:
                         return Double.compare(b1.getColor(), b2.getColor());
-                    case R.id.radioButton3:
+                    case R.id.radioButton_distance_sorting:
                         return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
                 }
                 return 0;

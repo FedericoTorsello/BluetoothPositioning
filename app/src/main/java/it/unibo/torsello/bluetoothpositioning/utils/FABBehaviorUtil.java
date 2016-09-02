@@ -9,7 +9,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by federico on 21/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class FABBehaviorUtil extends FloatingActionButton.Behavior {
 

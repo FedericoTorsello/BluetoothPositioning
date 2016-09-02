@@ -13,7 +13,8 @@ import org.apache.commons.math3.linear.RealVector;
 import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
- * Created by serhatalyurt on 21.4.2016.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class KalmanFilter4 {
 

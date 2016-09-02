@@ -13,7 +13,8 @@ import it.unibo.torsello.bluetoothpositioning.R;
 //import android.preference.PreferenceScreen;
 
 /**
- * Created by federico on 13/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class SettingsFrag extends PreferenceFragmentCompat {
 

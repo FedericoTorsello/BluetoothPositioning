@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class CompassMagnoFrag extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;

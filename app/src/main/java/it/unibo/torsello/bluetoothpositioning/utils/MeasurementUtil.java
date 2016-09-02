@@ -10,10 +10,10 @@ import java.io.PrintWriter;
 //import org.altbeacon.beacon.Beacon;
 
 /**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ * <p>
  * Utility class for performing measurements on a test beacon
- *
- * @author Jonathan Vidmar
- * @version 1.0
  */
 public class MeasurementUtil {
     private double lastDistance;

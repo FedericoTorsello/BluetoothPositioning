@@ -14,7 +14,8 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
 
 /**
- * Created by federico on 14/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class HomeViewFrag extends Fragment {
 

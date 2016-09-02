@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,10 +50,9 @@
                             android:id="@+id/kalmanSeek"
                             android:max="100"
                             android:layout_gravity="center_vertical" />
-
                     </LinearLayout>
-                </LinearLayout>
 
+                </LinearLayout>
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -72,7 +68,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/walkDetection"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:text="@string/settings_wd_status" />
 
@@ -83,7 +78,6 @@
                         android:id="@+id/walkDetectionSwitch"
                         android:text="@string/settings_disabled" />
                 </LinearLayout>
-
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -111,25 +105,26 @@
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton1"
-                            android:text="@string/radio1" />
+                            android:id="@+id/radioButton_default_sorting"
+                            android:text="@string/radioB_default_sorting" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton2"
-                            android:text="@string/radio2" />
+                            android:id="@+id/radioButton_color_sorting"
+                            android:text="@string/radioB_color_sorting" />
 
                         <RadioButton
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/radioButton3"
-                            android:text="@string/radio3" />
+                            android:id="@+id/radioButton_distance_sorting"
+                            android:text="@string/radioB_distance_sorting" />
                     </RadioGroup>
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-        </LinearLayout>
 
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

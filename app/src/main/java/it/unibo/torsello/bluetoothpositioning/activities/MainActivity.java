@@ -19,10 +19,14 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
 
-
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         List<Fragment> fList = new ArrayList<>();
         fList.add(DeviceListFrag.newInstance("Scan Device"));
         fList.add(PreferencesFrag.newInstance("Preferences"));
-        
+
 //        fList.add(CompassFrag.newInstance("Compass1"));
 //        fList.add(CompassMagnoFrag.newInstance("Compass2"));
 //        fList.add(CountPassFrag.newInstance("CountPass"));
@@ -107,6 +111,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_settings:
                 fragment = SettingsFrag.newInstance();
+                break;
+            case R.id.nav_measurement:
+                fragment = MeasurementFrag.newInstance();
                 break;
             case R.id.nav_share:
                 break;

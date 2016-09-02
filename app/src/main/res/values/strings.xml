@@ -21,7 +21,7 @@
     <string name="name_space">NameSpace:</string>
     <string name="rssi">RSSI: dB</string>
     <string name="power">Power: dB</string>
-    <string name="distance">Dist:</string>
+    <string name="distance_beacon">Dist:</string>
     <string name="proximity">Proximity:</string>
 
     <!--Color devices-->
@@ -101,9 +101,26 @@
     </string>
 
     <string name="velocity">Velocity:</string>
-    <string name="radio1">Default sort (list device order)</string>
-    <string name="radio2">Sort by color</string>
-    <string name="radio3">Sort by distance</string>
+    <string name="radioB_default_sorting">Default sort (list device order)</string>
+    <string name="radioB_color_sorting">Sort by color</string>
+    <string name="radioB_distance_sorting">Sort by distance</string>
+    <string name="measurement">Measurement</string>
+    <string name="distance_arduino">---</string>
+
+
+    <string name="default_text_string">No data</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="permission_denied">Permission denied!</string>
+    <string name="receiving">Receiving!</string>
+    <string name="opening_device_failed">Opening USB device failed!</string>
+    <string name="claimning_interface_failed">Claiming interface failed!</string>
+    <string name="no_in_endpoint_found">No in endpoint found!</string>
+    <string name="no_out_endpoint_found">No out endpoint found!</string>
+    <string name="no_extra_in_intent">No %1$s extra in intent!</string>
+    <string name="device_detaches">Device detached!</string>
+    <string name="no_device_found">No device found!</string>
+    <string name="found">found!</string>
 
 
 </resources>

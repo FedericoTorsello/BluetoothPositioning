@@ -17,7 +17,8 @@ import android.widget.TextView;
 import it.unibo.torsello.bluetoothpositioning.R;
 
 /**
- * Created by federico on 06/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class CountPassFrag extends Fragment implements SensorEventListener {
 

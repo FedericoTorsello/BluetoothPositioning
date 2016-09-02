@@ -19,10 +19,10 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 /**
- * Created by Jonathan on 2/23/2016.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class WalkDetection implements SensorEventListener {
-
 
     // http://research.microsoft.com/pubs/166309/com273-chintalapudi.pdf
     // http://www.cl.cam.ac.uk/~ab818/StepDetectionSmartphones.pdf

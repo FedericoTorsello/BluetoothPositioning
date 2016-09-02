@@ -1,8 +1,9 @@
-package it.unibo.torsello.bluetoothpositioning.utils;//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package it.unibo.torsello.bluetoothpositioning.utils;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 
 import org.altbeacon.beacon.service.RssiFilter;
 

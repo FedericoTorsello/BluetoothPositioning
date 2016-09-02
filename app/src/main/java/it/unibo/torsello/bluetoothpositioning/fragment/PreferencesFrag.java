@@ -21,7 +21,8 @@ import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
 
 /**
- * Created by federico on 18/07/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class PreferencesFrag extends Fragment {
 

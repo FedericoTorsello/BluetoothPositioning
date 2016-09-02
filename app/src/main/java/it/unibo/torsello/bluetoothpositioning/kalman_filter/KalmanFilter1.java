@@ -5,7 +5,8 @@ import android.support.v4.util.ArrayMap;
 import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
- * Created by thenathanjones on 16/02/2014.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class KalmanFilter1 {
 

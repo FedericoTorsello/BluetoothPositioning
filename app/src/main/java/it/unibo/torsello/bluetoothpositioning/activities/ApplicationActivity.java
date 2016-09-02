@@ -41,9 +41,9 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 //import com.estimote.sdk.EstimoteSDK;
 
 /**
- * Created by federico on 21/07/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
-
 public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         PreferencesFrag.OnSettingsListener {
 

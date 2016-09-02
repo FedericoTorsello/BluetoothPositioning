@@ -18,7 +18,8 @@ import android.widget.ImageView;
 import it.unibo.torsello.bluetoothpositioning.R;
 
 /**
- * Created by federico on 25/07/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class CompassFrag extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;

@@ -1,11 +1,11 @@
 package it.unibo.torsello.bluetoothpositioning.kalman_filter;
 
-import android.util.Log;
-
-import java.util.Locale;
-
 import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class KalmanFilter2 {
 
     private int N;

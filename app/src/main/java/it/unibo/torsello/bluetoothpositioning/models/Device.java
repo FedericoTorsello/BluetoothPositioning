@@ -7,7 +7,8 @@ import org.altbeacon.beacon.Beacon;
 import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
 
 /**
- * Created by federico on 05/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class Device {
 

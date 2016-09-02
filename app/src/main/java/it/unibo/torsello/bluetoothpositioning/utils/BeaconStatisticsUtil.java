@@ -14,9 +14,10 @@ import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
 import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter4;
 
 /**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ * <p>
  * A helper class
- *
- * @author federico
  */
 public class BeaconStatisticsUtil {
 

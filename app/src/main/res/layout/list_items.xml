@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/distance"
+                        android:text="@string/distance_beacon"
                         android:layout_marginEnd="@dimen/custom_margin"
                         android:textStyle="bold" />
 

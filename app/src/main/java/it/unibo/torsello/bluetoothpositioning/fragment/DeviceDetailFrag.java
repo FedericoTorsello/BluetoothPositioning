@@ -28,7 +28,8 @@ import java.util.Date;
 import it.unibo.torsello.bluetoothpositioning.R;
 
 /**
- * Created by federico on 27/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class DeviceDetailFrag extends Fragment implements TextureView.SurfaceTextureListener {
     private Camera mCamera;

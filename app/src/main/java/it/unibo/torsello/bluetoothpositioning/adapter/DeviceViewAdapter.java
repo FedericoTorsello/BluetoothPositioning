@@ -26,7 +26,8 @@ import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
- * Created by federico on 21/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.DeviceViewHolder> {
 

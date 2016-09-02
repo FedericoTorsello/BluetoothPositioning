@@ -5,7 +5,8 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
 
 /**
- * @author federico
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class KalmanFilter3 {
 

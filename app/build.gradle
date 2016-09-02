@@ -42,6 +42,7 @@ dependencies {
     compile 'org.altbeacon:android-beacon-library:2.9'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile 'com.github.felHR85:UsbSerial:4.4'
 }
 
 

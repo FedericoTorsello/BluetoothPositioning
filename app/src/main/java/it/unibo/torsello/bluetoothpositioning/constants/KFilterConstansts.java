@@ -1,7 +1,8 @@
 package it.unibo.torsello.bluetoothpositioning.constants;
 
 /**
- * Created by federico on 27/08/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class KFilterConstansts {
 
