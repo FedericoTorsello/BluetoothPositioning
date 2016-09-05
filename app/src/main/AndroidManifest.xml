@@ -55,6 +55,10 @@
                 android:resource="@xml/device_filter" />
         </activity>
 
+        <service
+            android:name=".utils.ArduinoCommunicatorService"
+            android:enabled="true" />
+
     </application>
 
 </manifest>

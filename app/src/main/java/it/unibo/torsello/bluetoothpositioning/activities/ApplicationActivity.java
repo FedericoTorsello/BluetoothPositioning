@@ -202,10 +202,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        onAddDevicesListener = null;
         if (beaconManager.isBound(this)) {
             beaconManager.unbind(this);
         }
+        onAddDevicesListener = null;
     }
 
     @Override
@@ -215,7 +215,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
     }
-
 
     @Override
     public void onBeaconServiceConnect() {

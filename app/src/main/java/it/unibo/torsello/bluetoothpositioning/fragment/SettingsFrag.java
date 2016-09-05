@@ -59,9 +59,9 @@ public class SettingsFrag extends PreferenceFragmentCompat {
 
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
-        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
-        assert tabLayout != null;
-        tabLayout.setVisibility(View.GONE);
+//        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
+//        assert tabLayout != null;
+//        tabLayout.setVisibility(View.GONE);
 
         addPreferencesFromResource(R.xml.settings);
     }

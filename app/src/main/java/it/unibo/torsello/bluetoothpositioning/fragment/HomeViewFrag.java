@@ -39,7 +39,6 @@ public class HomeViewFrag extends Fragment {
 
         TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
-        tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(mViewPager);
 
         return root;
