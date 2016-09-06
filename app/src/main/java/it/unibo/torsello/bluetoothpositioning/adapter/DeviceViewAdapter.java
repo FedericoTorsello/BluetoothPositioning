@@ -53,7 +53,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                 //If it is, don't add to the back stack
                 if (currentFrag == null || !currentFrag.getClass().equals(newFrag.getClass())) {
                     manager.beginTransaction()
-//                            .add(R.id.frameLayout, newFrag)
                             .replace(R.id.frameLayout, newFrag)
                             .addToBackStack(null)
                             .commit();
@@ -115,8 +114,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
     public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
-        DeviceViewHolder deviceViewHolder = new DeviceViewHolder(root);
-        return deviceViewHolder;
+        return new DeviceViewHolder(root);
     }
 
     @Override
