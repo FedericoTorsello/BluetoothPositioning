@@ -11,7 +11,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageBeacon"
@@ -20,7 +21,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/image_margin_lateral"
                 android:layout_marginEnd="@dimen/image_margin_lateral"
-                android:src="@drawable/unknown_beacon" />
+                android:src="@drawable/unknown_beacon"
+                android:contentDescription="@string/beaconcolorimage" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -147,6 +149,31 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="@string/power"
+                                android:layout_marginEnd="@dimen/custom_margin"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/value_power"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/visibility_major_minor">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:text="@string/major"
                                 android:layout_marginEnd="@dimen/custom_margin"
                                 android:textStyle="bold" />
@@ -157,29 +184,6 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/power"
-                                android:layout_marginEnd="@dimen/custom_margin"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/value_power"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -239,6 +243,27 @@
 
                 </LinearLayout>
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/visibility_instance">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/instance"
+                        android:layout_marginEnd="@dimen/custom_margin"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/value_instance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -256,22 +281,23 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/velocity"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:textStyle="bold" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
 
-                    <TextView
-                        android:id="@+id/value_velocity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/velocity"-->
+                <!--android:layout_marginEnd="@dimen/custom_margin"-->
+                <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                <!--android:id="@+id/value_velocity"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--</LinearLayout>-->
 
             </LinearLayout>
 

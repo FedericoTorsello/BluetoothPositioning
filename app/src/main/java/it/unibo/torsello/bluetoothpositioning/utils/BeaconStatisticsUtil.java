@@ -1,8 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
 import android.app.Application;
-import android.app.LoaderManager;
-import android.util.Log;
 
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -16,7 +14,7 @@ import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter4;
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
- * <p>
+ * <takePicture>
  * A helper class
  */
 public class BeaconStatisticsUtil {

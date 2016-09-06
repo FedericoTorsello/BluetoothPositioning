@@ -1,9 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v7.preference.PreferenceFragmentCompat;
-import android.view.View;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 

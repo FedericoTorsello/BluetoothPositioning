@@ -56,23 +56,11 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
+        List<Fragment> fragmentList = getFragments();
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.frameLayout, HomeViewFrag.newInstance(getFragments()))
+                .add(R.id.frameLayout, HomeViewFrag.newInstance(fragmentList))
                 .commit();
     }
-
-    private List<Fragment> getFragments() {
-        List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceListFrag.newInstance("Scan Device"));
-        fList.add(PreferencesFrag.newInstance("Preferences"));
-
-//        fList.add(CompassFrag.newInstance("Compass1"));
-//        fList.add(CompassMagnoFrag.newInstance("Compass2"));
-//        fList.add(CountPassFrag.newInstance("CountPass"));
-
-        return fList;
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -85,6 +73,7 @@ public class MainActivity extends AppCompatActivity
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                assert fab != null;
                 Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
             } else {
 //                finish();
@@ -109,7 +98,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fragment = HomeViewFrag.newInstance(getFragments());
+                List<Fragment> fragmentList = getFragments();
+                fragment = HomeViewFrag.newInstance(fragmentList);
                 break;
             case R.id.nav_settings:
                 fragment = SettingsFrag.newInstance();
@@ -142,5 +132,17 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
 
         return true;
+    }
+
+    private List<Fragment> getFragments() {
+        List<Fragment> fList = new ArrayList<>();
+        fList.add(DeviceListFrag.newInstance("Scan Device"));
+        fList.add(PreferencesFrag.newInstance("Preferences"));
+
+//        fList.add(CompassFrag.newInstance("Compass1"));
+//        fList.add(CompassMagnoFrag.newInstance("Compass2"));
+//        fList.add(CountPassFrag.newInstance("CountPass"));
+
+        return fList;
     }
 }

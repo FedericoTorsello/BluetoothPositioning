@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.fragment;
+package it.unibo.torsello.bluetoothpositioning.utils;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -9,20 +9,17 @@ import android.hardware.usb.UsbManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.ArduinoCommunicatorService;
-import it.unibo.torsello.bluetoothpositioning.utils.ByteArray;
+import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFrag;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class ArduinoUSB implements MeasurementFrag.OnArduinoListener {
+public class ArduinoUtil implements MeasurementFrag.OnArduinoListener {
 
     private static final int ARDUINO_USB_VENDOR_ID = 0x2341;
     private static final int ARDUINO_UNO_USB_PRODUCT_ID = 0x01;
@@ -39,7 +36,7 @@ public class ArduinoUSB implements MeasurementFrag.OnArduinoListener {
     private BroadcastReceiver mReceiver;
     private FragmentActivity fragActivity;
 
-    public ArduinoUSB(FragmentActivity fragmentActivity) {
+    public ArduinoUtil(FragmentActivity fragmentActivity) {
         this.fragActivity = fragmentActivity;
         mTransferedDataList = new ArrayList<ByteArray>();
         createReceiver();

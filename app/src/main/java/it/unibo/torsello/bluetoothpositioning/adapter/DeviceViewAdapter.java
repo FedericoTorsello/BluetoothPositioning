@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
@@ -33,38 +31,61 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
 
     private DecimalFormat df;
     private List<Device> deviceList;
-    private FragmentManager fragmentManager;
     private FragmentActivity fragmentActivity;
+    private String deviceDetailName;
+    private Runnable runnable;
 
-    public DeviceViewAdapter(FragmentActivity fragmentActivity, List<Device> deviceList) {
+    public DeviceViewAdapter(final FragmentActivity fragmentActivity, List<Device> deviceList) {
+
         this.deviceList = new ArrayList<>();
         this.deviceList = deviceList;
         this.fragmentActivity = fragmentActivity;
-        fragmentManager = fragmentActivity.getSupportFragmentManager();
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                final Fragment newFrag = DeviceDetailFrag.newInstance(deviceDetailName);
+                FragmentManager manager = fragmentActivity.getSupportFragmentManager();
+                Fragment currentFrag = manager.findFragmentById(R.id.frameLayout);
+
+                //Check if the new Fragment is the same
+                //If it is, don't add to the back stack
+                if (currentFrag == null || !currentFrag.getClass().equals(newFrag.getClass())) {
+                    manager.beginTransaction()
+                            .add(R.id.frameLayout, newFrag)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        };
     }
 
     protected class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-        private View mView;
-        private ImageView imageView;
-        private TextView macTextView;
-        private TextView majorTextView;
-        private TextView minorTextView;
-        private TextView measuredPowerTextView;
-        private TextView rssiTextView;
-        private TextView friendlyNameTextView;
-        private TextView defaultNameTextView;
-        private TextView distanceTextView;
-        private TextView uuidTextView;
-        private TextView nameSpaceTextView;
-        private TextView proximityTextView;
-        private TextView velocityTextView;
-        private TextView colorTextView;
-        private LinearLayout visibilityUUIDLinearLayout;
-        private LinearLayout visibilityNameSpaceLinearLayout;
+        View mView;
+        ImageView imageView;
+        TextView macTextView;
+        TextView majorTextView;
+        TextView minorTextView;
+        TextView measuredPowerTextView;
+        TextView rssiTextView;
+        TextView friendlyNameTextView;
+        TextView defaultNameTextView;
+        TextView distanceTextView;
+        TextView uuidTextView;
+        TextView nameSpaceTextView;
+        TextView instanceTextView;
+        TextView proximityTextView;
+        TextView velocityTextView;
+        TextView colorTextView;
+        LinearLayout visibilityUUIDLinearLayout;
+        LinearLayout visibilityNameSpaceLinearLayout;
+        LinearLayout visibilityMajorMinorLinearLayout;
+        LinearLayout visibilityInstanceLinearLayout;
 
         private DeviceViewHolder(View view) {
+
             super(view);
             mView = view;
             imageView = (ImageView) view.findViewById(R.id.imageBeacon);
@@ -79,28 +100,33 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
             nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
             proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
-            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
+            instanceTextView = (TextView) view.findViewById(R.id.value_instance);
+//            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
             colorTextView = (TextView) view.findViewById(R.id.value_color);
             visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
             visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
+            visibilityMajorMinorLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_major_minor);
+            visibilityInstanceLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_instance);
         }
     }
 
     @Override
     public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_items, parent, false);
-        return new DeviceViewHolder(view);
+
+        View root = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
+        DeviceViewHolder deviceViewHolder = new DeviceViewHolder(root);
+        return deviceViewHolder;
     }
 
-
     @Override
-    public void onBindViewHolder(final DeviceViewHolder holder, final int i) {
+    public void onBindViewHolder(DeviceViewHolder holder, final int i) {
 
-        final Beacon beacon = deviceList.get(holder.getAdapterPosition()).getBeacon();
-        final Device device = deviceList.get(holder.getAdapterPosition());
+        int adapterPosition = holder.getAdapterPosition();
 
-        holder.velocityTextView.setText(String.valueOf(device.getVelocity()));
+        final Beacon beacon = deviceList.get(adapterPosition).getBeacon();
+        final Device device = deviceList.get(adapterPosition);
+
+//        holder.velocityTextView.setText(String.valueOf(device.getVelocity()));
 
         Integer imageBeacon = device.getImageBeacon();
         if (imageBeacon != null) {
@@ -171,19 +197,25 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                 df.format(device.getDistNoFilter2()),
                 df.format(device.getDistNoFilter3())));
 
-//        holder.distanceTextView.setText(String.valueOf("DIST_KF1: \n"+device.getDistKalmanFilter4() +
-//                "\nDIST_KF1: \n" + device.getDistNoFilter1()));
-
         if (beacon.getServiceUuid() == 0xfeaa) {
-            if (beacon.getBeaconTypeCode() == 0x00) {
-                holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
-                holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
 
+            holder.visibilityUUIDLinearLayout.setVisibility(View.GONE);
+            holder.visibilityMajorMinorLinearLayout.setVisibility(View.INVISIBLE);
+            holder.visibilityNameSpaceLinearLayout.setVisibility(View.VISIBLE);
+            holder.visibilityInstanceLinearLayout.setVisibility(View.VISIBLE);
+
+            if (beacon.getBeaconTypeCode() == 0x00) {
                 // Eddystone-UID
                 if (beacon.getId1() != null) {
                     holder.nameSpaceTextView.setText(beacon.getId1().toString());
                 } else {
                     holder.nameSpaceTextView.setText(android.R.string.unknownName);
+                }
+
+                if (beacon.getId2() != null) {
+                    holder.instanceTextView.setText(beacon.getId2().toString());
+                } else {
+                    holder.instanceTextView.setText(android.R.string.unknownName);
                 }
 
             } else if (beacon.getBeaconTypeCode() == 0x10) {
@@ -197,8 +229,12 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         } else if (beacon.getServiceUuid() == 0xbeac) {
             // AltBeacon
         } else if (beacon.getBeaconTypeCode() == 0x0215) { //533 in dec)
+
             holder.visibilityUUIDLinearLayout.setVisibility(View.VISIBLE);
+            holder.visibilityMajorMinorLinearLayout.setVisibility(View.VISIBLE);
             holder.visibilityNameSpaceLinearLayout.setVisibility(View.GONE);
+            holder.visibilityInstanceLinearLayout.setVisibility(View.GONE);
+
             // AppleIBeacon
             if (beacon.getId1() != null) {
                 holder.uuidTextView.setText(beacon.getId1().toString());
@@ -226,17 +262,19 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             @Override
             public void onClick(View v) {
 
-                String title = device.getFriendlyName();
-                if (title == null) {
-                    title = device.getAddress();
+                deviceDetailName = device.getFriendlyName();
+                if (deviceDetailName == null) {
+                    deviceDetailName = device.getAddress();
                 }
 
-                Fragment deviceDetailFrag = DeviceDetailFrag.newInstance(title);
-                if (!deviceDetailFrag.isInLayout())
-                    fragmentManager.beginTransaction()
-                            .add(R.id.frameLayout, deviceDetailFrag)
-                            .addToBackStack(null)
-                            .commit();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        fragmentActivity.runOnUiThread(runnable);
+                    }
+                });
+
+                thread.start();
             }
         });
     }

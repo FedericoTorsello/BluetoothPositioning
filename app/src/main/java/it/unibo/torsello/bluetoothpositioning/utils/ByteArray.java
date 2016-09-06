@@ -1,10 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
-import android.util.Log;
-import android.widget.TextView;
-
-import it.unibo.torsello.bluetoothpositioning.R;
-
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it

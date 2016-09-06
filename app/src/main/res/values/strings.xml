@@ -19,8 +19,9 @@
     <string name="minor">Minor:</string>
     <string name="uuid">UUID:</string>
     <string name="name_space">NameSpace:</string>
+    <string name="instance">Instance:</string>
     <string name="rssi">RSSI: dB</string>
-    <string name="power">Power: dB</string>
+    <string name="power">PWR: dB</string>
     <string name="distance_beacon">Dist:</string>
     <string name="proximity">Proximity:</string>
 
@@ -121,6 +122,8 @@
     <string name="device_detaches">Device detached</string>
     <string name="no_device_found">No device found</string>
     <string name="found">found</string>
+    <string name="beaconcolorimage">beaconColorImage</string>
+    <string name="appimage">appImage</string>
 
 
 </resources>

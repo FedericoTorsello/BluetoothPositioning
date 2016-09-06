@@ -1,16 +1,9 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
-import android.os.Environment;
-import android.util.Log;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
-
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
- * <p>
+ * <takePicture>
  * Utility class for performing measurements on a test beacon
  */
 public class MeasurementUtil {

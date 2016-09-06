@@ -108,15 +108,10 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:text="@string/distance_beacon" />
 
-                    <com.github.mikephil.charting.charts.BarChart
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="232dp"
-                        android:id="@+id/chart1" />
-
-                    <!--<com.github.mikephil.charting.charts.LineChart-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="232dp"-->
-                    <!--android:id="@+id/chart1"/>-->
+                        android:id="@+id/frame1"></FrameLayout>
 
                 </LinearLayout>
 

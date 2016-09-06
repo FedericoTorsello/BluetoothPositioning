@@ -25,7 +25,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,9 +32,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
@@ -74,7 +73,6 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
         recyclerView.setAdapter(deviceViewAdapter);
 
-
         return root;
     }
 
@@ -85,26 +83,23 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
             deviceList.clear();
         }
 
+        // optional sorting
         Collections.sort(devices, new Comparator<Device>() {
+
             public int compare(Device b1, Device b2) {
                 int sorting = settings.getInt(SettingConstants.SORTING, 0);
                 switch (sorting) {
-                    case R.id.radioButton_default_sorting:
-                        return Double.compare(b1.getIndex(), b2.getIndex());
                     case R.id.radioButton_color_sorting:
                         return Double.compare(b1.getColor(), b2.getColor());
                     case R.id.radioButton_distance_sorting:
                         return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
-                }
-                return 0;
+                } // default sorting (a good basic ordering for the other options)
+                return Double.compare(b1.getIndex(), b2.getIndex());
             }
-
         });
-
 
         deviceList.addAll(devices);
         deviceViewAdapter.notifyDataSetChanged();
-
     }
 
     @Override

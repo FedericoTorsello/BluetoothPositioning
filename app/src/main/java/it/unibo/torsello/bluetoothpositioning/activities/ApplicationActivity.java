@@ -34,8 +34,8 @@ import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
-import it.unibo.torsello.bluetoothpositioning.utils.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
+import it.unibo.torsello.bluetoothpositioning.utils.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 
 //import com.estimote.sdk.EstimoteSDK;
@@ -65,20 +65,236 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
     private List<Device> deviceList;
 
+    private Runnable runnable;
+
     public interface OnAddDevicesListener {
         void updateInfoDevices(List<Device> iBeacons);
 
         void clearList();
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initialize();
+
+        checkAndroidMPermission();
+
+        initializeBeaconManager();
+
+        // simply constructing this class and holding a reference to it in your custom Application
+        // class will automatically cause the BeaconLibrary to save battery whenever the application
+        // is not visible.  This reduces bluetooth power usage by about 60%
+        new BackgroundPowerSaver(getApplicationContext());
+
+        preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+
+        walkDetection = new WalkDetection(getApplication());
+        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+            walkDetection.startDetection();
+        }
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
+        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (isBluetoothAvailable()) {
+
+                    isRunScan = !isRunScan;
+                    String idRegion = "myRangingUniqueId";
+                    Region region = new Region(idRegion, null, null, null);
+
+                    if (isRunScan) {
+                        fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
+                        try {
+                            beaconManager.startRangingBeaconsInRegion(region);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                        Snackbar.make(view, R.string.snackbar_scanning_enabled,
+                                Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+                        try {
+                            beaconManager.stopRangingBeaconsInRegion(region);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                        Snackbar.make(view, R.string.snackbar_scanning_disabled,
+                                Snackbar.LENGTH_INDEFINITE).show();
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!getSupportFragmentManager().getFragments().isEmpty()) {
+            getSupportFragmentManager().popBackStack();
+        }
+
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (beaconManager.isBound(this)) {
+            beaconManager.setBackgroundMode(true);
+        }
+        walkDetection.stopDetection();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (beaconManager.isBound(this)) {
+            beaconManager.setBackgroundMode(false);
+        }
+        isBluetoothAvailable();
+    }
+
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+
+        if (fragment instanceof DeviceListFrag) {
+            onAddDevicesListener = (OnAddDevicesListener) fragment;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (beaconManager.isBound(this)) {
+            beaconManager.unbind(this);
+        }
+        onAddDevicesListener = null;
+    }
+
+    @Override
+    public void onBeaconServiceConnect() {
+
+        beaconManager.addRangeNotifier(new RangeNotifier() {
+            @Override
+            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
+
+                for (Beacon b : beacons) {
+                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
+                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
+                        device.setApplication(getApplication());
+                        device.setBeacon(b);
+                        device.updateDistance(processNoise, movementState);
+                        if (!deviceList.contains(device)) {
+                            deviceList.add(device);
+                        }
+                    }
+                }
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(runnable);
+                    }
+                });
+
+                thread.start();
+            }
+        });
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+//                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
+                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+//                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
+                        new AlertDialog.Builder(this)
+                                .setTitle(R.string.dialog_permissions_location_access_title)
+                                .setMessage(R.string.dialog_permissions_location_access_text)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                    }
+
+                                }).show();
+                    }
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+
+        // noinspection SimplifiableIfStatement
+
+        switch (item.getItemId()) {
+            case R.id.action_clear:
+                onAddDevicesListener.clearList();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void updateKalmanNoise(double value) {
+        processNoise = value;
+    }
+
+    @Override
+    public void isSelfCorrection(boolean isChecked) {
+        selfCorrection = isChecked;
+    }
+
+    @Override
+    public void isWalkDetection(boolean isChecked) {
+
+        if (isChecked) {
+            walkDetection.startDetection();
+        } else {
+            walkDetection.stopDetection();
+        }
+    }
+
+    private void initialize() {
         deviceList = new ArrayList<>();
 
-        checkAndroidPermission();
+        //  memory optimization
+        runnable = new Runnable() {
 
+            @Override
+            public void run() {
+                if (onAddDevicesListener != null) {
+                    onAddDevicesListener.updateInfoDevices(deviceList);
+                }
+            }
+        };
+    }
+
+    private void initializeBeaconManager() {
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
 
@@ -121,205 +337,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         beaconManager.setForegroundBetweenScanPeriod(0L);
         beaconManager.setBackgroundScanPeriod(200L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
-
-        // simply constructing this class and holding a reference to it in your custom Application
-        // class will automatically cause the BeaconLibrary to save battery whenever the application
-        // is not visible.  This reduces bluetooth power usage by about 60%
-        new BackgroundPowerSaver(this.getApplicationContext());
-
-        preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
-        walkDetection = new WalkDetection(getApplication());
-        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
-            walkDetection.startDetection();
-        }
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
-        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (verifyBluetooth()) {
-
-                    isRunScan = !isRunScan;
-                    String idRegion = "myRangingUniqueId";
-                    Region region = new Region(idRegion, null, null, null);
-
-                    if (isRunScan) {
-                        fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
-                        try {
-                            beaconManager.startRangingBeaconsInRegion(region);
-                            Snackbar.make(view, R.string.snackbar_scanning_enabled,
-                                    Snackbar.LENGTH_SHORT).show();
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
-                        try {
-                            beaconManager.stopRangingBeaconsInRegion(region);
-                            Snackbar.make(view, R.string.snackbar_scanning_disabled,
-                                    Snackbar.LENGTH_INDEFINITE).show();
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        });
-
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!getSupportFragmentManager().getFragments().isEmpty()) {
-            getSupportFragmentManager().popBackStack();
-        }
+    private boolean isBluetoothAvailable() {
 
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (beaconManager.isBound(this)) {
-            beaconManager.setBackgroundMode(true);
-        }
-        walkDetection.stopDetection();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        verifyBluetooth();
-        if (beaconManager.isBound(this)) {
-            beaconManager.setBackgroundMode(false);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (beaconManager.isBound(this)) {
-            beaconManager.unbind(this);
-        }
-        onAddDevicesListener = null;
-    }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-        if (fragment instanceof DeviceListFrag) {
-            onAddDevicesListener = (OnAddDevicesListener) fragment;
-        }
-    }
-
-    @Override
-    public void onBeaconServiceConnect() {
-        beaconManager.addRangeNotifier(new RangeNotifier() {
-            @Override
-            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
-
-                for (Beacon b : beacons) {
-                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
-                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
-                        device.setApplication(getApplication());
-                        device.setBeacon(b);
-                        device.updateDistance(processNoise, movementState);
-                        if (!deviceList.contains(device)) {
-                            deviceList.add(device);
-                        }
-                    }
-                }
-
-                new Thread() {
-                    @Override
-                    public void run() {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (onAddDevicesListener != null) {
-                                    onAddDevicesListener.updateInfoDevices(deviceList);
-                                }
-                            }
-                        });
-                    }
-                }.start();
-            }
-        });
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS: {
-                for (int i = 0; i < permissions.length; i++) {
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-//                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
-                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-//                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
-                        new AlertDialog.Builder(this)
-                                .setTitle(R.string.dialog_permissions_location_access_title)
-                                .setMessage(R.string.dialog_permissions_location_access_text)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                    }
-
-                                }).show();
-                    }
-                }
-            }
-            break;
-            default: {
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            }
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        // noinspection SimplifiableIfStatement
-
-        switch (item.getItemId()) {
-            case R.id.action_clear:
-                onAddDevicesListener.clearList();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void updateKalmanNoise(double value) {
-        processNoise = value;
-    }
-
-    @Override
-    public void isSelfCorrection(boolean isChecked) {
-        selfCorrection = isChecked;
-    }
-
-    @Override
-    public void isWalkDetection(boolean isChecked) {
-        if (isChecked) {
-            walkDetection.startDetection();
-        } else {
-            walkDetection.stopDetection();
-        }
-    }
-
-    private boolean verifyBluetooth() {
         try {
             if (!beaconManager.checkAvailability()) {
 
@@ -346,8 +367,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         return true;
     }
 
-    @TargetApi(23)
-    private void checkAndroidPermission() {
+    private void checkAndroidMPermission() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             final List<String> permissions = new ArrayList<>();
@@ -368,7 +388,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         .setMessage(R.string.dialog_bluetooth_text)
                         .setPositiveButton(android.R.string.ok, null)
                         .setOnDismissListener(new DialogInterface.OnDismissListener() {
-
+                            @TargetApi(23)
                             @Override
                             public void onDismiss(DialogInterface dialog) {
                                 requestPermissions(permissions.toArray(new String[permissions.size()]),

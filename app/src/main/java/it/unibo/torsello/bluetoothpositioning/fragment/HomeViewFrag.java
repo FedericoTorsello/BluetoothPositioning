@@ -22,10 +22,9 @@ public class HomeViewFrag extends Fragment {
     private static List<Fragment> fragments;
 
     public static HomeViewFrag newInstance(List<Fragment> fragmentList) {
-        fragments = fragmentList;
+        HomeViewFrag.fragments = fragmentList;
         return new HomeViewFrag();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,16 +32,13 @@ public class HomeViewFrag extends Fragment {
         View root = inflater.inflate(R.layout.frag_viewpager, container, false);
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.viewpager);
-        assert mViewPager != null;
         StatePagerAdapter myPageAdapter = new StatePagerAdapter(getFragmentManager(), fragments);
         mViewPager.setAdapter(myPageAdapter);
 
         TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
-        assert tabLayout != null;
         tabLayout.setupWithViewPager(mViewPager);
 
         return root;
     }
-
 
 }
