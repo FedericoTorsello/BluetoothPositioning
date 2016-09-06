@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFrag;
@@ -69,17 +71,28 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            final long DOUBLE_PRESS_INTERVAL = 1000;
-            if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
-                isBackPressed = true;
-                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                assert fab != null;
-                Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
+
+            final Fragment newFrag = HomeViewFrag.newInstance(getFragments());
+            Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
+            setTabLayoutVisible(true);
+
+            if (currentFrag == null || !currentFrag.getClass().equals(newFrag.getClass())) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, newFrag)
+                        .commit();
             } else {
+                final long DOUBLE_PRESS_INTERVAL = 1000;
+                if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
+                    isBackPressed = true;
+                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                    assert fab != null;
+                    Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
+                } else {
 //                finish();
-                super.onBackPressed();
+                    super.onBackPressed();
+                }
+                back_pressed = System.currentTimeMillis();
             }
-            back_pressed = System.currentTimeMillis();
         }
     }
 
@@ -113,12 +126,10 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        assert tabLayout != null;
         if (fragment instanceof HomeViewFrag) {
-            tabLayout.setVisibility(View.VISIBLE);
+            setTabLayoutVisible(true);
         } else {
-            tabLayout.setVisibility(View.GONE);
+            setTabLayoutVisible(false);
         }
 
         if (fragment != null) {
@@ -144,5 +155,16 @@ public class MainActivity extends AppCompatActivity
 //        fList.add(CountPassFrag.newInstance("CountPass"));
 
         return fList;
+    }
+
+    private void setTabLayoutVisible(boolean isTabLayoutVisible) {
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        assert tabLayout != null;
+
+        if (isTabLayoutVisible) {
+            tabLayout.setVisibility(View.VISIBLE);
+        } else {
+            tabLayout.setVisibility(View.GONE);
+        }
     }
 }

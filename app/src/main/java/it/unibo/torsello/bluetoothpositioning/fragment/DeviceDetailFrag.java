@@ -54,8 +54,7 @@ public class DeviceDetailFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.frag_details, container, false);
 
-        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
-        tabLayout.setVisibility(View.GONE);
+        setTabLayoutVisible(false);
 
         CollapsingToolbarLayout collapsingToolbarLayout =
                 (CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar);
@@ -142,8 +141,7 @@ public class DeviceDetailFrag extends Fragment {
         preview.removeAllViews();
         onCameraListener = null;
 
-        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
-        tabLayout.setVisibility(View.VISIBLE);
+        setTabLayoutVisible(true);
     }
 
     /**
@@ -151,6 +149,17 @@ public class DeviceDetailFrag extends Fragment {
      */
     private boolean isCameraHardwarePresent() {
         return (getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA));
+    }
+
+    private void setTabLayoutVisible(boolean isTabLayoutVisible) {
+        TabLayout tabLayout = (TabLayout) getActivity().findViewById(R.id.sliding_tabs);
+        assert tabLayout != null;
+
+        if (isTabLayoutVisible) {
+            tabLayout.setVisibility(View.VISIBLE);
+        } else {
+            tabLayout.setVisibility(View.GONE);
+        }
     }
 
 }

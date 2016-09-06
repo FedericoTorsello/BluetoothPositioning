@@ -53,7 +53,8 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
                 //If it is, don't add to the back stack
                 if (currentFrag == null || !currentFrag.getClass().equals(newFrag.getClass())) {
                     manager.beginTransaction()
-                            .add(R.id.frameLayout, newFrag)
+//                            .add(R.id.frameLayout, newFrag)
+                            .replace(R.id.frameLayout, newFrag)
                             .addToBackStack(null)
                             .commit();
                 }
