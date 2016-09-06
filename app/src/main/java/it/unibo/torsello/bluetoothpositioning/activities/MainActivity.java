@@ -70,17 +70,17 @@ public class MainActivity extends AppCompatActivity
         } else {
             replaceFragment(HomeViewFrag.newInstance(getFragments()));
 
-                final long DOUBLE_PRESS_INTERVAL = 1000;
-                if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
-                    isBackPressed = true;
-                    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                    assert fab != null;
-                    Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
-                } else {
+            final long DOUBLE_PRESS_INTERVAL = 1000;
+            if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
+                isBackPressed = true;
+                FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                assert fab != null;
+                Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
+            } else {
 //                finish();
-                    super.onBackPressed();
-                }
-                back_pressed = System.currentTimeMillis();
+                super.onBackPressed();
+            }
+            back_pressed = System.currentTimeMillis();
         }
     }
 

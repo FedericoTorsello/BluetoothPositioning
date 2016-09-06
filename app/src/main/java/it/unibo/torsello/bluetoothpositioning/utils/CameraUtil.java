@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.TextureView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,10 +24,14 @@ import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class CameraUtil implements DeviceDetailFrag.OnCameraListener {
+public class CameraUtil {
+
+    private TextureView mTextureView;
     private Camera mCamera;
     private Thread preview_thread;
     private FragmentActivity fragmentActivity;
+
+
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
@@ -51,32 +56,63 @@ public class CameraUtil implements DeviceDetailFrag.OnCameraListener {
 
     public CameraUtil(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
+
         if (mCamera == null) {
             mCamera = getCameraInstance();
-        }
-    }
 
-//    @Override
-//    public Camera getCamera() {
-//        if (mCamera == null) {
-//            mCamera = getCameraInstance();
-//        }
-//        return mCamera;
-//    }
+        }
+
+        mTextureView = new TextureView(fragmentActivity);
+        mTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+            @Override
+            public void onSurfaceTextureAvailable(final SurfaceTexture surface, int width, int height) {
+
+                if (surface == null) {
+                    // preview surface does not exist
+                    return;
+                }
+
+                // Restart the camera preview.
+                safeCameraOpenInView(surface);
+            }
+
+            @Override
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+            }
+
+            @Override
+            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+                if (mCamera != null) {
+                    mCamera.stopPreview();
+                    mCamera.release();
+                    if (!preview_thread.isInterrupted()) {
+                        preview_thread.interrupt();
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+                // Invoked every time there's a new CameraUtil preview frame
+            }
+        });
+    }
 
     /**
      * Picture Callback for handling a picture capture and saving it out to a file.
      */
-    @Override
     public void takePicture() {
+
         if (mCamera != null) {
             // get an image from the camera
             mCamera.takePicture(null, null, mPicture);
         }
+
     }
 
-    @Override
     public void safeCameraOpenInView(SurfaceTexture surface) {
+
         if (mCamera != null) {
             try {
                 mCamera.setPreviewTexture(surface);
@@ -84,25 +120,15 @@ public class CameraUtil implements DeviceDetailFrag.OnCameraListener {
                 ioe.getStackTrace();
             }
 
-            preview_thread = new Thread() {
+            preview_thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     mCamera.startPreview();
                 }
-            };
+            });
+
             preview_thread.start();
 
-        }
-    }
-
-    @Override
-    public void onSurfaceTextureDestroyed() {
-        if (mCamera != null) {
-            mCamera.stopPreview();
-            mCamera.release();
-            if (!preview_thread.isInterrupted()) {
-                preview_thread.interrupt();
-            }
         }
     }
 
@@ -126,7 +152,7 @@ public class CameraUtil implements DeviceDetailFrag.OnCameraListener {
     /**
      * Used to return the camera File output.
      *
-     * @return
+     * @return 
      */
     private File getOutputMediaFile() {
 
@@ -155,5 +181,9 @@ public class CameraUtil implements DeviceDetailFrag.OnCameraListener {
                 }).show();
 
         return mediaFile;
+    }
+
+    public TextureView getmTextureView() {
+        return mTextureView;
     }
 }

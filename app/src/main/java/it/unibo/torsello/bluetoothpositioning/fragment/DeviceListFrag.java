@@ -25,6 +25,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,10 +69,13 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
 
         View root = inflater.inflate(R.layout.frag_list_device, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
         recyclerView.setAdapter(deviceViewAdapter);
+
+        FrameLayout frameLayout = (FrameLayout) root.findViewById(R.id.prova);
+        frameLayout.addView(recyclerView);
 
         return root;
     }

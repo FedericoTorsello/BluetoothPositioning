@@ -32,6 +32,7 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
@@ -73,12 +74,19 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         void clearList();
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initialize();
+
+        //        String appId = "federico-torsello-studio-u-6yo";
+//        String appToken = "57c8cf3bef60d9258fd9123556dace89";
+
+        //  App ID & App Token can be taken from App section of Estimote Cloud.
+//        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
+        // Optional, debug logging.
+//        EstimoteSDK.enableDebugLogging(true);
 
         checkAndroidMPermission();
 
@@ -89,13 +97,98 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         // is not visible.  This reduces bluetooth power usage by about 60%
         new BackgroundPowerSaver(getApplicationContext());
 
+        floatingActionButtonAction();
+    }
+
+    private void initialize() {
+        deviceList = new ArrayList<>();
+
+        //  memory optimization
+        runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                if (onAddDevicesListener != null) {
+                    onAddDevicesListener.updateInfoDevices(deviceList);
+                }
+            }
+        };
+
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
         walkDetection = new WalkDetection(getApplication());
         if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
         }
+    }
 
+    private void initializeBeaconManager() {
+        beaconManager = BeaconManager.getInstanceForApplication(this);
+        beaconManager.bind(this);
+
+        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+
+        // for finding different type of beacon,
+        beaconManager.getBeaconParsers().clear();
+
+        // Alt beacon
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
+        // Detect the main identifier (UID) frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+        // Detect the telemetry (TLM) frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
+        // Detect the URL frame:
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
+        // Standard Apple iBeacon
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(APPLE_BEACON_LAYOUT));
+        // Estimote Nearable
+        beaconManager.getBeaconParsers().add(new BeaconParser()
+                .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
+
+        beaconManager.setForegroundScanPeriod(200L);
+        beaconManager.setForegroundBetweenScanPeriod(0L);
+        beaconManager.setBackgroundScanPeriod(200L);
+        beaconManager.setBackgroundBetweenScanPeriod(0L);
+    }
+
+    @Override
+    public void onBeaconServiceConnect() {
+
+        beaconManager.addRangeNotifier(new RangeNotifier() {
+            @Override
+            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
+
+                for (Beacon b : beacons) {
+                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
+                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
+                        device.setApplication(getApplication());
+                        device.setBeacon(b);
+                        device.updateDistance(processNoise, movementState);
+                        if (!deviceList.contains(device)) {
+                            deviceList.add(device);
+                        }
+                    }
+                }
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(runnable);
+                    }
+                });
+
+                thread.start();
+            }
+        });
+
+    }
+
+    private void floatingActionButtonAction() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
@@ -163,15 +256,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     }
 
     @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-
-        if (fragment instanceof DeviceListFrag) {
-            onAddDevicesListener = (OnAddDevicesListener) fragment;
-        }
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -182,35 +266,14 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     }
 
     @Override
-    public void onBeaconServiceConnect() {
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
 
-        beaconManager.addRangeNotifier(new RangeNotifier() {
-            @Override
-            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
-
-                for (Beacon b : beacons) {
-                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
-                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
-                        device.setApplication(getApplication());
-                        device.setBeacon(b);
-                        device.updateDistance(processNoise, movementState);
-                        if (!deviceList.contains(device)) {
-                            deviceList.add(device);
-                        }
-                    }
-                }
-
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        runOnUiThread(runnable);
-                    }
-                });
-
-                thread.start();
-            }
-        });
-
+        if (fragment instanceof DeviceListFrag) {
+            onAddDevicesListener = (OnAddDevicesListener) fragment;
+        } else if (fragment instanceof DeviceDetailFrag) {
+            onAddDevicesListener = (OnAddDevicesListener) fragment;
+        }
     }
 
     @Override
@@ -245,11 +308,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // automatically handle clicks on the Home/Up button
 
         // noinspection SimplifiableIfStatement
-
         switch (item.getItemId()) {
             case R.id.action_clear:
                 onAddDevicesListener.clearList();
@@ -277,66 +338,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         } else {
             walkDetection.stopDetection();
         }
-    }
-
-    private void initialize() {
-        deviceList = new ArrayList<>();
-
-        //  memory optimization
-        runnable = new Runnable() {
-
-            @Override
-            public void run() {
-                if (onAddDevicesListener != null) {
-                    onAddDevicesListener.updateInfoDevices(deviceList);
-                }
-            }
-        };
-    }
-
-    private void initializeBeaconManager() {
-        beaconManager = BeaconManager.getInstanceForApplication(this);
-        beaconManager.bind(this);
-
-        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
-
-//        String appId = "federico-torsello-studio-u-6yo";
-//        String appToken = "57c8cf3bef60d9258fd9123556dace89";
-
-        //  App ID & App Token can be taken from App section of Estimote Cloud.
-//        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
-        // Optional, debug logging.
-//        EstimoteSDK.enableDebugLogging(true);
-
-
-        // By default the AndroidBeaconLibrary will only find AltBeacons.  If you wish to make it
-        // find a different type of beacon, you must specify the byte layout for that beacon's
-        // advertisement with a line like below.
-        beaconManager.getBeaconParsers().clear();
-
-        // Alt beacon
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
-        // Detect the main identifier (UID) frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
-        // Detect the telemetry (TLM) frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
-        // Detect the URL frame:
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
-        // Standard Apple iBeacon
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(APPLE_BEACON_LAYOUT));
-        // Estimote Nearable
-        beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
-
-        beaconManager.setForegroundScanPeriod(200L);
-        beaconManager.setForegroundBetweenScanPeriod(0L);
-        beaconManager.setBackgroundScanPeriod(200L);
-        beaconManager.setBackgroundBetweenScanPeriod(0L);
     }
 
     private boolean isBluetoothAvailable() {
