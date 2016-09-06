@@ -58,10 +58,7 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        List<Fragment> fragmentList = getFragments();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frameLayout, HomeViewFrag.newInstance(fragmentList))
-                .commit();
+        replaceFragment(HomeViewFrag.newInstance(getFragments()));
     }
 
     @Override
@@ -71,16 +68,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            replaceFragment(HomeViewFrag.newInstance(getFragments()));
 
-            final Fragment newFrag = HomeViewFrag.newInstance(getFragments());
-            Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
-            setTabLayoutVisible(true);
-
-            if (currentFrag == null || !currentFrag.getClass().equals(newFrag.getClass())) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frameLayout, newFrag)
-                        .commit();
-            } else {
                 final long DOUBLE_PRESS_INTERVAL = 1000;
                 if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                     isBackPressed = true;
@@ -92,7 +81,6 @@ public class MainActivity extends AppCompatActivity
                     super.onBackPressed();
                 }
                 back_pressed = System.currentTimeMillis();
-            }
         }
     }
 
@@ -100,6 +88,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
@@ -111,8 +100,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                List<Fragment> fragmentList = getFragments();
-                fragment = HomeViewFrag.newInstance(fragmentList);
+                fragment = HomeViewFrag.newInstance(getFragments());
                 break;
             case R.id.nav_settings:
                 fragment = SettingsFrag.newInstance();
@@ -126,16 +114,8 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        if (fragment instanceof HomeViewFrag) {
-            setTabLayoutVisible(true);
-        } else {
-            setTabLayoutVisible(false);
-        }
-
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
-                    .commit();
+            replaceFragment(fragment);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -157,14 +137,22 @@ public class MainActivity extends AppCompatActivity
         return fList;
     }
 
-    private void setTabLayoutVisible(boolean isTabLayoutVisible) {
+    private void replaceFragment(Fragment fragment) {
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
-
-        if (isTabLayoutVisible) {
+        if (fragment instanceof HomeViewFrag) {
             tabLayout.setVisibility(View.VISIBLE);
         } else {
             tabLayout.setVisibility(View.GONE);
         }
+
+        Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
+        if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, fragment)
+                    .commit();
+        }
     }
+
 }
