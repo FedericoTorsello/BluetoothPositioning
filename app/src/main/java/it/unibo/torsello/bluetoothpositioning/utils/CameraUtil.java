@@ -152,7 +152,7 @@ public class CameraUtil {
     /**
      * Used to return the camera File output.
      *
-     * @return 
+     * @return
      */
     private File getOutputMediaFile() {
 

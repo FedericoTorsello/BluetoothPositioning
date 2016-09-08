@@ -139,19 +139,19 @@ public class MainActivity extends AppCompatActivity
 
     private void replaceFragment(Fragment fragment) {
 
+        Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
+        if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, fragment)
+                    .commit();
+        }
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
         if (fragment instanceof HomeViewFrag) {
             tabLayout.setVisibility(View.VISIBLE);
         } else {
             tabLayout.setVisibility(View.GONE);
-        }
-
-        Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
-        if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
-                    .commit();
         }
     }
 

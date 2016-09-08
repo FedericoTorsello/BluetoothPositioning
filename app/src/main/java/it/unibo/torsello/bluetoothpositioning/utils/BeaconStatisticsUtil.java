@@ -34,7 +34,7 @@ public class BeaconStatisticsUtil {
     private double filteredDist3_2;
     private double filteredDist4;
     private double velocity;
-    private Application application;
+//    private Application application;
 
     public BeaconStatisticsUtil() {
 
@@ -55,9 +55,9 @@ public class BeaconStatisticsUtil {
 
     }
 
-    public void setApplication(Application application) {
-        this.application = application;
-    }
+//    public void setApplication(Application application) {
+//        this.application = application;
+//    }
 
     public void updateDistance(Beacon b, double processNoise, int movementState) {
 

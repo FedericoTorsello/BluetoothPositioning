@@ -67,15 +67,14 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.frag_list_device, container, false);
+        View root = inflater.inflate(R.layout.frag_device_list, container, false);
 
         RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
         recyclerView.setAdapter(deviceViewAdapter);
 
-        FrameLayout frameLayout = (FrameLayout) root.findViewById(R.id.prova);
-        frameLayout.addView(recyclerView);
+        ((FrameLayout) root.findViewById(R.id.frame_list_device)).addView(recyclerView);
 
         return root;
     }

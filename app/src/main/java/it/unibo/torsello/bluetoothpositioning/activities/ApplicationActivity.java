@@ -67,6 +67,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private List<Device> deviceList;
 
     private Runnable runnable;
+    private Thread thread;
 
     public interface OnAddDevicesListener {
         void updateInfoDevices(List<Device> iBeacons);
@@ -105,12 +106,17 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         //  memory optimization
         runnable = new Runnable() {
-
             @Override
             public void run() {
-                if (onAddDevicesListener != null) {
-                    onAddDevicesListener.updateInfoDevices(deviceList);
-                }
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (onAddDevicesListener != null) {
+                            onAddDevicesListener.updateInfoDevices(deviceList);
+                        }
+                    }
+                });
             }
         };
 
@@ -158,29 +164,30 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
     @Override
     public void onBeaconServiceConnect() {
-
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override
             public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
 
                 for (Beacon b : beacons) {
+
+                    // take from the list the device
                     Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
-                    if (device != null) { //serve solo se la DEVICE_MAP è vuota
-                        device.setApplication(getApplication());
+
+                    if (device != null) { // useful only if DEVICE_MAP is empty
+//                        device.setApplication(getApplication());
                         device.setBeacon(b);
                         device.updateDistance(processNoise, movementState);
+
                         if (!deviceList.contains(device)) {
                             deviceList.add(device);
                         }
                     }
                 }
 
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        runOnUiThread(runnable);
-                    }
-                });
+                if (thread != null)
+                    thread.interrupt();
+
+                thread = new Thread(runnable);
 
                 thread.start();
             }

@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -54,22 +56,20 @@ public class ArduinoUtil implements MeasurementFrag.OnArduinoListener {
 
                 final byte[] newTransferedData = intent.getByteArrayExtra(ArduinoCommunicatorService.DATA_EXTRA);
 
-                ByteArray transferedData = mTransferedDataList.get(mTransferedDataList.size() - 1);
+                final ByteArray transferedData = mTransferedDataList.get(mTransferedDataList.size() - 1);
                 transferedData.add(newTransferedData);
                 mTransferedDataList.set(mTransferedDataList.size() - 1, transferedData);
 
+                final TextView textView = (TextView) fragActivity.findViewById(R.id.arduinoDistance);
 
-//                if (textView.getText() != ""){
-//                    try {
-//                        Thread.sleep(20);
-//                        textView.setText(transferedData.getVal());
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else{
-//                    textView.setText("");
-//                }
+                textView.setMaxLines(2);
+                textView.setLines(2);
 
+                textView.append(transferedData.val);
+
+                if (textView.getText().length() > 200) {
+                    textView.setText("");
+                }
             }
 
             @Override

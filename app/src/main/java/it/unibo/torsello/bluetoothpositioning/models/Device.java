@@ -37,9 +37,9 @@ public class Device {
         this.beacon = beacon;
     }
 
-    public void setApplication(Application application) {
-        stats.setApplication(application);
-    }
+//    public void setApplication(Application application) {
+//        stats.setApplication(application);
+//    }
 
     public void updateDistance(double processNoise, int movementState) {
         stats.updateDistance(beacon, processNoise, movementState);

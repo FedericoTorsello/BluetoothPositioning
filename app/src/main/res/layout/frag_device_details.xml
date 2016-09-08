@@ -43,7 +43,9 @@
         android:background="?attr/colorPrimary"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:scaleType="centerCrop"
-        app:layout_collapseMode="parallax">
+        app:layout_collapseMode="parallax"
+
+        android:padding="@dimen/custom_margin">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,44 +53,63 @@
             android:orientation="vertical"
             android:paddingTop="24dp">
 
-            <include layout="@layout/frag_list_device" />
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/distance_beacon" />
+                        android:orientation="horizontal"
+                        android:gravity="center">
 
-                    <!--<com.github.mikephil.charting.charts.BarChart-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="232dp"-->
-                    <!--android:id="@+id/chart1" />-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:text="@string/distance_beacon" />
 
-                    <com.github.mikephil.charting.charts.LineChart
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/prova"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    </LinearLayout>
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="232dp"
-                        android:id="@+id/chart1" />
+                        android:layout_height="250dp"
+                        android:id="@+id/frame1" />
 
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/frame_selected_device" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
-
 
     </android.support.v4.widget.NestedScrollView>
 

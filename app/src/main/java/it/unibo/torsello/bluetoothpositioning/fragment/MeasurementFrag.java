@@ -140,11 +140,6 @@ public class MeasurementFrag extends Fragment implements OnChartValueSelectedLis
     }
 
     @Override
-    public void onNothingSelected() {
-        Log.i("Nothing selected", "Nothing selected.");
-    }
-
-    @Override
     public void onValueSelected(Entry e, Highlight h) {
 
         Log.i("Entry selected", e.toString());
@@ -163,6 +158,11 @@ public class MeasurementFrag extends Fragment implements OnChartValueSelectedLis
 //                        + mChart.getHighestVisibleX());
 //
 //        MPPointF.recycleInstance(position);
+    }
+
+    @Override
+    public void onNothingSelected() {
+        Log.i("Nothing selected", "Nothing selected.");
     }
 
     private void addEntry() {
