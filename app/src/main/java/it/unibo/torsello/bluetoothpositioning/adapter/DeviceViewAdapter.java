@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 
 /**
@@ -45,7 +45,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         runnable = new Runnable() {
             @Override
             public void run() {
-                final Fragment newFrag = DeviceDetailFrag.newInstance(deviceDetailName);
+                final Fragment newFrag = DeviceDetailFragment.newInstance(deviceDetailName);
                 FragmentManager manager = fragmentActivity.getSupportFragmentManager();
                 Fragment currentFrag = manager.findFragmentById(R.id.frameLayout);
 
@@ -63,7 +63,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
 
     protected class DeviceViewHolder extends RecyclerView.ViewHolder {
 
-        View mView;
+        View view;
         ImageView imageView;
         TextView macTextView;
         TextView majorTextView;
@@ -87,7 +87,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         private DeviceViewHolder(View view) {
 
             super(view);
-            mView = view;
+            this.view = view;
             imageView = (ImageView) view.findViewById(R.id.imageBeacon);
             defaultNameTextView = (TextView) view.findViewById(R.id.value_default_name);
             friendlyNameTextView = (TextView) view.findViewById(R.id.value_friendly_name);
@@ -108,6 +108,7 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             visibilityMajorMinorLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_major_minor);
             visibilityInstanceLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_instance);
         }
+
     }
 
     @Override
@@ -257,25 +258,23 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             // EstimoteNearable
         }
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 deviceDetailName = device.getFriendlyName();
                 if (deviceDetailName == null) {
                     deviceDetailName = device.getAddress();
                 }
 
-                Thread thread = new Thread(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
                         fragmentActivity.runOnUiThread(runnable);
                     }
-                });
-
-                thread.start();
+                }).start();
             }
         });
+
     }
 
     @Override

@@ -4,13 +4,14 @@ import android.app.Application;
 
 import org.altbeacon.beacon.Beacon;
 
+import io.realm.RealmObject;
 import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class Device {
+public class Device extends RealmObject {
 
     private BeaconStatisticsUtil stats;
     private String address;

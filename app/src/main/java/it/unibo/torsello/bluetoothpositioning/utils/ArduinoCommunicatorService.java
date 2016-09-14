@@ -202,7 +202,7 @@ public class ArduinoCommunicatorService extends Service {
                         // zero data read
                     }
                 }
-                // receiver thread stopped
+                // receiver updateDataSet stopped
             }
         }.start();
     }

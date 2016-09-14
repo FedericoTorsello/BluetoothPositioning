@@ -32,9 +32,9 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
@@ -46,7 +46,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
  * federico.torsello@studio.unibo.it
  */
 public class ApplicationActivity extends MainActivity implements BeaconConsumer,
-        PreferencesFrag.OnSettingsListener {
+        PreferencesFragment.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private WalkDetection walkDetection;
@@ -276,9 +276,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
 
-        if (fragment instanceof DeviceListFrag) {
+        if (fragment instanceof DeviceListFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
-        } else if (fragment instanceof DeviceDetailFrag) {
+        } else if (fragment instanceof DeviceDetailFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
     }

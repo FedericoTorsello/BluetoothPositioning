@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -18,19 +17,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class CameraUtil {
+public class CameraUtil implements TextureView.SurfaceTextureListener {
 
     private TextureView mTextureView;
     private Camera mCamera;
     private Thread preview_thread;
     private FragmentActivity fragmentActivity;
 
+    public CameraUtil(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
+        initialize();
+    }
 
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
@@ -39,9 +41,8 @@ public class CameraUtil {
 
             File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
-                final FloatingActionButton fab = (FloatingActionButton) fragmentActivity.findViewById(R.id.fab);
-                assert fab != null;
-                Snackbar.make(fab, "Image retrieval failed.", Snackbar.LENGTH_SHORT);
+                Snackbar.make(fragmentActivity.findViewById(R.id.fab),
+                        "Image retrieval failed.", Snackbar.LENGTH_SHORT);
             } else {
                 try {
                     FileOutputStream fos = new FileOutputStream(pictureFile);
@@ -54,49 +55,14 @@ public class CameraUtil {
         }
     };
 
-    public CameraUtil(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
-
+    private void initialize() {
         if (mCamera == null) {
             mCamera = getCameraInstance();
-
         }
 
         mTextureView = new TextureView(fragmentActivity);
-        mTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-            @Override
-            public void onSurfaceTextureAvailable(final SurfaceTexture surface, int width, int height) {
+        mTextureView.setSurfaceTextureListener(this);
 
-                if (surface == null) {
-                    // preview surface does not exist
-                    return;
-                }
-
-                // Restart the camera preview.
-                safeCameraOpenInView(surface);
-            }
-
-            @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-            }
-
-            @Override
-            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-                if (mCamera != null) {
-                    mCamera.stopPreview();
-                    mCamera.release();
-                    if (!preview_thread.isInterrupted()) {
-                        preview_thread.interrupt();
-                    }
-                }
-                return true;
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-                // Invoked every time there's a new CameraUtil preview frame
-            }
-        });
     }
 
     /**
@@ -119,6 +85,9 @@ public class CameraUtil {
             } catch (IOException ioe) {
                 ioe.getStackTrace();
             }
+
+            if (preview_thread != null)
+                preview_thread.interrupt();
 
             preview_thread = new Thread(new Runnable() {
                 @Override
@@ -185,5 +154,38 @@ public class CameraUtil {
 
     public TextureView getmTextureView() {
         return mTextureView;
+    }
+
+    @Override
+    public void onSurfaceTextureAvailable(final SurfaceTexture surface, int width, int height) {
+
+        if (surface == null) {
+            // preview surface does not exist
+            return;
+        }
+
+        // Restart the camera preview.
+        safeCameraOpenInView(surface);
+    }
+
+    @Override
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+    }
+
+    @Override
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+        if (mCamera != null) {
+            mCamera.stopPreview();
+            mCamera.release();
+            if (!preview_thread.isInterrupted()) {
+                preview_thread.interrupt();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+        // Invoked every time there's a new CameraUtil preview frame
     }
 }

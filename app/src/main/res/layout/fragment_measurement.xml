@@ -43,8 +43,7 @@
                         android:id="@+id/arduinoDistance"
                         android:gravity="center_horizontal|bottom"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/distance_arduino"
-                        android:scrollbars="vertical" />
+                        android:text="@string/distance_arduino" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -104,6 +103,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/arduinoMis"
                         android:gravity="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:text="@string/distance_beacon" />
@@ -111,7 +111,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="232dp"
-                        android:id="@+id/frame1" />
+                        android:id="@+id/chart" />
 
                 </LinearLayout>
 

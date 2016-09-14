@@ -42,15 +42,15 @@ import it.unibo.torsello.bluetoothpositioning.models.Device;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAddDevicesListener {
+public class DeviceListFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceViewAdapter deviceViewAdapter;
     private SharedPreferences settings;
     private List<Device> deviceList;
 
-    public static DeviceListFrag newInstance(String message) {
-        DeviceListFrag fragment = new DeviceListFrag();
+    public static DeviceListFragment newInstance(String message) {
+        DeviceListFragment fragment = new DeviceListFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);
@@ -67,7 +67,7 @@ public class DeviceListFrag extends Fragment implements ApplicationActivity.OnAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.frag_device_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_device_list, container, false);
 
         RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

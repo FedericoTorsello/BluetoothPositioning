@@ -20,7 +20,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class CountPassFrag extends Fragment implements SensorEventListener {
+public class CountPassFragment extends Fragment implements SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mStepCounter;
@@ -31,8 +31,8 @@ public class CountPassFrag extends Fragment implements SensorEventListener {
     private int steps = 0;
     private int tempCount;//For counting real steps without external influence.
 
-    public static CountPassFrag newInstance(String message) {
-        CountPassFrag f = new CountPassFrag();
+    public static CountPassFragment newInstance(String message) {
+        CountPassFragment f = new CountPassFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         f.setArguments(bdl);
@@ -95,7 +95,7 @@ public class CountPassFrag extends Fragment implements SensorEventListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_count_pass, container, false);
+        return inflater.inflate(R.layout.fragment_count_pass, container, false);
     }
 
     @Override

@@ -7,11 +7,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 
@@ -19,7 +21,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class CompassMagnoFrag extends Fragment implements SensorEventListener {
+public class CompassFragment extends Fragment implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
@@ -29,19 +31,17 @@ public class CompassMagnoFrag extends Fragment implements SensorEventListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
-    public static CompassMagnoFrag newInstance(String message) {
-        CompassMagnoFrag f = new CompassMagnoFrag();
+    public static CompassFragment newInstance(String message) {
+        CompassFragment f = new CompassFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         f.setArguments(bdl);
         return f;
     }
 
-
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -69,8 +69,6 @@ public class CompassMagnoFrag extends Fragment implements SensorEventListener {
         }
     }
 
-
-    @Override
     public void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this, mAccelerometer);
@@ -80,52 +78,45 @@ public class CompassMagnoFrag extends Fragment implements SensorEventListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_compass_text, container, false);
+        return inflater.inflate(R.layout.fragment_compass, container, false);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
         if (event.sensor == mAccelerometer) {
             accelValues = event.values;
         } else if (event.sensor == mMagnetometer) {
             magnetValues = event.values;
         }
 
-
         if (accelValues != null && magnetValues != null) {
-            float[] rotation = new float[16];
+            float[] rotationMatrix = new float[16];
             float[] orientation = new float[16];
 
-            SensorManager.getRotationMatrix(rotation, null, accelValues, magnetValues);
-            SensorManager.getOrientation(rotation, orientation);
+            SensorManager.getRotationMatrix(rotationMatrix, null, accelValues, magnetValues);
+            SensorManager.getOrientation(rotationMatrix, orientation);
+
+            float azimuthDegree = (float) Math.toDegrees(-orientation[0]);
+
+            RotateAnimation rotateAnimation = new RotateAnimation(
+                    azimuthDegree, azimuthDegree,
+                    Animation.RELATIVE_TO_SELF, 0.5f,
+                    Animation.RELATIVE_TO_SELF, 0.5f);
+            rotateAnimation.setDuration(250);
+            rotateAnimation.setFillAfter(true);
 
 
-            float azimuthDegree = (float) (Math.toDegrees(orientation[0]) + 360) % 360;
-            float orientationDegree = Math.round(azimuthDegree);
-
-            String compassOrientation;
-            if (orientationDegree >= 0 && orientationDegree < 90) {
-                compassOrientation = "N";
-            } else if (orientationDegree >= 90 && orientationDegree < 180) {
-                compassOrientation = "E";
-            } else if (orientationDegree >= 180 && orientationDegree < 270) {
-                compassOrientation = "S";
-            } else {
-                compassOrientation = "W";
+            try {
+                ImageView mPointer = (ImageView) getActivity().findViewById(R.id.pointer);
+                mPointer.startAnimation(rotateAnimation);
+            } catch (NullPointerException e) {
+                e.getStackTrace();
             }
-
-//            try {
-//                TextView messageTextView = (TextView) getActivity().findViewById(R.id.compass);
-//                messageTextView.setText(compassOrientation);
-//            }catch (NullPointerException e){
-//                e.getStackTrace();
-//            }
         }
+
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 }

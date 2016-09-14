@@ -14,10 +14,10 @@ import it.unibo.torsello.bluetoothpositioning.R;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class SettingsFrag extends PreferenceFragmentCompat {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-    public static SettingsFrag newInstance() {
-        return new SettingsFrag();
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
     }
 
 

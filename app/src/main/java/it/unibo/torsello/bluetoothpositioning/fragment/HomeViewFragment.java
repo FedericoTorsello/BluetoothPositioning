@@ -17,19 +17,19 @@ import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class HomeViewFrag extends Fragment {
+public class HomeViewFragment extends Fragment {
 
     private static List<Fragment> fragments;
 
-    public static HomeViewFrag newInstance(List<Fragment> fragmentList) {
-        HomeViewFrag.fragments = fragmentList;
-        return new HomeViewFrag();
+    public static HomeViewFragment newInstance(List<Fragment> fragmentList) {
+        HomeViewFragment.fragments = fragmentList;
+        return new HomeViewFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.frag_viewpager, container, false);
+        View root = inflater.inflate(R.layout.fragment_viewpager, container, false);
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.viewpager);
         StatePagerAdapter myPageAdapter = new StatePagerAdapter(getFragmentManager(), fragments);

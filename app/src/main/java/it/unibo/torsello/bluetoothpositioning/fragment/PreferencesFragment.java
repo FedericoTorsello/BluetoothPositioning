@@ -24,7 +24,7 @@ import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class PreferencesFrag extends Fragment {
+public class PreferencesFragment extends Fragment {
 
     private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SharedPreferences preferences;
@@ -41,8 +41,8 @@ public class PreferencesFrag extends Fragment {
         void isWalkDetection(boolean isChecked);
     }
 
-    public static PreferencesFrag newInstance(String message) {
-        PreferencesFrag fragment = new PreferencesFrag();
+    public static PreferencesFragment newInstance(String message) {
+        PreferencesFragment fragment = new PreferencesFragment();
         Bundle args = new Bundle();
         args.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(args);
@@ -70,7 +70,7 @@ public class PreferencesFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.frag_preferences, container, false);
+        return inflater.inflate(R.layout.fragment_preferences, container, false);
     }
 
     //     Store the onSettingsListener (activity) that will have events fired once the fragment is attached

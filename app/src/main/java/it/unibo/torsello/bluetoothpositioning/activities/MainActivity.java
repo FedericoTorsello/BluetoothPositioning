@@ -6,7 +6,6 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,12 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFrag;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFrag;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 
 /**
  * Created by Federico Torsello.
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(HomeViewFrag.newInstance(getFragments()));
+        replaceFragment(HomeViewFragment.newInstance(getFragments()));
     }
 
     @Override
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            replaceFragment(HomeViewFrag.newInstance(getFragments()));
+            replaceFragment(HomeViewFragment.newInstance(getFragments()));
 
             final long DOUBLE_PRESS_INTERVAL = 1000;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
@@ -100,13 +98,13 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fragment = HomeViewFrag.newInstance(getFragments());
+                fragment = HomeViewFragment.newInstance(getFragments());
                 break;
             case R.id.nav_settings:
-                fragment = SettingsFrag.newInstance();
+                fragment = SettingsFragment.newInstance();
                 break;
             case R.id.nav_measurement:
-                fragment = MeasurementFrag.newInstance();
+                fragment = MeasurementFragment.newInstance();
                 break;
             case R.id.nav_share:
                 break;
@@ -127,12 +125,12 @@ public class MainActivity extends AppCompatActivity
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceListFrag.newInstance("Scan Device"));
-        fList.add(PreferencesFrag.newInstance("Preferences"));
+        fList.add(DeviceListFragment.newInstance("Scan Device"));
+        fList.add(PreferencesFragment.newInstance("Preferences"));
 
-//        fList.add(CompassFrag.newInstance("Compass1"));
-//        fList.add(CompassMagnoFrag.newInstance("Compass2"));
-//        fList.add(CountPassFrag.newInstance("CountPass"));
+//        fList.add(CompassFragment.newInstance("Compass1"));
+//        fList.add(CompassMagnoFragment.newInstance("Compass2"));
+//        fList.add(CountPassFragment.newInstance("CountPass"));
 
         return fList;
     }
@@ -148,7 +146,7 @@ public class MainActivity extends AppCompatActivity
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
-        if (fragment instanceof HomeViewFrag) {
+        if (fragment instanceof HomeViewFragment) {
             tabLayout.setVisibility(View.VISIBLE);
         } else {
             tabLayout.setVisibility(View.GONE);

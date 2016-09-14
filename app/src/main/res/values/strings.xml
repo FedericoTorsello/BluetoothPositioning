@@ -50,7 +50,7 @@
     <string name="dialog_permissions_location_access_text">Since location access has not been granted,
         this app will not be able to discover beacons when in the background</string>
 
-    <!-- PreferencesFrag fragment -->
+    <!-- PreferencesFragment fragment -->
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
     <string name="settings_kalman_value">5.0</string>
     <string name="settings_wd_status">Walk detection?</string>
