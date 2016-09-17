@@ -24,6 +24,7 @@ import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.UsbFragment;
 
 /**
  * Created by Federico Torsello.
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = MeasurementFragment.newInstance();
                 break;
             case R.id.nav_share:
+                fragment = UsbFragment.newInstance();
                 break;
             case R.id.nav_send:
                 break;

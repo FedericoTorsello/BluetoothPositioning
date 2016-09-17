@@ -10,6 +10,7 @@ import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
  */
 public class KalmanFilter3 {
 
+    private static KalmanFilter3 ourInstance = new KalmanFilter3();
     private double R;
     private double Q;
     private double A;
@@ -19,15 +20,8 @@ public class KalmanFilter3 {
     private double x;   // estimated signal without noise
     private double x1;
     private double x2;
-
     private DescriptiveStatistics recentRssi;
     private DescriptiveStatistics recentTxPower;
-
-    private static KalmanFilter3 ourInstance = new KalmanFilter3();
-
-    public static KalmanFilter3 getInstance() {
-        return ourInstance;
-    }
 
     /**
      * Create 1-dimensional kalman filter
@@ -49,6 +43,10 @@ public class KalmanFilter3 {
         recentRssi.setWindowSize(KFilterConstansts.WINDOW);
         recentTxPower = new DescriptiveStatistics();
         recentTxPower.setWindowSize(KFilterConstansts.WINDOW);
+    }
+
+    public static KalmanFilter3 getInstance() {
+        return ourInstance;
     }
 
     public double filter(double z) {

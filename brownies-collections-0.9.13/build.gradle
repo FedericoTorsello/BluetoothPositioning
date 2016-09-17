@@ -1,2 +1,0 @@
-configurations.maybeCreate("default")
-artifacts.add("default", file('brownies-collections-0.9.13.jar'))

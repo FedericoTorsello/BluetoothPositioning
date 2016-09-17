@@ -18,6 +18,9 @@ import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
  */
 public class KalmanFilter4 {
 
+    private static KalmanFilter4 ourInstance = new KalmanFilter4();
+    double measurementNoise;
+    double processNoise;
     private RealMatrix A; // A - state transition matrix
     private RealMatrix B; // B - control input matrix
     private RealMatrix H; // H - measurement matrix
@@ -32,15 +35,6 @@ public class KalmanFilter4 {
     private RealVector mNoise;
     private RealVector z;
     private double txPower;
-
-    double measurementNoise;
-    double processNoise;
-
-    private static KalmanFilter4 ourInstance = new KalmanFilter4();
-
-    public static KalmanFilter4 getInstance() {
-        return ourInstance;
-    }
 
     private KalmanFilter4() {
 
@@ -83,6 +77,10 @@ public class KalmanFilter4 {
         // process and measurement noise vectors
         pNoise = new ArrayRealVector(1);
         mNoise = new ArrayRealVector(1);
+    }
+
+    public static KalmanFilter4 getInstance() {
+        return ourInstance;
     }
 
     public void setTxPower(double txPower) {

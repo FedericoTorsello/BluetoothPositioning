@@ -1,7 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.models;
 
-import android.app.Application;
-
 import org.altbeacon.beacon.Beacon;
 
 import io.realm.RealmObject;
@@ -34,17 +32,13 @@ public class Device extends RealmObject {
         return index;
     }
 
-    public void setBeacon(Beacon beacon) {
-        this.beacon = beacon;
+    public void updateDistance(double processNoise, int movementState) {
+        stats.updateDistance(beacon, processNoise, movementState);
     }
 
 //    public void setApplication(Application application) {
 //        stats.setApplication(application);
 //    }
-
-    public void updateDistance(double processNoise, int movementState) {
-        stats.updateDistance(beacon, processNoise, movementState);
-    }
 
     public Integer getColor() {
         return color;
@@ -64,6 +58,10 @@ public class Device extends RealmObject {
 
     public Beacon getBeacon() {
         return beacon;
+    }
+
+    public void setBeacon(Beacon beacon) {
+        this.beacon = beacon;
     }
 
     public double getDistNoFilter1() {

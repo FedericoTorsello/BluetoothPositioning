@@ -28,12 +28,6 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     private Camera mCamera;
     private Thread preview_thread;
     private FragmentActivity fragmentActivity;
-
-    public CameraUtil(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
-        initialize();
-    }
-
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
@@ -54,6 +48,28 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
             }
         }
     };
+
+    public CameraUtil(FragmentActivity fragmentActivity) {
+        this.fragmentActivity = fragmentActivity;
+        initialize();
+    }
+
+    /**
+     * A safe way to get an instance of the CameraUtil object.
+     */
+    private static Camera getCameraInstance() {
+
+        Camera c = null;
+
+        try {
+            c = Camera.open(); // attempt to get a CameraUtil instance
+        } catch (RuntimeException e) {
+            // CameraUtil is not available (in use or does not exist)
+            e.getStackTrace();
+        }
+
+        return c; // returns null if camera is unavailable
+    }
 
     private void initialize() {
         if (mCamera == null) {
@@ -99,23 +115,6 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
             preview_thread.start();
 
         }
-    }
-
-    /**
-     * A safe way to get an instance of the CameraUtil object.
-     */
-    private static Camera getCameraInstance() {
-
-        Camera c = null;
-
-        try {
-            c = Camera.open(); // attempt to get a CameraUtil instance
-        } catch (RuntimeException e) {
-            // CameraUtil is not available (in use or does not exist)
-            e.getStackTrace();
-        }
-
-        return c; // returns null if camera is unavailable
     }
 
     /**

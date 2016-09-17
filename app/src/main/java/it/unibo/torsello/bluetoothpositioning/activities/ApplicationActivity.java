@@ -48,7 +48,11 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         PreferencesFragment.OnSettingsListener {
 
+    private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
+    private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
+            "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
     private final String TAG_CLASS = getClass().getSimpleName();
+    private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private WalkDetection walkDetection;
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
@@ -57,23 +61,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private SharedPreferences preferences;
     private OnAddDevicesListener onAddDevicesListener;
     private int movementState = 1;
-
-    private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-
-    private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
-    private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
-            "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
-
     private List<Device> deviceList;
 
     private Runnable runnable;
     private Thread thread;
-
-    public interface OnAddDevicesListener {
-        void updateInfoDevices(List<Device> iBeacons);
-
-        void clearList();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -406,5 +397,11 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         }).show();
             }
         }
+    }
+
+    public interface OnAddDevicesListener {
+        void updateInfoDevices(List<Device> iBeacons);
+
+        void clearList();
     }
 }

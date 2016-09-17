@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.ArduinoUtil;
 
 /**
  * Created by Federico Torsello.
@@ -16,7 +15,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.ArduinoUtil;
  */
 public class MeasurementFragment extends Fragment {
 
-    private ArduinoUtil arduinoUtil;
+    //    private ArduinoUtil arduinoUtil;
     private TextView textView;
 
     public static MeasurementFragment newInstance() {
@@ -35,16 +34,16 @@ public class MeasurementFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        arduinoUtil = new ArduinoUtil(getActivity()
+//        arduinoUtil = new ArduinoUtil(getActivity()
 //                , textView
-        );
+//        );
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        arduinoUtil.createService();
+//        arduinoUtil.createService();
 
 
     }
@@ -53,7 +52,7 @@ public class MeasurementFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        arduinoUtil.unregisterReceiver();
+//        arduinoUtil.unregisterReceiver();
     }
 
 

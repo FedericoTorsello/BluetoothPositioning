@@ -1,49 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".fragment.MeasurementFragment">
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/card_margin">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-                <LinearLayout
-                    style="@style/Widget.CardContent"
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin">
 
-                    <TextView
+                    <LinearLayout
+                        style="@style/Widget.CardContent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/measurement" />
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="Distance Arduino" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/measurement"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:id="@+id/arduinoDistance"
-                        android:gravity="center_horizontal|bottom"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/distance_arduino" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="Distance Arduino"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                        <TextView
+                            android:id="@+id/arduinoDistance"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:gravity="center_horizontal|bottom"
+                            android:text="@string/distance_arduino"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:text="Distance beacon"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="@dimen/custom_margin"
+                                    android:gravity="center"
+                                    android:text="Name beacon:"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/value_friendly_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/distance_beacon"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/card_margin"
+                    android:layout_weight="1.69">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -51,74 +107,26 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/arduinoMis"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:text="Distance beacon" />
+                            android:text="@string/distance_beacon"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/custom_margin"
-                                android:gravity="center"
-                                android:textStyle="bold"
-                                android:text="Name beacon:" />
-
-                            <TextView
-                                android:id="@+id/value_friendly_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                        </LinearLayout>
+                        <FrameLayout
+                            android:id="@+id/chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="232dp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/distance_beacon" />
+                </android.support.v7.widget.CardView>
 
-                </LinearLayout>
+            </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+        </android.support.v4.widget.NestedScrollView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/card_margin"
-                android:layout_weight="1.69">
+    </android.support.design.widget.CoordinatorLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/arduinoMis"
-                        android:gravity="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        android:text="@string/distance_beacon" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="232dp"
-                        android:id="@+id/chart" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>

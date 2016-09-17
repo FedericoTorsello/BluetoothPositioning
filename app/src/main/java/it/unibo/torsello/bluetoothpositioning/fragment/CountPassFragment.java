@@ -22,11 +22,11 @@ import it.unibo.torsello.bluetoothpositioning.R;
  */
 public class CountPassFragment extends Fragment implements SensorEventListener {
 
+    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SensorManager mSensorManager;
     private Sensor mStepCounter;
     private Sensor mStepDetector;
     private Sensor mAccellSensor;
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private long lastTime = 0L;
     private int steps = 0;
     private int tempCount;//For counting real steps without external influence.

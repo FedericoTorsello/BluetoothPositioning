@@ -25,7 +25,6 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
-import it.unibo.torsello.bluetoothpositioning.utils.ArduinoUtil;
 import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
 import it.unibo.torsello.bluetoothpositioning.utils.ChartUtil;
 
@@ -35,9 +34,8 @@ import it.unibo.torsello.bluetoothpositioning.utils.ChartUtil;
  */
 public class DeviceDetailFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
-    private final String TAG_CLASS = getClass().getSimpleName();
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-
+    private final String TAG_CLASS = getClass().getSimpleName();
     private DeviceViewAdapter deviceViewAdapter;
     private List<Device> deviceList;
 
@@ -46,7 +44,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private ChartUtil chartUtil;
 
-    private ArduinoUtil arduinoUtil;
+    //    private ArduinoUtil arduinoUtil;
     private TextView estimateDistanceRAW;
 
     private TextView textView;
@@ -130,9 +128,9 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         idDeviceSelected = getArguments().getString(EXTRA_MESSAGE);
         deviceList = new ArrayList<>();
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
-        arduinoUtil = new ArduinoUtil(getActivity()
+//        arduinoUtil = new ArduinoUtil(getActivity()
 //                ,textView
-        );
+//        );
 
     }
 
@@ -140,14 +138,14 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     public void onResume() {
         super.onResume();
 
-        arduinoUtil.createService();
+//        arduinoUtil.createService();
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-        arduinoUtil.unregisterReceiver();
+//        arduinoUtil.unregisterReceiver();
     }
 
 

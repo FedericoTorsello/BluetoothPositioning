@@ -1,7 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.utils;
 
-import android.app.Application;
-
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 

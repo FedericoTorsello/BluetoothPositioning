@@ -6,10 +6,9 @@ package it.unibo.torsello.bluetoothpositioning.utils;
  */
 public class ByteArray {
 
+    String val;
     private byte[] mByteArray = new byte[1];
     private int mUsedLength;
-
-    String val;
 
     public void add(byte[] newArray) {
         // Make sure we have enough space to store byte array.

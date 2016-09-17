@@ -61,56 +61,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         };
     }
 
-    protected class DeviceViewHolder extends RecyclerView.ViewHolder {
-
-        View view;
-        ImageView imageView;
-        TextView macTextView;
-        TextView majorTextView;
-        TextView minorTextView;
-        TextView measuredPowerTextView;
-        TextView rssiTextView;
-        TextView friendlyNameTextView;
-        TextView defaultNameTextView;
-        TextView distanceTextView;
-        TextView uuidTextView;
-        TextView nameSpaceTextView;
-        TextView instanceTextView;
-        TextView proximityTextView;
-        TextView velocityTextView;
-        TextView colorTextView;
-        LinearLayout visibilityUUIDLinearLayout;
-        LinearLayout visibilityNameSpaceLinearLayout;
-        LinearLayout visibilityMajorMinorLinearLayout;
-        LinearLayout visibilityInstanceLinearLayout;
-
-        private DeviceViewHolder(View view) {
-
-            super(view);
-            this.view = view;
-            imageView = (ImageView) view.findViewById(R.id.imageBeacon);
-            defaultNameTextView = (TextView) view.findViewById(R.id.value_default_name);
-            friendlyNameTextView = (TextView) view.findViewById(R.id.value_friendly_name);
-            distanceTextView = (TextView) view.findViewById(R.id.value_distance);
-            macTextView = (TextView) view.findViewById(R.id.value_mac_address);
-            majorTextView = (TextView) view.findViewById(R.id.value_major);
-            minorTextView = (TextView) view.findViewById(R.id.value_minor);
-            measuredPowerTextView = (TextView) view.findViewById(R.id.value_power);
-            rssiTextView = (TextView) view.findViewById(R.id.value_rssi);
-            uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
-            nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
-            proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
-            instanceTextView = (TextView) view.findViewById(R.id.value_instance);
-//            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
-            colorTextView = (TextView) view.findViewById(R.id.value_color);
-            visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
-            visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
-            visibilityMajorMinorLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_major_minor);
-            visibilityInstanceLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_instance);
-        }
-
-    }
-
     @Override
     public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -280,5 +230,55 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
     @Override
     public int getItemCount() {
         return deviceList.size();
+    }
+
+    protected class DeviceViewHolder extends RecyclerView.ViewHolder {
+
+        View view;
+        ImageView imageView;
+        TextView macTextView;
+        TextView majorTextView;
+        TextView minorTextView;
+        TextView measuredPowerTextView;
+        TextView rssiTextView;
+        TextView friendlyNameTextView;
+        TextView defaultNameTextView;
+        TextView distanceTextView;
+        TextView uuidTextView;
+        TextView nameSpaceTextView;
+        TextView instanceTextView;
+        TextView proximityTextView;
+        TextView velocityTextView;
+        TextView colorTextView;
+        LinearLayout visibilityUUIDLinearLayout;
+        LinearLayout visibilityNameSpaceLinearLayout;
+        LinearLayout visibilityMajorMinorLinearLayout;
+        LinearLayout visibilityInstanceLinearLayout;
+
+        private DeviceViewHolder(View view) {
+
+            super(view);
+            this.view = view;
+            imageView = (ImageView) view.findViewById(R.id.imageBeacon);
+            defaultNameTextView = (TextView) view.findViewById(R.id.value_default_name);
+            friendlyNameTextView = (TextView) view.findViewById(R.id.value_friendly_name);
+            distanceTextView = (TextView) view.findViewById(R.id.value_distance);
+            macTextView = (TextView) view.findViewById(R.id.value_mac_address);
+            majorTextView = (TextView) view.findViewById(R.id.value_major);
+            minorTextView = (TextView) view.findViewById(R.id.value_minor);
+            measuredPowerTextView = (TextView) view.findViewById(R.id.value_power);
+            rssiTextView = (TextView) view.findViewById(R.id.value_rssi);
+            uuidTextView = (TextView) view.findViewById(R.id.value_uuid);
+            nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
+            proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
+            instanceTextView = (TextView) view.findViewById(R.id.value_instance);
+//            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
+            colorTextView = (TextView) view.findViewById(R.id.value_color);
+            visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
+            visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);
+            visibilityMajorMinorLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_major_minor);
+            visibilityInstanceLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_instance);
+        }
+
     }
 }

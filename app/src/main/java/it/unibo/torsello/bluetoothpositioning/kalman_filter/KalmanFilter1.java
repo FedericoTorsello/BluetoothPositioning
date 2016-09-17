@@ -10,21 +10,20 @@ import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
  */
 public class KalmanFilter1 {
 
+    private static KalmanFilter1 ourInstance = new KalmanFilter1();
     private ArrayMap<String, Double> mPredictedSignals;
     private ArrayMap<String, Double> mPredictedVelocities;
     private double measuredVelocity;
     private double measuredRssi;
 
-    private static KalmanFilter1 ourInstance = new KalmanFilter1();
-
-    public static KalmanFilter1 getInstance() {
-        return ourInstance;
-    }
-
     private KalmanFilter1() {
         mPredictedSignals = new ArrayMap<>();
         mPredictedVelocities = new ArrayMap<>();
 
+    }
+
+    public static KalmanFilter1 getInstance() {
+        return ourInstance;
     }
 
     public void filter(double newSignalValue, String identifier) {

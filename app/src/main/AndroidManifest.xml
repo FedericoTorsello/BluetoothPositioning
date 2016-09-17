@@ -44,11 +44,11 @@
             <!--android:screenOrientation="behind"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
 
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
 
             <meta-data
@@ -56,9 +56,20 @@
                 android:resource="@xml/device_filter" />
         </activity>
 
-        <service
-            android:name=".utils.ArduinoCommunicatorService"
-            android:enabled="true" />
+        <!--<service-->
+        <!--android:name=".utils.ArduinoCommunicatorService"-->
+        <!--android:enabled="true" />-->
+
+        <!--<activity-->
+        <!--android:name=".examples.DeviceListActivity">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />-->
+        <!--</intent-filter>-->
+
+        <!--<meta-data-->
+        <!--android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"-->
+        <!--android:resource="@xml/device_filter" />-->
+        <!--</activity>-->
 
     </application>
 

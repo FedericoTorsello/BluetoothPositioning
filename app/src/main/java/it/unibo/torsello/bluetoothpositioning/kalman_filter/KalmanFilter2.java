@@ -8,15 +8,10 @@ import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
  */
 public class KalmanFilter2 {
 
+    private static KalmanFilter2 ourInstance = new KalmanFilter2();
+    double[] xhat, xhat_prime, p, p_prime, k;
     private int N;
     private double R, Q;
-    double[] xhat, xhat_prime, p, p_prime, k;
-
-    private static KalmanFilter2 ourInstance = new KalmanFilter2();
-
-    public static KalmanFilter2 getInstance() {
-        return ourInstance;
-    }
 
     private KalmanFilter2() {
         // Number of measurements
@@ -43,6 +38,10 @@ public class KalmanFilter2 {
 
         // kalman gain
         k = new double[N + 1];
+    }
+
+    public static KalmanFilter2 getInstance() {
+        return ourInstance;
     }
 
     public double filter(double observations) {

@@ -33,14 +33,6 @@ public class PreferencesFragment extends Fragment {
     private DecimalFormat df;
     private KalmanFilter3 kalmanFilter3;
 
-    public interface OnSettingsListener {
-        void updateKalmanNoise(double value);
-
-        void isSelfCorrection(boolean isChecked);
-
-        void isWalkDetection(boolean isChecked);
-    }
-
     public static PreferencesFragment newInstance(String message) {
         PreferencesFragment fragment = new PreferencesFragment();
         Bundle args = new Bundle();
@@ -91,7 +83,6 @@ public class PreferencesFragment extends Fragment {
         onSettingsListener = null;
     }
 
-
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setUpKalmanSeek() {
         SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
@@ -121,23 +112,6 @@ public class PreferencesFragment extends Fragment {
         });
     }
 
-    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
-//    private void setUpSelfcorrectingSwitch() {
-//        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
-//        boolean selfCorrection = preferences.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
-//        selfCorrectionSwitch.setChecked(selfCorrection);
-//        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
-//        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
-//                editor.apply();
-//                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-//            }
-//        });
-//    }
-
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
     private void setUpWalkDetectionSwitch() {
         final Switch wdSwitch = (Switch) getActivity().findViewById(R.id.walkDetectionSwitch);
@@ -156,6 +130,23 @@ public class PreferencesFragment extends Fragment {
         });
     }
 
+    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
+//    private void setUpSelfcorrectingSwitch() {
+//        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
+//        boolean selfCorrection = preferences.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
+//        selfCorrectionSwitch.setChecked(selfCorrection);
+//        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
+//        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                SharedPreferences.Editor editor = preferences.edit();
+//                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
+//                editor.apply();
+//                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
+//            }
+//        });
+//    }
+
     private void setSorting() {
         final RadioGroup radioGroup = (RadioGroup) getActivity().findViewById(R.id.radioGroup);
         int checkedRadioButton = preferences.getInt(SettingConstants.SORTING, radioGroup.getChildAt(0).getId());
@@ -169,6 +160,14 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
+    }
+
+    public interface OnSettingsListener {
+        void updateKalmanNoise(double value);
+
+        void isSelfCorrection(boolean isChecked);
+
+        void isWalkDetection(boolean isChecked);
     }
 
 }
