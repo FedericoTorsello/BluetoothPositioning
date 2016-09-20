@@ -72,7 +72,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         initialize();
 
-        //        String appId = "federico-torsello-studio-u-6yo";
+//        String appId = "federico-torsello-studio-u-6yo";
 //        String appToken = "57c8cf3bef60d9258fd9123556dace89";
 
         //  App ID & App Token can be taken from App section of Estimote Cloud.
@@ -147,9 +147,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         beaconManager.getBeaconParsers().add(new BeaconParser()
                 .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
 
-        beaconManager.setForegroundScanPeriod(200L);
+        beaconManager.setForegroundScanPeriod(250L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
-        beaconManager.setBackgroundScanPeriod(200L);
+        beaconManager.setBackgroundScanPeriod(500L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
     }
 
@@ -165,7 +165,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                     Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
 
                     if (device != null) { // useful only if DEVICE_MAP is empty
-//                        device.setApplication(getApplication());
                         device.setBeacon(b);
                         device.updateDistance(processNoise, movementState);
 

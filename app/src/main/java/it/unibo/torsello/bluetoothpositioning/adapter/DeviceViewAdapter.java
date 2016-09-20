@@ -76,8 +76,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         final Beacon beacon = deviceList.get(adapterPosition).getBeacon();
         final Device device = deviceList.get(adapterPosition);
 
-//        holder.velocityTextView.setText(String.valueOf(device.getVelocity()));
-
         Integer imageBeacon = device.getImageBeacon();
         if (imageBeacon != null) {
             holder.imageView.setImageResource(imageBeacon);
@@ -248,7 +246,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
         TextView nameSpaceTextView;
         TextView instanceTextView;
         TextView proximityTextView;
-        TextView velocityTextView;
         TextView colorTextView;
         LinearLayout visibilityUUIDLinearLayout;
         LinearLayout visibilityNameSpaceLinearLayout;
@@ -272,7 +269,6 @@ public class DeviceViewAdapter extends RecyclerView.Adapter<DeviceViewAdapter.De
             nameSpaceTextView = (TextView) view.findViewById(R.id.value_name_space);
             proximityTextView = (TextView) view.findViewById(R.id.value_proximity);
             instanceTextView = (TextView) view.findViewById(R.id.value_instance);
-//            velocityTextView = (TextView) view.findViewById(R.id.value_velocity);
             colorTextView = (TextView) view.findViewById(R.id.value_color);
             visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid);
             visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace);

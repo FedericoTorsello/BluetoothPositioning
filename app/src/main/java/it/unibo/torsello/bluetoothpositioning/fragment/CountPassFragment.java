@@ -32,11 +32,11 @@ public class CountPassFragment extends Fragment implements SensorEventListener {
     private int tempCount;//For counting real steps without external influence.
 
     public static CountPassFragment newInstance(String message) {
-        CountPassFragment f = new CountPassFragment();
+        CountPassFragment fragment = new CountPassFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
-        f.setArguments(bdl);
-        return f;
+        fragment.setArguments(bdl);
+        return fragment;
     }
 
     @Override

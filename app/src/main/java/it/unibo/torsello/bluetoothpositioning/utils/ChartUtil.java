@@ -57,8 +57,8 @@ public class ChartUtil {
         // get the legend (only possible after setting data)
 
         Legend l = mChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(7f);
 

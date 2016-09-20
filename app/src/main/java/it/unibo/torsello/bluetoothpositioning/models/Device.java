@@ -3,7 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.models;
 import org.altbeacon.beacon.Beacon;
 
 import io.realm.RealmObject;
-import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
+import it.unibo.torsello.bluetoothpositioning.utils.DistEstimationUtil;
 
 /**
  * Created by Federico Torsello.
@@ -11,7 +11,7 @@ import it.unibo.torsello.bluetoothpositioning.utils.BeaconStatisticsUtil;
  */
 public class Device extends RealmObject {
 
-    private BeaconStatisticsUtil stats;
+    private DistEstimationUtil stats;
     private String address;
     private String friendlyName;
     private Beacon beacon;
@@ -23,7 +23,7 @@ public class Device extends RealmObject {
         this.index = index;
         this.address = address;
         this.friendlyName = friendlyName;
-        this.stats = new BeaconStatisticsUtil();
+        this.stats = new DistEstimationUtil();
         this.imageBeacon = imageBeacon;
         this.color = color;
     }
@@ -35,10 +35,6 @@ public class Device extends RealmObject {
     public void updateDistance(double processNoise, int movementState) {
         stats.updateDistance(beacon, processNoise, movementState);
     }
-
-//    public void setApplication(Application application) {
-//        stats.setApplication(application);
-//    }
 
     public Integer getColor() {
         return color;

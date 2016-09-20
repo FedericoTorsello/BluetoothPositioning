@@ -14,7 +14,7 @@
     <string name="friendly_name">Friendly name:</string>
     <string name="default_name">Default name:</string>
     <string name="color">Color:</string>
-    <string name="mac_address">MAC Add:</string>
+    <string name="mac_address">MAC address:</string>
     <string name="major">Major:</string>
     <string name="minor">Minor:</string>
     <string name="uuid">UUID:</string>
@@ -26,9 +26,9 @@
     <string name="proximity">Proximity:</string>
 
     <!--Color devices-->
-    <string name="icy_marshmallow">"Icy Marshmallow"</string>
-    <string name="blueberry_pie">"Blueberry Pie"</string>
-    <string name="mint_cocktail">"Mint Cocktail""</string>
+    <string name="icy_marshmallow">Icy Marshmallow</string>
+    <string name="blueberry_pie">Blueberry Pie</string>
+    <string name="mint_cocktail">Mint Cocktail</string>
     <!---->
 
 
@@ -128,6 +128,10 @@
     <string name="refreshing">Refreshing...</string>
     <string name="textBtnRTS">RTS - Request To Send</string>
     <string name="textBtnDTR">DTR - Data Terminal Ready</string>
+    <string name="distance_estimation_arduino">Arduino distance estimation</string>
+    <string name="usb_state">USB state:</string>
+    <string name="details">Details</string>
+    <string name="device_distance_estimation">Device distance estimation</string>
 
 
 </resources>

@@ -21,10 +21,9 @@ import java.util.List;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.MeasurementFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.UsbFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
 
 /**
  * Created by Federico Torsello.
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             replaceFragment(HomeViewFragment.newInstance(getFragments()));
 
-            final long DOUBLE_PRESS_INTERVAL = 1000;
+            final long DOUBLE_PRESS_INTERVAL = 1500;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -105,10 +104,9 @@ public class MainActivity extends AppCompatActivity
                 fragment = SettingsFragment.newInstance();
                 break;
             case R.id.nav_measurement:
-                fragment = MeasurementFragment.newInstance();
+                fragment = UsbMeasurementFragment.newInstance();
                 break;
             case R.id.nav_share:
-                fragment = UsbFragment.newInstance();
                 break;
             case R.id.nav_send:
                 break;

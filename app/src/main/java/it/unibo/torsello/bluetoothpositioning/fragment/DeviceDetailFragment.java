@@ -19,7 +19,6 @@ import com.github.mikephil.charting.charts.LineChart;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
@@ -27,6 +26,7 @@ import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
 import it.unibo.torsello.bluetoothpositioning.utils.ChartUtil;
+import it.unibo.torsello.bluetoothpositioning.utils.UsbRawDataUtil;
 
 /**
  * Created by Federico Torsello.
@@ -40,14 +40,12 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     private List<Device> deviceList;
 
     private CameraUtil cameraUtil;
-    private TextureView mTextureView;
 
     private ChartUtil chartUtil;
 
-    //    private ArduinoUtil arduinoUtil;
-    private TextView estimateDistanceRAW;
-
-    private TextView textView;
+    private TextView twDistance;
+    private TextView twState;
+    private UsbRawDataUtil usbUtil;
 
     private String idDeviceSelected;
 
@@ -56,7 +54,6 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);
-
         return fragment;
     }
 
@@ -68,21 +65,28 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
         ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelected);
 
-        // add RecyclerView
-        RecyclerView recyclerView = new RecyclerView(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(deviceViewAdapter);
-        ((FrameLayout) root.findViewById(R.id.frame_selected_device)).addView(recyclerView);
+        initializeDeviceDetail(root);
+
+        initializeArduinoDistance(root);
 
         initializeCamera(root);
 
         initializeChart(root);
 
-        estimateDistanceRAW = (TextView) root.findViewById(R.id.prova);
-
-        textView = (TextView) getActivity().findViewById(R.id.arduinoMis);
-
         return root;
+    }
+
+    private void initializeDeviceDetail(View root) {
+        // add RecyclerView
+        RecyclerView recyclerView = new RecyclerView(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(deviceViewAdapter);
+        ((FrameLayout) root.findViewById(R.id.frame_selected_device)).addView(recyclerView);
+    }
+
+    private void initializeArduinoDistance(View root) {
+        twDistance = (TextView) root.findViewById(R.id.tw_distance_value);
+        twState = (TextView) root.findViewById(R.id.tw_state_value);
     }
 
     private void initializeCamera(View root) {
@@ -90,7 +94,9 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         if (isCameraHardwarePresent()) {
             cameraUtil = new CameraUtil(getActivity());
 
-            mTextureView = cameraUtil.getmTextureView();
+            final TextureView mTextureView = cameraUtil.getmTextureView();
+
+            // programatically add camera preview
             FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview1);
             preview.addView(mTextureView);
             preview.setOnClickListener(new View.OnClickListener() {
@@ -128,24 +134,33 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         idDeviceSelected = getArguments().getString(EXTRA_MESSAGE);
         deviceList = new ArrayList<>();
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
-//        arduinoUtil = new ArduinoUtil(getActivity()
-//                ,textView
-//        );
 
-    }
+        usbUtil = new UsbRawDataUtil(getActivity());
+        usbUtil.setOnReceiveNewData(new UsbRawDataUtil.OnReceiveNewData() {
+            @Override
+            public void getData(byte[] data) {
+                final String text = new String(data);
+                twDistance.setText(text.trim());
+            }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+            @Override
+            public void getStatus(String state) {
+                twState.setText(state);
+            }
 
-//        arduinoUtil.createService();
+        });
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        usbUtil.pause();
+    }
 
-//        arduinoUtil.unregisterReceiver();
+    @Override
+    public void onResume() {
+        super.onResume();
+        usbUtil.resume();
     }
 
 
@@ -159,8 +174,6 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         for (Device deviceSelected : devices) {
             if (deviceSelected.getFriendlyName().equals(idDeviceSelected) ||
                     deviceSelected.getAddress().equals(idDeviceSelected)) {
-
-                estimateDistanceRAW.setText(String.format(Locale.getDefault(), "%.2f", deviceSelected.getDistNoFilter1()));
 
                 if (chartUtil != null) {
                     chartUtil.updateDataSet(deviceSelected);

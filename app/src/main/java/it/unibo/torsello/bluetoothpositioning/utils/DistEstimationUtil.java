@@ -15,7 +15,7 @@ import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter4;
  * <takePicture>
  * A helper class
  */
-public class BeaconStatisticsUtil {
+public class DistEstimationUtil {
 
     private DescriptiveStatistics recentRssi;
     private DescriptiveStatistics recentTxPower;
@@ -34,7 +34,7 @@ public class BeaconStatisticsUtil {
     private double velocity;
 //    private Application application;
 
-    public BeaconStatisticsUtil() {
+    public DistEstimationUtil() {
 
         // limit on the number of values that can be stored in the dataset
         recentRssi = new DescriptiveStatistics();
@@ -52,10 +52,6 @@ public class BeaconStatisticsUtil {
         kalmanFilter4 = KalmanFilter4.getInstance();
 
     }
-
-//    public void setApplication(Application application) {
-//        this.application = application;
-//    }
 
     public void updateDistance(Beacon b, double processNoise, int movementState) {
 

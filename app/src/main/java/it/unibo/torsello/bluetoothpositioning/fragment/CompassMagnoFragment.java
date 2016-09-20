@@ -28,11 +28,11 @@ public class CompassMagnoFragment extends Fragment implements SensorEventListene
     private float magnetValues[];
 
     public static CompassMagnoFragment newInstance(String message) {
-        CompassMagnoFragment f = new CompassMagnoFragment();
+        CompassMagnoFragment fragment = new CompassMagnoFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
-        f.setArguments(bdl);
-        return f;
+        fragment.setArguments(bdl);
+        return fragment;
     }
 
 

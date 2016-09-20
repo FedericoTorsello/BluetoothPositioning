@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.fragment;
+package it.unibo.torsello.bluetoothpositioning.utils;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -17,10 +17,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
+
 /**
  * Created by federico on 17/09/16.
  */
-public class UsbUtil {
+public class UsbRawDataUtil {
 
     private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
     private UsbSerialPort port;
@@ -32,7 +34,7 @@ public class UsbUtil {
 
                 @Override
                 public void onRunError(Exception e) {
-//                    Log.d(TAG, "Runner stopped.");
+                    onReceiveNewData.getStatus("The I/O manager is stopped");
                 }
 
                 @Override
@@ -53,7 +55,7 @@ public class UsbUtil {
                 }
             };
 
-    public UsbUtil(FragmentActivity fragmentActivity) {
+    public UsbRawDataUtil(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
 
         // Find all available drivers from attached devices.
@@ -61,6 +63,7 @@ public class UsbUtil {
         List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
 
         if (!availableDrivers.isEmpty()) {
+
             // Open a connection to the first available driver.
             UsbSerialDriver driver = availableDrivers.get(0);
 
@@ -68,7 +71,7 @@ public class UsbUtil {
                 // Read some data! Most have just one port (port 0).
                 port = driver.getPorts().get(0);
             } else {
-                Intent startIntent = new Intent(fragmentActivity, UsbFragment.class);
+                Intent startIntent = new Intent(fragmentActivity, fragmentActivity.getClass());
                 PendingIntent pendingIntent = PendingIntent.getService(fragmentActivity, 0, startIntent, 0);
                 manager.requestPermission(driver.getDevice(), pendingIntent);
             }
@@ -94,15 +97,13 @@ public class UsbUtil {
                     port.open(connection);
                     port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
 
-                    String details = "CD  - Carrier Detect" + port.getCD() + '\n' +
-                            "CTS - Clear To Send" + port.getCTS() + '\n' +
-                            "DSR - Data Set Ready" + port.getDSR() + '\n' +
-                            "DTR - Data Terminal Ready" + port.getDTR() + '\n' +
-                            "DSR - Data Set Ready" + port.getDSR() + '\n' +
-                            "RI  - Ring Indicator" + port.getRI() + '\n' +
-                            "RTS - Request To Send" + port.getRTS();
-
-                    onReceiveNewData.getStatus(details);
+//                    String details = "CD  - Carrier Detect" + port.getCD() + '\n' +
+//                            "CTS - Clear To Send" + port.getCTS() + '\n' +
+//                            "DSR - Data Set Ready" + port.getDSR() + '\n' +
+//                            "DTR - Data Terminal Ready" + port.getDTR() + '\n' +
+//                            "DSR - Data Set Ready" + port.getDSR() + '\n' +
+//                            "RI  - Ring Indicator" + port.getRI() + '\n' +
+//                            "RTS - Request To Send" + port.getRTS();
 
                 } catch (IOException e) {
                     onReceiveNewData.getStatus("Error opening device: " + e.getMessage());
@@ -118,6 +119,8 @@ public class UsbUtil {
                 stopIoManager();
                 startIoManager();
             }
+        } else {
+            onReceiveNewData.getStatus("USB device not connected");
         }
     }
 
@@ -135,7 +138,7 @@ public class UsbUtil {
 
     private void stopIoManager() {
         if (mSerialIoManager != null) {
-            onReceiveNewData.getStatus("Stopping I/O manager");
+            onReceiveNewData.getStatus("The I/O manager is stopped");
             mSerialIoManager.stop();
             mSerialIoManager = null;
         }
@@ -143,7 +146,7 @@ public class UsbUtil {
 
     private void startIoManager() {
         if (port != null) {
-            onReceiveNewData.getStatus("Starting I/O manager");
+            onReceiveNewData.getStatus("The I/O manager is started");
             mSerialIoManager = new SerialInputOutputManager(port, mListener);
             mExecutor.submit(mSerialIoManager);
         }
@@ -154,7 +157,6 @@ public class UsbUtil {
 
         void getStatus(String status);
 
-        void getDetails(String details);
     }
 
 }
