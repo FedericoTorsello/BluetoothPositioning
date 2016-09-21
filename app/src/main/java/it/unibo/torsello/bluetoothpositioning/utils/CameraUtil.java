@@ -81,6 +81,10 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
 
     }
 
+    public void onResume() {
+        initialize();
+    }
+
     /**
      * Picture Callback for handling a picture capture and saving it out to a file.
      */
@@ -96,11 +100,6 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     public void safeCameraOpenInView(SurfaceTexture surface) {
 
         if (mCamera != null) {
-            try {
-                mCamera.setPreviewTexture(surface);
-            } catch (IOException ioe) {
-                ioe.getStackTrace();
-            }
 
             if (preview_thread != null)
                 preview_thread.interrupt();
@@ -114,6 +113,11 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
 
             preview_thread.start();
 
+            try {
+                mCamera.setPreviewTexture(surface);
+            } catch (IOException ioe) {
+                ioe.getStackTrace();
+            }
         }
     }
 
@@ -175,10 +179,11 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
         if (mCamera != null) {
             mCamera.stopPreview();
-            mCamera.release();
             if (!preview_thread.isInterrupted()) {
                 preview_thread.interrupt();
             }
+            mCamera.release();
+            mCamera = null;
         }
         return true;
     }
@@ -186,5 +191,16 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
         // Invoked every time there's a new CameraUtil preview frame
+    }
+
+    public void onPause() {
+        if (mCamera != null) {
+            if (!preview_thread.isInterrupted()) {
+                preview_thread.interrupt();
+            }
+            mCamera.stopPreview();
+            mCamera.release();
+            mCamera = null;
+        }
     }
 }

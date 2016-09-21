@@ -76,7 +76,7 @@ public class ChartUtil {
 
     }
 
-    public void updateDataSet(final Device device) {
+    public void updateDataSet(final Device device, final float meter) {
         if (thread != null)
             thread.interrupt();
 
@@ -102,7 +102,7 @@ public class ChartUtil {
 //                            dataSets.add(createDataSet("RAW_3", Color.BLUE));
 //                            dataSets.add(createDataSet("RAW_4", Color.CYAN));
 
-//                            dataSets.add(createDataSet("ARDUINO", Color.RED));
+                                dataSets.add(createDataSet("ARDUINO", Color.RED));
 
                                 initializeDataChart(dataSets);
                             } else {
@@ -115,7 +115,7 @@ public class ChartUtil {
 //                                plotValue(data, 5, (float) device.getDistNoFilter2());
 //                                plotValue(data, 6, (float) device.getDistNoFilter3());
 
-//                                plotValue(data, 0, (float) /*arduino*/);
+                                    plotValue(data, 1, meter);
                                 }
                             }
                         }

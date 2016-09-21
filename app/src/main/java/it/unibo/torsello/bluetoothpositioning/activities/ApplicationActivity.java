@@ -2,12 +2,17 @@ package it.unibo.torsello.bluetoothpositioning.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.hardware.usb.UsbManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +21,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.hoho.android.usbserial.driver.UsbSerialDriver;
+import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -250,6 +258,22 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             beaconManager.setBackgroundMode(false);
         }
         isBluetoothAvailable();
+
+        // Find all available drivers from attached devices.
+        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+
+        if (!availableDrivers.isEmpty()) {
+            // Open a connection to the first available driver.
+            UsbSerialDriver driver = availableDrivers.get(0);
+
+            if (!manager.hasPermission(driver.getDevice())) {
+                Intent startIntent = new Intent(this, getClass());
+                PendingIntent pendingIntent = PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
+                manager.requestPermission(driver.getDevice(), pendingIntent);
+            }
+        }
+
     }
 
     @Override

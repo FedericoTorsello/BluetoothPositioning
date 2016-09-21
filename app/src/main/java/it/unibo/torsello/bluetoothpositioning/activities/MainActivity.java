@@ -19,11 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestActivity;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
+import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
 
 /**
  * Created by Federico Torsello.
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = UsbMeasurementFragment.newInstance();
                 break;
             case R.id.nav_share:
+                fragment = CamTestActivity.newInstance();
                 break;
             case R.id.nav_send:
                 break;

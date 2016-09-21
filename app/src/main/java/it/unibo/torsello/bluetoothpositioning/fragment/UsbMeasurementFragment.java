@@ -8,8 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.UsbRawDataUtil;
+import it.unibo.torsello.bluetoothpositioning.utils.UsbDataUtil;
 
 /**
  * Created by Federico Torsello.
@@ -19,7 +22,7 @@ public class UsbMeasurementFragment extends Fragment {
 
     private TextView twDistance;
     private TextView twState;
-    private UsbRawDataUtil usbUtil;
+    private UsbDataUtil usbUtil;
 
     public static UsbMeasurementFragment newInstance() {
         return new UsbMeasurementFragment();
@@ -33,23 +36,34 @@ public class UsbMeasurementFragment extends Fragment {
 
         initializeArduinoDistance(root);
 
+
         return root;
     }
 
     private void initializeArduinoDistance(View root) {
         twDistance = (TextView) root.findViewById(R.id.tw_distance_value);
         twState = (TextView) root.findViewById(R.id.tw_state_value);
+
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        usbUtil = new UsbRawDataUtil(getActivity());
-        usbUtil.setOnReceiveNewData(new UsbRawDataUtil.OnReceiveNewData() {
+        usbUtil = new UsbDataUtil(getActivity());
+
+        usbUtil.setOnReceiveNewData(new UsbDataUtil.OnReceiveNewData() {
+
             @Override
             public void getData(byte[] data) {
+
                 final String text = new String(data);
-                twDistance.setText(text.trim());
+
+                try {
+                    float meter = Float.valueOf(text.trim()) / 100;
+                    DecimalFormat df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+                    twDistance.setText(String.format("%s m", df.format(meter)));
+                } catch (NumberFormatException nfe) {
+                }
             }
 
             @Override
@@ -57,18 +71,27 @@ public class UsbMeasurementFragment extends Fragment {
                 twState.setText(state);
             }
 
+            @Override
+            public void isEnabled(boolean enabled) {
+                if (!enabled) {
+                    twDistance.setText("0.00 m");
+                }
+            }
+
         });
+
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        usbUtil.pause();
+        usbUtil.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        usbUtil.resume();
+        usbUtil.onResume();
     }
 }

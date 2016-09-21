@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -22,18 +23,20 @@ import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
 /**
  * Created by federico on 17/09/16.
  */
-public class UsbRawDataUtil {
+public class UsbDataUtil {
 
     private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
     private UsbSerialPort port;
     private SerialInputOutputManager mSerialIoManager;
     private FragmentActivity fragmentActivity;
     private OnReceiveNewData onReceiveNewData;
+
     private final SerialInputOutputManager.Listener mListener =
             new SerialInputOutputManager.Listener() {
 
                 @Override
                 public void onRunError(Exception e) {
+                    onReceiveNewData.isEnabled(false);
                     onReceiveNewData.getStatus("The I/O manager is stopped");
                 }
 
@@ -46,6 +49,7 @@ public class UsbRawDataUtil {
                                 fragmentActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        onReceiveNewData.isEnabled(true);
                                         onReceiveNewData.getData(data);
                                     }
                                 });
@@ -55,8 +59,15 @@ public class UsbRawDataUtil {
                 }
             };
 
-    public UsbRawDataUtil(FragmentActivity fragmentActivity) {
+    public UsbDataUtil(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
+    }
+
+    public void setOnReceiveNewData(OnReceiveNewData onReceive) {
+        this.onReceiveNewData = onReceive;
+    }
+
+    public void onResume() {
 
         // Find all available drivers from attached devices.
         UsbManager manager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
@@ -67,35 +78,33 @@ public class UsbRawDataUtil {
             // Open a connection to the first available driver.
             UsbSerialDriver driver = availableDrivers.get(0);
 
-            if (manager.openDevice(driver.getDevice()) != null) {
-                // Read some data! Most have just one port (port 0).
-                port = driver.getPorts().get(0);
-            } else {
-                Intent startIntent = new Intent(fragmentActivity, fragmentActivity.getClass());
-                PendingIntent pendingIntent = PendingIntent.getService(fragmentActivity, 0, startIntent, 0);
-                manager.requestPermission(driver.getDevice(), pendingIntent);
+            if (manager.hasPermission(driver.getDevice())) {
+                if (manager.openDevice(driver.getDevice()) != null) {
+                    // Read some data! Most have just one port (port 0).
+                    port = driver.getPorts().get(0);
+                }
             }
-        }
-    }
 
-    public void setOnReceiveNewData(OnReceiveNewData onReceive) {
-        this.onReceiveNewData = onReceive;
-    }
+//            else {
+//                Intent startIntent = new Intent(fragmentActivity, fragmentActivity.getClass());
+//                PendingIntent pendingIntent = PendingIntent.getService(fragmentActivity, 0, startIntent, PendingIntent.FLAG_NO_CREATE);
+//                manager.requestPermission(driver.getDevice(), pendingIntent);
+//            }
 
-    public void resume() {
 
-        if (port != null) {
+            if (port != null) {
 
-            final UsbManager usbManager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
-            UsbDeviceConnection connection = usbManager.openDevice(port.getDriver().getDevice());
+                final UsbManager usbManager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
+                UsbDeviceConnection connection = usbManager.openDevice(port.getDriver().getDevice());
 
-            if (connection == null) {
-                onReceiveNewData.getStatus("Opening device failed");
-            } else {
+                if (connection == null) {
+                    onReceiveNewData.getStatus("Opening device failed");
+                    onReceiveNewData.isEnabled(false);
+                } else {
 
-                try {
-                    port.open(connection);
-                    port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+                    try {
+                        port.open(connection);
+                        port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
 
 //                    String details = "CD  - Carrier Detect" + port.getCD() + '\n' +
 //                            "CTS - Clear To Send" + port.getCTS() + '\n' +
@@ -105,26 +114,30 @@ public class UsbRawDataUtil {
 //                            "RI  - Ring Indicator" + port.getRI() + '\n' +
 //                            "RTS - Request To Send" + port.getRTS();
 
-                } catch (IOException e) {
-                    onReceiveNewData.getStatus("Error opening device: " + e.getMessage());
-                    try {
-                        port.close();
-                    } catch (IOException e2) {
-                        // Ignore.
+                    } catch (IOException e) {
+                        onReceiveNewData.getStatus("Error opening device: " + e.getMessage());
+                        onReceiveNewData.isEnabled(false);
+                        try {
+                            port.close();
+                        } catch (IOException e2) {
+                            // Ignore.
+                        }
+                        port = null;
+                        return;
                     }
-                    port = null;
-                    return;
-                }
 
-                stopIoManager();
-                startIoManager();
+                    stopIoManager();
+                    startIoManager();
+                }
             }
         } else {
             onReceiveNewData.getStatus("USB device not connected");
+            onReceiveNewData.isEnabled(false);
         }
+
     }
 
-    public void pause() {
+    public void onPause() {
         stopIoManager();
         if (port != null) {
             try {
@@ -139,6 +152,7 @@ public class UsbRawDataUtil {
     private void stopIoManager() {
         if (mSerialIoManager != null) {
             onReceiveNewData.getStatus("The I/O manager is stopped");
+            onReceiveNewData.isEnabled(false);
             mSerialIoManager.stop();
             mSerialIoManager = null;
         }
@@ -156,6 +170,8 @@ public class UsbRawDataUtil {
         void getData(byte[] data);
 
         void getStatus(String status);
+
+        void isEnabled(boolean enabled);
 
     }
 

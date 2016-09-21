@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.models.Device;
 import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
 import it.unibo.torsello.bluetoothpositioning.utils.ChartUtil;
-import it.unibo.torsello.bluetoothpositioning.utils.UsbRawDataUtil;
+import it.unibo.torsello.bluetoothpositioning.utils.UsbDataUtil;
 
 /**
  * Created by Federico Torsello.
@@ -45,9 +47,12 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private TextView twDistance;
     private TextView twState;
-    private UsbRawDataUtil usbUtil;
+    private UsbDataUtil usbUtil;
 
     private String idDeviceSelected;
+
+    private float meter;
+    private boolean usbEnabled;
 
     public static DeviceDetailFragment newInstance(String message) {
         DeviceDetailFragment fragment = new DeviceDetailFragment();
@@ -91,8 +96,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private void initializeCamera(View root) {
 
-        if (isCameraHardwarePresent()) {
-            cameraUtil = new CameraUtil(getActivity());
+        if (cameraUtil != null) {
 
             final TextureView mTextureView = cameraUtil.getmTextureView();
 
@@ -135,12 +139,22 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         deviceList = new ArrayList<>();
         deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
 
-        usbUtil = new UsbRawDataUtil(getActivity());
-        usbUtil.setOnReceiveNewData(new UsbRawDataUtil.OnReceiveNewData() {
+        cameraUtil = new CameraUtil(getActivity());
+
+        usbUtil = new UsbDataUtil(getActivity());
+        usbUtil.setOnReceiveNewData(new UsbDataUtil.OnReceiveNewData() {
+
             @Override
             public void getData(byte[] data) {
+
                 final String text = new String(data);
-                twDistance.setText(text.trim());
+
+                try {
+                    meter = Float.valueOf(text.trim()) / 100;
+                    DecimalFormat df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+                    twDistance.setText(String.format("%s m", df.format(meter)));
+                } catch (NumberFormatException nfe) {
+                }
             }
 
             @Override
@@ -148,21 +162,30 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
                 twState.setText(state);
             }
 
+            @Override
+            public void isEnabled(boolean isEnabled) {
+                usbEnabled = isEnabled;
+                if (!usbEnabled) {
+                    twDistance.setText("0.00 m");
+                }
+            }
         });
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        usbUtil.pause();
+        usbUtil.onPause();
+        cameraUtil.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        usbUtil.resume();
+        usbUtil.onResume();
+        cameraUtil.onResume();
     }
-
 
     @Override
     public void updateInfoDevices(final List<Device> devices) {
@@ -176,7 +199,10 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
                     deviceSelected.getAddress().equals(idDeviceSelected)) {
 
                 if (chartUtil != null) {
-                    chartUtil.updateDataSet(deviceSelected);
+                    if (!usbEnabled) {
+                        meter = 0.00f;
+                    }
+                    chartUtil.updateDataSet(deviceSelected, meter);
                 }
 
                 deviceList.add(deviceSelected);
