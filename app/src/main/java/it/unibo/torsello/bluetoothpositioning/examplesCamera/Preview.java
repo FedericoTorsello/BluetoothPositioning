@@ -7,16 +7,19 @@ package it.unibo.torsello.bluetoothpositioning.examplesCamera;
 import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 
-class Preview extends ViewGroup implements SurfaceHolder.Callback {
+public class Preview extends ViewGroup implements SurfaceHolder.Callback {
     private final String TAG = "Preview";
 
     SurfaceView mSurfaceView;
@@ -25,8 +28,11 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
     List<Size> mSupportedPreviewSizes;
     Camera mCamera;
 
+    FragmentActivity fragmentActivity;
+
     Preview(Context context, SurfaceView sv) {
         super(context);
+
 
         mSurfaceView = sv;
 
@@ -35,8 +41,15 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
-    public void setCamera() {
+    public void setCamera(FragmentActivity fragmentActivity) {
+
+        this.fragmentActivity = fragmentActivity;
+        try {
         mCamera = getCameraInstance();
+        } catch (RuntimeException ex) {
+            Toast.makeText(fragmentActivity, "camera_not_found", Toast.LENGTH_LONG).show();
+        }
+
         if (mCamera != null) {
 
             mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
@@ -53,6 +66,7 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
                 mCamera.setParameters(params);
             }
         }
+
     }
 
     public void onPause() {
@@ -193,13 +207,46 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
 
             mCamera.setParameters(parameters);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    mCamera.startPreview();
-                }
-            }).start();
+            resetCamera();
         }
+    }
+
+    public void resetCamera() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mCamera.startPreview();
+            }
+        }).start();
+
+
+    }
+
+    Camera.ShutterCallback shutterCallback = new Camera.ShutterCallback() {
+        public void onShutter() {
+            //			 Log.d(TAG, "onShutter'd");
+        }
+    };
+
+    Camera.PictureCallback rawCallback = new Camera.PictureCallback() {
+        public void onPictureTaken(byte[] data, Camera camera) {
+            //			 Log.d(TAG, "onPictureTaken - raw");
+        }
+    };
+
+    Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
+        public void onPictureTaken(byte[] data, final Camera camera) {
+            new SaveImageTask(fragmentActivity).execute(data);
+
+            resetCamera();
+
+            Log.d(TAG, "onPictureTaken - jpeg");
+        }
+    };
+
+    public void takePicture() {
+
+        mCamera.takePicture(shutterCallback, rawCallback, jpegCallback);
     }
 
 
