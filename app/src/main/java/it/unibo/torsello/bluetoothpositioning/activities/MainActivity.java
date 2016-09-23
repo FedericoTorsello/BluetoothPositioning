@@ -19,13 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestActivity;
+import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.HomeViewFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
-import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
 
 /**
  * Created by Federico Torsello.
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(HomeViewFragment.newInstance(getFragments()));
+        replaceFragment(MainViewFragment.newInstance(getFragments()));
     }
 
     @Override
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            replaceFragment(HomeViewFragment.newInstance(getFragments()));
+            replaceFragment(MainViewFragment.newInstance(getFragments()));
 
             final long DOUBLE_PRESS_INTERVAL = 1500;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
@@ -100,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fragment = HomeViewFragment.newInstance(getFragments());
+                fragment = MainViewFragment.newInstance(getFragments());
                 break;
             case R.id.nav_settings:
                 fragment = SettingsFragment.newInstance();
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = UsbMeasurementFragment.newInstance();
                 break;
             case R.id.nav_share:
-                fragment = CamTestActivity.newInstance();
+                fragment = CamTestFragment.newInstance();
                 break;
             case R.id.nav_send:
                 break;
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         assert tabLayout != null;
-        if (fragment instanceof HomeViewFragment) {
+        if (fragment instanceof MainViewFragment) {
             tabLayout.setVisibility(View.VISIBLE);
         } else {
             tabLayout.setVisibility(View.GONE);

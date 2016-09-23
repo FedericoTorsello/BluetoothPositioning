@@ -45,7 +45,7 @@ public class Preview extends ViewGroup implements SurfaceHolder.Callback {
 
         this.fragmentActivity = fragmentActivity;
         try {
-        mCamera = getCameraInstance();
+            mCamera = getCameraInstance();
         } catch (RuntimeException ex) {
             Toast.makeText(fragmentActivity, "camera_not_found", Toast.LENGTH_LONG).show();
         }

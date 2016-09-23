@@ -17,13 +17,13 @@ import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class HomeViewFragment extends Fragment {
+public class MainViewFragment extends Fragment {
 
     private static List<Fragment> fragments;
 
-    public static HomeViewFragment newInstance(List<Fragment> fragmentList) {
-        HomeViewFragment.fragments = fragmentList;
-        return new HomeViewFragment();
+    public static MainViewFragment newInstance(List<Fragment> fragmentList) {
+        MainViewFragment.fragments = fragmentList;
+        return new MainViewFragment();
     }
 
     @Override

@@ -14,6 +14,10 @@ import it.unibo.torsello.bluetoothpositioning.models.Device;
  */
 public class DeviceConstants {
 
+    public static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
+    public static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
+            "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
+
 //    private enum Plain {ONE, TWO, THREE, FOUR, FIVE}
 
 //    private static final Identifier ID_DEVICE_1 = Identifier.parse("C19BB0B9019E");//ice1

@@ -10,19 +10,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
+import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import org.altbeacon.beacon.Beacon;
@@ -56,9 +60,6 @@ import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
 public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         PreferencesFragment.OnSettingsListener {
 
-    private static final String APPLE_BEACON_LAYOUT = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24";
-    private static final String ESTIMOTE_NEARABLE_LAYOUT = "m:1-2=0101,i:3-10,d:11-11,d:12-12," +
-            "d:13-14,d:15-15,d:16-16,d:17-17,d:18-18,d:19-19,d:20-20, p:21-21";
     private final String TAG_CLASS = getClass().getSimpleName();
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private WalkDetection walkDetection;
@@ -72,7 +73,12 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private List<Device> deviceList;
 
     private Runnable runnable;
-    private Thread thread;
+
+    public interface OnAddDevicesListener {
+        void updateInfoDevices(List<Device> iBeacons);
+
+        void clearList();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,6 +125,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             }
         };
 
+
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
         walkDetection = new WalkDetection(getApplication());
@@ -150,10 +157,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                 .setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
         // Standard Apple iBeacon
         beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(APPLE_BEACON_LAYOUT));
+                .setBeaconLayout(DeviceConstants.APPLE_BEACON_LAYOUT));
         // Estimote Nearable
         beaconManager.getBeaconParsers().add(new BeaconParser()
-                .setBeaconLayout(ESTIMOTE_NEARABLE_LAYOUT));
+                .setBeaconLayout(DeviceConstants.ESTIMOTE_NEARABLE_LAYOUT));
 
         beaconManager.setForegroundScanPeriod(250L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
@@ -182,16 +189,12 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                     }
                 }
 
-                if (thread != null)
-                    thread.interrupt();
-
-                thread = new Thread(runnable);
-
-                thread.start();
+                new Thread(runnable).start();
             }
         });
 
     }
+
 
     private void floatingActionButtonAction() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -269,7 +272,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
             if (!manager.hasPermission(driver.getDevice())) {
                 Intent startIntent = new Intent(this, getClass());
-                PendingIntent pendingIntent = PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
+                PendingIntent pendingIntent =
+                        PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
                 manager.requestPermission(driver.getDevice(), pendingIntent);
             }
         }
@@ -422,9 +426,4 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         }
     }
 
-    public interface OnAddDevicesListener {
-        void updateInfoDevices(List<Device> iBeacons);
-
-        void clearList();
-    }
 }

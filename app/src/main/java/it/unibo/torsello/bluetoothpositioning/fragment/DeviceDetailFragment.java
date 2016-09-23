@@ -100,7 +100,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
             final TextureView mTextureView = cameraUtil.getmTextureView();
 
-            // programatically add camera preview
+            // programmatically add camera preview
             FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview1);
             preview.addView(mTextureView);
             preview.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +125,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     }
 
     private void initializeChart(View root) {
-        // programatically add the chart
+        // programmatically add the chart
         LineChart lineChart = new LineChart(getActivity());
         ((FrameLayout) root.findViewById(R.id.chart)).addView(lineChart);
 
@@ -147,10 +147,8 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
             @Override
             public void getData(byte[] data) {
 
-                final String text = new String(data);
-
                 try {
-                    meter = Float.valueOf(text.trim()) / 100;
+                    meter = Float.valueOf(new String(data).trim()) / 100;
                     DecimalFormat df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
                     twDistance.setText(String.format("%s m", df.format(meter)));
                 } catch (NumberFormatException nfe) {
@@ -198,10 +196,11 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
             if (deviceSelected.getFriendlyName().equals(idDeviceSelected) ||
                     deviceSelected.getAddress().equals(idDeviceSelected)) {
 
+                if (!usbEnabled) {
+                    meter = 0.00f;
+                }
+
                 if (chartUtil != null) {
-                    if (!usbEnabled) {
-                        meter = 0.00f;
-                    }
                     chartUtil.updateDataSet(deviceSelected, meter);
                 }
 
