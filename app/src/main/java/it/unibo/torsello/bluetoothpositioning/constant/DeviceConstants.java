@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.constants;
+package it.unibo.torsello.bluetoothpositioning.constant;
 
 import android.support.v4.util.ArrayMap;
 
@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
+import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
  * Created by Federico Torsello.

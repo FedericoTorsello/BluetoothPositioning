@@ -1,8 +1,8 @@
-package it.unibo.torsello.bluetoothpositioning.kalman_filter;
+package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
 
 /**
  * Created by Federico Torsello.

@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.util;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

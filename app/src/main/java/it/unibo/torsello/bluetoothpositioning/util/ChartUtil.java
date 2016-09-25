@@ -1,8 +1,9 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.util;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -12,22 +13,24 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.util.ArrayList;
-
-import it.unibo.torsello.bluetoothpositioning.models.Device;
+import java.util.Random;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class ChartUtil {
+public class ChartUtil implements OnChartValueSelectedListener {
 
     private LineChart mChart;
     private Thread thread;
     private FragmentActivity fragmentActivity;
+
+    private ArrayList<ILineDataSet> dataSets;
 
     public ChartUtil(FragmentActivity fragmentActivity, LineChart chart) {
         this.fragmentActivity = fragmentActivity;
@@ -36,8 +39,9 @@ public class ChartUtil {
     }
 
     private void initializeChart() {
+        dataSets = new ArrayList<ILineDataSet>();
 
-//        mChart.setOnChartValueSelectedListener(this);
+        mChart.setOnChartValueSelectedListener(this);
 
         // no description text
         mChart.setDescription("");
@@ -55,7 +59,6 @@ public class ChartUtil {
         Typeface mTfBold = Typeface.createFromAsset(fragmentActivity.getAssets(), "OpenSans-Bold.ttf");
 
         // get the legend (only possible after setting data)
-
         Legend l = mChart.getLegend();
 //        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -76,7 +79,7 @@ public class ChartUtil {
 
     }
 
-    public void updateDataSet(final Device device, final float meter) {
+    public void updateDataSet(final float arduinoDistance, final double rawBeaconDistance, final double distKalmanFilter) {
         if (thread != null)
             thread.interrupt();
 
@@ -92,30 +95,17 @@ public class ChartUtil {
                             LineData data = mChart.getData();
 
                             if (data == null) {
-                                // create a dataset and give it a type
-                                ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-                                dataSets.add(createDataSet("KF_1", ColorTemplate.getHoloBlue()));
-//                            dataSets.add(createDataSet("KF_2", Color.GREEN));
-//                            dataSets.add(createDataSet("KF_3", Color.RED));
-//                            dataSets.add(createDataSet("RAW_1", Color.YELLOW)); // add the datasets
-//                            dataSets.add(createDataSet("RAW_2", Color.BLACK));
-//                            dataSets.add(createDataSet("RAW_3", Color.BLUE));
-//                            dataSets.add(createDataSet("RAW_4", Color.CYAN));
 
-                                dataSets.add(createDataSet("ARDUINO", Color.RED));
-
-                                initializeDataChart(dataSets);
+                                if (dataSets != null) {
+                                    initializeDataChart(dataSets);
+                                } else {
+                                    throw new Error("Error: dataSet is null!!!");
+                                }
                             } else {
                                 if (data.getDataSetCount() >= 0) {
-                                    plotValue(data, 0, (float) device.getDistKalmanFilter1());
-//                                plotValue(data, 1, (float) device.getDistKalmanFilter2());
-//                                plotValue(data, 2, (float) device.getDistKalmanFilter4());
-//                                plotValue(data, 3, (float) device.getBeacon().getDistance());
-//                                plotValue(data, 4, (float) device.getDistNoFilter1());
-//                                plotValue(data, 5, (float) device.getDistNoFilter2());
-//                                plotValue(data, 6, (float) device.getDistNoFilter3());
-
-                                    plotValue(data, 1, meter);
+                                    plotValue(data, 0, arduinoDistance);
+                                    plotValue(data, 1, (float) rawBeaconDistance);
+                                    plotValue(data, 2, (float) distKalmanFilter);
                                 }
                             }
                         }
@@ -126,6 +116,24 @@ public class ChartUtil {
         });
 
         thread.start();
+    }
+
+    public ArrayList<ILineDataSet> createDataSet(String rawDistanceName, String kalmanFilterName) {
+        // create a dataset and give it a type
+        dataSets.add(createDataSet("ARDUINO", Color.RED)); // add the datasets
+        dataSets.add(createDataSet(rawDistanceName, getRandomColor()));
+        dataSets.add(createDataSet(kalmanFilterName, getRandomColor()));
+
+        return dataSets;
+    }
+
+    private int getRandomColor() {
+        Random rnd = new Random();
+        int color = 0;
+        while (color == 0) {
+            color = Color.argb(255, rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
+        }
+        return color;
     }
 
     private LineDataSet createDataSet(String nameDataSet, int color) {
@@ -164,13 +172,14 @@ public class ChartUtil {
         mChart.setData(lineData);
     }
 
-//    @Override
-//    public void onValueSelected(Entry e, Highlight h) {
-//        Log.i("Entry selected", e.toString());
-//    }
+    @Override
+    public void onValueSelected(Entry e, Highlight h) {
+        Log.i("Entry selected", e.toString());
+    }
 
-//    @Override
-//    public void onNothingSelected() {
-//        Log.i("Nothing selected", "Nothing selected.");
-//    }
+    @Override
+    public void onNothingSelected() {
+        Log.i("Nothing selected", "Nothing selected.");
+    }
+
 }

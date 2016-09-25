@@ -19,5 +19,5 @@
     <dimen name="tab_collapsing_height">104dp</dimen>
     <dimen name="tab_collapsing_bottom_padding">63dp</dimen>
 
-    <dimen name="padding_tw_distance">25dp</dimen>
+    <dimen name="padding_tw_distance">20dp</dimen>
 </resources>

@@ -17,8 +17,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.kalman_filter.KalmanFilter3;
+import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KalmanFilter3;
 
 /**
  * Created by Federico Torsello.

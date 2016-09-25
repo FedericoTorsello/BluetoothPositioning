@@ -35,6 +35,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_bluetooth_white_24dp"
-        app:layout_behavior=".utils.FABBehaviorUtil" />
+        app:layout_behavior=".extra.FABBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -20,7 +20,7 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceRecycleViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
@@ -74,9 +74,8 @@ public class MainActivity extends AppCompatActivity
                 isBackPressed = true;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 assert fab != null;
-                Snackbar.make(fab, R.string.snackbar_exit, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(fab, R.string.snackBar_exit, Snackbar.LENGTH_SHORT).show();
             } else {
-//                finish();
                 super.onBackPressed();
             }
             back_pressed = System.currentTimeMillis();
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceListFragment.newInstance("Scan Device"));
+        fList.add(DeviceRecycleViewFragment.newInstance("Scan Device"));
         fList.add(PreferencesFragment.newInstance("Preferences"));
 
 //        fList.add(CompassFragment.newInstance("Compass1"));
@@ -139,20 +138,23 @@ public class MainActivity extends AppCompatActivity
 
     private void replaceFragment(Fragment fragment) {
 
-        Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
-        if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
+        Fragment currentFrag = getSupportFragmentManager()
+                .findFragmentById(R.id.contentMainLayout);
+
+        if (currentFrag == null || !(currentFrag.equals(fragment))) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.frameLayout, fragment)
+                    .replace(R.id.contentMainLayout, fragment)
                     .commit();
+
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+            assert tabLayout != null;
+            if (fragment instanceof MainViewFragment) {
+                tabLayout.setVisibility(View.VISIBLE);
+            } else {
+                tabLayout.setVisibility(View.GONE);
+            }
         }
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        assert tabLayout != null;
-        if (fragment instanceof MainViewFragment) {
-            tabLayout.setVisibility(View.VISIBLE);
-        } else {
-            tabLayout.setVisibility(View.GONE);
-        }
     }
 
 }

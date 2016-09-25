@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.constants;
+package it.unibo.torsello.bluetoothpositioning.constant;
 
 /**
  * Created by Federico Torsello.

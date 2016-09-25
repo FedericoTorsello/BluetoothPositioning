@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.extra;
 
 import android.content.Context;
 import android.os.Handler;
@@ -12,9 +12,9 @@ import android.view.View;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class FABBehaviorUtil extends FloatingActionButton.Behavior {
+public class FABBehavior extends FloatingActionButton.Behavior {
 
-    public FABBehaviorUtil(Context context, AttributeSet attrs) {
+    public FABBehavior(Context context, AttributeSet attrs) {
         super();
     }
 

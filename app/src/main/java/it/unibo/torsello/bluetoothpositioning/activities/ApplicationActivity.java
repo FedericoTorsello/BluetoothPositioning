@@ -10,23 +10,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.os.RemoteException;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
-import com.hoho.android.usbserial.driver.UsbSerialPort;
 import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import org.altbeacon.beacon.Beacon;
@@ -42,14 +37,14 @@ import java.util.Collection;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constants.DeviceConstants;
-import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
+import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceRecycleViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
-import it.unibo.torsello.bluetoothpositioning.utils.MyArmaRssiFilter;
-import it.unibo.torsello.bluetoothpositioning.utils.WalkDetection;
+import it.unibo.torsello.bluetoothpositioning.model.Device;
+import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
+import it.unibo.torsello.bluetoothpositioning.util.WalkDetectionUtil;
 
 //import com.estimote.sdk.EstimoteSDK;
 
@@ -62,7 +57,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
-    private WalkDetection walkDetection;
+    private WalkDetectionUtil walkDetection;
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
     private boolean selfCorrection;
@@ -128,7 +123,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
-        walkDetection = new WalkDetection(getApplication());
+        walkDetection = new WalkDetectionUtil(getApplication());
         if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
             walkDetection.startDetection();
         }
@@ -180,8 +175,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                     Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
 
                     if (device != null) { // useful only if DEVICE_MAP is empty
-                        device.setBeacon(b);
-                        device.updateDistance(processNoise, movementState);
+                        device.updateDistance(b, movementState, processNoise);
 
                         if (!deviceList.contains(device)) {
                             deviceList.add(device);
@@ -199,7 +193,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     private void floatingActionButtonAction() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        Snackbar.make(fab, R.string.snackbar_start_scanning, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -217,7 +211,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
-                        Snackbar.make(view, R.string.snackbar_scanning_enabled,
+                        Snackbar.make(view, R.string.snackBar_scanning_enabled,
                                 Snackbar.LENGTH_SHORT).show();
                     } else {
                         fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
@@ -226,7 +220,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                         } catch (RemoteException e) {
                             e.printStackTrace();
                         }
-                        Snackbar.make(view, R.string.snackbar_scanning_disabled,
+                        Snackbar.make(view, R.string.snackBar_scanning_disabled,
                                 Snackbar.LENGTH_INDEFINITE).show();
                     }
                 }
@@ -294,7 +288,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
 
-        if (fragment instanceof DeviceListFragment) {
+        if (fragment instanceof DeviceRecycleViewFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         } else if (fragment instanceof DeviceDetailFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;

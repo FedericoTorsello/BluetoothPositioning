@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.configuration;
 
 /**
  * Created by Federico Torsello.

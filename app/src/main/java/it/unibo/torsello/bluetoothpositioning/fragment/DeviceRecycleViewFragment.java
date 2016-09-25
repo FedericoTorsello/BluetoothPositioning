@@ -34,23 +34,23 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
-import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
-import it.unibo.torsello.bluetoothpositioning.constants.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
+import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
+import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceListFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
+public class DeviceRecycleViewFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    private DeviceViewAdapter deviceViewAdapter;
+    private DeviceCardViewAdapter deviceViewAdapter;
     private SharedPreferences settings;
     private List<Device> deviceList;
 
-    public static DeviceListFragment newInstance(String message) {
-        DeviceListFragment fragment = new DeviceListFragment();
+    public static DeviceRecycleViewFragment newInstance(String message) {
+        DeviceRecycleViewFragment fragment = new DeviceRecycleViewFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);
@@ -71,13 +71,14 @@ public class DeviceListFragment extends Fragment implements ApplicationActivity.
 
         RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
+        deviceViewAdapter = new DeviceCardViewAdapter(getActivity(), deviceList);
         recyclerView.setAdapter(deviceViewAdapter);
 
         ((FrameLayout) root.findViewById(R.id.frame_list_device)).addView(recyclerView);
 
         return root;
     }
+
 
     @Override
     public void updateInfoDevices(List<Device> devices) {
@@ -95,7 +96,7 @@ public class DeviceListFragment extends Fragment implements ApplicationActivity.
                     case R.id.radioButton_color_sorting:
                         return Double.compare(b1.getColor(), b2.getColor());
                     case R.id.radioButton_distance_sorting:
-                        return Double.compare(b1.getDistNoFilter2(), b2.getDistNoFilter2());
+                        return Double.compare(b1.getKalmanFilterDistance(), b2.getKalmanFilterDistance());
                 } // default sorting (a good basic ordering for the other options)
                 return Double.compare(b1.getIndex(), b2.getIndex());
             }

@@ -9,9 +9,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:application=".activities.MainActivity">
+        android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
@@ -28,7 +26,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <FrameLayout
-                    android:id="@+id/camera_preview1"
+                    android:id="@+id/camera_preview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -58,19 +56,31 @@
                 android:orientation="vertical"
                 android:paddingTop="24dp">
 
-                <include layout="@layout/cardview_arduino_usb" />
-
                 <include layout="@layout/cardview_device" />
+
+                <include layout="@layout/cardview_arduino_usb" />
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/card_margin">
 
-                    <FrameLayout
-                        android:id="@+id/chart"
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart1"
                         android:layout_width="match_parent"
-                        android:layout_height="330dp" />
+                        android:layout_height="300dp" />
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/card_margin">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart2"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp" />
 
                 </android.support.v7.widget.CardView>
 

@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.kalman_filter;
+package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 
 import org.apache.commons.math3.filter.DefaultMeasurementModel;
 import org.apache.commons.math3.filter.DefaultProcessModel;
@@ -10,7 +10,7 @@ import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 
-import it.unibo.torsello.bluetoothpositioning.constants.KFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
 
 /**
  * Created by Federico Torsello.
@@ -87,7 +87,7 @@ public class KalmanFilter4 {
         this.txPower = txPower;
     }
 
-    public void addRssi(int rssi) {
+    public void addRssi(double rssi) {
 //        kalmanFilter.predict();
 //
 //        // process

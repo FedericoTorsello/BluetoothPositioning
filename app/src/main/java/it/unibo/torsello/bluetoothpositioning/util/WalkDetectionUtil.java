@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.util;
 
 import android.app.Application;
 import android.content.Context;
@@ -22,7 +22,7 @@ import static java.lang.Math.sqrt;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class WalkDetection implements SensorEventListener {
+public class WalkDetectionUtil implements SensorEventListener {
 
     // http://research.microsoft.com/pubs/166309/com273-chintalapudi.pdf
     // http://www.cl.cam.ac.uk/~ab818/StepDetectionSmartphones.pdf
@@ -58,7 +58,7 @@ public class WalkDetection implements SensorEventListener {
     private long offset; // to get from event milliseconds to system milliseconds
     private boolean sensorClockCalibrated = false;
 
-    public WalkDetection(Application app) {
+    public WalkDetectionUtil(Application app) {
         mSensorManager = (SensorManager) app.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         raw = new ArrayList<>();

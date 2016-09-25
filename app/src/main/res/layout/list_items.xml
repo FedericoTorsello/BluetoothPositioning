@@ -2,150 +2,187 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="@dimen/custom_margin">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/cv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageBeacon"
-                android:layout_width="@dimen/image_margin"
-                android:layout_height="@dimen/image_margin"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/image_margin_lateral"
-                android:layout_marginStart="@dimen/image_margin_lateral"
-                android:contentDescription="@string/beaconcolorimage"
-                android:src="@drawable/unknown_beacon" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/friendly_name"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_friendly_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/default_name"
-                        android:textStyle="italic" />
-
-                    <TextView
-                        android:id="@+id/value_default_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/color"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/distance_beacon"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_distance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="5dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <ExpandableListView
+                        android:id="@+id/simple_expandable_listview"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/mac_address"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_mac_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:divider="@color/colorAccent"></ExpandableListView>
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/value_friendly_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAlignment="center"
+                android:padding="@dimen/custom_margin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageBeacon"
+                    android:layout_width="@dimen/image_margin"
+                    android:layout_height="@dimen/image_margin"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/image_margin_lateral"
+                    android:layout_marginStart="@dimen/image_margin_lateral"
+                    android:contentDescription="@string/beacon_color_image"
+                    android:src="@drawable/unknown_beacon" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="90dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/default_name"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/value_default_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/color"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/value_color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/raw_distance"
+                            android:textColor="@android:color/holo_red_light"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/value_standard_raw_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/altBeacon_dist"
+                            android:textColor="@android:color/holo_orange_dark"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/value_altbeacon_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/kalman_filter"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/holo_green_dark" />
+
+                        <TextView
+                            android:id="@+id/value_kalman_filter_distance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_marginEnd="@dimen/custom_margin"
                                 android:text="@string/rssi"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/value_rssi"
+                                android:layout_marginEnd="@dimen/custom_margin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -156,21 +193,23 @@
 
                             <TextView
                                 android:id="@+id/value_power"
+                                android:layout_marginEnd="@dimen/custom_margin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
-
                     </LinearLayout>
 
+
                     <LinearLayout
-                        android:id="@+id/visibility_major_minor"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/visibility_uuid_minor_major_nmb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -185,10 +224,10 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
 
-
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -203,108 +242,113 @@
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/custom_margin"
+                                android:text="@string/uuid"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/value_uuid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/visibilityNameSpace_Instance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/custom_margin"
+                                android:text="@string/name_space"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/value_name_space"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/custom_margin"
+                                android:text="@string/instance"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/value_instance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/mac_address"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/value_mac_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/custom_margin"
+                            android:text="@string/proximity"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/value_proximity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/visibility_uuid"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/uuid"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_uuid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/visibilityNameSpace"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/name_space"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_name_space"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/visibility_instance"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/instance"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_instance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/custom_margin"
-                        android:text="@string/proximity"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/value_proximity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-
-                <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="@string/velocity"-->
-                <!--android:layout_marginEnd="@dimen/custom_margin"-->
-                <!--android:textStyle="bold" />-->
-
-                <!--<TextView-->
-                <!--android:id="@+id/value_velocity"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content" />-->
-                <!--</LinearLayout>-->
 
             </LinearLayout>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
 
 </LinearLayout>

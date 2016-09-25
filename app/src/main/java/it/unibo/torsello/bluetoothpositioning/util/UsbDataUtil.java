@@ -1,12 +1,9 @@
-package it.unibo.torsello.bluetoothpositioning.utils;
+package it.unibo.torsello.bluetoothpositioning.util;
 
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -17,8 +14,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
 
 /**
  * Created by federico on 17/09/16.

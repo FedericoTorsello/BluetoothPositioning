@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.utils.UsbDataUtil;
+import it.unibo.torsello.bluetoothpositioning.util.UsbDataUtil;
 
 /**
  * Created by Federico Torsello.

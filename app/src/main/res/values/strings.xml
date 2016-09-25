@@ -15,14 +15,14 @@
     <string name="default_name">Default name:</string>
     <string name="color">Color:</string>
     <string name="mac_address">MAC address:</string>
-    <string name="major">Major:</string>
-    <string name="minor">Minor:</string>
+    <string name="major">Major number:</string>
+    <string name="minor">Minor number:</string>
     <string name="uuid">UUID:</string>
     <string name="name_space">NameSpace:</string>
     <string name="instance">Instance:</string>
-    <string name="rssi">RSSI: dB</string>
-    <string name="power">PWR: dB</string>
-    <string name="distance_beacon">Dist:</string>
+    <string name="rssi">RSSI:</string>
+    <string name="power">PWR:</string>
+    <string name="kalman_filter">Kalman Filter:</string>
     <string name="proximity">Proximity:</string>
 
     <!--Color devices-->
@@ -34,11 +34,11 @@
 
     <!--<string name="string_scan_subtext">Number of iBeacons discovered: %s</string>-->
 
-    <string name="snackbar_exit">"Press once again to exit!"</string>
+    <string name="snackBar_exit">"Press once again to exit!"</string>
 
-    <string name="snackbar_scanning_enabled">Scanning enabled</string>
-    <string name="snackbar_scanning_disabled">Scanning disabled</string>
-    <string name="snackbar_start_scanning">Push the button to start scanning</string>
+    <string name="snackBar_scanning_enabled">Scanning enabled</string>
+    <string name="snackBar_scanning_disabled">Scanning disabled</string>
+    <string name="snackBar_start_scanning">Push the button to start scanning</string>
 
     <string name="dialog_bluetooth_title">Bluetooth not enabled</string>
     <string name="dialog_bluetooth_text">Press OK to enable Bluetooth</string>
@@ -63,9 +63,9 @@
     <string name="title_checkbox_preference">check</string>
     <string name="title_first_section">title</string>
     <string name="default_checkbox_preference">check</string>
-    <string name="title_edittext_preference">edittext</string>
-    <string name="summary_edittext_preference">edittext2</string>
-    <string name="dialog_title_edittext_preference">dial1</string>
+    <string name="title_editText_preference">edittext</string>
+    <string name="summary_editText_preference">edittext2</string>
+    <string name="dialog_title_editText_preference">dial1</string>
     <string name="title_second_section">title1</string>
     <string name="title_list_preference">pref</string>
     <string name="dialog_title_list_preference">dial1</string>
@@ -75,14 +75,6 @@
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
     <string name="send">Send</string>
-
-
-    <string name="menu_night_mode">Night mode</string>
-    <string name="menu_night_mode_system">Follow system</string>
-    <string name="menu_night_mode_day">Day (always)</string>
-    <string name="menu_night_mode_night">Night (always)</string>
-    <string name="menu_night_mode_auto">Auto</string>
-
 
     <string name="picture">Picture</string>
     <string name="description_info">Info</string>
@@ -100,38 +92,19 @@
         ]]>
     </string>
 
-    <string name="velocity">Velocity:</string>
     <string name="radioB_default_sorting">Default sort (list device order)</string>
     <string name="radioB_color_sorting">Sort by color</string>
     <string name="radioB_distance_sorting">Sort by distance</string>
     <string name="measurement">Measurement</string>
-    <string name="distance_arduino">---</string>
 
 
-    <string name="default_text_string">No data</string>
-    <string name="help">Help</string>
-    <string name="about">About</string>
-    <string name="permission_denied">Permission denied</string>
-    <string name="receiving">Receiving</string>
-    <string name="opening_device_failed">Opening USB device failed</string>
-    <string name="claimning_interface_failed">Claiming interface failed</string>
-    <string name="no_in_endpoint_found">No in endpoint found</string>
-    <string name="no_out_endpoint_found">No out endpoint found</string>
-    <string name="no_extra_in_intent">No %1$s extra in intent</string>
-    <string name="device_detaches">Device detached</string>
-    <string name="no_device_found">No device found</string>
-    <string name="found">found</string>
-    <string name="beaconcolorimage">beaconColorImage</string>
-    <string name="appimage">appImage</string>
-
-    <string name="app_title">USB Serial Example</string>
-    <string name="refreshing">Refreshing...</string>
-    <string name="textBtnRTS">RTS - Request To Send</string>
-    <string name="textBtnDTR">DTR - Data Terminal Ready</string>
+    <string name="beacon_color_image">beaconColorImage</string>
+    <string name="app_image">App image</string>
     <string name="distance_estimation_arduino">Arduino distance estimation</string>
     <string name="usb_state">USB state:</string>
-    <string name="details">Details</string>
     <string name="device_distance_estimation">Device distance estimation</string>
+    <string name="altBeacon_dist">AltBeacon dist:</string>
+    <string name="raw_distance">Raw distance:</string>
 
 
 </resources>

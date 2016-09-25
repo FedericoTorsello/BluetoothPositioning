@@ -1,6 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -24,11 +25,11 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
-import it.unibo.torsello.bluetoothpositioning.adapter.DeviceViewAdapter;
-import it.unibo.torsello.bluetoothpositioning.models.Device;
-import it.unibo.torsello.bluetoothpositioning.utils.CameraUtil;
-import it.unibo.torsello.bluetoothpositioning.utils.ChartUtil;
-import it.unibo.torsello.bluetoothpositioning.utils.UsbDataUtil;
+import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
+import it.unibo.torsello.bluetoothpositioning.model.Device;
+import it.unibo.torsello.bluetoothpositioning.util.CameraUtil;
+import it.unibo.torsello.bluetoothpositioning.util.ChartUtil;
+import it.unibo.torsello.bluetoothpositioning.util.UsbDataUtil;
 
 /**
  * Created by Federico Torsello.
@@ -36,23 +37,26 @@ import it.unibo.torsello.bluetoothpositioning.utils.UsbDataUtil;
  */
 public class DeviceDetailFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private final String TAG_CLASS = getClass().getSimpleName();
-    private DeviceViewAdapter deviceViewAdapter;
+    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private DeviceCardViewAdapter deviceViewAdapter;
     private List<Device> deviceList;
 
     private CameraUtil cameraUtil;
 
-    private ChartUtil chartUtil;
+    private ChartUtil chartUtil1;
+    private ChartUtil chartUtil2;
 
     private TextView twDistance;
     private TextView twState;
+
     private UsbDataUtil usbUtil;
 
-    private String idDeviceSelected;
-
-    private float meter;
+    private String idDeviceSelectedName;
+    private float arduinoDistance;
     private boolean usbEnabled;
+
+    private DecimalFormat df;
 
     public static DeviceDetailFragment newInstance(String message) {
         DeviceDetailFragment fragment = new DeviceDetailFragment();
@@ -68,7 +72,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
         getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.GONE);
 
-        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelected);
+        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
         initializeDeviceDetail(root);
 
@@ -101,7 +105,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
             final TextureView mTextureView = cameraUtil.getmTextureView();
 
             // programmatically add camera preview
-            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview1);
+            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview);
             preview.addView(mTextureView);
             preview.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,19 +129,23 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     }
 
     private void initializeChart(View root) {
-        // programmatically add the chart
-        LineChart lineChart = new LineChart(getActivity());
-        ((FrameLayout) root.findViewById(R.id.chart)).addView(lineChart);
+        // add the charts
+        LineChart lineChart = (LineChart) root.findViewById(R.id.chart1);
+        LineChart lineChart2 = (LineChart) root.findViewById(R.id.chart2);
 
-        chartUtil = new ChartUtil(getActivity(), lineChart);
+        chartUtil1 = new ChartUtil(getActivity(), lineChart);
+        chartUtil2 = new ChartUtil(getActivity(), lineChart2);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        idDeviceSelected = getArguments().getString(EXTRA_MESSAGE);
+
+        df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+
+        idDeviceSelectedName = getArguments().getString(EXTRA_MESSAGE);
         deviceList = new ArrayList<>();
-        deviceViewAdapter = new DeviceViewAdapter(getActivity(), deviceList);
+        deviceViewAdapter = new DeviceCardViewAdapter(getActivity(), deviceList);
 
         cameraUtil = new CameraUtil(getActivity());
 
@@ -146,11 +154,9 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
             @Override
             public void getData(byte[] data) {
-
                 try {
-                    meter = Float.valueOf(new String(data).trim()) / 100;
-                    DecimalFormat df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
-                    twDistance.setText(String.format("%s m", df.format(meter)));
+                    arduinoDistance = Float.valueOf(new String(data).trim()) / 100;
+                    twDistance.setText(String.format("%s m", df.format(arduinoDistance)));
                 } catch (NumberFormatException nfe) {
                 }
             }
@@ -163,9 +169,6 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
             @Override
             public void isEnabled(boolean isEnabled) {
                 usbEnabled = isEnabled;
-                if (!usbEnabled) {
-                    twDistance.setText("0.00 m");
-                }
             }
         });
 
@@ -193,15 +196,31 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         }
 
         for (Device deviceSelected : devices) {
-            if (deviceSelected.getFriendlyName().equals(idDeviceSelected) ||
-                    deviceSelected.getAddress().equals(idDeviceSelected)) {
+            if (deviceSelected.getFriendlyName().equals(idDeviceSelectedName) ||
+                    deviceSelected.getAddress().equals(idDeviceSelectedName)) {
 
                 if (!usbEnabled) {
-                    meter = 0.00f;
+                    // reset of distance estimated of arduino
+                    twDistance.setText(String.format("%s m", df.format(0)));
+                    arduinoDistance = 0.00f;
+
+                    twState.setTextColor(Color.RED);
+                } else {
+                    twState.setTextColor(Color.GREEN);
                 }
 
-                if (chartUtil != null) {
-                    chartUtil.updateDataSet(deviceSelected, meter);
+                if (chartUtil1 != null) {
+                    chartUtil1.createDataSet("AltBeacon", "Kalman Filter");
+                    chartUtil1.updateDataSet(arduinoDistance,
+                            deviceSelected.getAltBeaconDistance(),
+                            deviceSelected.getKalmanFilterDistance());
+                }
+
+                if (chartUtil2 != null) {
+                    chartUtil2.createDataSet("AltBeacon", "Raw distance");
+                    chartUtil2.updateDataSet(arduinoDistance,
+                            deviceSelected.getAltBeaconDistance(),
+                            deviceSelected.getRawDistance());
                 }
 
                 deviceList.add(deviceSelected);
