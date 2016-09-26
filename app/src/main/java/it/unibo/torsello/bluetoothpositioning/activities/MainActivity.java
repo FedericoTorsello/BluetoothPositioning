@@ -124,11 +124,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_measurement:
                 fragment = UsbMeasurementFragment.newInstance();
                 break;
-            case R.id.nav_share:
-                fragment = CamTestFragment.newInstance();
-                break;
-            case R.id.nav_send:
-                break;
+//            case R.id.nav_share:
+//                fragment = CamTestFragment.newInstance();
+//                break;
+//            case R.id.nav_send:
+//                break;
         }
 
         replaceFragment(fragment);

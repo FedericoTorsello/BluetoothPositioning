@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +23,12 @@ public class UsbMeasurementFragment extends Fragment {
 
     private TextView twDistance;
     private TextView twState;
+
     private UsbDataUtil usbUtil;
+
+    private DecimalFormat df;
+
+    private float arduinoDistance;
 
     public static UsbMeasurementFragment newInstance() {
         return new UsbMeasurementFragment();
@@ -34,34 +40,26 @@ public class UsbMeasurementFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.cardview_arduino_usb, container, false);
 
-        initializeArduinoDistance(root);
-
-
-        return root;
-    }
-
-    private void initializeArduinoDistance(View root) {
         twDistance = (TextView) root.findViewById(R.id.tw_distance_value);
         twState = (TextView) root.findViewById(R.id.tw_state_value);
 
+        return root;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        usbUtil = new UsbDataUtil(getActivity());
 
+        df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+
+        usbUtil = new UsbDataUtil(getActivity());
         usbUtil.setOnReceiveNewData(new UsbDataUtil.OnReceiveNewData() {
 
             @Override
             public void getData(byte[] data) {
-
-                final String text = new String(data);
-
                 try {
-                    float meter = Float.valueOf(text.trim()) / 100;
-                    DecimalFormat df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
-                    twDistance.setText(String.format("%s m", df.format(meter)));
+                    arduinoDistance = Float.valueOf(new String(data).trim()) / 100;
+                    twDistance.setText(String.format("%s m", df.format(arduinoDistance)));
                 } catch (NumberFormatException nfe) {
                 }
             }
@@ -74,13 +72,17 @@ public class UsbMeasurementFragment extends Fragment {
             @Override
             public void isEnabled(boolean enabled) {
                 if (!enabled) {
-                    twDistance.setText("0.00 m");
+                    // reset of distance estimated of arduino
+                    twDistance.setText(String.format("%s m", df.format(0)));
+                    arduinoDistance = 0.00f;
+
+                    twState.setTextColor(Color.RED);
+                } else {
+                    twState.setTextColor(Color.GREEN);
                 }
             }
 
         });
-
-
     }
 
     @Override

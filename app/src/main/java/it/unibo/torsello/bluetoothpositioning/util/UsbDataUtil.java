@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import it.unibo.torsello.bluetoothpositioning.R;
+
 /**
  * Created by federico on 17/09/16.
  */
@@ -26,33 +28,13 @@ public class UsbDataUtil {
     private FragmentActivity fragmentActivity;
     private OnReceiveNewData onReceiveNewData;
 
-    private final SerialInputOutputManager.Listener mListener =
-            new SerialInputOutputManager.Listener() {
+    public interface OnReceiveNewData {
+        void getData(byte[] data);
 
-                @Override
-                public void onRunError(Exception e) {
-                    onReceiveNewData.isEnabled(false);
-                    onReceiveNewData.getStatus("The I/O manager is stopped");
-                }
+        void getStatus(String status);
 
-                @Override
-                public void onNewData(final byte[] data) {
-                    if (fragmentActivity != null) {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                fragmentActivity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        onReceiveNewData.isEnabled(true);
-                                        onReceiveNewData.getData(data);
-                                    }
-                                });
-                            }
-                        }).start();
-                    }
-                }
-            };
+        void isEnabled(boolean enabled);
+    }
 
     public UsbDataUtil(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
@@ -80,20 +62,13 @@ public class UsbDataUtil {
                 }
             }
 
-//            else {
-//                Intent startIntent = new Intent(fragmentActivity, fragmentActivity.getClass());
-//                PendingIntent pendingIntent = PendingIntent.getService(fragmentActivity, 0, startIntent, PendingIntent.FLAG_NO_CREATE);
-//                manager.requestPermission(driver.getDevice(), pendingIntent);
-//            }
-
-
             if (port != null) {
 
                 final UsbManager usbManager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
                 UsbDeviceConnection connection = usbManager.openDevice(port.getDriver().getDevice());
 
                 if (connection == null) {
-                    onReceiveNewData.getStatus("Opening device failed");
+                    onReceiveNewData.getStatus(fragmentActivity.getString(R.string.opening_device_failed));
                     onReceiveNewData.isEnabled(false);
                 } else {
 
@@ -110,7 +85,8 @@ public class UsbDataUtil {
 //                            "RTS - Request To Send" + port.getRTS();
 
                     } catch (IOException e) {
-                        onReceiveNewData.getStatus("Error opening device: " + e.getMessage());
+                        onReceiveNewData.getStatus(fragmentActivity.getString(R.string.error_opening_device)
+                                + e.getMessage());
                         onReceiveNewData.isEnabled(false);
                         try {
                             port.close();
@@ -126,7 +102,7 @@ public class UsbDataUtil {
                 }
             }
         } else {
-            onReceiveNewData.getStatus("USB device not connected");
+            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.usb_device_not_connected));
             onReceiveNewData.isEnabled(false);
         }
 
@@ -146,7 +122,7 @@ public class UsbDataUtil {
 
     private void stopIoManager() {
         if (mSerialIoManager != null) {
-            onReceiveNewData.getStatus("The I/O manager is stopped");
+            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_stopped));
             onReceiveNewData.isEnabled(false);
             mSerialIoManager.stop();
             mSerialIoManager = null;
@@ -155,19 +131,33 @@ public class UsbDataUtil {
 
     private void startIoManager() {
         if (port != null) {
-            onReceiveNewData.getStatus("The I/O manager is started");
+            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_started));
+
+            SerialInputOutputManager.Listener mListener =
+                    new SerialInputOutputManager.Listener() {
+
+                        @Override
+                        public void onRunError(Exception e) {
+                            onReceiveNewData.isEnabled(false);
+                            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_stopped));
+                        }
+
+                        @Override
+                        public void onNewData(final byte[] data) {
+                            if (fragmentActivity != null) {
+                                fragmentActivity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        onReceiveNewData.isEnabled(true);
+                                        onReceiveNewData.getData(data);
+                                    }
+                                });
+                            }
+                        }
+                    };
+
             mSerialIoManager = new SerialInputOutputManager(port, mListener);
             mExecutor.submit(mSerialIoManager);
         }
     }
-
-    public interface OnReceiveNewData {
-        void getData(byte[] data);
-
-        void getStatus(String status);
-
-        void isEnabled(boolean enabled);
-
-    }
-
 }

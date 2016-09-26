@@ -19,9 +19,6 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -65,7 +62,7 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
         if (imageBeacon != null) {
             holder.imageView.setImageResource(imageBeacon);
         } else {
-            holder.imageView.setImageResource(R.drawable.unknown_beacon);
+            holder.imageView.setImageResource(R.drawable.beacon_unknown);
         }
 
         holder.rssiTextView.setText(String.format("%sdb", beacon.getTxPower()));

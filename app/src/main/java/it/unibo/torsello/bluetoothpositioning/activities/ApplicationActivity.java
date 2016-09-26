@@ -43,8 +43,6 @@ import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
-//import com.estimote.sdk.EstimoteSDK;
-
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
@@ -52,19 +50,14 @@ import it.unibo.torsello.bluetoothpositioning.model.Device;
 public class ApplicationActivity extends MainActivity implements BeaconConsumer {
 
     private final String TAG_CLASS = getClass().getSimpleName();
-    //    private WalkDetectionUtil walkDetection;
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
-    //    private boolean selfCorrection;
-//    private double processNoise;
     private SharedPreferences preferences;
     private OnAddDevicesListener onAddDevicesListener;
     private BackgroundPowerSaver backgroundPowerSaver;
 
     public interface OnAddDevicesListener {
         void updateInfoDevices(List<Device> iBeacons);
-
-        void clearList();
     }
 
     @Override
@@ -83,14 +76,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
     }
 
     private void initialize() {
-//        deviceList = new ArrayList<>();
-
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
-//        walkDetection = new WalkDetectionUtil(getApplication());
-//        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
-//            walkDetection.startDetection();
-//        }
     }
 
     private void initializeBeaconManager() {
@@ -212,7 +198,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         });
     }
 
-
     private void setRssiFilter() {
 
         int sorting = preferences.getInt(SettingConstants.FILTER_RSSI, 0);
@@ -232,22 +217,12 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if (!getSupportFragmentManager().getFragments().isEmpty()) {
-//            getSupportFragmentManager().popBackStack();
-//        }
-//
-//        super.onBackPressed();
-//    }
-
     @Override
     protected void onPause() {
         if (beaconManager.isBound(this)) {
             beaconManager.setBackgroundMode(true);
             backgroundPowerSaver.onActivityPaused(this);
         }
-//        walkDetection.stopDetection();
         super.onPause();
     }
 
@@ -263,7 +238,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         isBluetoothAvailable();
 
         isUsbAvailable();
-
     }
 
     @Override
@@ -294,55 +268,14 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         // automatically handle clicks on the Home/Up button
 
         // noinspection SimplifiableIfStatement
-        switch (item.getItemId()) {
-            case R.id.action_clear:
+//        switch (item.getItemId()) {
+//            case R.id.action_clear:
 //                onAddDevicesListener.clearList();
-
-//
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
-
-//                FragmentManager fm = getSupportFragmentManager();
-//                SettingsFragment alertDialog = SettingsFragment.newInstance("Some title");
-//                alertDialog.show(fm, "fragment_edit_name");
-
-
-                return true;
-        }
+//                return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public void updateKalmanNoise(double value) {
-//        processNoise = value;
-//    }
-
-//    @Override
-//    public void isSelfCorrection(boolean isChecked) {
-//        selfCorrection = isChecked;
-//    }
-//
-//    @Override
-//    public void isWalkDetection(boolean isChecked) {
-//
-//        if (isChecked) {
-//            walkDetection.startDetection();
-//        } else {
-//            walkDetection.stopDetection();
-//        }
-//    }
-
-//    @Override
-//    public void isArmaFilter(boolean isChecked) {
-////        MyArmaRssiFilter.enableArmaFilter(isChecked);
-////        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
-//
-//        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
-//
-//        BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
-//        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
-//    }
-
 
     private boolean isBluetoothAvailable() {
 

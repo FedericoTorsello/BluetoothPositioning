@@ -37,7 +37,11 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_preferences, container, false);
+        View root = inflater.inflate(R.layout.fragment_preferences, container, false);
+        setUpKalmanSeek(root);
+        setSorting(root);
+        setFiltering(root);
+        return root;
     }
 
     @Override
@@ -48,17 +52,10 @@ public class SettingsFragment extends Fragment {
         df = new DecimalFormat("0.00");
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        setUpKalmanSeek();
-        setSorting();
-        setFiltering();
-    }
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
-    private void setUpKalmanSeek() {
-        SeekBar kalmanSeek = (SeekBar) getActivity().findViewById(R.id.kalmanSeek);
+    private void setUpKalmanSeek(View root) {
+        SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
         int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
         kalmanSeek.setProgress(seekValue);
 
@@ -67,7 +64,7 @@ public class SettingsFragment extends Fragment {
                 (float) KalmanFilter.getCalculatedNoise(seekValue));
         editor.apply();
 
-        final TextView kalmanFilterValue = (TextView) getActivity().findViewById(R.id.kalmanValue);
+        final TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
         kalmanFilterValue.setText(df.format(KalmanFilter.getCalculatedNoise(seekValue)));
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -92,8 +89,8 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void setSorting() {
-        RadioGroup rg = (RadioGroup) getActivity().findViewById(R.id.radioGroupSortingMode);
+    private void setSorting(View root) {
+        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
         int checkedRadioButton = preferences.getInt(SettingConstants.DISTANCE_SORTING, rg.getCheckedRadioButtonId());
         rg.check(checkedRadioButton);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -106,8 +103,8 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void setFiltering() {
-        RadioGroup rg = (RadioGroup) getActivity().findViewById(R.id.radioGroupFilter);
+    private void setFiltering(View root) {
+        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupFilter);
         int checkedRadioButton = preferences.getInt(SettingConstants.FILTER_RSSI, rg.getCheckedRadioButtonId());
         rg.check(checkedRadioButton);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

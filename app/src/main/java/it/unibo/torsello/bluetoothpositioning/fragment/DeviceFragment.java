@@ -111,12 +111,12 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
         deviceViewAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void clearList() {
-        if (!deviceList.isEmpty()) {
-            deviceList.clear();
-        }
-        deviceViewAdapter.notifyDataSetChanged();
-    }
+//    @Override
+//    public void clearList() {
+//        if (!deviceList.isEmpty()) {
+//            deviceList.clear();
+//        }
+//        deviceViewAdapter.notifyDataSetChanged();
+//    }
 
 }

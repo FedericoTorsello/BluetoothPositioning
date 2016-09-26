@@ -230,11 +230,6 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         deviceViewAdapter.notifyDataSetChanged();
     }
 
-
-    @Override
-    public void clearList() {
-    }
-
     /**
      * Check if this device has a camera
      */
