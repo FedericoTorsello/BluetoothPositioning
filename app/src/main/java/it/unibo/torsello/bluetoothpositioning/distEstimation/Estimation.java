@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.estimation;
+package it.unibo.torsello.bluetoothpositioning.distEstimation;
 
 import org.altbeacon.beacon.Beacon;
 
@@ -12,7 +12,7 @@ import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KalmanFilter2;
  * <takePicture>
  * A helper class
  */
-public class DistEstimation {
+public class Estimation {
 
     //    private DescriptiveStatistics recentRssi;
 //    private DescriptiveStatistics recentTxPower;
@@ -28,7 +28,7 @@ public class DistEstimation {
 //    private double filteredDist3;
 //    private double filteredDist4;
 
-    public DistEstimation() {
+    public Estimation() {
 
         // limit on the number of values that can be stored in the dataset
 //        recentRssi = new DescriptiveStatistics();

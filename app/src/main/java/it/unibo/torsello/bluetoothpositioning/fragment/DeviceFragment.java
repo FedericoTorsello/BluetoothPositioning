@@ -42,15 +42,15 @@ import it.unibo.torsello.bluetoothpositioning.model.Device;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceRecycleViewFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
+public class DeviceFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceCardViewAdapter deviceViewAdapter;
     private SharedPreferences settings;
     private List<Device> deviceList;
 
-    public static DeviceRecycleViewFragment newInstance(String message) {
-        DeviceRecycleViewFragment fragment = new DeviceRecycleViewFragment();
+    public static DeviceFragment newInstance(String message) {
+        DeviceFragment fragment = new DeviceFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);
@@ -91,8 +91,10 @@ public class DeviceRecycleViewFragment extends Fragment implements ApplicationAc
         Collections.sort(devices, new Comparator<Device>() {
 
             public int compare(Device b1, Device b2) {
-                int sorting = settings.getInt(SettingConstants.SORTING, 0);
+                int sorting = settings.getInt(SettingConstants.DISTANCE_SORTING, 0);
                 switch (sorting) {
+                    case 0:
+                        return Double.compare(b1.getIndex(), b2.getIndex());
                     case R.id.radioButton_color_sorting:
                         return Double.compare(b1.getColor(), b2.getColor());
                     case R.id.radioButton_distance_sorting:

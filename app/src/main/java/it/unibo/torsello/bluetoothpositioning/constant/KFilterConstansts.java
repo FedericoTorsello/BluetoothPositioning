@@ -7,7 +7,7 @@ package it.unibo.torsello.bluetoothpositioning.constant;
 public class KFilterConstansts {
 
     public static final double KALMAN_NOISE_MIN = 0.01;
-    public static final double KALMAN_NOISE_MAX = 25.0;
+    public static final double KALMAN_NOISE_MAX = 5.0;
     public static final double FILTER_FACTOR = 0.1;
     public static final int WINDOW = 20;
 

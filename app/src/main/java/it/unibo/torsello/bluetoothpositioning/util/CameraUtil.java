@@ -195,7 +195,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
 
     public void onPause() {
         if (mCamera != null) {
-            if (!preview_thread.isInterrupted()) {
+            if (preview_thread != null && !preview_thread.isInterrupted()) {
                 preview_thread.interrupt();
             }
             mCamera.stopPreview();

@@ -1,6 +1,12 @@
 package it.unibo.torsello.bluetoothpositioning.activities;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -9,8 +15,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +28,7 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceRecycleViewFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
@@ -36,6 +44,9 @@ public class MainActivity extends AppCompatActivity
     private final String TAG_CLASS = getClass().getSimpleName();
     private boolean isBackPressed = false;
     private long back_pressed;
+
+
+    private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         replaceFragment(MainViewFragment.newInstance(getFragments()));
+
+        checkAndroidMPermission();
     }
 
     @Override
@@ -67,7 +80,9 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            replaceFragment(MainViewFragment.newInstance(getFragments()));
+
+            Fragment fragment = MainViewFragment.newInstance(getFragments());
+            replaceFragment(fragment);
 
             final long DOUBLE_PRESS_INTERVAL = 1500;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
@@ -76,7 +91,8 @@ public class MainActivity extends AppCompatActivity
                 assert fab != null;
                 Snackbar.make(fab, R.string.snackBar_exit, Snackbar.LENGTH_SHORT).show();
             } else {
-                super.onBackPressed();
+//                super.onBackPressed();
+                super.finish();
             }
             back_pressed = System.currentTimeMillis();
         }
@@ -113,9 +129,7 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        if (fragment != null) {
-            replaceFragment(fragment);
-        }
+        replaceFragment(fragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
@@ -126,7 +140,7 @@ public class MainActivity extends AppCompatActivity
 
     private List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceRecycleViewFragment.newInstance("Scan Device"));
+        fList.add(DeviceFragment.newInstance("Scan Device"));
         fList.add(PreferencesFragment.newInstance("Preferences"));
 
 //        fList.add(CompassFragment.newInstance("Compass1"));
@@ -142,6 +156,7 @@ public class MainActivity extends AppCompatActivity
                 .findFragmentById(R.id.contentMainLayout);
 
         if (currentFrag == null || !(currentFrag.equals(fragment))) {
+
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.contentMainLayout, fragment)
                     .commit();
@@ -154,7 +169,68 @@ public class MainActivity extends AppCompatActivity
                 tabLayout.setVisibility(View.GONE);
             }
         }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
+                for (int i = 0; i < permissions.length; i++) {
+                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+//                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
+                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+//                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
+                        new AlertDialog.Builder(this)
+                                .setTitle(R.string.dialog_permissions_location_access_title)
+                                .setMessage(R.string.dialog_permissions_location_access_text)
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+                                    @Override
+                                    public void onDismiss(DialogInterface dialog) {
+                                    }
+
+                                }).show();
+                    }
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private void checkAndroidMPermission() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            final List<String> permissions = new ArrayList<>();
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+
+            if (!permissions.isEmpty()) {
+                new AlertDialog.Builder(this)
+                        .setTitle(R.string.dialog_location_access_title)
+                        .setMessage(R.string.dialog_bluetooth_text)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @TargetApi(23)
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                requestPermissions(permissions.toArray(new String[permissions.size()]),
+                                        REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
+                            }
+
+                        }).show();
+            }
+        }
     }
 
 }

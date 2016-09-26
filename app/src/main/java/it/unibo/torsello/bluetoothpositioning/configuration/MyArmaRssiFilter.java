@@ -8,10 +8,9 @@ package it.unibo.torsello.bluetoothpositioning.configuration;
 import org.altbeacon.beacon.service.RssiFilter;
 
 public class MyArmaRssiFilter implements RssiFilter {
-    private static final String TAG = "MyArmaRssiFilter";
     private static double armaSpeed = 0.08D;
     private static boolean isEnabled = true;
-    private int armaMeasurement;
+    private double armaMeasurement;
     private boolean isInitialized = false;
 
     public static void setArmaSpeed(double arma_speed) {
@@ -24,7 +23,6 @@ public class MyArmaRssiFilter implements RssiFilter {
 
     @Override
     public void addMeasurement(Integer rssi) {
-//        Log.d("MyArmaRssiFilter", "adding rssi: " + rssi);
 
         if (isEnabled) {
             if (!isInitialized) {
@@ -32,8 +30,7 @@ public class MyArmaRssiFilter implements RssiFilter {
                 isInitialized = true;
             }
 
-            armaMeasurement = (int) (armaMeasurement - armaSpeed * (armaMeasurement - rssi));
-//            Log.d("MyArmaRssiFilter", "armaMeasurement: " + armaMeasurement);
+            armaMeasurement = (armaMeasurement - armaSpeed * (armaMeasurement - rssi));
         } else {
             armaMeasurement = rssi;
         }

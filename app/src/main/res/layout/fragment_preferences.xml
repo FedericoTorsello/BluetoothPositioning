@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.PreferencesFragment">
+    tools:context=".fragment.PreferencesFragment"
+    android:paddingTop="5dp">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -20,9 +21,9 @@
                 android:layout_margin="@dimen/card_margin">
 
                 <LinearLayout
-                    style="@style/Widget.CardContent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="@dimen/card_margin"
                     android:orientation="vertical">
 
                     <TextView
@@ -71,16 +72,24 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@string/settings_wd_status"
+                        android:text="@string/filer_rssi_option"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <Switch
-                        android:id="@+id/walkDetectionSwitch"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="@dimen/card_margin"
-                        android:text="@string/settings_disabled" />
+                        android:layout_margin="@dimen/card_margin">
+
+                        <Switch
+                            android:text="@string/text_arma_filter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/switch_arma_filter"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
                 </LinearLayout>
+
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
@@ -127,6 +136,31 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+            <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="@dimen/card_margin">-->
+
+            <!--<LinearLayout-->
+            <!--style="@style/Widget.CardContent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="@string/settings_wd_status"-->
+            <!--android:textAppearance="@style/TextAppearance.AppCompat.Title" />-->
+
+            <!--<Switch-->
+            <!--android:id="@+id/walkDetectionSwitch"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_margin="@dimen/card_margin"-->
+            <!--android:text="@string/settings_disabled" />-->
+            <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

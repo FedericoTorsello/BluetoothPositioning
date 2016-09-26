@@ -1,6 +1,7 @@
-package it.unibo.torsello.bluetoothpositioning.estimation;
+package it.unibo.torsello.bluetoothpositioning.distEstimation;
 
 import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.service.RssiFilter;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFBuilder;
@@ -65,23 +66,62 @@ public class BeaconStatistics {
         lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
         lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
     }
+//
+//    private double calculateDistance(double txPower, double rssi) {
+//        double n = 2.0;   // Signal propogation exponent
+//        double d0 = 1;  // Reference distance in meters
+//        double C = 0;   // Gaussian variable for mitigating flat fading
+//
+//        // model specific adjustments for Samsung S3 as per Android Beacon Library
+//        double mReceiverRssiSlope = 0;
+//        double mReceiverRssiOffset = -2;
+//
+//        // calculation of adjustment
+//        double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
+//        double adjustedRssi = rssi - adjustment;
+//
+//
+//        // Log-distance path loss model
+//        return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
+//    }
 
+    private static double armaSpeed = 0.08D;
+    private static boolean isEnabled = true;
+    private double armaMeasurement;
+    private boolean isInitialized = false;
+
+    // radiousNetwork formula
     private double calculateDistance(double txPower, double rssi) {
-        double n = 2.0;   // Signal propogation exponent
-        double d0 = 1;  // Reference distance in meters
-        double C = 0;   // Gaussian variable for mitigating flat fading
 
-        // model specific adjustments for Samsung S3 as per Android Beacon Library
-        double mReceiverRssiSlope = 0;
-        double mReceiverRssiOffset = -2;
+        if (isEnabled) {
+            if (!isInitialized) {
+                armaMeasurement = rssi;
+                isInitialized = true;
+            }
 
-        // calculation of adjustment
-        double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
-        double adjustedRssi = rssi - adjustment;
+            armaMeasurement = (armaMeasurement - armaSpeed * (armaMeasurement - rssi));
+        } else {
+            armaMeasurement = rssi;
+        }
 
+        if (armaMeasurement == 0.0D) {
+            return -1.0D; // if we cannot determine accuracy, return -1.
+        }
 
-        // Log-distance path loss model
-        return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
+        double ratio = (armaMeasurement * 1.0D) / txPower;
+        if (ratio < 1.0D) {
+            return Math.pow(ratio, 10.0D);
+        }
+
+//        return (0.89976D) * Math.pow(ratio, 7.7095D) + 0.125D;
+        return (0.89976d * Math.pow(ratio, 7.7095D)) + 0.111D;
+
+    /*
+     * RSSI = TxPower - 10 * n * lg(d)
+     * n = 2 (in free space)
+     * d = 10 ^ ((TxPower - RSSI) / (10 * n))
+     */
+        // return Math.pow(10D, (txPower - rssi) / (10 * 2));
     }
 
     public double getKalmanFilterDistance() {

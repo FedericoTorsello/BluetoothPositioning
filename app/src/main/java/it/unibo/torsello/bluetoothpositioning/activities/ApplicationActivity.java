@@ -18,6 +18,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -40,7 +41,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceRecycleViewFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
@@ -56,7 +57,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         PreferencesFragment.OnSettingsListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
-    private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     private WalkDetectionUtil walkDetection;
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
@@ -81,21 +81,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         initialize();
 
-//        String appId = "federico-torsello-studio-u-6yo";
-//        String appToken = "57c8cf3bef60d9258fd9123556dace89";
-
-        //  App ID & App Token can be taken from App section of Estimote Cloud.
-//        EstimoteSDK.initialize(getApplicationContext(), appId, appToken);
-        // Optional, debug logging.
-//        EstimoteSDK.enableDebugLogging(true);
-
-        checkAndroidMPermission();
-
         initializeBeaconManager();
 
-        // simply constructing this class and holding a reference to it in your custom Application
-        // class will automatically cause the BeaconLibrary to save battery whenever the application
-        // is not visible.  This reduces bluetooth power usage by about 60%
+        // Save battery whenever the application is not visible.
+        // This reduces bluetooth power usage by about 60%
         new BackgroundPowerSaver(getApplicationContext());
 
         floatingActionButtonAction();
@@ -120,7 +109,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
             }
         };
 
-
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
         walkDetection = new WalkDetectionUtil(getApplication());
@@ -133,7 +121,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
 
-        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+//        MyArmaRssiFilter.enableArmaFilter(false);
+//        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+
+        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
 
         // for finding different type of beacon,
         beaconManager.getBeaconParsers().clear();
@@ -159,7 +150,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         beaconManager.setForegroundScanPeriod(250L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
-        beaconManager.setBackgroundScanPeriod(500L);
+        beaconManager.setBackgroundScanPeriod(250L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
     }
 
@@ -186,7 +177,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                 new Thread(runnable).start();
             }
         });
-
     }
 
 
@@ -228,14 +218,14 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        if (!getSupportFragmentManager().getFragments().isEmpty()) {
-            getSupportFragmentManager().popBackStack();
-        }
-
-        super.onBackPressed();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        if (!getSupportFragmentManager().getFragments().isEmpty()) {
+//            getSupportFragmentManager().popBackStack();
+//        }
+//
+//        super.onBackPressed();
+//    }
 
     @Override
     protected void onPause() {
@@ -254,23 +244,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         if (beaconManager.isBound(this)) {
             beaconManager.setBackgroundMode(false);
         }
+
         isBluetoothAvailable();
 
-        // Find all available drivers from attached devices.
-        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-
-        if (!availableDrivers.isEmpty()) {
-            // Open a connection to the first available driver.
-            UsbSerialDriver driver = availableDrivers.get(0);
-
-            if (!manager.hasPermission(driver.getDevice())) {
-                Intent startIntent = new Intent(this, getClass());
-                PendingIntent pendingIntent =
-                        PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
-                manager.requestPermission(driver.getDevice(), pendingIntent);
-            }
-        }
+        isUsbAvailable();
 
     }
 
@@ -288,39 +265,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
     public void onAttachFragment(Fragment fragment) {
         super.onAttachFragment(fragment);
 
-        if (fragment instanceof DeviceRecycleViewFragment) {
+        if (fragment instanceof DeviceFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         } else if (fragment instanceof DeviceDetailFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS:
-                for (int i = 0; i < permissions.length; i++) {
-                    if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-//                        Log.d(TAG_CLASS, "Permission Granted: " + permissions[i]);
-                    } else if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-//                        Log.d(TAG_CLASS, "Permission Denied: " + permissions[i]);
-                        new AlertDialog.Builder(this)
-                                .setTitle(R.string.dialog_permissions_location_access_title)
-                                .setMessage(R.string.dialog_permissions_location_access_text)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-                                    @Override
-                                    public void onDismiss(DialogInterface dialog) {
-                                    }
-
-                                }).show();
-                    }
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -359,6 +307,11 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         }
     }
 
+    @Override
+    public void isArmaFilter(boolean isChecked) {
+
+    }
+
     private boolean isBluetoothAvailable() {
 
         try {
@@ -387,36 +340,24 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         return true;
     }
 
-    private void checkAndroidMPermission() {
+    private boolean isUsbAvailable() {
+        // Find all available drivers from attached devices.
+        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            final List<String> permissions = new ArrayList<>();
+        if (!availableDrivers.isEmpty()) {
+            // Open a connection to the first available driver.
+            UsbSerialDriver driver = availableDrivers.get(0);
 
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            if (!manager.hasPermission(driver.getDevice())) {
+                Intent startIntent = new Intent(this, getClass());
+                PendingIntent pendingIntent =
+                        PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
+                manager.requestPermission(driver.getDevice(), pendingIntent);
             }
-
-            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-            }
-
-            if (!permissions.isEmpty()) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.dialog_location_access_title)
-                        .setMessage(R.string.dialog_bluetooth_text)
-                        .setPositiveButton(android.R.string.ok, null)
-                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                            @TargetApi(23)
-                            @Override
-                            public void onDismiss(DialogInterface dialog) {
-                                requestPermissions(permissions.toArray(new String[permissions.size()]),
-                                        REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
-                            }
-
-                        }).show();
-            }
+            return true;
+        } else {
+            return false;
         }
     }
 

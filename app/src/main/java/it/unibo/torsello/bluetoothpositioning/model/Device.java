@@ -2,8 +2,8 @@ package it.unibo.torsello.bluetoothpositioning.model;
 
 import org.altbeacon.beacon.Beacon;
 
-import it.unibo.torsello.bluetoothpositioning.estimation.BeaconStatistics;
-import it.unibo.torsello.bluetoothpositioning.estimation.DistEstimation;
+import it.unibo.torsello.bluetoothpositioning.distEstimation.BeaconStatistics;
+import it.unibo.torsello.bluetoothpositioning.distEstimation.Estimation;
 
 /**
  * Created by Federico Torsello.
@@ -11,7 +11,7 @@ import it.unibo.torsello.bluetoothpositioning.estimation.DistEstimation;
  */
 public class Device {
 
-    private DistEstimation stats;
+    private Estimation stats;
     private BeaconStatistics beaconStatistics;
     private String address;
     private String friendlyName;
@@ -24,7 +24,7 @@ public class Device {
         this.index = index;
         this.address = address;
         this.friendlyName = friendlyName;
-        this.stats = new DistEstimation();
+        this.stats = new Estimation();
         this.beaconStatistics = new BeaconStatistics();
         this.imageBeacon = imageBeacon;
         this.color = color;

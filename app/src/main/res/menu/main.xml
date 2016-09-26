@@ -4,7 +4,20 @@
 
     <item
         android:id="@+id/action_clear"
-        android:orderInCategory="100"
-        android:title="@string/action_clear_list"
-        app:showAsAction="never" />
+        android:title="@string/action_clear_list" />
+
+    <item
+        android:id="@+id/action_night"
+        android:title="Options"
+        app:showAsAction="never">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/action_clear2"
+                    android:title="@string/action_clear_list" />
+            </group>
+        </menu>
+    </item>
+
+
 </menu>

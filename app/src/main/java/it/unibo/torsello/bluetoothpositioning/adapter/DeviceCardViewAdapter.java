@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +22,9 @@ import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -33,11 +37,6 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
     private List<Device> deviceList;
     private FragmentActivity fragmentActivity;
 
-    private ExpandableListAdapter listAdapter;
-    private ExpandableListView expListView;
-    private List<String> listDataHeader;
-    private HashMap<String, List<String>> listDataChild;
-
     public DeviceCardViewAdapter(final FragmentActivity fragmentActivity, List<Device> deviceList) {
 
         this.deviceList = new ArrayList<>();
@@ -45,7 +44,6 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
         this.fragmentActivity = fragmentActivity;
 
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
-
     }
 
     @Override
@@ -53,68 +51,8 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
 
         View root = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_items, parent, false);
-
-        // get the listview
-        expListView = (ExpandableListView) root.findViewById(R.id.simple_expandable_listview);
-
-        // preparing list data
-        prepareListData();
-
-        listAdapter = new ExpandableListAdapter(fragmentActivity, listDataHeader, listDataChild);
-
-        // setting list adapter
-        expListView.setAdapter(listAdapter);
-
         return new DeviceViewHolder(root);
     }
-
-    /*
- * Preparing the list data
- */
-    private void prepareListData() {
-        // Array list for header
-//        ArrayList<String> header = new ArrayList<String>();
-
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-
-        // Array list for child items
-        List<String> child1 = new ArrayList<String>();
-        List<String> child2 = new ArrayList<String>();
-        List<String> child3 = new ArrayList<String>();
-        List<String> child4 = new ArrayList<String>();
-
-        // Hash map for both header and child
-//        HashMap<String, List<String>> hashMap = new HashMap<String, List<String>>();
-
-        // Adding headers to list
-        for (int i = 1; i < 5; i++) {
-            listDataHeader.add("Group " + i);
-        }
-        // Adding child data
-        for (int i = 1; i < 5; i++) {
-            child1.add("Group 1  " + " : Child" + i);
-        }
-        // Adding child data
-        for (int i = 1; i < 5; i++) {
-            child2.add("Group 2  " + " : Child" + i);
-        }
-        // Adding child data
-        for (int i = 1; i < 6; i++) {
-            child3.add("Group 3  " + " : Child" + i);
-        }
-        // Adding child data
-        for (int i = 1; i < 7; i++) {
-            child4.add("Group 4  " + " : Child" + i);
-        }
-
-        // Adding header and childs to hash map
-        listDataChild.put(listDataHeader.get(0), child1);
-        listDataChild.put(listDataHeader.get(1), child2);
-        listDataChild.put(listDataHeader.get(2), child3);
-        listDataChild.put(listDataHeader.get(3), child4);
-    }
-
 
     @Override
     public void onBindViewHolder(DeviceViewHolder holder, final int position) {
@@ -189,18 +127,26 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                             @Override
                             public void run() {
 
-                                final Fragment newFrag = DeviceDetailFragment.newInstance(deviceDetailName);
                                 Fragment currentFrag = fragmentActivity.getSupportFragmentManager()
                                         .findFragmentById(R.id.contentMainLayout);
+//
+//                                //Check if the new Fragment is the same
+//                                //If it is, don't add to the back stack
 
-                                //Check if the new Fragment is the same
-                                //If it is, don't add to the back stack
-                                if (currentFrag == null || !currentFrag.equals(newFrag)) {
+                                List<Fragment> fList = new ArrayList<>();
+                                fList.add(DeviceDetailFragment.newInstance(deviceDetailName));
+                                fList.add(PreferencesFragment.newInstance("Preferences"));
+
+                                final Fragment newFrag = MainViewFragment.newInstance(fList);
+
+                                if (currentFrag == null || !(currentFrag.equals(newFrag))) {
+
                                     fragmentActivity.getSupportFragmentManager().beginTransaction()
-                                            .replace(currentFrag.getId(), newFrag)
+                                            .replace(R.id.contentMainLayout, newFrag)
                                             .addToBackStack(null)
                                             .commit();
                                 }
+
                             }
                         });
                     }

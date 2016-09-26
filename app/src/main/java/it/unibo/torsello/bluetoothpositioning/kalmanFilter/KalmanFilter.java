@@ -1,5 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
+
 /**
  * Originally written in JS by Wouter Bulten 2015
  * Rewritten to Java by Jonathan Vidmar 2016
@@ -109,7 +111,10 @@ public class KalmanFilter {
     public static double getCalculatedNoise(int p) {
         double percent = (double) p / 100.0;
 //        return SettingConstants.KALMAN_NOISE_MIN + (SettingConstants.KALMAN_NOISE_MAX - SettingConstants.KALMAN_NOISE_MIN) * percent;
-        return 0.01 + (25.0 - 0.01) * percent;
+//        return 0.01 + (25.0 - 0.01) * percent;
+
+        return KFilterConstansts.KALMAN_NOISE_MIN +
+                (KFilterConstansts.KALMAN_NOISE_MAX - KFilterConstansts.KALMAN_NOISE_MIN) * percent;
     }
 }
 
