@@ -2,8 +2,8 @@ package it.unibo.torsello.bluetoothpositioning.model;
 
 import org.altbeacon.beacon.Beacon;
 
-import it.unibo.torsello.bluetoothpositioning.distEstimation.BeaconStatistics;
-import it.unibo.torsello.bluetoothpositioning.distEstimation.Estimation;
+import it.unibo.torsello.bluetoothpositioning.distanceEstimation.BeaconStatistics;
+import it.unibo.torsello.bluetoothpositioning.distanceEstimation.Estimation;
 
 /**
  * Created by Federico Torsello.

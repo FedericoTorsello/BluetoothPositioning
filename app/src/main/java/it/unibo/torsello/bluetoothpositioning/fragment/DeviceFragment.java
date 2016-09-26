@@ -26,6 +26,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +48,7 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceCardViewAdapter deviceViewAdapter;
-    private SharedPreferences settings;
+    private SharedPreferences preferences;
     private List<Device> deviceList;
 
     public static DeviceFragment newInstance(String message) {
@@ -61,7 +63,7 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         deviceList = new ArrayList<>();
-        settings = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
     }
 
     @Override
@@ -91,9 +93,10 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
         Collections.sort(devices, new Comparator<Device>() {
 
             public int compare(Device b1, Device b2) {
-                int sorting = settings.getInt(SettingConstants.DISTANCE_SORTING, 0);
+                int sorting = preferences.getInt(SettingConstants.DISTANCE_SORTING, 0);
                 switch (sorting) {
                     case 0:
+                    case R.id.radioButton_default_sorting:
                         return Double.compare(b1.getIndex(), b2.getIndex());
                     case R.id.radioButton_color_sorting:
                         return Double.compare(b1.getColor(), b2.getColor());

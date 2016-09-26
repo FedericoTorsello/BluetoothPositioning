@@ -1,22 +1,18 @@
 package it.unibo.torsello.bluetoothpositioning.activities;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,20 +28,20 @@ import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
+import org.altbeacon.beacon.service.RunningAverageRssiFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
-import it.unibo.torsello.bluetoothpositioning.util.WalkDetectionUtil;
 
 //import com.estimote.sdk.EstimoteSDK;
 
@@ -53,21 +49,17 @@ import it.unibo.torsello.bluetoothpositioning.util.WalkDetectionUtil;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class ApplicationActivity extends MainActivity implements BeaconConsumer,
-        PreferencesFragment.OnSettingsListener {
+public class ApplicationActivity extends MainActivity implements BeaconConsumer {
 
     private final String TAG_CLASS = getClass().getSimpleName();
-    private WalkDetectionUtil walkDetection;
+    //    private WalkDetectionUtil walkDetection;
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
-    private boolean selfCorrection;
-    private double processNoise;
+    //    private boolean selfCorrection;
+//    private double processNoise;
     private SharedPreferences preferences;
     private OnAddDevicesListener onAddDevicesListener;
-    private int movementState = 1;
-    private List<Device> deviceList;
-
-    private Runnable runnable;
+    private BackgroundPowerSaver backgroundPowerSaver;
 
     public interface OnAddDevicesListener {
         void updateInfoDevices(List<Device> iBeacons);
@@ -85,44 +77,25 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         // Save battery whenever the application is not visible.
         // This reduces bluetooth power usage by about 60%
-        new BackgroundPowerSaver(getApplicationContext());
+        backgroundPowerSaver = new BackgroundPowerSaver(this);
 
         floatingActionButtonAction();
     }
 
     private void initialize() {
-        deviceList = new ArrayList<>();
-
-        //  memory optimization
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (onAddDevicesListener != null) {
-                            onAddDevicesListener.updateInfoDevices(deviceList);
-                        }
-                    }
-                });
-            }
-        };
+//        deviceList = new ArrayList<>();
 
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
-        walkDetection = new WalkDetectionUtil(getApplication());
-        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
-            walkDetection.startDetection();
-        }
+//        walkDetection = new WalkDetectionUtil(getApplication());
+//        if (preferences.getBoolean(SettingConstants.WALK_DETECTION, false)) {
+//            walkDetection.startDetection();
+//        }
     }
 
     private void initializeBeaconManager() {
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
-
-//        MyArmaRssiFilter.enableArmaFilter(false);
-//        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
 
         Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
 
@@ -152,33 +125,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         beaconManager.setForegroundBetweenScanPeriod(0L);
         beaconManager.setBackgroundScanPeriod(250L);
         beaconManager.setBackgroundBetweenScanPeriod(0L);
+
+        beaconManager.setMaxTrackingAge(1000);
     }
-
-    @Override
-    public void onBeaconServiceConnect() {
-        beaconManager.addRangeNotifier(new RangeNotifier() {
-            @Override
-            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
-
-                for (Beacon b : beacons) {
-
-                    // take from the list the device
-                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
-
-                    if (device != null) { // useful only if DEVICE_MAP is empty
-                        device.updateDistance(b, movementState, processNoise);
-
-                        if (!deviceList.contains(device)) {
-                            deviceList.add(device);
-                        }
-                    }
-                }
-
-                new Thread(runnable).start();
-            }
-        });
-    }
-
 
     private void floatingActionButtonAction() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -191,8 +140,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
                 if (isBluetoothAvailable()) {
 
                     isRunScan = !isRunScan;
-                    String idRegion = "myRangingUniqueId";
-                    Region region = new Region(idRegion, null, null, null);
+                    Region region = new Region("RegionId", null, null, null);
 
                     if (isRunScan) {
                         fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
@@ -218,6 +166,72 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         });
     }
 
+    @Override
+    public void onBeaconServiceConnect() {
+
+        try {
+            beaconManager.updateScanPeriods();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        final List<Device> deviceList = new ArrayList<>();
+
+        beaconManager.addRangeNotifier(new RangeNotifier() {
+            @Override
+            public void didRangeBeaconsInRegion(final Collection<Beacon> beacons, Region region) {
+
+                setRssiFilter();
+
+                for (Beacon b : beacons) {
+
+                    // take from the list the device
+                    Device device = DeviceConstants.DEVICE_MAP.get(b.getBluetoothAddress());
+
+                    if (device != null) { // useful only if DEVICE_MAP is empty
+                        double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
+                        int movementState = 1;
+                        device.updateDistance(b, movementState, processNoise);
+
+                        if (!deviceList.contains(device)) {
+                            deviceList.add(device);
+                        }
+                    }
+                }
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (onAddDevicesListener != null) {
+                            onAddDevicesListener.updateInfoDevices(deviceList);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+    private void setRssiFilter() {
+
+        int sorting = preferences.getInt(SettingConstants.FILTER_RSSI, 0);
+        switch (sorting) {
+            case 0:
+            case R.id.radioButton_no_rssi_filtering:
+                MyArmaRssiFilter.enableArmaFilter(false);
+                BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+                break;
+            case R.id.radioButton_arma_rssi_filter:
+                MyArmaRssiFilter.enableArmaFilter(true);
+                BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+                break;
+            case R.id.radioButton_average_rssi_filter:
+                BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+                break;
+        }
+    }
+
 //    @Override
 //    public void onBackPressed() {
 //        if (!getSupportFragmentManager().getFragments().isEmpty()) {
@@ -229,12 +243,12 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
     @Override
     protected void onPause() {
-        super.onPause();
-
         if (beaconManager.isBound(this)) {
             beaconManager.setBackgroundMode(true);
+            backgroundPowerSaver.onActivityPaused(this);
         }
-        walkDetection.stopDetection();
+//        walkDetection.stopDetection();
+        super.onPause();
     }
 
     @Override
@@ -243,6 +257,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
         if (beaconManager.isBound(this)) {
             beaconManager.setBackgroundMode(false);
+            backgroundPowerSaver.onActivityResumed(this);
         }
 
         isBluetoothAvailable();
@@ -253,12 +268,13 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-
         if (beaconManager.isBound(this)) {
             beaconManager.unbind(this);
+            backgroundPowerSaver.onActivityDestroyed(this);
         }
         onAddDevicesListener = null;
+
+        super.onDestroy();
     }
 
     @Override
@@ -280,37 +296,53 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer,
         // noinspection SimplifiableIfStatement
         switch (item.getItemId()) {
             case R.id.action_clear:
-                onAddDevicesListener.clearList();
+//                onAddDevicesListener.clearList();
+
+//
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+//                FragmentManager fm = getSupportFragmentManager();
+//                SettingsFragment alertDialog = SettingsFragment.newInstance("Some title");
+//                alertDialog.show(fm, "fragment_edit_name");
+
+
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void updateKalmanNoise(double value) {
-        processNoise = value;
-    }
+//    @Override
+//    public void updateKalmanNoise(double value) {
+//        processNoise = value;
+//    }
 
-    @Override
-    public void isSelfCorrection(boolean isChecked) {
-        selfCorrection = isChecked;
-    }
+//    @Override
+//    public void isSelfCorrection(boolean isChecked) {
+//        selfCorrection = isChecked;
+//    }
+//
+//    @Override
+//    public void isWalkDetection(boolean isChecked) {
+//
+//        if (isChecked) {
+//            walkDetection.startDetection();
+//        } else {
+//            walkDetection.stopDetection();
+//        }
+//    }
 
-    @Override
-    public void isWalkDetection(boolean isChecked) {
+//    @Override
+//    public void isArmaFilter(boolean isChecked) {
+////        MyArmaRssiFilter.enableArmaFilter(isChecked);
+////        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+//
+//        BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+//
+//        BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+//        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
+//    }
 
-        if (isChecked) {
-            walkDetection.startDetection();
-        } else {
-            walkDetection.stopDetection();
-        }
-    }
-
-    @Override
-    public void isArmaFilter(boolean isChecked) {
-
-    }
 
     private boolean isBluetoothAvailable() {
 

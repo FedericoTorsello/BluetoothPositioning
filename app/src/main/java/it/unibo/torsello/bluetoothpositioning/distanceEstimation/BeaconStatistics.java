@@ -1,7 +1,6 @@
-package it.unibo.torsello.bluetoothpositioning.distEstimation;
+package it.unibo.torsello.bluetoothpositioning.distanceEstimation;
 
 import org.altbeacon.beacon.Beacon;
-import org.altbeacon.beacon.service.RssiFilter;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFBuilder;
@@ -85,30 +84,15 @@ public class BeaconStatistics {
 //        return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
 //    }
 
-    private static double armaSpeed = 0.08D;
-    private static boolean isEnabled = true;
-    private double armaMeasurement;
-    private boolean isInitialized = false;
 
     // radiousNetwork formula
     private double calculateDistance(double txPower, double rssi) {
 
-        if (isEnabled) {
-            if (!isInitialized) {
-                armaMeasurement = rssi;
-                isInitialized = true;
-            }
-
-            armaMeasurement = (armaMeasurement - armaSpeed * (armaMeasurement - rssi));
-        } else {
-            armaMeasurement = rssi;
-        }
-
-        if (armaMeasurement == 0.0D) {
+        if (rssi == 0.0D) {
             return -1.0D; // if we cannot determine accuracy, return -1.
         }
 
-        double ratio = (armaMeasurement * 1.0D) / txPower;
+        double ratio = (rssi * 1.0D) / txPower;
         if (ratio < 1.0D) {
             return Math.pow(ratio, 10.0D);
         }

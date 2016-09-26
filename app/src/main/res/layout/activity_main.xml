@@ -17,8 +17,21 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer">
+        app:menu="@menu/activity_main_drawer" />
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment"
+            android:id="@+id/fragment"
+            tools:layout="@layout/fragment_preferences" />
 
     </android.support.design.widget.NavigationView>
 

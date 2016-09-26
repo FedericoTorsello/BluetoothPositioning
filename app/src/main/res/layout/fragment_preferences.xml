@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.PreferencesFragment"
+    tools:context=".fragment.SettingsFragment"
     android:paddingTop="5dp">
 
     <android.support.v4.widget.NestedScrollView
@@ -75,18 +75,31 @@
                         android:text="@string/filer_rssi_option"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                    <LinearLayout
+                    <RadioGroup
+                        android:id="@+id/radioGroupFilter"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/card_margin">
 
-                        <Switch
-                            android:text="@string/text_arma_filter"
-                            android:layout_width="0dp"
+                        <RadioButton
+                            android:id="@+id/radioButton_no_rssi_filtering"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/switch_arma_filter"
-                            android:layout_weight="1" />
-                    </LinearLayout>
+                            android:text="@string/no_rssi_filtering"
+                            android:checked="true" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_arma_rssi_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arma_rssi_filter" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_average_rssi_filter"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/average_rssi_filter" />
+                    </RadioGroup>
 
                 </LinearLayout>
 
@@ -109,7 +122,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <RadioGroup
-                        android:id="@+id/radioGroup"
+                        android:id="@+id/radioGroupSortingMode"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/card_margin">

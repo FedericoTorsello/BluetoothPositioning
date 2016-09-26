@@ -32,7 +32,7 @@ public class UsbMeasurementFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_usb, container, false);
+        View root = inflater.inflate(R.layout.cardview_arduino_usb, container, false);
 
         initializeArduinoDistance(root);
 

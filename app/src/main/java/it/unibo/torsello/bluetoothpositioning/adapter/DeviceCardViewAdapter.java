@@ -1,13 +1,11 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,14 +15,13 @@ import org.altbeacon.beacon.Beacon;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -133,16 +130,16 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
 //                                //Check if the new Fragment is the same
 //                                //If it is, don't add to the back stack
 
-                                List<Fragment> fList = new ArrayList<>();
-                                fList.add(DeviceDetailFragment.newInstance(deviceDetailName));
-                                fList.add(PreferencesFragment.newInstance("Preferences"));
+//                                List<Fragment> fList = new ArrayList<>();
+//                                fList.add(DeviceDetailFragment.newInstance(deviceDetailName));
+//                                fList.add(SettingsFragment.newInstance("Preferences"));
 
-                                final Fragment newFrag = MainViewFragment.newInstance(fList);
+                                final Fragment fragment = DeviceDetailFragment.newInstance(deviceDetailName);
 
-                                if (currentFrag == null || !(currentFrag.equals(newFrag))) {
+                                if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
 
                                     fragmentActivity.getSupportFragmentManager().beginTransaction()
-                                            .replace(R.id.contentMainLayout, newFrag)
+                                            .replace(R.id.contentMainLayout, fragment)
                                             .addToBackStack(null)
                                             .commit();
                                 }

@@ -53,7 +53,7 @@
             android:orientation="vertical"
             android:paddingTop="24dp">
 
-            <include layout="@layout/cardview_device" />
+            <include layout="@layout/cardview_device_selected" />
 
             <include layout="@layout/cardview_arduino_usb" />
 

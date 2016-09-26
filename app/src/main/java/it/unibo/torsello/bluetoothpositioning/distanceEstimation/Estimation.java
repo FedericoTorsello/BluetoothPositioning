@@ -1,4 +1,4 @@
-package it.unibo.torsello.bluetoothpositioning.distEstimation;
+package it.unibo.torsello.bluetoothpositioning.distanceEstimation;
 
 import org.altbeacon.beacon.Beacon;
 

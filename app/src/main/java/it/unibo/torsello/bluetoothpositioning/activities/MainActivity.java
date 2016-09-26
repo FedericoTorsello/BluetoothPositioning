@@ -30,7 +30,6 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.MainViewFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.PreferencesFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
 
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     private boolean isBackPressed = false;
     private long back_pressed;
 
-
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
     @Override
@@ -54,21 +52,21 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        assert toolbar != null;
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        assert drawer != null;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(MainViewFragment.newInstance(getFragments()));
+        NavigationView navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
+        navigationView2.setNavigationItemSelectedListener(this);
+
+        replaceFragment(DeviceFragment.newInstance("Scan Device"));
 
         checkAndroidMPermission();
     }
@@ -79,19 +77,22 @@ public class MainActivity extends AppCompatActivity
         assert drawer != null;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (drawer.isDrawerOpen(GravityCompat.END)) {
+            drawer.closeDrawer(GravityCompat.END);
         } else {
 
-            Fragment fragment = MainViewFragment.newInstance(getFragments());
-            replaceFragment(fragment);
+            if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
+                getSupportFragmentManager().popBackStack();
+                Log.i("a", "1");
+            }
 
-            final long DOUBLE_PRESS_INTERVAL = 1500;
+            final long DOUBLE_PRESS_INTERVAL = 1500L;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
                 isBackPressed = true;
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
                 assert fab != null;
                 Snackbar.make(fab, R.string.snackBar_exit, Snackbar.LENGTH_SHORT).show();
             } else {
-//                super.onBackPressed();
                 super.finish();
             }
             back_pressed = System.currentTimeMillis();
@@ -114,10 +115,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fragment = MainViewFragment.newInstance(getFragments());
+                fragment = DeviceFragment.newInstance("Scan Device");
                 break;
             case R.id.nav_settings:
-                fragment = SettingsFragment.newInstance();
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.openDrawer(GravityCompat.END);
                 break;
             case R.id.nav_measurement:
                 fragment = UsbMeasurementFragment.newInstance();
@@ -132,43 +134,55 @@ public class MainActivity extends AppCompatActivity
         replaceFragment(fragment);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        assert drawer != null;
-        drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
         return true;
     }
 
-    private List<Fragment> getFragments() {
-        List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFragment.newInstance("Scan Device"));
-        fList.add(PreferencesFragment.newInstance("Preferences"));
-
-//        fList.add(CompassFragment.newInstance("Compass1"));
-//        fList.add(CompassMagnoFragment.newInstance("Compass2"));
-//        fList.add(CountPassFragment.newInstance("CountPass"));
-
-        return fList;
-    }
+//    private List<Fragment> getFragments() {
+//        List<Fragment> fList = new ArrayList<>();
+//        fList.add(DeviceFragment.newInstance("Scan Device"));
+//        fList.add(SettingsFragment.newInstance("Settings"));
+//
+////        fList.add(CompassFragment.newInstance("Compass1"));
+////        fList.add(CompassMagnoFragment.newInstance("Compass2"));
+////        fList.add(CountPassFragment.newInstance("CountPass"));
+//
+//        return fList;
+//    }
 
     private void replaceFragment(Fragment fragment) {
 
-        Fragment currentFrag = getSupportFragmentManager()
-                .findFragmentById(R.id.contentMainLayout);
+        if (fragment != null) {
+            Fragment currentFrag = getSupportFragmentManager()
+                    .findFragmentById(R.id.contentMainLayout);
 
-        if (currentFrag == null || !(currentFrag.equals(fragment))) {
 
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.contentMainLayout, fragment)
-                    .commit();
+            if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
 
-            TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-            assert tabLayout != null;
-            if (fragment instanceof MainViewFragment) {
-                tabLayout.setVisibility(View.VISIBLE);
-            } else {
-                tabLayout.setVisibility(View.GONE);
+                if (fragment instanceof SettingsFragment) {
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.contentMainLayout, fragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                } else {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.contentMainLayout, fragment)
+                            .commit();
+                }
+
+                TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+                if (fragment instanceof MainViewFragment) {
+                    tabLayout.setVisibility(View.VISIBLE);
+                } else {
+                    tabLayout.setVisibility(View.GONE);
+                }
             }
         }
+
     }
 
     @Override
