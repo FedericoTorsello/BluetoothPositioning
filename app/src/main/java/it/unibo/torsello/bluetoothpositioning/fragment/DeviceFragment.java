@@ -51,10 +51,10 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
     private SharedPreferences preferences;
     private List<Device> deviceList;
 
-    public static DeviceFragment newInstance(String message) {
+    public static DeviceFragment newInstance() {
         DeviceFragment fragment = new DeviceFragment();
         Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
+        bdl.putString(EXTRA_MESSAGE, "Scan Device");
         fragment.setArguments(bdl);
         return fragment;
     }
@@ -84,39 +84,32 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
 
     @Override
     public void updateInfoDevices(List<Device> devices) {
-
-        if (!deviceList.isEmpty()) {
-            deviceList.clear();
-        }
-
-        // optional sorting
-        Collections.sort(devices, new Comparator<Device>() {
-
-            public int compare(Device b1, Device b2) {
-                int sorting = preferences.getInt(SettingConstants.DISTANCE_SORTING, 0);
-                switch (sorting) {
-                    case 0:
-                    case R.id.radioButton_default_sorting:
-                        return Double.compare(b1.getIndex(), b2.getIndex());
-                    case R.id.radioButton_color_sorting:
-                        return Double.compare(b1.getColor(), b2.getColor());
-                    case R.id.radioButton_distance_sorting:
-                        return Double.compare(b1.getKalmanFilterDistance(), b2.getKalmanFilterDistance());
-                } // default sorting (a good basic ordering for the other options)
-                return Double.compare(b1.getIndex(), b2.getIndex());
+        if (getActivity() != null) {
+            if (!deviceList.isEmpty()) {
+                deviceList.clear();
             }
-        });
 
-        deviceList.addAll(devices);
-        deviceViewAdapter.notifyDataSetChanged();
+            // optional sorting
+            Collections.sort(devices, new Comparator<Device>() {
+
+                public int compare(Device b1, Device b2) {
+                    int sorting = preferences.getInt(SettingConstants.DISTANCE_SORTING, 0);
+                    switch (sorting) {
+                        case 0:
+                        case R.id.radioButton_default_sorting:
+                            return Double.compare(b1.getIndex(), b2.getIndex());
+                        case R.id.radioButton_color_sorting:
+                            return Double.compare(b1.getColor(), b2.getColor());
+                        case R.id.radioButton_distance_sorting:
+                            return Double.compare(b1.getKalmanFilterDistance(), b2.getKalmanFilterDistance());
+                    } // default sorting (a good basic ordering for the other options)
+                    return Double.compare(b1.getIndex(), b2.getIndex());
+                }
+            });
+
+            deviceList.addAll(devices);
+            deviceViewAdapter.notifyDataSetChanged();
+        }
     }
-
-//    @Override
-//    public void clearList() {
-//        if (!deviceList.isEmpty()) {
-//            deviceList.clear();
-//        }
-//        deviceViewAdapter.notifyDataSetChanged();
-//    }
 
 }

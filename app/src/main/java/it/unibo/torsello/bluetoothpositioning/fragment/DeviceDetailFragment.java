@@ -46,6 +46,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private ChartUtil chartUtil1;
     private ChartUtil chartUtil2;
+    private ChartUtil chartUtil3;
 
     private TextView twDistance;
     private TextView twState;
@@ -53,7 +54,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     private UsbDataUtil usbUtil;
 
     private String idDeviceSelectedName;
-    private float arduinoDistance;
+    private double arduinoDistance;
     private boolean usbEnabled;
 
     private DecimalFormat df;
@@ -70,7 +71,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_device_details, container, false);
 
-        getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 
         ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
@@ -130,11 +131,9 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private void initializeChart(View root) {
         // add the charts
-        LineChart lineChart = (LineChart) root.findViewById(R.id.chart1);
-        LineChart lineChart2 = (LineChart) root.findViewById(R.id.chart2);
-
-        chartUtil1 = new ChartUtil(getActivity(), lineChart);
-        chartUtil2 = new ChartUtil(getActivity(), lineChart2);
+        chartUtil1 = new ChartUtil(getActivity(), (LineChart) root.findViewById(R.id.chart1));
+        chartUtil2 = new ChartUtil(getActivity(), (LineChart) root.findViewById(R.id.chart2));
+        chartUtil3 = new ChartUtil(getActivity(), (LineChart) root.findViewById(R.id.chart3));
     }
 
     @Override
@@ -155,7 +154,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
             @Override
             public void getData(byte[] data) {
                 try {
-                    arduinoDistance = Float.valueOf(new String(data).trim()) / 100;
+                    arduinoDistance = Double.valueOf(new String(data).trim()) / 100;
                     twDistance.setText(String.format("%s m", df.format(arduinoDistance)));
                 } catch (NumberFormatException nfe) {
                 }
@@ -176,9 +175,11 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     @Override
     public void onPause() {
-        super.onPause();
         usbUtil.onPause();
         cameraUtil.onPause();
+
+        getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
+        super.onPause();
     }
 
     @Override
@@ -191,43 +192,67 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     @Override
     public void updateInfoDevices(final List<Device> devices) {
 
-        if (!deviceList.isEmpty()) {
-            deviceList.clear();
-        }
+        if (getActivity() != null) {
 
-        for (Device deviceSelected : devices) {
-            if (deviceSelected.getFriendlyName().equals(idDeviceSelectedName) ||
-                    deviceSelected.getAddress().equals(idDeviceSelectedName)) {
+            if (!deviceList.isEmpty()) {
+                deviceList.clear();
+            }
 
-                if (!usbEnabled) {
-                    // reset of distance estimated of arduino
-                    twDistance.setText(String.format("%s m", df.format(0)));
-                    arduinoDistance = 0.00f;
+            for (Device deviceSelected : devices) {
+                if (deviceSelected.getFriendlyName().equals(idDeviceSelectedName) ||
+                        deviceSelected.getAddress().equals(idDeviceSelectedName)) {
 
-                    twState.setTextColor(Color.RED);
-                } else {
-                    twState.setTextColor(Color.GREEN);
+                    if (!usbEnabled) {
+                        // reset of distance estimated of arduino
+                        twDistance.setText(String.format("%s m", df.format(0)));
+                        arduinoDistance = 0.00D;
+
+                        twState.setTextColor(Color.RED);
+                    } else {
+                        twState.setTextColor(Color.GREEN);
+                    }
+
+
+                    if (chartUtil1 != null) {
+                        chartUtil1.createDataSet(getString(R.string.chart_arduino),
+                                getString(R.string.chart_raw_distance),
+                                getString(R.string.chart_altbeacon),
+                                getString(R.string.chart_kalman_filter));
+                        chartUtil1.updateDataSet(arduinoDistance,
+                                deviceSelected.getRawDistance(),
+                                deviceSelected.getAltBeaconDistance(),
+                                deviceSelected.getKalmanFilterDistance());
+                    }
+
+                    if (chartUtil2 != null) {
+                        chartUtil2.createDataSet(getString(R.string.chart_arduino),
+                                getString(R.string.chart_altbeacon),
+                                getString(R.string.chart_kalman_filter),
+                                null);
+                        chartUtil2.updateDataSet(arduinoDistance,
+                                deviceSelected.getAltBeaconDistance(),
+                                deviceSelected.getKalmanFilterDistance(),
+                                null);
+                    }
+
+                    if (chartUtil3 != null) {
+                        chartUtil3.createDataSet(getString(R.string.chart_arduino),
+                                getString(R.string.chart_altbeacon),
+                                getString(R.string.chart_raw_distance),
+                                null);
+                        chartUtil3.updateDataSet(arduinoDistance,
+                                deviceSelected.getAltBeaconDistance(),
+                                deviceSelected.getRawDistance(),
+                                null);
+                    }
+
+                    deviceList.add(deviceSelected);
                 }
 
-                if (chartUtil1 != null) {
-                    chartUtil1.createDataSet("AltBeacon", "Kalman Filter");
-                    chartUtil1.updateDataSet(arduinoDistance,
-                            deviceSelected.getAltBeaconDistance(),
-                            deviceSelected.getKalmanFilterDistance());
-                }
 
-                if (chartUtil2 != null) {
-                    chartUtil2.createDataSet("AltBeacon", "Raw distance");
-                    chartUtil2.updateDataSet(arduinoDistance,
-                            deviceSelected.getAltBeaconDistance(),
-                            deviceSelected.getRawDistance());
-                }
-
-                deviceList.add(deviceSelected);
+                deviceViewAdapter.notifyDataSetChanged();
             }
         }
-
-        deviceViewAdapter.notifyDataSetChanged();
     }
 
     /**

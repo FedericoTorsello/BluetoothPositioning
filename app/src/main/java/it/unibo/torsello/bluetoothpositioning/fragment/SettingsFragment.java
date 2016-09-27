@@ -27,10 +27,10 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences preferences;
     private DecimalFormat df;
 
-    public static SettingsFragment newInstance(String message) {
+    public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
-        args.putString(EXTRA_MESSAGE, message);
+        args.putString(EXTRA_MESSAGE, "Settings");
         fragment.setArguments(args);
         return fragment;
     }

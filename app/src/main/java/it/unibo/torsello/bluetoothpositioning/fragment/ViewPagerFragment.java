@@ -1,6 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,13 +18,13 @@ import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class MainViewFragment extends Fragment {
+public class ViewPagerFragment extends Fragment {
 
     private static List<Fragment> fragments;
 
-    public static MainViewFragment newInstance(List<Fragment> fragmentList) {
-        MainViewFragment.fragments = fragmentList;
-        return new MainViewFragment();
+    public static ViewPagerFragment newInstance(List<Fragment> fragmentList) {
+        ViewPagerFragment.fragments = fragmentList;
+        return new ViewPagerFragment();
     }
 
     @Override
@@ -41,4 +42,15 @@ public class MainViewFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onPause() {
+        getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.GONE);
+        super.onPause();
+    }
 }

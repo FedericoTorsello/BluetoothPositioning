@@ -68,10 +68,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
         initializeBeaconManager();
 
-        // Save battery whenever the application is not visible.
-        // This reduces bluetooth power usage by about 60%
-        backgroundPowerSaver = new BackgroundPowerSaver(this);
-
         floatingActionButtonAction();
     }
 
@@ -82,6 +78,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
     private void initializeBeaconManager() {
         beaconManager = BeaconManager.getInstanceForApplication(this);
         beaconManager.bind(this);
+
+        // Save battery whenever the application is not visible.
+        // This reduces bluetooth power usage by about 60%
+        backgroundPowerSaver = new BackgroundPowerSaver(this);
 
         Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
 
@@ -185,15 +185,20 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                     }
                 }
 
-                runOnUiThread(new Runnable() {
-
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (onAddDevicesListener != null) {
-                            onAddDevicesListener.updateInfoDevices(deviceList);
-                        }
+                        runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                if (onAddDevicesListener != null) {
+                                    onAddDevicesListener.updateInfoDevices(deviceList);
+                                }
+                            }
+                        });
                     }
-                });
+                }).start();
             }
         });
     }
@@ -260,6 +265,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         } else if (fragment instanceof DeviceDetailFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
+
     }
 
     @Override

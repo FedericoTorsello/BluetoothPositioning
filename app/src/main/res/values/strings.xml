@@ -92,6 +92,13 @@
     <string name="error_opening_device">Error opening device: </string>
     <!---->
 
+    <!-- CHART -->
+    <string name="chart_arduino">Arduino</string>
+    <string name="chart_raw_distance">Raw distance</string>
+    <string name="chart_altbeacon">AltBeacon</string>
+    <string name="chart_kalman_filter">Kalman Filter</string>
+    <!---->
+
     <string name="picture">Picture</string>
     <string name="description_info">Info</string>
     <string name="request_permission">This sample needs camera permission.</string>

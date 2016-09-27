@@ -79,7 +79,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     }
 
-    public void updateDataSet(final float arduinoDistance, final double rawBeaconDistance, final double distKalmanFilter) {
+    public void updateDataSet(final Double arg0, final Double arg1, final Double arg2, final Double arg3) {
         if (thread != null)
             thread.interrupt();
 
@@ -102,15 +102,23 @@ public class ChartUtil implements OnChartValueSelectedListener {
                                     throw new Error("Error: dataSet is null!!!");
                                 }
                             } else {
-                                if (data.getDataSetCount() >= 0) {
-                                    plotValue(data, 0, arduinoDistance);
-                                    plotValue(data, 1, (float) rawBeaconDistance);
-                                    plotValue(data, 2, (float) distKalmanFilter);
+                                if (data.getDataSetCount() > 0) {
+                                    if (arg0 != null) {
+                                        plotValue(data, 0, arg0.floatValue());
+                                    }
+                                    if (arg1 != null) {
+                                        plotValue(data, 1, arg1.floatValue());
+                                    }
+                                    if (arg2 != null) {
+                                        plotValue(data, 2, arg2.floatValue());
+                                    }
+                                    if (arg3 != null) {
+                                        plotValue(data, 3, arg3.floatValue());
+                                    }
                                 }
                             }
                         }
                     });
-
                 }
             }
         });
@@ -118,11 +126,23 @@ public class ChartUtil implements OnChartValueSelectedListener {
         thread.start();
     }
 
-    public ArrayList<ILineDataSet> createDataSet(String rawDistanceName, String kalmanFilterName) {
+    public ArrayList<ILineDataSet> createDataSet(String arg0, String arg1, String arg2, String arg3) {
         // create a dataset and give it a type
-        dataSets.add(createDataSet("ARDUINO", Color.RED)); // add the datasets
-        dataSets.add(createDataSet(rawDistanceName, getRandomColor()));
-        dataSets.add(createDataSet(kalmanFilterName, getRandomColor()));
+        if (arg0 != null) {
+            dataSets.add(createDataSet(arg0, getRandomColor())); // add the datasets
+        }
+
+        if (arg1 != null) {
+            dataSets.add(createDataSet(arg1, getRandomColor()));
+        }
+
+        if (arg2 != null) {
+            dataSets.add(createDataSet(arg2, getRandomColor()));
+        }
+
+        if (arg3 != null) {
+            dataSets.add(createDataSet(arg3, getRandomColor()));
+        }
 
         return dataSets;
     }

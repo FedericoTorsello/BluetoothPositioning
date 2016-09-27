@@ -123,14 +123,9 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
 
                                 Fragment currentFrag = fragmentActivity.getSupportFragmentManager()
                                         .findFragmentById(R.id.contentMainLayout);
-//
-//                                //Check if the new Fragment is the same
-//                                //If it is, don't add to the back stack
 
-//                                List<Fragment> fList = new ArrayList<>();
-//                                fList.add(DeviceDetailFragment.newInstance(deviceDetailName));
-//                                fList.add(SettingsFragment.newInstance("Preferences"));
-
+                                // check if the new Fragment is the same
+                                // if it is, don't add to the back stack
                                 final Fragment fragment = DeviceDetailFragment.newInstance(deviceDetailName);
 
                                 if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
@@ -140,7 +135,6 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                                             .addToBackStack(null)
                                             .commit();
                                 }
-
                             }
                         });
                     }

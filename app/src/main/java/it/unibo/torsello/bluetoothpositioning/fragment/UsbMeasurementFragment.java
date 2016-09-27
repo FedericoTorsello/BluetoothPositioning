@@ -21,6 +21,8 @@ import it.unibo.torsello.bluetoothpositioning.util.UsbDataUtil;
  */
 public class UsbMeasurementFragment extends Fragment {
 
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+
     private TextView twDistance;
     private TextView twState;
 
@@ -28,10 +30,14 @@ public class UsbMeasurementFragment extends Fragment {
 
     private DecimalFormat df;
 
-    private float arduinoDistance;
+    private double arduinoDistance;
 
     public static UsbMeasurementFragment newInstance() {
-        return new UsbMeasurementFragment();
+        UsbMeasurementFragment fragment = new UsbMeasurementFragment();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, "Measurement");
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -58,7 +64,7 @@ public class UsbMeasurementFragment extends Fragment {
             @Override
             public void getData(byte[] data) {
                 try {
-                    arduinoDistance = Float.valueOf(new String(data).trim()) / 100;
+                    arduinoDistance = Double.valueOf(new String(data).trim()) / 100;
                     twDistance.setText(String.format("%s m", df.format(arduinoDistance)));
                 } catch (NumberFormatException nfe) {
                 }
@@ -74,7 +80,7 @@ public class UsbMeasurementFragment extends Fragment {
                 if (!enabled) {
                     // reset of distance estimated of arduino
                     twDistance.setText(String.format("%s m", df.format(0)));
-                    arduinoDistance = 0.00f;
+                    arduinoDistance = 0.00D;
 
                     twState.setTextColor(Color.RED);
                 } else {
