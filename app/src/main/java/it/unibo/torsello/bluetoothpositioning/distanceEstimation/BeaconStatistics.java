@@ -48,7 +48,7 @@ public class BeaconStatistics {
                 .build();
     }
 
-    public void updateDistance(Beacon b, double movementState, double processNoise) {
+    public void updateDistance(Beacon b, double processNoise) {
         double lastFilteredReading = -1;
 
         mostRecentRSSI.addValue(b.getRssi());
@@ -60,7 +60,7 @@ public class BeaconStatistics {
             kf.setMeasurementNoise(mNoise);
         }
         kf.setProcessNoise(processNoise);
-        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50), movementState);
+        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50));
         lastCalculatedDistance = calculateDistance(mostRecentTxPower.getPercentile(50), lastFilteredReading);
         lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
         lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);

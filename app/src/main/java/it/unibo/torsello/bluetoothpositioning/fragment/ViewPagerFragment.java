@@ -20,10 +20,15 @@ import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
  */
 public class ViewPagerFragment extends Fragment {
 
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private static List<Fragment> fragments;
 
     public static ViewPagerFragment newInstance(List<Fragment> fragmentList) {
         ViewPagerFragment.fragments = fragmentList;
+        ViewPagerFragment fragment = new ViewPagerFragment();
+        Bundle bdl = new Bundle();
+        bdl.putString(EXTRA_MESSAGE, "ViewPagerFragment");
+        fragment.setArguments(bdl);
         return new ViewPagerFragment();
     }
 
@@ -46,10 +51,12 @@ public class ViewPagerFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.VISIBLE);
+        getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onPause() {
+        getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.sliding_tabs).setVisibility(View.GONE);
         super.onPause();
     }

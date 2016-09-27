@@ -176,8 +176,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
                     if (device != null) { // useful only if DEVICE_MAP is empty
                         double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
-                        int movementState = 1;
-                        device.updateDistance(b, movementState, processNoise);
+                        device.updateDistance(b, processNoise);
 
                         if (!deviceList.contains(device)) {
                             deviceList.add(device);

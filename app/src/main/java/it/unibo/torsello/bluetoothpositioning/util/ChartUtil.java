@@ -192,6 +192,10 @@ public class ChartUtil implements OnChartValueSelectedListener {
         mChart.setData(lineData);
     }
 
+    public void saveImageChart() {
+        mChart.saveToGallery("prova", 100);
+    }
+
     @Override
     public void onValueSelected(Entry e, Highlight h) {
         Log.i("Entry selected", e.toString());

@@ -108,14 +108,7 @@ public class KalmanFilter {
         R = noise;
     }
 
-    public static double getCalculatedNoise(int p) {
-        double percent = (double) p / 100.0;
-//        return SettingConstants.KALMAN_NOISE_MIN + (SettingConstants.KALMAN_NOISE_MAX - SettingConstants.KALMAN_NOISE_MIN) * percent;
-//        return 0.01 + (25.0 - 0.01) * percent;
 
-        return KFilterConstansts.KALMAN_NOISE_MIN +
-                (KFilterConstansts.KALMAN_NOISE_MAX - KFilterConstansts.KALMAN_NOISE_MIN) * percent;
-    }
 }
 
 

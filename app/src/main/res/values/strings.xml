@@ -65,7 +65,7 @@
 
     <!-- SETTINGS -->
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
-    <string name="settings_kalman_value">5.0</string>
+    <string name="settings_kalman_value"> </string>
     <string name="settings_wd_status">Walk detection?</string>
     <string name="settings_sorting">Sorting device</string>
     <string name="settings_enabled">enabled</string>
@@ -117,6 +117,9 @@
 
 
     <string name="text_arma_filter">ARMA filter is %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

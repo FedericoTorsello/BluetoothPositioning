@@ -94,9 +94,9 @@ public class Device {
     }
 
 
-    public void updateDistance(Beacon b, double movementState, double processNoise) {
+    public void updateDistance(Beacon b, double processNoise) {
         beacon = b;
-        beaconStatistics.updateDistance(b, movementState, processNoise);
+        beaconStatistics.updateDistance(b, processNoise);
     }
 
 }

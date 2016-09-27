@@ -2,7 +2,6 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KalmanFilter;
 
@@ -38,7 +38,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_preferences, container, false);
-        setUpKalmanSeek(root);
+        setKalmanFilterSeekBar(root);
         setSorting(root);
         setFiltering(root);
         return root;
@@ -49,28 +49,24 @@ public class SettingsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-        df = new DecimalFormat("0.00");
+        df = new DecimalFormat("0.0#");
     }
 
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
-    private void setUpKalmanSeek(View root) {
+    private void setKalmanFilterSeekBar(View root) {
         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
-        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEK_VALUE, 83);
-        kalmanSeek.setProgress(seekValue);
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE,
-                (float) KalmanFilter.getCalculatedNoise(seekValue));
-        editor.apply();
+        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 83);
+        kalmanSeek.setMax(10);
+        kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
 
         final TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
-        kalmanFilterValue.setText(df.format(KalmanFilter.getCalculatedNoise(seekValue)));
+        kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
+
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int seekValue, boolean fromUser) {
-                double calculatedNoise = KalmanFilter.getCalculatedNoise(seekValue);
-                kalmanFilterValue.setText(df.format(calculatedNoise));
+                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
             }
 
             @Override
@@ -81,12 +77,21 @@ public class SettingsFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SharedPreferences.Editor editor = preferences.edit();
                 int progress = seekBar.getProgress();
-                editor.putInt(SettingConstants.KALMAN_SEEK_VALUE, progress);
-                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE,
-                        (float) KalmanFilter.getCalculatedNoise(progress));
+                editor.putInt(SettingConstants.KALMAN_SEEKBAR_VALUE, progress);
+                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, getCalculatedNoise(progress));
                 editor.apply();
+                kalmanFilterValue.setText(df.format(getCalculatedNoise(progress)));
             }
         });
+    }
+
+    public static float getCalculatedNoise(int p) {
+        double percent = (p / 10D);
+        double noise = KFilterConstansts.KALMAN_NOISE_MIN +
+                (KFilterConstansts.KALMAN_NOISE_MAX - KFilterConstansts.KALMAN_NOISE_MIN) * percent;
+
+        return (float) noise;
+
     }
 
     private void setSorting(View root) {
@@ -134,47 +139,5 @@ public class SettingsFragment extends Fragment {
 //            }
 //        });
 //    }
-
-    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
-//    private void setUpSelfcorrectingSwitch() {
-//        final Switch selfCorrectionSwitch = (Switch) getActivity().findViewById(R.id.selfCorrectionSwitch);
-//        boolean selfCorrection = preferences.getBoolean(SettingConstants.SELF_CORRECTING_BEACON, true);
-//        selfCorrectionSwitch.setChecked(selfCorrection);
-//        selfCorrectionSwitch.setText((selfCorrection) ? R.string.settings_enabled : R.string.settings_disabled);
-//        selfCorrectionSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putBoolean(SettingConstants.SELF_CORRECTING_BEACON, isChecked);
-//                editor.apply();
-//                selfCorrectionSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
-//            }
-//        });
-//    }
-
-    /* Sets the correct text and adds an onCheckedChange onSettingsListener to the self-correcting beacon switch */
-//    private void setUpArmaFilterSwitch(View root) {
-//
-//        final String armaFilterEnabled = String.format(getString(R.string.text_arma_filter),
-//                getString(R.string.settings_enabled));
-//        final String armaFilterDisabled = String.format(getString(R.string.text_arma_filter),
-//                getString(R.string.settings_disabled));
-//
-//        Switch filterSwitch = (Switch) root.findViewById(R.id.switch_arma_filter);
-//        boolean armaFilterChecked = preferences.getBoolean(SettingConstants.ARMA_FILTER, true);
-//        filterSwitch.setChecked(armaFilterChecked);
-//        filterSwitch.setText((armaFilterChecked) ? armaFilterEnabled : armaFilterDisabled);
-//        filterSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                SharedPreferences.Editor editor = preferences.edit();
-//                editor.putBoolean(SettingConstants.ARMA_FILTER, isChecked);
-//                editor.apply();
-//                buttonView.setText((isChecked) ? armaFilterEnabled : armaFilterDisabled);
-//                onSettingsListener.isArmaFilter(isChecked);
-//            }
-//        });
-//    }
-
 
 }
