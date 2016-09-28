@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragmentProva;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceSuperDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -126,11 +125,11 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                                         .findFragmentById(R.id.contentMainLayout);
 
 //                                List<Fragment> fragments = new ArrayList<Fragment>();
-//                                fragments.add(DeviceDetailFragment.newInstance(deviceDetailName));
+//                                fragments.add(DeviceInnerDetailFragment.newInstance(deviceDetailName));
 //                                fragments.add(InnerFragment.newInstance(deviceDetailName));
 
 //                                Fragment fragment = ViewPagerFragment.newInstance(fragments);
-                                Fragment fragment = DeviceDetailFragmentProva.newInstance(deviceDetailName);
+                                Fragment fragment = DeviceSuperDetailFragment.newInstance(deviceDetailName);
                                 // check if the new Fragment is the same
                                 // if it is, don't add to the back stack
                                 if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {

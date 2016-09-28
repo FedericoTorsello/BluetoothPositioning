@@ -51,7 +51,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
 
     public CameraUtil(FragmentActivity fragmentActivity) {
         this.fragmentActivity = fragmentActivity;
-        initialize();
+//        initialize();
     }
 
     /**
@@ -71,7 +71,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
         return c; // returns null if camera is unavailable
     }
 
-    private void initialize() {
+    public void initialize() {
         if (mCamera == null) {
             mCamera = getCameraInstance();
         }
@@ -79,10 +79,6 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
         mTextureView = new TextureView(fragmentActivity);
         mTextureView.setSurfaceTextureListener(this);
 
-    }
-
-    public void onResume() {
-        initialize();
     }
 
     /**

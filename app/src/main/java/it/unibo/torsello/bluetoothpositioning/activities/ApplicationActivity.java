@@ -12,7 +12,6 @@ import android.os.RemoteException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,9 +37,8 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceInnerDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -261,7 +259,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
         if (fragment instanceof DeviceFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
-        } else if (fragment instanceof DeviceDetailFragment) {
+        } else if (fragment instanceof DeviceInnerDetailFragment) {
             onAddDevicesListener = (OnAddDevicesListener) fragment;
         }
 

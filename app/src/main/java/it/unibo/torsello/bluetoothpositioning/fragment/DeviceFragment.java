@@ -60,13 +60,6 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        deviceList = new ArrayList<>();
-        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_device_list, container, false);
@@ -81,6 +74,12 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
         return root;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        deviceList = new ArrayList<>();
+        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+    }
 
     @Override
     public void updateInfoDevices(List<Device> devices) {

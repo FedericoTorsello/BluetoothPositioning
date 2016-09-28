@@ -4,17 +4,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -27,7 +24,6 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.util.CameraUtil;
 import it.unibo.torsello.bluetoothpositioning.util.ChartUtil;
 import it.unibo.torsello.bluetoothpositioning.util.UsbDataUtil;
 
@@ -35,14 +31,14 @@ import it.unibo.torsello.bluetoothpositioning.util.UsbDataUtil;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceDetailFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
+public class DeviceInnerDetailFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
 
     private final String TAG_CLASS = getClass().getSimpleName();
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceCardViewAdapter deviceViewAdapter;
     private List<Device> deviceList;
 
-    private CameraUtil cameraUtil;
+//    private CameraUtil cameraUtil;
 
     private ChartUtil chartUtil1;
     private ChartUtil chartUtil2;
@@ -59,8 +55,8 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     private DecimalFormat df;
 
-    public static DeviceDetailFragment newInstance(String message) {
-        DeviceDetailFragment fragment = new DeviceDetailFragment();
+    public static DeviceInnerDetailFragment newInstance(String message) {
+        DeviceInnerDetailFragment fragment = new DeviceInnerDetailFragment();
         Bundle bdl = new Bundle();
         bdl.putString(EXTRA_MESSAGE, message);
         fragment.setArguments(bdl);
@@ -69,17 +65,18 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_device_details, container, false);
+//        View root = inflater.inflate(R.layout.fragment_device_details, container, false);
+        View root = inflater.inflate(R.layout.fragment_inner_detail, container, false);
 
         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 
-        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
+//        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
         initializeDeviceDetail(root);
 
         initializeArduinoDistance(root);
 
-        initializeCamera(root);
+//        initializeCamera(root);
 
         initializeChart(root);
 
@@ -99,35 +96,35 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         twState = (TextView) root.findViewById(R.id.tw_state_value);
     }
 
-    private void initializeCamera(View root) {
-
-        if (cameraUtil != null) {
-
-            final TextureView mTextureView = cameraUtil.getmTextureView();
-
-            // programmatically add camera preview
-            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview);
-            preview.addView(mTextureView);
-            preview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Restart the camera preview.
-                    cameraUtil.safeCameraOpenInView(mTextureView.getSurfaceTexture());
-                }
-            });
-
-            root.findViewById(R.id.fab_camera).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cameraUtil.takePicture();
-                }
-            });
-
-        } else {
-            Toast.makeText(getActivity(), "No camera onCameraListener this device", Toast.LENGTH_LONG)
-                    .show();
-        }
-    }
+//    private void initializeCamera(View root) {
+//
+//        if (cameraUtil != null) {
+//
+//            final TextureView mTextureView = cameraUtil.getmTextureView();
+//
+//            // programmatically add camera preview
+//            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview);
+//            preview.addView(mTextureView);
+//            preview.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // Restart the camera preview.
+//                    cameraUtil.safeCameraOpenInView(mTextureView.getSurfaceTexture());
+//                }
+//            });
+//
+//            root.findViewById(R.id.fab_camera).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    cameraUtil.takePicture();
+//                }
+//            });
+//
+//        } else {
+//            Toast.makeText(getActivity(), "No camera onCameraListener this device", Toast.LENGTH_LONG)
+//                    .show();
+//        }
+//    }
 
     private void initializeChart(View root) {
         // add the charts
@@ -146,7 +143,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
         deviceList = new ArrayList<>();
         deviceViewAdapter = new DeviceCardViewAdapter(getActivity(), deviceList);
 
-        cameraUtil = new CameraUtil(getActivity());
+//        cameraUtil = new CameraUtil(getActivity());
 
         usbUtil = new UsbDataUtil(getActivity());
         usbUtil.setOnReceiveNewData(new UsbDataUtil.OnReceiveNewData() {
@@ -176,7 +173,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     @Override
     public void onPause() {
         usbUtil.onPause();
-        cameraUtil.onPause();
+//        cameraUtil.onPause();
 
         getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
         super.onPause();
@@ -186,7 +183,7 @@ public class DeviceDetailFragment extends Fragment implements ApplicationActivit
     public void onResume() {
         super.onResume();
         usbUtil.onResume();
-        cameraUtil.onResume();
+//        cameraUtil.onResume();
     }
 
     @Override
