@@ -17,7 +17,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,10 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.ViewPagerFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.usbObservers.UsbMeasurementFragment;
 
 /**
  * Created by Federico Torsello.
@@ -42,6 +39,12 @@ public class MainActivity extends AppCompatActivity
     private long back_pressed;
 
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
+
+    public static final String DEVICE_FRAGMENT = "device";
+    public static final String USB_MEASUREMENT_FRAGMENT = "usb measurement";
+
+    public static final String DEVICE_DETAIL_FRAGMENT = "device detail";
+    public static final String DEVICE_INNER_DETAIL_FRAGMENT = "device inner detail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +64,14 @@ public class MainActivity extends AppCompatActivity
 
         ((NavigationView) findViewById(R.id.nav_view2)).setNavigationItemSelectedListener(this);
 
-        replaceFragment(DeviceFragment.newInstance());
+        replaceFragment(DEVICE_FRAGMENT);
 
         checkAndroidMPermission();
     }
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -75,10 +79,7 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.END);
         } else {
 
-            if (getSupportFragmentManager().getBackStackEntryCount() >= 1) {
-                getSupportFragmentManager().popBackStack();
-                Log.i("a", "1");
-            }
+            replaceFragment(DEVICE_FRAGMENT);
 
             final long DOUBLE_PRESS_INTERVAL = 1500L;
             if (!isBackPressed || back_pressed + DOUBLE_PRESS_INTERVAL <= System.currentTimeMillis()) {
@@ -107,27 +108,24 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        Fragment fragment = null;
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fragment = DeviceFragment.newInstance();
+                replaceFragment(DEVICE_FRAGMENT);
                 break;
             case R.id.nav_settings:
                 drawer.openDrawer(GravityCompat.END);
                 break;
             case R.id.nav_measurement:
-                fragment = UsbMeasurementFragment.newInstance();
+                replaceFragment(USB_MEASUREMENT_FRAGMENT);
                 break;
 //            case R.id.nav_share:
 //                fragment = CamTestFragment.newInstance();
 //                break;
-            case R.id.nav_send:
-                fragment = ViewPagerFragment.newInstance(getFragments());
-                break;
+//            case R.id.nav_send:
+//                fragment = ViewPagerFragment.newInstance(getFragments());
+//                break;
         }
-
-        replaceFragment(fragment);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -136,37 +134,21 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private List<Fragment> getFragments() {
-        List<Fragment> fList = new ArrayList<>();
-        fList.add(DeviceFragment.newInstance());
-        fList.add(SettingsFragment.newInstance());
+    public void replaceFragment(String fragTag) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(fragTag);
+        switch (fragTag) {
+            case DEVICE_FRAGMENT:
+                currentFragment = DeviceFragment.newInstance();
+                break;
+            case USB_MEASUREMENT_FRAGMENT:
+                currentFragment = UsbMeasurementFragment.newInstance();
+                break;
+        }
 
-//        fList.add(CompassFragment.newInstance("Compass1"));
-//        fList.add(CompassMagnoFragment.newInstance("Compass2"));
-//        fList.add(CountPassFragment.newInstance("CountPass"));
-
-        return fList;
-    }
-
-    private void replaceFragment(Fragment fragment) {
-
-        if (fragment != null) {
-            Fragment currentFrag = getSupportFragmentManager().findFragmentById(R.id.contentMainLayout);
-
-            if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
-
-                if (fragment instanceof SettingsFragment) {
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.contentMainLayout, fragment)
-                            .addToBackStack(null)
-                            .commit();
-
-                } else {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.contentMainLayout, fragment)
-                            .commit();
-                }
-            }
+        if (currentFragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentMainLayout, currentFragment, fragTag)
+                    .commit();
         }
     }
 
@@ -231,5 +213,4 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
-
 }

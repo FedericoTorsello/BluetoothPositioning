@@ -1,24 +1,16 @@
 package it.unibo.torsello.bluetoothpositioning.activities;
 
-import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.hoho.android.usbserial.driver.UsbSerialDriver;
-import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -37,9 +29,9 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceInnerDetailFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
+import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
+import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
 
 /**
  * Created by Federico Torsello.
@@ -47,30 +39,29 @@ import it.unibo.torsello.bluetoothpositioning.model.Device;
  */
 public class ApplicationActivity extends MainActivity implements BeaconConsumer {
 
+    private MyDeviceObservable myDeviceObservable;
+
     private final String TAG_CLASS = getClass().getSimpleName();
     private BeaconManager beaconManager;
     private boolean isRunScan = false;
     private SharedPreferences preferences;
-    private OnAddDevicesListener onAddDevicesListener;
     private BackgroundPowerSaver backgroundPowerSaver;
 
-    public interface OnAddDevicesListener {
-        void updateInfoDevices(List<Device> iBeacons);
-    }
+    private UsbUtil usbUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initialize();
+        myDeviceObservable = MyDeviceObservable.getInstance();
+
+        preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+
+        usbUtil = new UsbUtil(this);
 
         initializeBeaconManager();
 
-        floatingActionButtonAction();
-    }
-
-    private void initialize() {
-        preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+        inizializeFloatingActionButton();
     }
 
     private void initializeBeaconManager() {
@@ -113,7 +104,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         beaconManager.setMaxTrackingAge(1000);
     }
 
-    private void floatingActionButtonAction() {
+    private void inizializeFloatingActionButton() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
         Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_LONG).show();
@@ -189,9 +180,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
                             @Override
                             public void run() {
-                                if (onAddDevicesListener != null) {
-                                    onAddDevicesListener.updateInfoDevices(deviceList);
-                                }
+                                myDeviceObservable.notifyObservers(deviceList);
                             }
                         });
                     }
@@ -225,6 +214,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
             beaconManager.setBackgroundMode(true);
             backgroundPowerSaver.onActivityPaused(this);
         }
+
+        usbUtil.onPause();
+
         super.onPause();
     }
 
@@ -239,7 +231,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
         isBluetoothAvailable();
 
-        isUsbAvailable();
+        usbUtil.onResume();
+
     }
 
     @Override
@@ -248,21 +241,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
             beaconManager.unbind(this);
             backgroundPowerSaver.onActivityDestroyed(this);
         }
-        onAddDevicesListener = null;
 
         super.onDestroy();
-    }
-
-    @Override
-    public void onAttachFragment(Fragment fragment) {
-        super.onAttachFragment(fragment);
-
-        if (fragment instanceof DeviceFragment) {
-            onAddDevicesListener = (OnAddDevicesListener) fragment;
-        } else if (fragment instanceof DeviceInnerDetailFragment) {
-            onAddDevicesListener = (OnAddDevicesListener) fragment;
-        }
-
     }
 
     @Override
@@ -306,27 +286,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
             e.getStackTrace();
         }
         return true;
-    }
-
-    private boolean isUsbAvailable() {
-        // Find all available drivers from attached devices.
-        UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-
-        if (!availableDrivers.isEmpty()) {
-            // Open a connection to the first available driver.
-            UsbSerialDriver driver = availableDrivers.get(0);
-
-            if (!manager.hasPermission(driver.getDevice())) {
-                Intent startIntent = new Intent(this, getClass());
-                PendingIntent pendingIntent =
-                        PendingIntent.getService(this, 0, startIntent, PendingIntent.FLAG_ONE_SHOT);
-                manager.requestPermission(driver.getDevice(), pendingIntent);
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }

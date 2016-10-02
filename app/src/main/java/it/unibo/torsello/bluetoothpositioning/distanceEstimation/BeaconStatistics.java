@@ -65,25 +65,6 @@ public class BeaconStatistics {
         lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
         lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
     }
-//
-//    private double calculateDistance(double txPower, double rssi) {
-//        double n = 2.0;   // Signal propogation exponent
-//        double d0 = 1;  // Reference distance in meters
-//        double C = 0;   // Gaussian variable for mitigating flat fading
-//
-//        // model specific adjustments for Samsung S3 as per Android Beacon Library
-//        double mReceiverRssiSlope = 0;
-//        double mReceiverRssiOffset = -2;
-//
-//        // calculation of adjustment
-//        double adjustment = mReceiverRssiSlope * rssi + mReceiverRssiOffset;
-//        double adjustedRssi = rssi - adjustment;
-//
-//
-//        // Log-distance path loss model
-//        return d0 * Math.pow(10.0, (adjustedRssi - txPower - C) / (-10 * n));
-//    }
-
 
     // radiousNetwork formula
     private double calculateDistance(double txPower, double rssi) {

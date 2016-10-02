@@ -34,10 +34,6 @@ public class Device {
         return index;
     }
 
-//    public void updateDistance(double processNoise, int movementState) {
-//        stats.updateDistance(beacon, processNoise, movementState);
-//    }
-
     public Integer getColor() {
         return color;
     }

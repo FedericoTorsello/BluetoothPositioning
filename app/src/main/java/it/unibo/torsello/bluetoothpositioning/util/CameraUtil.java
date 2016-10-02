@@ -27,7 +27,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     private TextureView mTextureView;
     private Camera mCamera;
     private Thread preview_thread;
-    private FragmentActivity fragmentActivity;
+    private FragmentActivity activity;
     private Camera.PictureCallback mPicture = new Camera.PictureCallback() {
 
         @Override
@@ -35,7 +35,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
 
             File pictureFile = getOutputMediaFile();
             if (pictureFile == null) {
-                Snackbar.make(fragmentActivity.findViewById(R.id.fab),
+                Snackbar.make(activity.findViewById(R.id.fab),
                         "Image retrieval failed.", Snackbar.LENGTH_SHORT);
             } else {
                 try {
@@ -50,8 +50,11 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     };
 
     public CameraUtil(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
-//        initialize();
+        this.activity = fragmentActivity;
+    }
+
+    public FragmentActivity getActivity() {
+        return activity;
     }
 
     /**
@@ -76,7 +79,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
             mCamera = getCameraInstance();
         }
 
-        mTextureView = new TextureView(fragmentActivity);
+        mTextureView = new TextureView(getActivity());
         mTextureView.setSurfaceTextureListener(this);
 
     }
@@ -125,7 +128,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
     private File getOutputMediaFile() {
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), fragmentActivity.getString(R.string.app_name));
+                Environment.DIRECTORY_PICTURES), getActivity().getString(R.string.app_name));
 
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
@@ -139,7 +142,7 @@ public class CameraUtil implements TextureView.SurfaceTextureListener {
         File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
                 "IMG_" + timeStamp + ".jpg");
 
-        new AlertDialog.Builder(fragmentActivity)
+        new AlertDialog.Builder(getActivity())
                 .setTitle("Success!")
                 .setMessage("Your picture has been saved!")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {

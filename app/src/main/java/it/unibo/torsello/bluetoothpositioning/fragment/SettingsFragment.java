@@ -15,7 +15,6 @@ import java.text.DecimalFormat;
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KalmanFilter;
 
 /**
  * Created by Federico Torsello.
@@ -36,15 +35,6 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_preferences, container, false);
-        setKalmanFilterSeekBar(root);
-        setSorting(root);
-        setFiltering(root);
-        return root;
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -52,6 +42,18 @@ public class SettingsFragment extends Fragment {
         df = new DecimalFormat("0.0#");
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View root = inflater.inflate(R.layout.fragment_preferences, container, false);
+
+        setKalmanFilterSeekBar(root);
+
+        setSorting(root);
+
+        setFiltering(root);
+
+        return root;
+    }
 
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setKalmanFilterSeekBar(View root) {
@@ -96,7 +98,12 @@ public class SettingsFragment extends Fragment {
 
     private void setSorting(View root) {
         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
-        int checkedRadioButton = preferences.getInt(SettingConstants.DISTANCE_SORTING, rg.getCheckedRadioButtonId());
+        int checkedRadioButton;
+        if (rg.getCheckedRadioButtonId() != 0) {
+            checkedRadioButton = preferences.getInt(SettingConstants.DISTANCE_SORTING, rg.getCheckedRadioButtonId());
+        } else {
+            checkedRadioButton = 0;
+        }
         rg.check(checkedRadioButton);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -110,7 +117,12 @@ public class SettingsFragment extends Fragment {
 
     private void setFiltering(View root) {
         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupFilter);
-        int checkedRadioButton = preferences.getInt(SettingConstants.FILTER_RSSI, rg.getCheckedRadioButtonId());
+        int checkedRadioButton;
+        if (rg.getCheckedRadioButtonId() != 0) {
+            checkedRadioButton = preferences.getInt(SettingConstants.FILTER_RSSI, rg.getCheckedRadioButtonId());
+        } else {
+            checkedRadioButton = 0;
+        }
         rg.check(checkedRadioButton);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

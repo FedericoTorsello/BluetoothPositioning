@@ -1,9 +1,10 @@
 package it.unibo.torsello.bluetoothpositioning.util;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.support.v4.app.FragmentActivity;
 
 import com.hoho.android.usbserial.driver.UsbSerialDriver;
 import com.hoho.android.usbserial.driver.UsbSerialPort;
@@ -16,62 +17,69 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
+import it.unibo.torsello.bluetoothpositioning.observables.MyUsbObservable;
 
 /**
- * Created by federico on 17/09/16.
+ * Created by federico on 02/10/16.
  */
-public class UsbDataUtil {
+
+public class UsbUtil {
+
+    private MyUsbObservable myUsbObservable;
 
     private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
     private UsbSerialPort port;
     private SerialInputOutputManager mSerialIoManager;
-    private FragmentActivity fragmentActivity;
-    private OnReceiveNewData onReceiveNewData;
 
-    public interface OnReceiveNewData {
-        void getData(byte[] data);
+    private ApplicationActivity applicationActivity;
 
-        void getStatus(String status);
-
-        void isEnabled(boolean enabled);
+    public UsbUtil(ApplicationActivity applicationActivity) {
+        this.applicationActivity = applicationActivity;
+        myUsbObservable = MyUsbObservable.getInstance();
     }
 
-    public UsbDataUtil(FragmentActivity fragmentActivity) {
-        this.fragmentActivity = fragmentActivity;
+    private ApplicationActivity getActivity() {
+        return applicationActivity;
     }
 
-    public void setOnReceiveNewData(OnReceiveNewData onReceive) {
-        this.onReceiveNewData = onReceive;
+    public void onPause() {
+        stopIoManager();
+        closePort();
     }
 
     public void onResume() {
+        initializeUsb();
+    }
+
+
+    private void initializeUsb() {
 
         // Find all available drivers from attached devices.
-        UsbManager manager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
-        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
-
+        UsbManager usbManager = (UsbManager) getActivity().getSystemService(Context.USB_SERVICE);
+        List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(usbManager);
         if (!availableDrivers.isEmpty()) {
 
             // Open a connection to the first available driver.
             UsbSerialDriver driver = availableDrivers.get(0);
 
-            if (manager.hasPermission(driver.getDevice())) {
-                if (manager.openDevice(driver.getDevice()) != null) {
+            if (usbManager.hasPermission(driver.getDevice())) {
+                if (usbManager.openDevice(driver.getDevice()) != null) {
                     // Read some data! Most have just one port (port 0).
                     port = driver.getPorts().get(0);
                 }
+            } else {
+                Intent startIntent = new Intent(getActivity(), getClass());
+                PendingIntent pendingIntent =
+                        PendingIntent.getService(getActivity(), 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                usbManager.requestPermission(driver.getDevice(), pendingIntent);
             }
 
             if (port != null) {
 
-                final UsbManager usbManager = (UsbManager) fragmentActivity.getSystemService(Context.USB_SERVICE);
                 UsbDeviceConnection connection = usbManager.openDevice(port.getDriver().getDevice());
 
-                if (connection == null) {
-                    onReceiveNewData.getStatus(fragmentActivity.getString(R.string.opening_device_failed));
-                    onReceiveNewData.isEnabled(false);
-                } else {
-
+                if (connection != null) {
                     try {
                         port.open(connection);
                         port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
@@ -85,15 +93,10 @@ public class UsbDataUtil {
 //                            "RTS - Request To Send" + port.getRTS();
 
                     } catch (IOException e) {
-                        onReceiveNewData.getStatus(fragmentActivity.getString(R.string.error_opening_device)
-                                + e.getMessage());
-                        onReceiveNewData.isEnabled(false);
-                        try {
-                            port.close();
-                        } catch (IOException e2) {
-                            // Ignore.
-                        }
-                        port = null;
+                        myUsbObservable.notifyObservers(getActivity().getString(R.string.error_opening_device)
+                                + " " + e.getMessage());
+                        myUsbObservable.notifyObservers(false);
+                        closePort();
                         return;
                     }
 
@@ -101,15 +104,10 @@ public class UsbDataUtil {
                     startIoManager();
                 }
             }
-        } else {
-            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.usb_device_not_connected));
-            onReceiveNewData.isEnabled(false);
         }
-
     }
 
-    public void onPause() {
-        stopIoManager();
+    private void closePort() {
         if (port != null) {
             try {
                 port.close();
@@ -122,8 +120,6 @@ public class UsbDataUtil {
 
     private void stopIoManager() {
         if (mSerialIoManager != null) {
-            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_stopped));
-            onReceiveNewData.isEnabled(false);
             mSerialIoManager.stop();
             mSerialIoManager = null;
         }
@@ -131,27 +127,24 @@ public class UsbDataUtil {
 
     private void startIoManager() {
         if (port != null) {
-            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_started));
 
             SerialInputOutputManager.Listener mListener =
                     new SerialInputOutputManager.Listener() {
 
                         @Override
                         public void onRunError(Exception e) {
-                            onReceiveNewData.isEnabled(false);
-                            onReceiveNewData.getStatus(fragmentActivity.getString(R.string.io_manager_stopped));
+                            myUsbObservable.notifyObservers(false);
+                            myUsbObservable.notifyObservers(getActivity().getString(R.string.usb_device_not_connected));
+                            myUsbObservable.notifyObservers(0D);
                         }
 
                         @Override
                         public void onNewData(final byte[] data) {
-                            if (fragmentActivity != null) {
-                                fragmentActivity.runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        onReceiveNewData.isEnabled(true);
-                                        onReceiveNewData.getData(data);
-                                    }
-                                });
+                            try {
+                                myUsbObservable.notifyObservers(true);
+                                myUsbObservable.notifyObservers(getActivity().getString(R.string.usb_device_connected));
+                                myUsbObservable.notifyObservers(Double.valueOf(new String(data).trim()) / 100);
+                            } catch (NumberFormatException nfe) {
                             }
                         }
                     };

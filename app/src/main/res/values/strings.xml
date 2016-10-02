@@ -80,15 +80,14 @@
     <string name="no_rssi_filtering">No RSSI filtering</string>
     <string name="arma_rssi_filter">ARMA RSSI Filter</string>
     <string name="average_rssi_filter">Average RSSI Filter</string>
+    <!--<string name="text_arma_filter">ARMA filter is %1$s</string>-->
     <!---->
 
     <!-- MEASUREMENT -->
     <string name="distance_estimation_arduino">Arduino distance estimation</string>
     <string name="usb_state">USB state:</string>
-    <string name="io_manager_started">The I/O manager is started</string>
-    <string name="io_manager_stopped">The I/O manager is stopped</string>
+    <string name="usb_device_connected">USB device connected</string>
     <string name="usb_device_not_connected">USB device not connected</string>
-    <string name="opening_device_failed">Opening device failed</string>
     <string name="error_opening_device">Error opening device: </string>
     <!---->
 
@@ -114,12 +113,5 @@
 
         ]]>
     </string>
-
-
-    <string name="text_arma_filter">ARMA filter is %1$s</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>

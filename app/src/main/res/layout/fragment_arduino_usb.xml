@@ -4,11 +4,11 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin">
 
-    <LinearLayout
-        style="@style/Widget.CardContent"
+    <LinearLayout style="@style/Widget.CardContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
         <TextView
             android:id="@+id/tw_title"
@@ -41,6 +41,7 @@
             <TextView
                 android:id="@+id/tw_state_value"
                 android:text="@string/usb_device_not_connected"
+                android:textColor="@color/colorRed"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
         </LinearLayout>

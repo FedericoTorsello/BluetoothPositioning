@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -28,14 +30,27 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     private LineChart mChart;
     private Thread thread;
-    private FragmentActivity fragmentActivity;
+    private FragmentActivity activity;
 
     private ArrayList<ILineDataSet> dataSets;
 
     public ChartUtil(FragmentActivity fragmentActivity, LineChart chart) {
-        this.fragmentActivity = fragmentActivity;
+        this.activity = fragmentActivity;
         this.mChart = chart;
         initializeChart();
+    }
+
+//    public ChartUtil(FragmentActivity fragmentActivity) {
+//        this.activity = fragmentActivity;
+//        initializeChart();
+//    }
+//
+//    public void setmChart(LineChart mChart) {
+//        this.mChart = mChart;
+//    }
+
+    public FragmentActivity getActivity() {
+        return activity;
     }
 
     private void initializeChart() {
@@ -55,8 +70,8 @@ public class ChartUtil implements OnChartValueSelectedListener {
         // set an alternative background color
         mChart.setBackgroundColor(Color.LTGRAY);
 
-        Typeface mTfLight = Typeface.createFromAsset(fragmentActivity.getAssets(), "OpenSans-Light.ttf");
-        Typeface mTfBold = Typeface.createFromAsset(fragmentActivity.getAssets(), "OpenSans-Bold.ttf");
+        Typeface mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+        Typeface mTfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
 
         // get the legend (only possible after setting data)
         Legend l = mChart.getLegend();
@@ -86,9 +101,9 @@ public class ChartUtil implements OnChartValueSelectedListener {
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (fragmentActivity.getApplication() != null) {
+                if (getActivity().getApplication() != null) {
 
-                    fragmentActivity.runOnUiThread(new Runnable() {
+                    getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 

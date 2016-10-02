@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DeviceSuperDetailFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -29,15 +29,21 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
 
     private DecimalFormat df;
     private List<Device> deviceList;
-    private FragmentActivity fragmentActivity;
+    private FragmentActivity activity;
+
+    public static final String DEVICE_DETAIL_FRAGMENT = "device detail";
 
     public DeviceCardViewAdapter(final FragmentActivity fragmentActivity, List<Device> deviceList) {
 
         this.deviceList = new ArrayList<>();
         this.deviceList = deviceList;
-        this.fragmentActivity = fragmentActivity;
+        this.activity = fragmentActivity;
 
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+    }
+
+    private FragmentActivity getActivity() {
+        return activity;
     }
 
     @Override
@@ -117,26 +123,18 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        fragmentActivity.runOnUiThread(new Runnable() {
+                        activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
-                                Fragment currentFrag = fragmentActivity.getSupportFragmentManager()
-                                        .findFragmentById(R.id.contentMainLayout);
+                                Fragment currentFrag = getActivity().getSupportFragmentManager()
+                                        .findFragmentByTag(DEVICE_DETAIL_FRAGMENT);
 
-//                                List<Fragment> fragments = new ArrayList<Fragment>();
-//                                fragments.add(DeviceInnerDetailFragment.newInstance(deviceDetailName));
-//                                fragments.add(InnerFragment.newInstance(deviceDetailName));
-
-//                                Fragment fragment = ViewPagerFragment.newInstance(fragments);
-                                Fragment fragment = DeviceSuperDetailFragment.newInstance(deviceDetailName);
-                                // check if the new Fragment is the same
-                                // if it is, don't add to the back stack
-                                if (currentFrag == null || !(currentFrag.getClass().equals(fragment.getClass()))) {
-
-                                    fragmentActivity.getSupportFragmentManager().beginTransaction()
-                                            .replace(R.id.contentMainLayout, fragment)
-                                            .addToBackStack(null)
+                                if (currentFrag == null) {
+                                    getActivity().getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.contentMainLayout,
+                                                    DetailDeviceDetailFragment.newInstance(deviceDetailName),
+                                                    DEVICE_DETAIL_FRAGMENT)
                                             .commit();
                                 }
                             }

@@ -1,7 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 
-import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
-
 /**
  * Originally written in JS by Wouter Bulten 2015
  * Rewritten to Java by Jonathan Vidmar 2016

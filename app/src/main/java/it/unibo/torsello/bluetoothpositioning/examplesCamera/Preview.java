@@ -7,7 +7,6 @@ package it.unibo.torsello.bluetoothpositioning.examplesCamera;
 import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;

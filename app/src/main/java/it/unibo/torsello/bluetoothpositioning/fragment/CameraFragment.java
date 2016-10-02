@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -45,7 +44,6 @@ public class CameraFragment extends Fragment {
     private void initializeCamera(View root) {
 
         if (cameraUtil != null) {
-
             final TextureView mTextureView = cameraUtil.getmTextureView();
 
             // programmatically add camera preview
@@ -58,7 +56,6 @@ public class CameraFragment extends Fragment {
                     cameraUtil.safeCameraOpenInView(mTextureView.getSurfaceTexture());
                 }
             });
-
         } else {
             Toast.makeText(getActivity(), "No camera onCameraListener this device", Toast.LENGTH_LONG)
                     .show();
@@ -77,27 +74,20 @@ public class CameraFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab_camera);
-        if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    cameraUtil.takePicture();
-                }
-            });
-        }
+
+        getActivity().findViewById(R.id.fab_camera).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cameraUtil.takePicture();
+            }
+        });
+
     }
 
     @Override
     public void onPause() {
         cameraUtil.onPause();
         super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        cameraUtil.initialize();
     }
 
     /**

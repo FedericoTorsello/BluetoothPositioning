@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package it.unibo.torsello.bluetoothpositioning.fragment;
+package it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,30 +26,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
+import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceFragment extends Fragment implements ApplicationActivity.OnAddDevicesListener {
+public class DeviceFragment extends Fragment implements Observer {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private DeviceCardViewAdapter deviceViewAdapter;
     private SharedPreferences preferences;
     private List<Device> deviceList;
+
+    private MyDeviceObservable myObservable;
+
 
     public static DeviceFragment newInstance() {
         DeviceFragment fragment = new DeviceFragment();
@@ -60,9 +63,19 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        myObservable = MyDeviceObservable.getInstance();
+
+        deviceList = new ArrayList<>();
+        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_device_list, container, false);
+        View root = inflater.inflate(R.layout.fragment_device, container, false);
 
         RecyclerView recyclerView = new RecyclerView(getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -75,22 +88,30 @@ public class DeviceFragment extends Fragment implements ApplicationActivity.OnAd
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        deviceList = new ArrayList<>();
-        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+    public void onPause() {
+        myObservable.deleteObserver(this);
+        super.onPause();
     }
 
     @Override
-    public void updateInfoDevices(List<Device> devices) {
-        if (getActivity() != null) {
+    public void onResume() {
+        super.onResume();
+        myObservable.addObserver(this);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+        if (arg instanceof List) {
+
             if (!deviceList.isEmpty()) {
                 deviceList.clear();
             }
 
+            List<Device> devices = (List<Device>) arg;
+
             // optional sorting
             Collections.sort(devices, new Comparator<Device>() {
-
                 public int compare(Device b1, Device b2) {
                     int sorting = preferences.getInt(SettingConstants.DISTANCE_SORTING, 0);
                     switch (sorting) {
