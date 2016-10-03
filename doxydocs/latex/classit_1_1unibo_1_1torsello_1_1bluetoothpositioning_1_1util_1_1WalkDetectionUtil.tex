@@ -1,0 +1,664 @@
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil}{}\subsection{Riferimenti per la classe it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util}
+\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil}\index{it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util@{it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util}}
+
+
+Diagramma delle classi per it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagramma di collaborazione per it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Membri pubblici}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8303363468683e172b5a7132c3ebfb99_a8303363468683e172b5a7132c3ebfb99}{Walk\+Detection\+Util} (Application app)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a33c73b147b56ccb0d2d7523d72a5c8fa_a33c73b147b56ccb0d2d7523d72a5c8fa}{start\+Detection} ()
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8390695e6d52a2a523b0bd74e919e616_a8390695e6d52a2a523b0bd74e919e616}{stop\+Detection} ()
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a86e38be742e0e20a92b4195d8d98a08d_a86e38be742e0e20a92b4195d8d98a08d}{get\+State} ()
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afb90996da1aa56e5a9ffcad5269eaf1c_afb90996da1aa56e5a9ffcad5269eaf1c}{on\+Sensor\+Changed} (Sensor\+Event event)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_abf46259850d7bb7dd76508f12036aecf_abf46259850d7bb7dd76508f12036aecf}{on\+Accuracy\+Changed} (Sensor sensor, int accuracy)
+\end{DoxyCompactItemize}
+\subsubsection*{Membri privati}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aaa2fda3fa51154aa22c3d6c4385d08eb_aaa2fda3fa51154aa22c3d6c4385d08eb}{add\+Raw\+Reading\+To\+Batches} (Sensor\+Event event)
+\item 
+Descriptive\+Statistics \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac4c75fb869a8a9cc6994c8e1e55af955_ac4c75fb869a8a9cc6994c8e1e55af955}{get\+Lag\+Specific\+Stats} (long max\+Lag)
+\item 
+Descriptive\+Statistics \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a2a153d4d32a5684f7be18d7ee88daacd_a2a153d4d32a5684f7be18d7ee88daacd}{get\+Stats\+For\+Data\+Segment} (List$<$ Double $>$ array)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aff54c1b481f94da51f43b3e15e0681d1_aff54c1b481f94da51f43b3e15e0681d1}{flush\+Batch\+Readings} ()
+\item 
+double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a1145bc9ce4fd56c11ca664eee090b5a1_a1145bc9ce4fd56c11ca664eee090b5a1}{max\+Norm\+Auto\+Corr} ()
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ad619ce1a15adfee0f62b6a1e494cac9d_ad619ce1a15adfee0f62b6a1e494cac9d}{index\+Of\+Tau} (int tau)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604}{reset\+Window} ()
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd}{time\+Window\+Exceeded} (long window\+Type)
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab52011f5635c827e80de25d4b18e57bd_ab52011f5635c827e80de25d4b18e57bd}{motion\+Equals\+Walking} ()
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af8ca05990e58c5911f943c16ea50e8ae_af8ca05990e58c5911f943c16ea50e8ae}{motion\+Was} (int event)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a65acb6d1ea859efe8cbee1edafc05bf0_a65acb6d1ea859efe8cbee1edafc05bf0}{init\+Sensor\+Clock} (long sys)
+\item 
+long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a746e19bd7811eb09d53b0ba633d0e4d0_a746e19bd7811eb09d53b0ba633d0e4d0}{get\+Timestamp\+Millis} (long timestamp)
+\end{DoxyCompactItemize}
+\subsubsection*{Attributi privati}
+\begin{DoxyCompactItemize}
+\item 
+Sensor\+Manager \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{m\+Sensor\+Manager}
+\item 
+Sensor \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af}{m\+Sensor}
+\item 
+long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{last\+Window} = -\/1
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{current\+State} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}
+\item 
+List$<$ List$<$ Double $>$ $>$ \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}
+\item 
+List$<$ Double $>$ \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{raw\+Batch}
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af1e33313b691ff961f556450f4120a3b_af1e33313b691ff961f556450f4120a3b}{last\+Batch\+Number} = 0
+\item 
+long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{events} \mbox{[}$\,$\mbox{]} = new long\mbox{[}2\mbox{]}
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc95f042e9d3de1551bd8fc5a0a9f734_adc95f042e9d3de1551bd8fc5a0a9f734}{it} = 0
+\item 
+long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{divisor}
+\item 
+long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9c7ff2a6d6247e292dee0bc18512c6d7_a9c7ff2a6d6247e292dee0bc18512c6d7}{offset}
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a359eb997f7b593f9303f3ea22aa1e8d1_a359eb997f7b593f9303f3ea22aa1e8d1}{sensor\+Clock\+Calibrated} = false
+\end{DoxyCompactItemize}
+\subsubsection*{Attributi privati statici}
+\begin{DoxyCompactItemize}
+\item 
+static final long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{S\+T\+D\+\_\+\+W\+I\+N\+D\+OW} = 800
+\item 
+static final long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a427e521f51f1182c9e8492b5c9e00dd1_a427e521f51f1182c9e8492b5c9e00dd1}{C\+R\+R\+\_\+\+W\+I\+N\+D\+OW} = 2000
+\item 
+static final double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a29f9e2fddfbecf657e113b805f32f422_a29f9e2fddfbecf657e113b805f32f422}{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON} = 0.\+6
+\item 
+static final double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc87092266f3b548cac3b7982ef91e0f_adc87092266f3b548cac3b7982ef91e0f}{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON} = 0.\+1
+\item 
+static final double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acb342863aac2cb0746674b64faad451d_acb342863aac2cb0746674b64faad451d}{W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD} = 0.\+5
+\item 
+static final long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9f09899b6ae21b2b95de40b42dba6559_a9f09899b6ae21b2b95de40b42dba6559}{T\+A\+U\+\_\+\+M\+IN} = 600
+\item 
+static final long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a228c8fb6098bacfb92e578a1efc8e7c0_a228c8fb6098bacfb92e578a1efc8e7c0}{T\+A\+U\+\_\+\+M\+AX} = 1500
+\item 
+static final long \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab5ae731e91530d10bde22bec4c223a8f_ab5ae731e91530d10bde22bec4c223a8f}{T\+A\+U\+\_\+\+S\+T\+EP} = 100
+\item 
+static final int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE} = 0
+\item 
+static final int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a7b7a1934c81b55c20ece9ba2d0bee4c8_a7b7a1934c81b55c20ece9ba2d0bee4c8}{S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG} = 1
+\item 
+static final int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG} = 2
+\item 
+static final int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a92d2d4f6184e1513834edebcc1a4c25e_a92d2d4f6184e1513834edebcc1a4c25e}{F\+O\+U\+ND} = 3
+\item 
+static final int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acf835a69ba13c0957f2f9e8829e40883_acf835a69ba13c0957f2f9e8829e40883}{L\+O\+ST} = 4
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Descrizione dettagliata}
+Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\tt federico.\+torsello@studio.\+unibo.\+it} 
+
+\subsubsection{Documentazione dei costruttori e dei distruttori}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8303363468683e172b5a7132c3ebfb99_a8303363468683e172b5a7132c3ebfb99}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8303363468683e172b5a7132c3ebfb99_a8303363468683e172b5a7132c3ebfb99} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!Walk\+Detection\+Util@{Walk\+Detection\+Util}}
+\index{Walk\+Detection\+Util@{Walk\+Detection\+Util}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{Walk\+Detection\+Util()}{WalkDetectionUtil()}}
+{\footnotesize\ttfamily it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+Walk\+Detection\+Util (\begin{DoxyParamCaption}\item[{Application}]{app }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+61                                               \{
+62         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{mSensorManager} = (SensorManager) app.getSystemService(Context.SENSOR\_SERVICE);
+63         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af}{mSensor} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{mSensorManager}.getDefaultSensor(Sensor.TYPE\_ACCELEROMETER);
+64         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw} = \textcolor{keyword}{new} ArrayList<>();
+65         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{rawBatch} = \textcolor{keyword}{new} ArrayList<>();
+66     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentazione delle funzioni membro}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aaa2fda3fa51154aa22c3d6c4385d08eb_aaa2fda3fa51154aa22c3d6c4385d08eb}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aaa2fda3fa51154aa22c3d6c4385d08eb_aaa2fda3fa51154aa22c3d6c4385d08eb} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!add\+Raw\+Reading\+To\+Batches@{add\+Raw\+Reading\+To\+Batches}}
+\index{add\+Raw\+Reading\+To\+Batches@{add\+Raw\+Reading\+To\+Batches}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{add\+Raw\+Reading\+To\+Batches()}{addRawReadingToBatches()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+add\+Raw\+Reading\+To\+Batches (\begin{DoxyParamCaption}\item[{Sensor\+Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+152                                                            \{
+153         \textcolor{keywordtype}{int} delta = FastMath.toIntExact((\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a746e19bd7811eb09d53b0ba633d0e4d0_a746e19bd7811eb09d53b0ba633d0e4d0}{getTimestampMillis}(event.timestamp) - 
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{lastWindow}) / 100);
+154         \textcolor{keywordtype}{double} measurement = sqrt(pow(event.values[0], 2) + pow(event.values[1], 2) + pow(event.values[2], 
+      2));
+155         \textcolor{keywordflow}{if} (delta != \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af1e33313b691ff961f556450f4120a3b_af1e33313b691ff961f556450f4120a3b}{lastBatchNumber}) \{
+156             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aff54c1b481f94da51f43b3e15e0681d1_aff54c1b481f94da51f43b3e15e0681d1}{flushBatchReadings}();
+157             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af1e33313b691ff961f556450f4120a3b_af1e33313b691ff961f556450f4120a3b}{lastBatchNumber} = delta;
+158         \}
+159         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{rawBatch}.add(measurement);
+160     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aff54c1b481f94da51f43b3e15e0681d1_aff54c1b481f94da51f43b3e15e0681d1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aff54c1b481f94da51f43b3e15e0681d1_aff54c1b481f94da51f43b3e15e0681d1} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!flush\+Batch\+Readings@{flush\+Batch\+Readings}}
+\index{flush\+Batch\+Readings@{flush\+Batch\+Readings}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{flush\+Batch\+Readings()}{flushBatchReadings()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+flush\+Batch\+Readings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+181                                       \{
+182         ArrayList<Double> array = \textcolor{keyword}{new} ArrayList<>(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{rawBatch}.size());
+183         array.addAll(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{rawBatch});
+184         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.add(array);
+185         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{rawBatch}.clear();
+186     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac4c75fb869a8a9cc6994c8e1e55af955_ac4c75fb869a8a9cc6994c8e1e55af955}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac4c75fb869a8a9cc6994c8e1e55af955_ac4c75fb869a8a9cc6994c8e1e55af955} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!get\+Lag\+Specific\+Stats@{get\+Lag\+Specific\+Stats}}
+\index{get\+Lag\+Specific\+Stats@{get\+Lag\+Specific\+Stats}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{get\+Lag\+Specific\+Stats()}{getLagSpecificStats()}}
+{\footnotesize\ttfamily Descriptive\+Statistics it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+get\+Lag\+Specific\+Stats (\begin{DoxyParamCaption}\item[{long}]{max\+Lag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+162                                                                    \{
+163         DescriptiveStatistics stats = \textcolor{keyword}{new} DescriptiveStatistics();
+164         \textcolor{keywordtype}{int} maxBatch = FastMath.toIntExact(maxLag) / 100 + 1;
+165         maxBatch = maxBatch > \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.size() ? \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.size() : maxBatch;
+166         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < maxBatch; i++)
+167             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{double} d : \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.get(i)) \{
+168                 stats.addValue(d);
+169             \}
+170         \textcolor{keywordflow}{return} stats;
+171     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a86e38be742e0e20a92b4195d8d98a08d_a86e38be742e0e20a92b4195d8d98a08d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a86e38be742e0e20a92b4195d8d98a08d_a86e38be742e0e20a92b4195d8d98a08d} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+78                           \{
+79         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState} == \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{STATE\_PENDING} ? 
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{STATE\_IDLE} : \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState};
+80     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a2a153d4d32a5684f7be18d7ee88daacd_a2a153d4d32a5684f7be18d7ee88daacd}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a2a153d4d32a5684f7be18d7ee88daacd_a2a153d4d32a5684f7be18d7ee88daacd} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!get\+Stats\+For\+Data\+Segment@{get\+Stats\+For\+Data\+Segment}}
+\index{get\+Stats\+For\+Data\+Segment@{get\+Stats\+For\+Data\+Segment}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{get\+Stats\+For\+Data\+Segment()}{getStatsForDataSegment()}}
+{\footnotesize\ttfamily Descriptive\+Statistics it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+get\+Stats\+For\+Data\+Segment (\begin{DoxyParamCaption}\item[{List$<$ Double $>$}]{array }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+173                                                                              \{
+174         DescriptiveStatistics stats = \textcolor{keyword}{new} DescriptiveStatistics();
+175         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{double} d : array) \{
+176             stats.addValue(d);
+177         \}
+178         \textcolor{keywordflow}{return} stats;
+179     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a746e19bd7811eb09d53b0ba633d0e4d0_a746e19bd7811eb09d53b0ba633d0e4d0}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a746e19bd7811eb09d53b0ba633d0e4d0_a746e19bd7811eb09d53b0ba633d0e4d0} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!get\+Timestamp\+Millis@{get\+Timestamp\+Millis}}
+\index{get\+Timestamp\+Millis@{get\+Timestamp\+Millis}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{get\+Timestamp\+Millis()}{getTimestampMillis()}}
+{\footnotesize\ttfamily long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+get\+Timestamp\+Millis (\begin{DoxyParamCaption}\item[{long}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+280                                                     \{
+281         \textcolor{keywordflow}{return} timestamp / \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{divisor} + \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9c7ff2a6d6247e292dee0bc18512c6d7_a9c7ff2a6d6247e292dee0bc18512c6d7}{offset};
+282     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ad619ce1a15adfee0f62b6a1e494cac9d_ad619ce1a15adfee0f62b6a1e494cac9d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ad619ce1a15adfee0f62b6a1e494cac9d_ad619ce1a15adfee0f62b6a1e494cac9d} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!index\+Of\+Tau@{index\+Of\+Tau}}
+\index{index\+Of\+Tau@{index\+Of\+Tau}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{index\+Of\+Tau()}{indexOfTau()}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+index\+Of\+Tau (\begin{DoxyParamCaption}\item[{int}]{tau }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+226                                     \{
+227         \textcolor{keywordtype}{int} index = 0;
+228         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < tau; k++) \{
+229             index += \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.get(k).size();
+230         \}
+231         \textcolor{keywordflow}{return} index;
+232     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a65acb6d1ea859efe8cbee1edafc05bf0_a65acb6d1ea859efe8cbee1edafc05bf0}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a65acb6d1ea859efe8cbee1edafc05bf0_a65acb6d1ea859efe8cbee1edafc05bf0} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!init\+Sensor\+Clock@{init\+Sensor\+Clock}}
+\index{init\+Sensor\+Clock@{init\+Sensor\+Clock}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{init\+Sensor\+Clock()}{initSensorClock()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+init\+Sensor\+Clock (\begin{DoxyParamCaption}\item[{long}]{sys }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+264                                            \{
+265 
+266         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a359eb997f7b593f9303f3ea22aa1e8d1_a359eb997f7b593f9303f3ea22aa1e8d1}{sensorClockCalibrated} = \textcolor{keyword}{true};
+267         \textcolor{keywordtype}{long} timestampDelta = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{events}[1] - \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{events}[0];
+268 
+269         \textcolor{keywordflow}{if} (timestampDelta > 500) \{ \textcolor{comment}{// in reality ~1 vs ~1,000,000}
+270             \textcolor{comment}{// timestamps are in nanoseconds}
+271             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{divisor} = 1000000;
+272         \} \textcolor{keywordflow}{else} \{
+273             \textcolor{comment}{// timestamps are in milliseconds}
+274             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{divisor} = 1;
+275         \}
+276 
+277         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9c7ff2a6d6247e292dee0bc18512c6d7_a9c7ff2a6d6247e292dee0bc18512c6d7}{offset} = sys - events[0] / \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{divisor};
+278     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a1145bc9ce4fd56c11ca664eee090b5a1_a1145bc9ce4fd56c11ca664eee090b5a1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a1145bc9ce4fd56c11ca664eee090b5a1_a1145bc9ce4fd56c11ca664eee090b5a1} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!max\+Norm\+Auto\+Corr@{max\+Norm\+Auto\+Corr}}
+\index{max\+Norm\+Auto\+Corr@{max\+Norm\+Auto\+Corr}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{max\+Norm\+Auto\+Corr()}{maxNormAutoCorr()}}
+{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+max\+Norm\+Auto\+Corr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Computes the maximum normalized auto correlation of raw with respect to time lags T\+A\+U\+\_\+\+M\+IN and T\+A\+U\+\_\+\+M\+AX 
+\begin{DoxyCode}
+191                                      \{
+192         List<Double> rawConcat = \textcolor{keyword}{new} ArrayList<>();
+193         \textcolor{keywordtype}{double} std, mean, stdTau, meanTau, sum;
+194         \textcolor{keywordtype}{double} max = Double.MIN\_VALUE;
+195         \textcolor{comment}{//int tauOpt = 0;}
+196         \textcolor{keywordflow}{for} (List<Double> l :
+197                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}) \{
+198             rawConcat.addAll(l);
+199         \}
+200         \textcolor{comment}{//Log.i("walk", "Raw size: " + rawConcat.size());}
+201         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} tau = (FastMath.toIntExact(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9f09899b6ae21b2b95de40b42dba6559_a9f09899b6ae21b2b95de40b42dba6559}{TAU\_MIN}) / 100) - 1; tau < FastMath.toIntExact(
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a228c8fb6098bacfb92e578a1efc8e7c0_a228c8fb6098bacfb92e578a1efc8e7c0}{TAU\_MAX}) / 100; tau += \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab5ae731e91530d10bde22bec4c223a8f_ab5ae731e91530d10bde22bec4c223a8f}{TAU\_STEP} / 100) \{
+202             \textcolor{keywordtype}{int} tauIndex = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ad619ce1a15adfee0f62b6a1e494cac9d_ad619ce1a15adfee0f62b6a1e494cac9d}{indexOfTau}(tau);
+203             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} m = 0; m < rawConcat.size() - (tauIndex * 2) - 1; m++) \{
+204                 DescriptiveStatistics stats = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a2a153d4d32a5684f7be18d7ee88daacd_a2a153d4d32a5684f7be18d7ee88daacd}{getStatsForDataSegment}(rawConcat.
+      subList(m, m + tauIndex));
+205                 \textcolor{comment}{//Log.i("walk", "stats size: " + stats.getValues().length);}
+206                 std = stats.getStandardDeviation();
+207                 mean = stats.getMean();
+208                 DescriptiveStatistics statsTau = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a2a153d4d32a5684f7be18d7ee88daacd_a2a153d4d32a5684f7be18d7ee88daacd}{getStatsForDataSegment}(rawConcat.
+      subList(m + tauIndex, m + tauIndex * 2));
+209                 \textcolor{comment}{//Log.i("walk", "statsTau size: " + statsTau.getValues().length);}
+210                 stdTau = statsTau.getStandardDeviation();
+211                 meanTau = statsTau.getMean();
+212                 sum = 0;
+213                 \textcolor{keywordtype}{int} k;
+214                 \textcolor{keywordflow}{for} (k = 0; k < tauIndex - 1; k++) \{
+215                     sum += (rawConcat.get(m + k) - mean) * (rawConcat.get(m + k + tauIndex) - meanTau);
+216                 \}
+217                 \textcolor{keywordtype}{double} temp = sum / (std * stdTau * tauIndex);
+218                 \textcolor{comment}{//Log.i("walk", "Tau: " + tau + " - X(" + m + "," + tauIndex + ") = " + temp);}
+219                 max = max(max, temp);
+220                 \textcolor{comment}{//if (temp == max) tauOpt = tau;}
+221             \}
+222         \}
+223         \textcolor{keywordflow}{return} max;
+224     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab52011f5635c827e80de25d4b18e57bd_ab52011f5635c827e80de25d4b18e57bd}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab52011f5635c827e80de25d4b18e57bd_ab52011f5635c827e80de25d4b18e57bd} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!motion\+Equals\+Walking@{motion\+Equals\+Walking}}
+\index{motion\+Equals\+Walking@{motion\+Equals\+Walking}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{motion\+Equals\+Walking()}{motionEqualsWalking()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+motion\+Equals\+Walking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+244                                           \{
+245         \textcolor{keywordtype}{double} temp = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a1145bc9ce4fd56c11ca664eee090b5a1_a1145bc9ce4fd56c11ca664eee090b5a1}{maxNormAutoCorr}();
+246         \textcolor{comment}{//Log.i("walk", "corr: " + temp);}
+247         \textcolor{comment}{//Log.i("walk", "std" + getLagSpecificStats(CRR\_WINDOW).getStandardDeviation());}
+248         \textcolor{keywordflow}{return} temp >= \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acb342863aac2cb0746674b64faad451d_acb342863aac2cb0746674b64faad451d}{WALKING\_THRESHOLD};
+249     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af8ca05990e58c5911f943c16ea50e8ae_af8ca05990e58c5911f943c16ea50e8ae}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af8ca05990e58c5911f943c16ea50e8ae_af8ca05990e58c5911f943c16ea50e8ae} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!motion\+Was@{motion\+Was}}
+\index{motion\+Was@{motion\+Was}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{motion\+Was()}{motionWas()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+motion\+Was (\begin{DoxyParamCaption}\item[{int}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+251                                          \{
+252         \textcolor{keywordtype}{boolean} eventResult = \textcolor{keyword}{false};
+253         \textcolor{keywordflow}{switch} (event) \{
+254             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a92d2d4f6184e1513834edebcc1a4c25e_a92d2d4f6184e1513834edebcc1a4c25e}{FOUND}:
+255                 eventResult = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac4c75fb869a8a9cc6994c8e1e55af955_ac4c75fb869a8a9cc6994c8e1e55af955}{getLagSpecificStats}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{STD\_WINDOW}).
+      getStandardDeviation() > \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a29f9e2fddfbecf657e113b805f32f422_a29f9e2fddfbecf657e113b805f32f422}{STD\_MIN\_INIT\_MOTION};
+256                 \textcolor{keywordflow}{break};
+257             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acf835a69ba13c0957f2f9e8829e40883_acf835a69ba13c0957f2f9e8829e40883}{LOST}:
+258                 eventResult = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac4c75fb869a8a9cc6994c8e1e55af955_ac4c75fb869a8a9cc6994c8e1e55af955}{getLagSpecificStats}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{STD\_WINDOW}).
+      getStandardDeviation() < \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc87092266f3b548cac3b7982ef91e0f_adc87092266f3b548cac3b7982ef91e0f}{STD\_MIN\_END\_MOTION};
+259                 \textcolor{keywordflow}{break};
+260         \}
+261         \textcolor{keywordflow}{return} eventResult;
+262     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_abf46259850d7bb7dd76508f12036aecf_abf46259850d7bb7dd76508f12036aecf}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_abf46259850d7bb7dd76508f12036aecf_abf46259850d7bb7dd76508f12036aecf} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!on\+Accuracy\+Changed@{on\+Accuracy\+Changed}}
+\index{on\+Accuracy\+Changed@{on\+Accuracy\+Changed}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{on\+Accuracy\+Changed()}{onAccuracyChanged()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+on\+Accuracy\+Changed (\begin{DoxyParamCaption}\item[{Sensor}]{sensor,  }\item[{int}]{accuracy }\end{DoxyParamCaption})}
+
+Called when the accuracy of the registered sensor has changed.
+
+
+\begin{DoxyParams}{Parametri}
+{\em sensor} & \\
+\hline
+{\em accuracy} & The new accuracy of this sensor, one of 
+\begin{DoxyCode}
+SensorManager.SENSOR\_STATUS\_* 
+\end{DoxyCode}
+ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+148                                                                \{
+149         \textcolor{comment}{// Unneeded}
+150     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afb90996da1aa56e5a9ffcad5269eaf1c_afb90996da1aa56e5a9ffcad5269eaf1c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afb90996da1aa56e5a9ffcad5269eaf1c_afb90996da1aa56e5a9ffcad5269eaf1c} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!on\+Sensor\+Changed@{on\+Sensor\+Changed}}
+\index{on\+Sensor\+Changed@{on\+Sensor\+Changed}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{on\+Sensor\+Changed()}{onSensorChanged()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+on\+Sensor\+Changed (\begin{DoxyParamCaption}\item[{Sensor\+Event}]{event }\end{DoxyParamCaption})}
+
+Called when sensor values have changed.
+
+
+\begin{DoxyParams}{Parametri}
+{\em event} & the \hyperlink{}{Sensor\+Event}. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+88                                                    \{
+89         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af}{mSensor}.getType() == Sensor.TYPE\_ACCELEROMETER) \{
+90             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a359eb997f7b593f9303f3ea22aa1e8d1_a359eb997f7b593f9303f3ea22aa1e8d1}{sensorClockCalibrated}) \{
+91 
+92                 \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{lastWindow} == -1) \{
+93                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{lastWindow} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a746e19bd7811eb09d53b0ba633d0e4d0_a746e19bd7811eb09d53b0ba633d0e4d0}{getTimestampMillis}(event.timestamp);
+94                 \}
+95 
+96                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aaa2fda3fa51154aa22c3d6c4385d08eb_aaa2fda3fa51154aa22c3d6c4385d08eb}{addRawReadingToBatches}(event);
+97 
+98                 \textcolor{keywordflow}{switch} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState}) \{
+99                     \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{STATE\_IDLE}:
+100                         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd}{timeWindowExceeded}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{STD\_WINDOW})) \{
+101                             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af8ca05990e58c5911f943c16ea50e8ae_af8ca05990e58c5911f943c16ea50e8ae}{motionWas}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a92d2d4f6184e1513834edebcc1a4c25e_a92d2d4f6184e1513834edebcc1a4c25e}{FOUND})) \{
+102                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{STATE\_PENDING};
+103                                 Log.i(\textcolor{stringliteral}{"walk"}, \textcolor{stringliteral}{"PENDING"});
+104                             \} \textcolor{keywordflow}{else} \{
+105                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604}{resetWindow}();
+106                             \}
+107                         \}
+108                         \textcolor{keywordflow}{break};
+109                     \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{STATE\_PENDING}:
+110                         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd}{timeWindowExceeded}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a427e521f51f1182c9e8492b5c9e00dd1_a427e521f51f1182c9e8492b5c9e00dd1}{CRR\_WINDOW})) \{
+111                             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab52011f5635c827e80de25d4b18e57bd_ab52011f5635c827e80de25d4b18e57bd}{motionEqualsWalking}()) \{
+112                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a7b7a1934c81b55c20ece9ba2d0bee4c8_a7b7a1934c81b55c20ece9ba2d0bee4c8}{STATE\_WALKING};
+113                                 Log.i(\textcolor{stringliteral}{"walk"}, \textcolor{stringliteral}{"WALKING"});
+114                             \}
+115                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604}{resetWindow}();
+116                         \}
+117                         \textcolor{keywordflow}{break};
+118                     \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a7b7a1934c81b55c20ece9ba2d0bee4c8_a7b7a1934c81b55c20ece9ba2d0bee4c8}{STATE\_WALKING}:
+119                         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd}{timeWindowExceeded}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{STD\_WINDOW})) \{
+120                             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af8ca05990e58c5911f943c16ea50e8ae_af8ca05990e58c5911f943c16ea50e8ae}{motionWas}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acf835a69ba13c0957f2f9e8829e40883_acf835a69ba13c0957f2f9e8829e40883}{LOST})) \{
+121                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{STATE\_IDLE};
+122                                 Log.i(\textcolor{stringliteral}{"walk"}, \textcolor{stringliteral}{"IDLE"});
+123                             \}
+124                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604}{resetWindow}();
+125                         \}
+126                         \textcolor{keywordflow}{break};
+127                 \}
+128             \} \textcolor{keywordflow}{else} \{
+129                 \textcolor{keywordflow}{if} (\hyperlink{namespaceit}{it} == 0) \{
+130                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{events}[0] = \textcolor{keyword}{event}.timestamp;
+131                     \hyperlink{namespaceit}{it}++;
+132                 \} \textcolor{keywordflow}{else} \{
+133                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{events}[1] = \textcolor{keyword}{event}.timestamp;
+134                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a65acb6d1ea859efe8cbee1edafc05bf0_a65acb6d1ea859efe8cbee1edafc05bf0}{initSensorClock}(System.currentTimeMillis());
+135                 \}
+136             \}
+137         \}
+138     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a36be01844dbd58b899b0e0ed90fa9604_a36be01844dbd58b899b0e0ed90fa9604} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!reset\+Window@{reset\+Window}}
+\index{reset\+Window@{reset\+Window}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{reset\+Window()}{resetWindow()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+reset\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+234                                \{
+235         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{raw}.clear();
+236         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{lastWindow} = -1;
+237     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a33c73b147b56ccb0d2d7523d72a5c8fa_a33c73b147b56ccb0d2d7523d72a5c8fa}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a33c73b147b56ccb0d2d7523d72a5c8fa_a33c73b147b56ccb0d2d7523d72a5c8fa} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!start\+Detection@{start\+Detection}}
+\index{start\+Detection@{start\+Detection}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{start\+Detection()}{startDetection()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+start\+Detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+68                                  \{
+69         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{mSensorManager}.registerListener(\textcolor{keyword}{this}, \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af}{mSensor}, 1000);
+70     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8390695e6d52a2a523b0bd74e919e616_a8390695e6d52a2a523b0bd74e919e616}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a8390695e6d52a2a523b0bd74e919e616_a8390695e6d52a2a523b0bd74e919e616} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!stop\+Detection@{stop\+Detection}}
+\index{stop\+Detection@{stop\+Detection}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{stop\+Detection()}{stopDetection()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+stop\+Detection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+72                                 \{
+73         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{currentState} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{STATE\_PENDING};
+74         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{mSensorManager}.unregisterListener(\textcolor{keyword}{this});
+75     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a768731013bc5e301ad9d8d55c43213fd_a768731013bc5e301ad9d8d55c43213fd} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!time\+Window\+Exceeded@{time\+Window\+Exceeded}}
+\index{time\+Window\+Exceeded@{time\+Window\+Exceeded}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{time\+Window\+Exceeded()}{timeWindowExceeded()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+time\+Window\+Exceeded (\begin{DoxyParamCaption}\item[{long}]{window\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+239                                                         \{
+240         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aff54c1b481f94da51f43b3e15e0681d1_aff54c1b481f94da51f43b3e15e0681d1}{flushBatchReadings}();
+241         \textcolor{keywordflow}{return} System.currentTimeMillis() - \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{lastWindow} >= windowType;
+242     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentazione dei membri dato}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a427e521f51f1182c9e8492b5c9e00dd1_a427e521f51f1182c9e8492b5c9e00dd1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a427e521f51f1182c9e8492b5c9e00dd1_a427e521f51f1182c9e8492b5c9e00dd1} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!C\+R\+R\+\_\+\+W\+I\+N\+D\+OW@{C\+R\+R\+\_\+\+W\+I\+N\+D\+OW}}
+\index{C\+R\+R\+\_\+\+W\+I\+N\+D\+OW@{C\+R\+R\+\_\+\+W\+I\+N\+D\+OW}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{C\+R\+R\+\_\+\+W\+I\+N\+D\+OW}{CRR\_WINDOW}}
+{\footnotesize\ttfamily final long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+C\+R\+R\+\_\+\+W\+I\+N\+D\+OW = 2000\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a6d087343f7fa10a9fb4f72bd81b4cde4_a6d087343f7fa10a9fb4f72bd81b4cde4} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!current\+State@{current\+State}}
+\index{current\+State@{current\+State}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{current\+State}{currentState}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+current\+State = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ac3417258ebbe056bd799b435b2586bcd_ac3417258ebbe056bd799b435b2586bcd} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!divisor@{divisor}}
+\index{divisor@{divisor}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{divisor}{divisor}}
+{\footnotesize\ttfamily long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+divisor\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_aee437f7cb5008f9e7dbf6d82ef6dfcc7_aee437f7cb5008f9e7dbf6d82ef6dfcc7} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!events@{events}}
+\index{events@{events}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{events}{events}}
+{\footnotesize\ttfamily long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+events\mbox{[}$\,$\mbox{]} = new long\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a92d2d4f6184e1513834edebcc1a4c25e_a92d2d4f6184e1513834edebcc1a4c25e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a92d2d4f6184e1513834edebcc1a4c25e_a92d2d4f6184e1513834edebcc1a4c25e} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!F\+O\+U\+ND@{F\+O\+U\+ND}}
+\index{F\+O\+U\+ND@{F\+O\+U\+ND}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{F\+O\+U\+ND}{FOUND}}
+{\footnotesize\ttfamily final int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+F\+O\+U\+ND = 3\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc95f042e9d3de1551bd8fc5a0a9f734_adc95f042e9d3de1551bd8fc5a0a9f734}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc95f042e9d3de1551bd8fc5a0a9f734_adc95f042e9d3de1551bd8fc5a0a9f734} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!it@{it}}
+\index{it@{it}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{it}{it}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+it = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af1e33313b691ff961f556450f4120a3b_af1e33313b691ff961f556450f4120a3b}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_af1e33313b691ff961f556450f4120a3b_af1e33313b691ff961f556450f4120a3b} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!last\+Batch\+Number@{last\+Batch\+Number}}
+\index{last\+Batch\+Number@{last\+Batch\+Number}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{last\+Batch\+Number}{lastBatchNumber}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+last\+Batch\+Number = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a07c9b992e026b470865d4f350d5d6b82_a07c9b992e026b470865d4f350d5d6b82} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!last\+Window@{last\+Window}}
+\index{last\+Window@{last\+Window}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{last\+Window}{lastWindow}}
+{\footnotesize\ttfamily long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+last\+Window = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acf835a69ba13c0957f2f9e8829e40883_acf835a69ba13c0957f2f9e8829e40883}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acf835a69ba13c0957f2f9e8829e40883_acf835a69ba13c0957f2f9e8829e40883} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!L\+O\+ST@{L\+O\+ST}}
+\index{L\+O\+ST@{L\+O\+ST}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{L\+O\+ST}{LOST}}
+{\footnotesize\ttfamily final int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+L\+O\+ST = 4\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a986c50a12f56513e975fc52cadc819af_a986c50a12f56513e975fc52cadc819af} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!m\+Sensor@{m\+Sensor}}
+\index{m\+Sensor@{m\+Sensor}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{m\+Sensor}{mSensor}}
+{\footnotesize\ttfamily Sensor it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+m\+Sensor\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afa8539715b8ef707d07c16e1ff27050d_afa8539715b8ef707d07c16e1ff27050d} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!m\+Sensor\+Manager@{m\+Sensor\+Manager}}
+\index{m\+Sensor\+Manager@{m\+Sensor\+Manager}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{m\+Sensor\+Manager}{mSensorManager}}
+{\footnotesize\ttfamily Sensor\+Manager it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+m\+Sensor\+Manager\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9c7ff2a6d6247e292dee0bc18512c6d7_a9c7ff2a6d6247e292dee0bc18512c6d7}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9c7ff2a6d6247e292dee0bc18512c6d7_a9c7ff2a6d6247e292dee0bc18512c6d7} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!offset@{offset}}
+\index{offset@{offset}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+offset\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a985270e2b9d4202985cb987eef136a9e_a985270e2b9d4202985cb987eef136a9e} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!raw@{raw}}
+\index{raw@{raw}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{raw}{raw}}
+{\footnotesize\ttfamily List$<$List$<$Double$>$ $>$ it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+raw\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a47aa197c142093f82c9f2acefd0a6af3_a47aa197c142093f82c9f2acefd0a6af3} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!raw\+Batch@{raw\+Batch}}
+\index{raw\+Batch@{raw\+Batch}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{raw\+Batch}{rawBatch}}
+{\footnotesize\ttfamily List$<$Double$>$ it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+raw\+Batch\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a359eb997f7b593f9303f3ea22aa1e8d1_a359eb997f7b593f9303f3ea22aa1e8d1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a359eb997f7b593f9303f3ea22aa1e8d1_a359eb997f7b593f9303f3ea22aa1e8d1} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!sensor\+Clock\+Calibrated@{sensor\+Clock\+Calibrated}}
+\index{sensor\+Clock\+Calibrated@{sensor\+Clock\+Calibrated}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{sensor\+Clock\+Calibrated}{sensorClockCalibrated}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+sensor\+Clock\+Calibrated = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a37359c8b8bf98a1283c3c06f0b98264f_a37359c8b8bf98a1283c3c06f0b98264f} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+A\+T\+E\+\_\+\+I\+D\+LE@{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}}
+\index{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE@{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}{STATE\_IDLE}}
+{\footnotesize\ttfamily final int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+A\+T\+E\+\_\+\+I\+D\+LE = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_afbb85c995ea51422b96e79d754c68b2e_afbb85c995ea51422b96e79d754c68b2e} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG@{S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG}}
+\index{S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG@{S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG}{STATE\_PENDING}}
+{\footnotesize\ttfamily final int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+A\+T\+E\+\_\+\+P\+E\+N\+D\+I\+NG = 2\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a7b7a1934c81b55c20ece9ba2d0bee4c8_a7b7a1934c81b55c20ece9ba2d0bee4c8}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a7b7a1934c81b55c20ece9ba2d0bee4c8_a7b7a1934c81b55c20ece9ba2d0bee4c8} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG@{S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG}}
+\index{S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG@{S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG}{STATE\_WALKING}}
+{\footnotesize\ttfamily final int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+A\+T\+E\+\_\+\+W\+A\+L\+K\+I\+NG = 1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc87092266f3b548cac3b7982ef91e0f_adc87092266f3b548cac3b7982ef91e0f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_adc87092266f3b548cac3b7982ef91e0f_adc87092266f3b548cac3b7982ef91e0f} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON@{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON}}
+\index{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON@{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON}{STD\_MIN\_END\_MOTION}}
+{\footnotesize\ttfamily final double it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+E\+N\+D\+\_\+\+M\+O\+T\+I\+ON = 0.\+1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a29f9e2fddfbecf657e113b805f32f422_a29f9e2fddfbecf657e113b805f32f422}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a29f9e2fddfbecf657e113b805f32f422_a29f9e2fddfbecf657e113b805f32f422} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON@{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON}}
+\index{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON@{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON}{STD\_MIN\_INIT\_MOTION}}
+{\footnotesize\ttfamily final double it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+D\+\_\+\+M\+I\+N\+\_\+\+I\+N\+I\+T\+\_\+\+M\+O\+T\+I\+ON = 0.\+6\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acd9dd1b84f72cac45ce516d7f9f66078_acd9dd1b84f72cac45ce516d7f9f66078} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!S\+T\+D\+\_\+\+W\+I\+N\+D\+OW@{S\+T\+D\+\_\+\+W\+I\+N\+D\+OW}}
+\index{S\+T\+D\+\_\+\+W\+I\+N\+D\+OW@{S\+T\+D\+\_\+\+W\+I\+N\+D\+OW}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{S\+T\+D\+\_\+\+W\+I\+N\+D\+OW}{STD\_WINDOW}}
+{\footnotesize\ttfamily final long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+S\+T\+D\+\_\+\+W\+I\+N\+D\+OW = 800\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a228c8fb6098bacfb92e578a1efc8e7c0_a228c8fb6098bacfb92e578a1efc8e7c0}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a228c8fb6098bacfb92e578a1efc8e7c0_a228c8fb6098bacfb92e578a1efc8e7c0} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!T\+A\+U\+\_\+\+M\+AX@{T\+A\+U\+\_\+\+M\+AX}}
+\index{T\+A\+U\+\_\+\+M\+AX@{T\+A\+U\+\_\+\+M\+AX}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{T\+A\+U\+\_\+\+M\+AX}{TAU\_MAX}}
+{\footnotesize\ttfamily final long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+T\+A\+U\+\_\+\+M\+AX = 1500\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9f09899b6ae21b2b95de40b42dba6559_a9f09899b6ae21b2b95de40b42dba6559}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_a9f09899b6ae21b2b95de40b42dba6559_a9f09899b6ae21b2b95de40b42dba6559} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!T\+A\+U\+\_\+\+M\+IN@{T\+A\+U\+\_\+\+M\+IN}}
+\index{T\+A\+U\+\_\+\+M\+IN@{T\+A\+U\+\_\+\+M\+IN}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{T\+A\+U\+\_\+\+M\+IN}{TAU\_MIN}}
+{\footnotesize\ttfamily final long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+T\+A\+U\+\_\+\+M\+IN = 600\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab5ae731e91530d10bde22bec4c223a8f_ab5ae731e91530d10bde22bec4c223a8f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_ab5ae731e91530d10bde22bec4c223a8f_ab5ae731e91530d10bde22bec4c223a8f} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!T\+A\+U\+\_\+\+S\+T\+EP@{T\+A\+U\+\_\+\+S\+T\+EP}}
+\index{T\+A\+U\+\_\+\+S\+T\+EP@{T\+A\+U\+\_\+\+S\+T\+EP}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{T\+A\+U\+\_\+\+S\+T\+EP}{TAU\_STEP}}
+{\footnotesize\ttfamily final long it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+T\+A\+U\+\_\+\+S\+T\+EP = 100\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acb342863aac2cb0746674b64faad451d_acb342863aac2cb0746674b64faad451d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1WalkDetectionUtil_acb342863aac2cb0746674b64faad451d_acb342863aac2cb0746674b64faad451d} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}!W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD@{W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}}
+\index{W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD@{W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Walk\+Detection\+Util}}
+\paragraph{\texorpdfstring{W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD}{WALKING\_THRESHOLD}}
+{\footnotesize\ttfamily final double it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Walk\+Detection\+Util.\+W\+A\+L\+K\+I\+N\+G\+\_\+\+T\+H\+R\+E\+S\+H\+O\+LD = 0.\+5\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+La documentazione per questa classe è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{WalkDetectionUtil_8java}{Walk\+Detection\+Util.\+java}\end{DoxyCompactItemize}
