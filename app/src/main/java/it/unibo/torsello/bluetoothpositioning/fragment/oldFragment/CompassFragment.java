@@ -31,9 +31,9 @@ public class CompassFragment extends Fragment implements SensorEventListener {
 
     public static CompassFragment newInstance(String message) {
         CompassFragment fragment = new CompassFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
-        fragment.setArguments(bdl);
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, message);
+        fragment.setArguments(args);
         return fragment;
     }
 

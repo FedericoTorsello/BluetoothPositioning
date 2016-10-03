@@ -20,4 +20,5 @@
     <dimen name="tab_collapsing_bottom_padding">63dp</dimen>
 
     <dimen name="padding_tw_distance">20dp</dimen>
+    <dimen name="chart_dim">300dp</dimen>
 </resources>

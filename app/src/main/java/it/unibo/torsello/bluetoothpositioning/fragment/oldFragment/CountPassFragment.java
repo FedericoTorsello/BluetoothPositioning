@@ -33,9 +33,9 @@ public class CountPassFragment extends Fragment implements SensorEventListener {
 
     public static CountPassFragment newInstance(String message) {
         CountPassFragment fragment = new CountPassFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
-        fragment.setArguments(bdl);
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, message);
+        fragment.setArguments(args);
         return fragment;
     }
 

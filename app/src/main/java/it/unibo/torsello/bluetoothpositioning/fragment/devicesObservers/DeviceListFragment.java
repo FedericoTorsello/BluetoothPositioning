@@ -38,27 +38,26 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceFragment extends Fragment implements Observer {
+public class DeviceListFragment extends Fragment implements Observer {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+
     private DeviceCardViewAdapter deviceViewAdapter;
     private SharedPreferences preferences;
     private List<Device> deviceList;
+    private DeviceObservable myObservable;
 
-    private MyDeviceObservable myObservable;
-
-
-    public static DeviceFragment newInstance() {
-        DeviceFragment fragment = new DeviceFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, "Scan Device");
-        fragment.setArguments(bdl);
+    public static DeviceListFragment newInstance() {
+        DeviceListFragment fragment = new DeviceListFragment();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, "Scan Device");
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -66,7 +65,7 @@ public class DeviceFragment extends Fragment implements Observer {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myObservable = MyDeviceObservable.getInstance();
+        myObservable = DeviceObservable.getInstance();
 
         deviceList = new ArrayList<>();
         preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
@@ -75,16 +74,19 @@ public class DeviceFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_device, container, false);
+        View root = inflater.inflate(R.layout.fragment_device_list, container, false);
 
-        RecyclerView recyclerView = new RecyclerView(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        deviceViewAdapter = new DeviceCardViewAdapter(getActivity(), deviceList);
-        recyclerView.setAdapter(deviceViewAdapter);
-
-        ((FrameLayout) root.findViewById(R.id.frame_list_device)).addView(recyclerView);
+        initializeDeviceDetail(root);
 
         return root;
+    }
+
+    private void initializeDeviceDetail(View root) {
+        // add RecyclerView
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        deviceViewAdapter = new DeviceCardViewAdapter(getActivity(), deviceList);
+        recyclerView.setAdapter(deviceViewAdapter);
     }
 
     @Override

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".fragment.devicesObservers.DeviceDetailInnerFragment">
+    tools:context=".fragment.devicesObservers.DeviceDetailInner1Fragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -18,7 +18,7 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
             app:expandedTitleMarginStart="48dp"
@@ -52,12 +52,12 @@
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/pag"
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="500dp">
 
                 <android.support.design.widget.TabLayout
-                    android:id="@+id/sliding_tabs2"
+                    android:id="@+id/sliding_tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

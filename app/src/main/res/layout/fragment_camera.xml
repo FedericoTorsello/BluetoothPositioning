@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment.CameraFragment">
 
-
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"

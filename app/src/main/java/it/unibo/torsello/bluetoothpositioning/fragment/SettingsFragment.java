@@ -3,6 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,7 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_preferences, container, false);
+        View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
         setKalmanFilterSeekBar(root);
 
@@ -58,7 +59,7 @@ public class SettingsFragment extends Fragment {
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setKalmanFilterSeekBar(View root) {
         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
-        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 83);
+        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 4);
         kalmanSeek.setMax(10);
         kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
 

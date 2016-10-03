@@ -17,30 +17,27 @@ import java.util.Observer;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter;
-import it.unibo.torsello.bluetoothpositioning.fragment.usbObservers.UsbMeasurementFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class DeviceDetailInnerFragment extends Fragment implements Observer {
+public class DeviceDetailInner1Fragment extends Fragment implements Observer {
 
-    private final String TAG_CLASS = getClass().getSimpleName();
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+
     private DeviceCardViewAdapter deviceViewAdapter;
     private List<Device> deviceList;
-
-    private MyDeviceObservable myObservable;
-
+    private DeviceObservable myObservable;
     private String idDeviceSelectedName;
 
-    public static DeviceDetailInnerFragment newInstance(String message) {
-        DeviceDetailInnerFragment fragment = new DeviceDetailInnerFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
-        fragment.setArguments(bdl);
+    public static DeviceDetailInner1Fragment newInstance(String message) {
+        DeviceDetailInner1Fragment fragment = new DeviceDetailInner1Fragment();
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, message);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -48,8 +45,7 @@ public class DeviceDetailInnerFragment extends Fragment implements Observer {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myObservable = MyDeviceObservable.getInstance();
-        myObservable.addObserver(this);
+        myObservable = DeviceObservable.getInstance();
 
         idDeviceSelectedName = getArguments().getString(EXTRA_MESSAGE);
         deviceList = new ArrayList<>();
@@ -59,7 +55,7 @@ public class DeviceDetailInnerFragment extends Fragment implements Observer {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_device_inner_detail, container, false);
+        View root = inflater.inflate(R.layout.fragment_device_detail_inner_1, container, false);
 
         initializeDeviceDetail(root);
 
@@ -80,10 +76,9 @@ public class DeviceDetailInnerFragment extends Fragment implements Observer {
 
     private void initializeDeviceDetail(View root) {
         // add RecyclerView
-        RecyclerView recyclerView = new RecyclerView(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(deviceViewAdapter);
-        ((FrameLayout) root.findViewById(R.id.frame_selected_device)).addView(recyclerView);
     }
 
     @Override

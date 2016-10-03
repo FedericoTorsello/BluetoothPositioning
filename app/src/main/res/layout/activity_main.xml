@@ -30,8 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:name="it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment"
-            android:id="@+id/fragment"
-            tools:layout="@layout/fragment_preferences" />
+            android:id="@+id/fragment_settings"
+            tools:layout="@layout/fragment_settings" />
 
     </android.support.design.widget.NavigationView>
 

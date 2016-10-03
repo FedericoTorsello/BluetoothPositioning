@@ -6,15 +6,15 @@ import java.util.Observable;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class MyUsbObservable extends Observable {
+public class UsbMeasurementObservable extends Observable {
 
-    private static MyUsbObservable instance = new MyUsbObservable();
+    private static UsbMeasurementObservable instance = new UsbMeasurementObservable();
 
-    public static MyUsbObservable getInstance() {
+    public static UsbMeasurementObservable getInstance() {
         return instance;
     }
 
-    private MyUsbObservable() {
+    private UsbMeasurementObservable() {
         super();
     }
 

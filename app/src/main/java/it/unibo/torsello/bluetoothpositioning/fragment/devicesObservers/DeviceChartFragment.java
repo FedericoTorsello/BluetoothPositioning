@@ -16,8 +16,8 @@ import java.util.Observer;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
-import it.unibo.torsello.bluetoothpositioning.observables.MyUsbObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
 import it.unibo.torsello.bluetoothpositioning.util.ChartUtil;
 
 public class DeviceChartFragment extends Fragment implements Observer {
@@ -26,8 +26,8 @@ public class DeviceChartFragment extends Fragment implements Observer {
     public static final String DEVICE_NAME = "DEVICE_NAME";
     public static final String STRINGS = "STRINGS";
 
-    private MyDeviceObservable myDeviceObservable;
-    private MyUsbObservable myUsbObservable;
+    private DeviceObservable myDeviceObservable;
+    private UsbMeasurementObservable myUsbObservable;
 
     private String idDeviceSelected;
     private ChartUtil chartUtil;
@@ -35,9 +35,6 @@ public class DeviceChartFragment extends Fragment implements Observer {
     private Double arduinoValue = 0D;
 
     private ArrayList<String> stringArrayList;
-
-    private Double param0, param1, param2, param3;
-
 
     public static DeviceChartFragment newInstance(String message, String deviceName,
                                                   ArrayList<String> strings) {
@@ -53,6 +50,10 @@ public class DeviceChartFragment extends Fragment implements Observer {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        myDeviceObservable = DeviceObservable.getInstance();
+        myUsbObservable = UsbMeasurementObservable.getInstance();
+
         idDeviceSelected = getArguments().getString(DEVICE_NAME);
         stringArrayList = getArguments().getStringArrayList(STRINGS);
     }
@@ -60,10 +61,7 @@ public class DeviceChartFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_chart, container, false);
-
-        myDeviceObservable = MyDeviceObservable.getInstance();
-        myUsbObservable = MyUsbObservable.getInstance();
+        View root = inflater.inflate(R.layout.fragment_device_chart, container, false);
 
         LineChart lineChart = (LineChart) root.findViewById(R.id.chart);
 
@@ -90,13 +88,13 @@ public class DeviceChartFragment extends Fragment implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
-        if (o instanceof MyUsbObservable) {
+        if (o instanceof UsbMeasurementObservable) {
             if (arg instanceof Double) {
                 arduinoValue = (Double) arg;
             }
         }
 
-        if (o instanceof MyDeviceObservable) {
+        if (o instanceof DeviceObservable) {
             if (arg instanceof List) {
 
                 List<Device> devices = (List<Device>) arg;
@@ -108,64 +106,6 @@ public class DeviceChartFragment extends Fragment implements Observer {
                         if (chartUtil != null) {
 
                             chartUtil.createDataSet(stringArrayList);
-
-//                            if (stringArrayList != null){
-//                                if (stringArrayList.equals(getString(R.string.chart_arduino))){
-//                                    param0 = arduinoValue;
-//                                } else if (stringArrayList.equals(getString(R.string.chart_raw_distance))){
-//                                    param0 = deviceSelected.getRawDistance();
-//                                } else if (stringArrayList.equals(getString(R.string.chart_altbeacon))){
-//                                    param0 = deviceSelected.getAltBeaconDistance();
-//                                } else if (stringArrayList.equals(getString(R.string.chart_kalman_filter))){
-//                                    param0 = deviceSelected.getKalmanFilterDistance();
-//                                }
-//                            } else {
-//                                param0 = null;
-//                            }
-//
-//                            if (arg1 != null){
-//                                if (arg1.equals(getString(R.string.chart_arduino))){
-//                                    param1 = arduinoValue;
-//                                } else if (arg1.equals(getString(R.string.chart_raw_distance))){
-//                                    param1 = deviceSelected.getRawDistance();
-//                                } else if (arg1.equals(getString(R.string.chart_altbeacon))){
-//                                    param1 = deviceSelected.getAltBeaconDistance();
-//                                } else if (arg1.equals(getString(R.string.chart_kalman_filter))){
-//                                    param1 = deviceSelected.getKalmanFilterDistance();
-//                                }
-//                            }else {
-//                                param1 = null;
-//                            }
-//
-//                            if (arg2 != null){
-//                                if (arg2.equals(getString(R.string.chart_arduino))){
-//                                    param2 = arduinoValue;
-//                                } else if (arg2.equals(getString(R.string.chart_raw_distance))){
-//                                    param2 = deviceSelected.getRawDistance();
-//                                } else if (arg2.equals(getString(R.string.chart_altbeacon))){
-//                                    param2 = deviceSelected.getAltBeaconDistance();
-//                                } else if (arg2.equals(getString(R.string.chart_kalman_filter))){
-//                                    param2 = deviceSelected.getKalmanFilterDistance();
-//                                }
-//                            }else {
-//                                param2 = null;
-//                            }
-//
-//                            if (arg3 != null){
-//                                if (arg3.equals(getString(R.string.chart_arduino))){
-//                                    param3 = arduinoValue;
-//                                } else if (arg3.equals(getString(R.string.chart_raw_distance))){
-//                                    param3 = deviceSelected.getRawDistance();
-//                                } else if (arg3.equals(getString(R.string.chart_altbeacon))){
-//                                    param3 = deviceSelected.getAltBeaconDistance();
-//                                } else if (arg3.equals(getString(R.string.chart_kalman_filter))){
-//                                    param3 = deviceSelected.getKalmanFilterDistance();
-//                                }
-//                            }else {
-//                                param3 = null;
-//                            }
-
-//                            chartUtil.updateDataSet(param0, param1, param2, param3);
 
                             ArrayList<Double> doubleArrayList = new ArrayList<>();
 

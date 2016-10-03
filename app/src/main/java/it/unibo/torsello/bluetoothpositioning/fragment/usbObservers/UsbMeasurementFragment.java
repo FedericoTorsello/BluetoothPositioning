@@ -15,7 +15,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.observables.MyUsbObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
 
 /**
  * Created by Federico Torsello.
@@ -30,11 +30,7 @@ public class UsbMeasurementFragment extends Fragment implements Observer {
 
     private DecimalFormat df;
 
-    private boolean isEnabled;
-
-//    private double arduinoDistance;
-
-    private MyUsbObservable myUsbObservable;
+    private UsbMeasurementObservable myUsbObservable;
 
     public static UsbMeasurementFragment newInstance() {
         UsbMeasurementFragment fragment = new UsbMeasurementFragment();
@@ -47,8 +43,7 @@ public class UsbMeasurementFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View root = inflater.inflate(R.layout.fragment_arduino_usb, container, false);
+        View root = inflater.inflate(R.layout.fragment_usb_measurement, container, false);
 
         twDistance = (TextView) root.findViewById(R.id.tw_distance_value);
         twState = (TextView) root.findViewById(R.id.tw_state_value);
@@ -60,7 +55,7 @@ public class UsbMeasurementFragment extends Fragment implements Observer {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myUsbObservable = MyUsbObservable.getInstance();
+        myUsbObservable = UsbMeasurementObservable.getInstance();
         df = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
 
     }
@@ -80,27 +75,16 @@ public class UsbMeasurementFragment extends Fragment implements Observer {
     @Override
     public void update(Observable o, final Object arg) {
 
-        if (arg instanceof Double) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (arg instanceof Double) {
                     Double arduinoDistance = (Double) arg;
-
                     twDistance.setText(String.format("%s m", df.format(arduinoDistance)));
-                }
-            });
-        } else if (arg instanceof String) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+                } else if (arg instanceof String) {
                     String message = (String) arg;
                     twState.setText(message);
-                }
-            });
-        } else if (arg instanceof Boolean) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
+                } else if (arg instanceof Boolean) {
                     boolean state = (Boolean) arg;
                     if (state) {
                         twState.setTextColor(Color.GREEN);
@@ -108,7 +92,7 @@ public class UsbMeasurementFragment extends Fragment implements Observer {
                         twState.setTextColor(Color.RED);
                     }
                 }
-            });
-        }
+            }
+        });
     }
 }

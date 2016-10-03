@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceListFragment;
 import it.unibo.torsello.bluetoothpositioning.fragment.usbObservers.UsbMeasurementFragment;
 
 /**
@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity
 
     public static final String DEVICE_FRAGMENT = "device";
     public static final String USB_MEASUREMENT_FRAGMENT = "usb measurement";
-
-    public static final String DEVICE_DETAIL_FRAGMENT = "device detail";
-    public static final String DEVICE_INNER_DETAIL_FRAGMENT = "device inner detail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +91,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        return true;
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -138,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(fragTag);
         switch (fragTag) {
             case DEVICE_FRAGMENT:
-                currentFragment = DeviceFragment.newInstance();
+                currentFragment = DeviceListFragment.newInstance();
                 break;
             case USB_MEASUREMENT_FRAGMENT:
                 currentFragment = UsbMeasurementFragment.newInstance();

@@ -22,6 +22,8 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.util.ArrayList;
 import java.util.Random;
 
+import it.unibo.torsello.bluetoothpositioning.R;
+
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
@@ -128,7 +130,11 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
         for (String s : args) {
             if (s != null) {
-                dataSets.add(createDataSet(s, getRandomColor()));
+                if (s.equals(getActivity().getString(R.string.chart_arduino))) {
+                    dataSets.add(createDataSet(s, Color.RED));
+                } else {
+                    dataSets.add(createDataSet(s, getRandomColor()));
+                }
             }
         }
 

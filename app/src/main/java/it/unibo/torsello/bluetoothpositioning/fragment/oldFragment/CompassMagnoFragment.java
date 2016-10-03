@@ -29,9 +29,9 @@ public class CompassMagnoFragment extends Fragment implements SensorEventListene
 
     public static CompassMagnoFragment newInstance(String message) {
         CompassMagnoFragment fragment = new CompassMagnoFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, message);
-        fragment.setArguments(bdl);
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, message);
+        fragment.setArguments(args);
         return fragment;
     }
 

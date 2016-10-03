@@ -2,7 +2,6 @@ package it.unibo.torsello.bluetoothpositioning.model;
 
 import org.altbeacon.beacon.Beacon;
 
-import it.unibo.torsello.bluetoothpositioning.distanceEstimation.BeaconStatistics;
 import it.unibo.torsello.bluetoothpositioning.distanceEstimation.Estimation;
 
 /**
@@ -11,8 +10,7 @@ import it.unibo.torsello.bluetoothpositioning.distanceEstimation.Estimation;
  */
 public class Device {
 
-    private Estimation stats;
-    private BeaconStatistics beaconStatistics;
+    private Estimation estimation;
     private String address;
     private String friendlyName;
     private Beacon beacon;
@@ -24,8 +22,7 @@ public class Device {
         this.index = index;
         this.address = address;
         this.friendlyName = friendlyName;
-        this.stats = new Estimation();
-        this.beaconStatistics = new BeaconStatistics();
+        this.estimation = new Estimation();
         this.imageBeacon = imageBeacon;
         this.color = color;
     }
@@ -59,40 +56,30 @@ public class Device {
     }
 
     public String getProximity() {
-        double proximity = getAltBeaconDistance();
-//        double accuracy = Math.pow(12.0, 1.5 * ((rssi / measuredPower) - 1));
-        String accuracy;
-
-        if (proximity <= 0) {
-            accuracy = "unknown";
-        } else if (proximity <= 0.5) {
-            accuracy = "immediate";
-        } else if (proximity <= 4.0) {
-            accuracy = "near";
-        } else {
-            accuracy = "far";
-        }
-        return accuracy;
+        return estimation.getProximity();
     }
 
     /* Kalman filter*/
     public double getKalmanFilterDistance() {
-        return beaconStatistics.getKalmanFilterDistance();
+        return estimation.getKalmanFilterDistance();
     }
 
     public double getRawDistance() {
-        return beaconStatistics.getRawDistance();
+        return estimation.getRawDistance();
     }
-
 
     public double getDistanceWOSC() {
-        return beaconStatistics.getDistanceWOSC();
+        return estimation.getDistanceWOSC();
     }
 
+    public void setBeacon(Beacon beacon) {
+        this.beacon = beacon;
+    }
 
-    public void updateDistance(Beacon b, double processNoise) {
-        beacon = b;
-        beaconStatistics.updateDistance(b, processNoise);
+    public void updateDistance(double processNoise) {
+        if (beacon != null) {
+            estimation.updateDistance(beacon, processNoise);
+        }
     }
 
 }

@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 
 import org.altbeacon.beacon.Beacon;
@@ -30,7 +29,7 @@ import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
-import it.unibo.torsello.bluetoothpositioning.observables.MyDeviceObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
 
 /**
@@ -39,7 +38,7 @@ import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
  */
 public class ApplicationActivity extends MainActivity implements BeaconConsumer {
 
-    private MyDeviceObservable myDeviceObservable;
+    private DeviceObservable myDeviceObservable;
 
     private final String TAG_CLASS = getClass().getSimpleName();
     private BeaconManager beaconManager;
@@ -53,7 +52,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myDeviceObservable = MyDeviceObservable.getInstance();
+        myDeviceObservable = DeviceObservable.getInstance();
 
         preferences = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
 
@@ -165,7 +164,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
                     if (device != null) { // useful only if DEVICE_MAP is empty
                         double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
-                        device.updateDistance(b, processNoise);
+                        device.setBeacon(b);
+                        device.updateDistance(processNoise);
 
                         if (!deviceList.contains(device)) {
                             deviceList.add(device);
@@ -243,21 +243,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         }
 
         super.onDestroy();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button
-
-        // noinspection SimplifiableIfStatement
-//        switch (item.getItemId()) {
-//            case R.id.action_clear:
-//                onAddDevicesListener.clearList();
-//                return true;
-//        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private boolean isBluetoothAvailable() {

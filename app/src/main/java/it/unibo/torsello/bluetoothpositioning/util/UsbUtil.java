@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
-import it.unibo.torsello.bluetoothpositioning.observables.MyUsbObservable;
+import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
 
 /**
  * Created by federico on 02/10/16.
@@ -26,7 +26,7 @@ import it.unibo.torsello.bluetoothpositioning.observables.MyUsbObservable;
 
 public class UsbUtil {
 
-    private MyUsbObservable myUsbObservable;
+    private UsbMeasurementObservable myUsbObservable;
 
     private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
     private UsbSerialPort port;
@@ -36,7 +36,7 @@ public class UsbUtil {
 
     public UsbUtil(ApplicationActivity applicationActivity) {
         this.applicationActivity = applicationActivity;
-        myUsbObservable = MyUsbObservable.getInstance();
+        myUsbObservable = UsbMeasurementObservable.getInstance();
     }
 
     private ApplicationActivity getActivity() {

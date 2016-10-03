@@ -26,9 +26,9 @@ public class CameraFragment extends Fragment {
 
     public static CameraFragment newInstance() {
         CameraFragment fragment = new CameraFragment();
-        Bundle bdl = new Bundle();
-        bdl.putString(EXTRA_MESSAGE, "Camera");
-        fragment.setArguments(bdl);
+        Bundle args = new Bundle();
+        args.putString(EXTRA_MESSAGE, "Camera");
+        fragment.setArguments(args);
         return fragment;
     }
 

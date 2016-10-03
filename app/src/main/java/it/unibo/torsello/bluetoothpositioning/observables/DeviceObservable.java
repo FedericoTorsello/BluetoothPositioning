@@ -6,15 +6,15 @@ import java.util.Observable;
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class MyDeviceObservable extends Observable {
+public class DeviceObservable extends Observable {
 
-    private static MyDeviceObservable instance = new MyDeviceObservable();
+    private static DeviceObservable instance = new DeviceObservable();
 
-    public static MyDeviceObservable getInstance() {
+    public static DeviceObservable getInstance() {
         return instance;
     }
 
-    private MyDeviceObservable() {
+    private DeviceObservable() {
         super();
     }
 

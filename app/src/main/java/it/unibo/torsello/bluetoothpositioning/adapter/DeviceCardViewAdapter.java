@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.DetailDeviceDetailFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
 /**
@@ -31,7 +31,7 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
     private List<Device> deviceList;
     private FragmentActivity activity;
 
-    public static final String DEVICE_DETAIL_FRAGMENT = "device detail";
+    private static final String DEVICE_DETAIL_FRAGMENT = "device detail";
 
     public DeviceCardViewAdapter(final FragmentActivity fragmentActivity, List<Device> deviceList) {
 
@@ -123,7 +123,7 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        activity.runOnUiThread(new Runnable() {
+                        getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
@@ -133,7 +133,7 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
                                 if (currentFrag == null) {
                                     getActivity().getSupportFragmentManager().beginTransaction()
                                             .replace(R.id.contentMainLayout,
-                                                    DetailDeviceDetailFragment.newInstance(deviceDetailName),
+                                                    DeviceDetailFragment.newInstance(deviceDetailName),
                                                     DEVICE_DETAIL_FRAGMENT)
                                             .commit();
                                 }
