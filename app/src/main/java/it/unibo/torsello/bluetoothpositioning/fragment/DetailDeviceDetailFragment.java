@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
@@ -63,19 +62,46 @@ public class DetailDeviceDetailFragment extends Fragment {
     }
 
     private void addChildFragment(View root) {
-        List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(DeviceDetailInnerFragment.newInstance(idDeviceSelectedName));
-        fragments.add(DeviceChartFragment.newInstance(idDeviceSelectedName));
-        fragments.add(DeviceChartFragment.newInstance(idDeviceSelectedName));
-        fragments.add(DeviceChartFragment.newInstance(idDeviceSelectedName));
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.pag);
-        StatePagerAdapter myPageAdapter = new StatePagerAdapter(getChildFragmentManager(), fragments);
+        StatePagerAdapter myPageAdapter = new StatePagerAdapter(getChildFragmentManager(), getFragments());
         mViewPager.setAdapter(myPageAdapter);
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding_tabs2);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+    private ArrayList<Fragment> getFragments() {
+        // fragment 0
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(DeviceDetailInnerFragment.newInstance(idDeviceSelectedName));
+
+        // fragment 1
+        ArrayList<String> params1 = new ArrayList<>();
+        params1.add(getString(R.string.chart_arduino));
+        params1.add(getString(R.string.chart_raw_distance));
+        params1.add(getString(R.string.chart_altbeacon));
+        params1.add(getString(R.string.chart_kalman_filter));
+
+        fragments.add(DeviceChartFragment.newInstance("chart1", idDeviceSelectedName, params1));
+
+        // fragment 2
+        ArrayList<String> params2 = new ArrayList<>();
+        params2.add(getString(R.string.chart_arduino));
+        params2.add(getString(R.string.chart_raw_distance));
+        params2.add(getString(R.string.chart_kalman_filter));
+
+        fragments.add(DeviceChartFragment.newInstance("chart2", idDeviceSelectedName, params2));
+
+        // fragment 3
+        ArrayList<String> params3 = new ArrayList<>();
+        params3.add(getString(R.string.chart_arduino));
+        params3.add(getString(R.string.chart_altbeacon));
+        params3.add(getString(R.string.chart_kalman_filter));
+
+        fragments.add(DeviceChartFragment.newInstance("chart3", idDeviceSelectedName, params3));
+
+        return fragments;
+    }
 
 }

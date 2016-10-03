@@ -91,7 +91,6 @@ public class DeviceDetailInnerFragment extends Fragment implements Observer {
 
         if (arg instanceof List) {
 
-
             if (!deviceList.isEmpty()) {
                 deviceList.clear();
             }
@@ -101,16 +100,11 @@ public class DeviceDetailInnerFragment extends Fragment implements Observer {
             for (Device deviceSelected : devices) {
                 if (deviceSelected.getFriendlyName().equals(idDeviceSelectedName) ||
                         deviceSelected.getAddress().equals(idDeviceSelectedName)) {
-
-                    if (deviceSelected.getFriendlyName().equals(idDeviceSelectedName) ||
-                            deviceSelected.getAddress().equals(idDeviceSelectedName)) {
-
-                        deviceList.add(deviceSelected);
-                    }
-
-                    deviceViewAdapter.notifyDataSetChanged();
+                    deviceList.add(deviceSelected);
                 }
             }
+
+            deviceViewAdapter.notifyDataSetChanged();
         }
     }
 

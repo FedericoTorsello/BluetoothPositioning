@@ -40,15 +40,6 @@ public class ChartUtil implements OnChartValueSelectedListener {
         initializeChart();
     }
 
-//    public ChartUtil(FragmentActivity fragmentActivity) {
-//        this.activity = fragmentActivity;
-//        initializeChart();
-//    }
-//
-//    public void setmChart(LineChart mChart) {
-//        this.mChart = mChart;
-//    }
-
     public FragmentActivity getActivity() {
         return activity;
     }
@@ -94,14 +85,14 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     }
 
-    public void updateDataSet(final Double arg0, final Double arg1, final Double arg2, final Double arg3) {
+    public void updateDataSet(final ArrayList<Double> doubleArrayList) {
         if (thread != null)
             thread.interrupt();
 
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if (getActivity().getApplication() != null) {
+                if (getActivity() != null) {
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -110,7 +101,6 @@ public class ChartUtil implements OnChartValueSelectedListener {
                             LineData data = mChart.getData();
 
                             if (data == null) {
-
                                 if (dataSets != null) {
                                     initializeDataChart(dataSets);
                                 } else {
@@ -118,17 +108,9 @@ public class ChartUtil implements OnChartValueSelectedListener {
                                 }
                             } else {
                                 if (data.getDataSetCount() > 0) {
-                                    if (arg0 != null) {
-                                        plotValue(data, 0, arg0.floatValue());
-                                    }
-                                    if (arg1 != null) {
-                                        plotValue(data, 1, arg1.floatValue());
-                                    }
-                                    if (arg2 != null) {
-                                        plotValue(data, 2, arg2.floatValue());
-                                    }
-                                    if (arg3 != null) {
-                                        plotValue(data, 3, arg3.floatValue());
+
+                                    for (int i = 0; i < doubleArrayList.size(); i++) {
+                                        plotValue(data, i, doubleArrayList.get(i));
                                     }
                                 }
                             }
@@ -141,22 +123,13 @@ public class ChartUtil implements OnChartValueSelectedListener {
         thread.start();
     }
 
-    public ArrayList<ILineDataSet> createDataSet(String arg0, String arg1, String arg2, String arg3) {
+    public ArrayList<ILineDataSet> createDataSet(ArrayList<String> args) {
         // create a dataset and give it a type
-        if (arg0 != null) {
-            dataSets.add(createDataSet(arg0, getRandomColor())); // add the datasets
-        }
 
-        if (arg1 != null) {
-            dataSets.add(createDataSet(arg1, getRandomColor()));
-        }
-
-        if (arg2 != null) {
-            dataSets.add(createDataSet(arg2, getRandomColor()));
-        }
-
-        if (arg3 != null) {
-            dataSets.add(createDataSet(arg3, getRandomColor()));
+        for (String s : args) {
+            if (s != null) {
+                dataSets.add(createDataSet(s, getRandomColor()));
+            }
         }
 
         return dataSets;
@@ -177,11 +150,11 @@ public class ChartUtil implements OnChartValueSelectedListener {
         return set;
     }
 
-    private void plotValue(LineData data, int index, float value) {
+    private void plotValue(LineData data, int index, Double value) {
 
         ILineDataSet set = data.getDataSetByIndex(index);
 
-        set.addEntry(new Entry(set.getEntryCount(), value));
+        set.addEntry(new Entry(set.getEntryCount(), value.floatValue()));
 
         data.notifyDataChanged();
 
