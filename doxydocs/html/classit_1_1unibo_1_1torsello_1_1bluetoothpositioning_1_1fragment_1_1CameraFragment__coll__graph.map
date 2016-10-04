@@ -1,0 +1,3 @@
+<map id="it.unibo.torsello.bluetoothpositioning.fragment.CameraFragment" name="it.unibo.torsello.bluetoothpositioning.fragment.CameraFragment">
+<area shape="rect" id="node4" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraUtil.html" title="{it.unibo.torsello.bluetoothpositioning.util.\lCameraUtil\n||+ CameraUtil()\l+ getActivity()\l+ initialize()\l+ takePicture()\l+ safeCameraOpenInView()\l+ getmTextureView()\l+ onSurfaceTextureAvailable()\l+ onSurfaceTextureSizeChanged()\l+ onSurfaceTextureDestroyed()\l+ onSurfaceTextureUpdated()\l+ onPause()\l&#45; getOutputMediaFile()\l&#45; getCameraInstance()\l}" alt="" coords="293,175,584,443"/>
+</map>

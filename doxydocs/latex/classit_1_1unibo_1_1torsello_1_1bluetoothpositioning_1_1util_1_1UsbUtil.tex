@@ -44,11 +44,13 @@ Usb\+Serial\+Port \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositionin
 Serial\+Input\+Output\+Manager \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{m\+Serial\+Io\+Manager}
 \item 
 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity}{Application\+Activity} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{application\+Activity}
+\item 
+int \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aa1f09cbe9b44a01d9e8e85d2dfe48654_aa1f09cbe9b44a01d9e8e85d2dfe48654}{B\+O\+U\+N\+D\+\_\+\+R\+A\+TE} = 115200
 \end{DoxyCompactItemize}
 
 
 \subsubsection{Descrizione dettagliata}
-Created by federico on 02/10/16. 
+Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\tt federico.\+torsello@studio.\+unibo.\+it} 
 
 \subsubsection{Documentazione dei costruttori e dei distruttori}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aff938c0dddb8fd4549b0a3dddba94473_aff938c0dddb8fd4549b0a3dddba94473}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aff938c0dddb8fd4549b0a3dddba94473_aff938c0dddb8fd4549b0a3dddba94473} 
@@ -59,10 +61,10 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-37                                                             \{
-38         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity};
-39         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable} = UsbMeasurementObservable.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_aff4f89490f3f2c11ca4feea933d12d88_aff4f89490f3f2c11ca4feea933d12d88}{getInstance}();
-40     \}
+39                                                             \{
+40         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity};
+41         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable} = UsbMeasurementObservable.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_aff4f89490f3f2c11ca4feea933d12d88_aff4f89490f3f2c11ca4feea933d12d88}{getInstance}();
+42     \}
 \end{DoxyCode}
 
 
@@ -75,16 +77,16 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-110                              \{
-111         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
-112             \textcolor{keywordflow}{try} \{
-113                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.close();
-114             \} \textcolor{keywordflow}{catch} (IOException e) \{
-115                 \textcolor{comment}{// Ignore.}
-116             \}
-117             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} = null;
-118         \}
-119     \}
+116                              \{
+117         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
+118             \textcolor{keywordflow}{try} \{
+119                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.close();
+120             \} \textcolor{keywordflow}{catch} (IOException e) \{
+121                 \textcolor{comment}{// Ignore.}
+122             \}
+123             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} = null;
+124         \}
+125     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!get\+Activity@{get\+Activity}}
@@ -94,9 +96,9 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-42                                               \{
-43         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity};
-44     \}
+44                                               \{
+45         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_afdcd78c04f043fafe29eb2cc006b5843_afdcd78c04f043fafe29eb2cc006b5843}{applicationActivity};
+46     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a12b05cc1420c35ea8072d16253ab362e_a12b05cc1420c35ea8072d16253ab362e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a12b05cc1420c35ea8072d16253ab362e_a12b05cc1420c35ea8072d16253ab362e} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!initialize\+Usb@{initialize\+Usb}}
@@ -106,64 +108,67 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-56                                  \{
-57 
-58         \textcolor{comment}{// Find all available drivers from attached devices.}
-59         UsbManager usbManager = (UsbManager) \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}().getSystemService(Context.USB\_SERVICE)
+58                                  \{
+59 
+60         \textcolor{comment}{// Find all available drivers from attached devices.}
+61         UsbManager usbManager = (UsbManager) \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}().getSystemService(Context.USB\_SERVICE)
       ;
-60         List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(
+62         List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(
       usbManager);
-61         \textcolor{keywordflow}{if} (!availableDrivers.isEmpty()) \{
-62 
-63             \textcolor{comment}{// Open a connection to the first available driver.}
-64             UsbSerialDriver driver = availableDrivers.get(0);
-65 
-66             \textcolor{keywordflow}{if} (usbManager.hasPermission(driver.getDevice())) \{
-67                 \textcolor{keywordflow}{if} (usbManager.openDevice(driver.getDevice()) != null) \{
-68                     \textcolor{comment}{// Read some data! Most have just one port (port 0).}
-69                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} = driver.getPorts().get(0);
-70                 \}
-71             \} \textcolor{keywordflow}{else} \{
-72                 Intent startIntent = \textcolor{keyword}{new} Intent(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}(), getClass());
-73                 PendingIntent pendingIntent =
-74                         PendingIntent.getService(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}(), 0, startIntent, PendingIntent.
-      FLAG\_CANCEL\_CURRENT);
-75                 usbManager.requestPermission(driver.getDevice(), pendingIntent);
-76             \}
-77 
-78             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
-79 
-80                 UsbDeviceConnection connection = usbManager.openDevice(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.getDriver().getDevice());
-81 
-82                 \textcolor{keywordflow}{if} (connection != null) \{
-83                     \textcolor{keywordflow}{try} \{
-84                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.open(connection);
-85                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.setParameters(115200, 8, UsbSerialPort.STOPBITS\_1, UsbSerialPort.
-      PARITY\_NONE);
+63         \textcolor{keywordflow}{if} (!availableDrivers.isEmpty()) \{
+64 
+65             \textcolor{comment}{// Open a connection to the first available driver.}
+66             UsbSerialDriver driver = availableDrivers.get(0);
+67 
+68             \textcolor{keywordflow}{if} (usbManager.hasPermission(driver.getDevice())) \{
+69                 \textcolor{keywordflow}{if} (usbManager.openDevice(driver.getDevice()) != null) \{
+70                     \textcolor{comment}{// Read some data! Most have just one port (port 0).}
+71                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} = driver.getPorts().get(0);
+72                 \}
+73             \} \textcolor{keywordflow}{else} \{
+74                 Intent startIntent = \textcolor{keyword}{new} Intent(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}(), getClass());
+75                 PendingIntent pendingIntent =
+76                         PendingIntent.getService(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}(), 0, startIntent, 0);
+77                 usbManager.requestPermission(driver.getDevice(), pendingIntent);
+78 
+79 \textcolor{comment}{//                PendingIntent mPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, new
+       Intent("intent"), 0);}
+80 \textcolor{comment}{//                usbManager.requestPermission(driver.getDevice(), mPendingIntent);}
+81             \}
+82 
+83             \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
+84 
+85                 UsbDeviceConnection connection = usbManager.openDevice(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.getDriver().getDevice());
 86 
-87 \textcolor{comment}{//                    String details = "CD  - Carrier Detect" + port.getCD() + '\(\backslash\)n' +}
-88 \textcolor{comment}{//                            "CTS - Clear To Send" + port.getCTS() + '\(\backslash\)n' +}
-89 \textcolor{comment}{//                            "DSR - Data Set Ready" + port.getDSR() + '\(\backslash\)n' +}
-90 \textcolor{comment}{//                            "DTR - Data Terminal Ready" + port.getDTR() + '\(\backslash\)n' +}
-91 \textcolor{comment}{//                            "DSR - Data Set Ready" + port.getDSR() + '\(\backslash\)n' +}
-92 \textcolor{comment}{//                            "RI  - Ring Indicator" + port.getRI() + '\(\backslash\)n' +}
-93 \textcolor{comment}{//                            "RTS - Request To Send" + port.getRTS();}
-94 
-95                     \} \textcolor{keywordflow}{catch} (IOException e) \{
-96                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
+87                 \textcolor{keywordflow}{if} (connection != null) \{
+88                     \textcolor{keywordflow}{try} \{
+89                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.open(connection);
+90                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}.setParameters(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aa1f09cbe9b44a01d9e8e85d2dfe48654_aa1f09cbe9b44a01d9e8e85d2dfe48654}{BOUND\_RATE}, UsbSerialPort.DATABITS\_8,
+91                                 UsbSerialPort.STOPBITS\_1, UsbSerialPort.PARITY\_NONE);
+92 
+93 \textcolor{comment}{//                    String details = "CD  - Carrier Detect" + port.getCD() + '\(\backslash\)n' +}
+94 \textcolor{comment}{//                            "CTS - Clear To Send" + port.getCTS() + '\(\backslash\)n' +}
+95 \textcolor{comment}{//                            "DSR - Data Set Ready" + port.getDSR() + '\(\backslash\)n' +}
+96 \textcolor{comment}{//                            "DTR - Data Terminal Ready" + port.getDTR() + '\(\backslash\)n' +}
+97 \textcolor{comment}{//                            "DSR - Data Set Ready" + port.getDSR() + '\(\backslash\)n' +}
+98 \textcolor{comment}{//                            "RI  - Ring Indicator" + port.getRI() + '\(\backslash\)n' +}
+99 \textcolor{comment}{//                            "RTS - Request To Send" + port.getRTS();}
+100 
+101                     \} \textcolor{keywordflow}{catch} (IOException e) \{
+102                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}().getString(R.string.error\_opening\_device)
-97                                 + \textcolor{stringliteral}{" "} + e.getMessage());
-98                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{false});
-99                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_acfc389f97d1eae6eabe803bf16b49f7d_acfc389f97d1eae6eabe803bf16b49f7d}{closePort}();
-100                         \textcolor{keywordflow}{return};
-101                     \}
-102 
-103                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542}{stopIoManager}();
-104                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae6dea43af2962f682be4e87b11699c00_ae6dea43af2962f682be4e87b11699c00}{startIoManager}();
-105                 \}
-106             \}
-107         \}
-108     \}
+103                                 + \textcolor{stringliteral}{" "} + e.getMessage());
+104                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{false});
+105                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_acfc389f97d1eae6eabe803bf16b49f7d_acfc389f97d1eae6eabe803bf16b49f7d}{closePort}();
+106                         \textcolor{keywordflow}{return};
+107                     \}
+108 
+109                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542}{stopIoManager}();
+110                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae6dea43af2962f682be4e87b11699c00_ae6dea43af2962f682be4e87b11699c00}{startIoManager}();
+111                 \}
+112             \}
+113         \}
+114     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ab4f2c73fa6b776c9d4967ff89da0d8ca_ab4f2c73fa6b776c9d4967ff89da0d8ca}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ab4f2c73fa6b776c9d4967ff89da0d8ca_ab4f2c73fa6b776c9d4967ff89da0d8ca} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!on\+Pause@{on\+Pause}}
@@ -173,10 +178,10 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-46                           \{
-47         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542}{stopIoManager}();
-48         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_acfc389f97d1eae6eabe803bf16b49f7d_acfc389f97d1eae6eabe803bf16b49f7d}{closePort}();
-49     \}
+48                           \{
+49         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542}{stopIoManager}();
+50         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_acfc389f97d1eae6eabe803bf16b49f7d_acfc389f97d1eae6eabe803bf16b49f7d}{closePort}();
+51     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae814610c8dc793fea3a9a314fb26e3cb_ae814610c8dc793fea3a9a314fb26e3cb}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae814610c8dc793fea3a9a314fb26e3cb_ae814610c8dc793fea3a9a314fb26e3cb} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!on\+Resume@{on\+Resume}}
@@ -186,9 +191,9 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-51                            \{
-52         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a12b05cc1420c35ea8072d16253ab362e_a12b05cc1420c35ea8072d16253ab362e}{initializeUsb}();
-53     \}
+53                            \{
+54         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a12b05cc1420c35ea8072d16253ab362e_a12b05cc1420c35ea8072d16253ab362e}{initializeUsb}();
+55     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae6dea43af2962f682be4e87b11699c00_ae6dea43af2962f682be4e87b11699c00}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae6dea43af2962f682be4e87b11699c00_ae6dea43af2962f682be4e87b11699c00} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!start\+Io\+Manager@{start\+Io\+Manager}}
@@ -198,37 +203,38 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-128                                   \{
-129         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
-130 
-131             SerialInputOutputManager.Listener mListener =
-132                     \textcolor{keyword}{new} SerialInputOutputManager.Listener() \{
-133 
-134                         @Override
-135                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} onRunError(Exception e) \{
-136                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{false});
-137                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
+134                                   \{
+135         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port} != null) \{
+136 
+137             SerialInputOutputManager.Listener mListener =
+138                     \textcolor{keyword}{new} SerialInputOutputManager.Listener() \{
+139 
+140                         @Override
+141                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} onRunError(Exception e) \{
+142                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{false});
+143                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}().getString(R.string.usb\_device\_not\_connected));
-138                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(0D);
-139                         \}
-140 
-141                         @Override
-142                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} onNewData(\textcolor{keyword}{final} byte[] data) \{
-143                             \textcolor{keywordflow}{try} \{
-144                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{true});
-145                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
+144                             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(0D);
+145                         \}
+146 
+147                         @Override
+148                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} onNewData(\textcolor{keyword}{final} byte[] data) \{
+149                             \textcolor{keywordflow}{try} \{
+150                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(\textcolor{keyword}{true});
+151                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a625b1885830a4d2c359a534834a46648_a625b1885830a4d2c359a534834a46648}{getActivity}().getString(R.string.usb\_device\_connected));
-146                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(Double.
-      valueOf(\textcolor{keyword}{new} String(data).trim()) / 100);
-147                             \} \textcolor{keywordflow}{catch} (NumberFormatException nfe) \{
-148                             \}
-149                         \}
-150                     \};
-151 
-152             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} = \textcolor{keyword}{new} SerialInputOutputManager(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}, mListener);
-153             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a0b5ea6576e2234b8f7a43343b598d637_a0b5ea6576e2234b8f7a43343b598d637}{mExecutor}.submit(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager});
-154         \}
-155     \}
+152                                 Double distanceEstimate = Double.valueOf(\textcolor{keyword}{new} String(data).trim()) / 100;
+153                                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a1c500d0f1a3f3a11b16015acc49929e0_a1c500d0f1a3f3a11b16015acc49929e0}{myUsbObservable}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable_abcb4f86ee4b212c3dbc0a814e989ab73_abcb4f86ee4b212c3dbc0a814e989ab73}{notifyObservers}(
+      distanceEstimate);
+154                             \} \textcolor{keywordflow}{catch} (NumberFormatException nfe) \{
+155                             \}
+156                         \}
+157                     \};
+158 
+159             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} = \textcolor{keyword}{new} SerialInputOutputManager(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a49aef08510b6d48d627670d834099c36_a49aef08510b6d48d627670d834099c36}{port}, mListener);
+160             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a0b5ea6576e2234b8f7a43343b598d637_a0b5ea6576e2234b8f7a43343b598d637}{mExecutor}.submit(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager});
+161         \}
+162     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae33eeba2e0dc8e8a40b83afea3ff8542_ae33eeba2e0dc8e8a40b83afea3ff8542} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!stop\+Io\+Manager@{stop\+Io\+Manager}}
@@ -238,12 +244,12 @@ Created by federico on 02/10/16.
 
 
 \begin{DoxyCode}
-121                                  \{
-122         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} != null) \{
-123             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager}.stop();
-124             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} = null;
-125         \}
-126     \}
+127                                  \{
+128         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} != null) \{
+129             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager}.stop();
+130             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aba070ed30c34ed6fd900b30452817b4b_aba070ed30c34ed6fd900b30452817b4b}{mSerialIoManager} = null;
+131         \}
+132     \}
 \end{DoxyCode}
 
 
@@ -253,6 +259,12 @@ Created by federico on 02/10/16.
 \index{application\+Activity@{application\+Activity}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}}
 \paragraph{\texorpdfstring{application\+Activity}{applicationActivity}}
 {\footnotesize\ttfamily \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity}{Application\+Activity} it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Usb\+Util.\+application\+Activity\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aa1f09cbe9b44a01d9e8e85d2dfe48654_aa1f09cbe9b44a01d9e8e85d2dfe48654}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_aa1f09cbe9b44a01d9e8e85d2dfe48654_aa1f09cbe9b44a01d9e8e85d2dfe48654} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!B\+O\+U\+N\+D\+\_\+\+R\+A\+TE@{B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}}
+\index{B\+O\+U\+N\+D\+\_\+\+R\+A\+TE@{B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}}
+\paragraph{\texorpdfstring{B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}{BOUND\_RATE}}
+{\footnotesize\ttfamily int it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Usb\+Util.\+B\+O\+U\+N\+D\+\_\+\+R\+A\+TE = 115200\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a0b5ea6576e2234b8f7a43343b598d637_a0b5ea6576e2234b8f7a43343b598d637}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_a0b5ea6576e2234b8f7a43343b598d637_a0b5ea6576e2234b8f7a43343b598d637} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}!m\+Executor@{m\+Executor}}

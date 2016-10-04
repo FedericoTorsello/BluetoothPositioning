@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="generator" content="Doxygen 1.8.12"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>BluetoothPositioning:
+        it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter.C</title>
+    <link href="tabs.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="search/searchdata.js"></script>
+    <script type="text/javascript" src="search/search.js"></script>
+    <link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+    <div id="titlearea">
+        <table cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr style="height: 56px;">
+                <td id="projectalign" style="padding-left: 0.5em;">
+                    <div id="projectname">BluetoothPositioning
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- end header part -->
+    <!-- Generato da Doxygen 1.8.12 -->
+    <script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+
+    </script>
+    <script type="text/javascript" src="menudata.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
+    <script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+
+    </script>
+    <div id="main-nav"></div>
+    <!-- window showing the filter options -->
+    <div id="MSearchSelectWindow"
+         onmouseover="return searchBox.OnSearchSelectShow()"
+         onmouseout="return searchBox.OnSearchSelectHide()"
+         onkeydown="return searchBox.OnSearchSelectKey(event)">
+    </div>
+
+    <!-- iframe showing the search results (closed by default) -->
+    <div id="MSearchResultsWindow">
+        <iframe src="javascript:void(0)" frameborder="0"
+                name="MSearchResults" id="MSearchResults">
+        </iframe>
+    </div>
+
+    <div id="nav-path" class="navpath">
+        <ul>
+            <li class="navelem"><a class="el" href="namespaceit.html">it</a></li>
+            <li class="navelem"><a class="el" href="namespaceit_1_1unibo.html">unibo</a></li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello.html">torsello</a></li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning.html">bluetoothpositioning</a>
+            </li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter.html">kalmanFilter</a>
+            </li>
+            <li class="navelem"><a class="el"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter.html">KFilter</a>
+            </li>
+        </ul>
+    </div>
+</div><!-- top -->
+<div class="contents">
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td valign="top">
+                <div class="navtab">
+                    <table>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a1f75be34a39e81ee7566035f9a8ff11e.html#a1f75be34a39e81ee7566035f9a8ff11e">A</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a6ed97dcc6105d1c64478b1a22bf800bc.html#a6ed97dcc6105d1c64478b1a22bf800bc">B</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindexHL"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a850cd09cf3a3a8ee28e16636069cb9a0.html#a850cd09cf3a3a8ee28e16636069cb9a0">C</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a2c0a42b4dbe4de0e2a34046b9dc8eb3b.html#a2c0a42b4dbe4de0e2a34046b9dc8eb3b">cov</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a6904818e94d959f8e25a8699d6885c21.html#a6904818e94d959f8e25a8699d6885c21">filter</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a376767db8e40babdacbbc9165a50a1a2.html#a376767db8e40babdacbbc9165a50a1a2">filter</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a105f10d669cc0e4fa8838aa04342fad6.html#a105f10d669cc0e4fa8838aa04342fad6">KFilter</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa2eb3f57a84ca002ceb97a0d7c9f9eed.html#aa2eb3f57a84ca002ceb97a0d7c9f9eed">lastMeasurement</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a454b23b79e09bb12edbc9175e6ba17e9.html#a454b23b79e09bb12edbc9175e6ba17e9">Q</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a8dd220ba0a0b0f20c368b13efeb1fe43.html#a8dd220ba0a0b0f20c368b13efeb1fe43">R</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a0ed62a630ff52aacdcd8832b9416f406.html#a0ed62a630ff52aacdcd8832b9416f406">setMeasurementNoise</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a7651339cfddb4cdaa1e47906b27745fc.html#a7651339cfddb4cdaa1e47906b27745fc">setProcessNoise</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa6f9d5594f6870767679dbb79e40918d.html#aa6f9d5594f6870767679dbb79e40918d">x</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_ac6a114b47e572ccdfb7b1df2aa77c190.html#ac6a114b47e572ccdfb7b1df2aa77c190">x1</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a45faa12a35825dd4bd104e1cbeeaf609.html#a45faa12a35825dd4bd104e1cbeeaf609">x2</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td valign="top" class="mempage">
+                <a id="a850cd09cf3a3a8ee28e16636069cb9a0"></a>
+                <h2 class="memtitle"><span class="permalink"><a
+                        href="#a850cd09cf3a3a8ee28e16636069cb9a0">&sect;&nbsp;</a></span>C</h2>
+
+                <div class="memitem">
+                    <div class="memproto">
+                        <table class="mlabels">
+                            <tr>
+                                <td class="mlabels-left">
+                                    <table class="memname">
+                                        <tr>
+                                            <td class="memname">double
+                                                it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter.C
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="mlabels-right">
+                                    <span class="mlabels"><span class="mlabel">private</span></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="memdoc">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/>
+<address class="footer">
+    <small>
+        Generato da &#160;<a href="http://www.doxygen.org/index.html">
+        <img class="footer" src="doxygen.png" alt="doxygen"/>
+    </a> 1.8.12
+    </small>
+</address>
+</body>
+</html>

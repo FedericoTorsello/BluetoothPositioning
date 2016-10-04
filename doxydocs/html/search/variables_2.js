@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['c',['C',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a850cd09cf3a3a8ee28e16636069cb9a0.html#a850cd09cf3a3a8ee28e16636069cb9a0',1,'it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter.C()'],['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilterBuilder_a3355c1cf5bece6b669b920c02afa6da3.html#a3355c1cf5bece6b669b920c02afa6da3',1,'it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilterBuilder.C()']]],
+  ['camera',['camera',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1examplesCamera_1_1CamTestFragment_ae0d0a876ac5ce037c020f5362d3e1887.html#ae0d0a876ac5ce037c020f5362d3e1887',1,'it::unibo::torsello::bluetoothpositioning::examplesCamera::CamTestFragment']]],
+  ['camerautil',['cameraUtil',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a127f286f45219c7891d564cc55e2a80e.html#a127f286f45219c7891d564cc55e2a80e',1,'it::unibo::torsello::bluetoothpositioning::fragment::CameraFragment']]],
+  ['chartutil',['chartUtil',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceChartFragment_afe4ee0e5d07f3efb6887428c9ef04a2e.html#afe4ee0e5d07f3efb6887428c9ef04a2e',1,'it::unibo::torsello::bluetoothpositioning::fragment::devicesObservers::DeviceChartFragment']]],
+  ['color',['color',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a903c767011327aa70b1e6c9ecf3b72eb.html#a903c767011327aa70b1e6c9ecf3b72eb',1,'it::unibo::torsello::bluetoothpositioning::model::Device']]],
+  ['colortextview',['colorTextView',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder_a13b19031bd21f4beee3809d4917429de.html#a13b19031bd21f4beee3809d4917429de',1,'it::unibo::torsello::bluetoothpositioning::adapter::DeviceCardViewAdapter::DeviceViewHolder']]],
+  ['cov',['cov',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a2c0a42b4dbe4de0e2a34046b9dc8eb3b.html#a2c0a42b4dbe4de0e2a34046b9dc8eb3b',1,'it::unibo::torsello::bluetoothpositioning::kalmanFilter::KFilter']]]
+];

@@ -75,11 +75,11 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-39                                                                          \{
-40         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_acf9c1988f7aaacc3f3354ac7e9eeef6a_acf9c1988f7aaacc3f3354ac7e9eeef6a}{activity} = fragmentActivity;
-41         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart} = chart;
-42         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aab1a6bd41cbf8228c53d633af6b89bb7_aab1a6bd41cbf8228c53d633af6b89bb7}{initializeChart}();
-43     \}
+37                                                                          \{
+38         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_acf9c1988f7aaacc3f3354ac7e9eeef6a_acf9c1988f7aaacc3f3354ac7e9eeef6a}{activity} = fragmentActivity;
+39         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart} = chart;
+40         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aab1a6bd41cbf8228c53d633af6b89bb7_aab1a6bd41cbf8228c53d633af6b89bb7}{initializeChart}();
+41     \}
 \end{DoxyCode}
 
 
@@ -92,22 +92,22 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-128                                                                          \{
-129         \textcolor{comment}{// create a dataset and give it a type}
-130 
-131         \textcolor{keywordflow}{for} (String s : args) \{
-132             \textcolor{keywordflow}{if} (s != null) \{
-133                 \textcolor{keywordflow}{if} (s.equals(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getString(R.string.chart\_arduino))) \{
-134                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets}.add(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a40268790f1c3f7ec34bd4296166048b4_a40268790f1c3f7ec34bd4296166048b4}{createDataSet}(s, Color.RED));
-135                 \} \textcolor{keywordflow}{else} \{
-136                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets}.add(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a40268790f1c3f7ec34bd4296166048b4_a40268790f1c3f7ec34bd4296166048b4}{createDataSet}(s, 
+126                                                                          \{
+127         \textcolor{comment}{// create a dataset and give it a type}
+128 
+129         \textcolor{keywordflow}{for} (String s : args) \{
+130             \textcolor{keywordflow}{if} (s != null) \{
+131                 \textcolor{keywordflow}{if} (s.equals(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getString(R.string.chart\_arduino))) \{
+132                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets}.add(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a40268790f1c3f7ec34bd4296166048b4_a40268790f1c3f7ec34bd4296166048b4}{createDataSet}(s, Color.RED));
+133                 \} \textcolor{keywordflow}{else} \{
+134                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets}.add(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a40268790f1c3f7ec34bd4296166048b4_a40268790f1c3f7ec34bd4296166048b4}{createDataSet}(s, 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac7dc0a849201a4a3c932fd525435b397_ac7dc0a849201a4a3c932fd525435b397}{getRandomColor}()));
-137                 \}
-138             \}
-139         \}
-140 
-141         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets};
-142     \}
+135                 \}
+136             \}
+137         \}
+138 
+139         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets};
+140     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7e24ac167fd4955090e04024b11c6c31_a7e24ac167fd4955090e04024b11c6c31}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7e24ac167fd4955090e04024b11c6c31_a7e24ac167fd4955090e04024b11c6c31} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!create\+Data\+Set@{create\+Data\+Set}}
@@ -117,11 +117,11 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-153                                                                      \{
-154         LineDataSet \textcolor{keyword}{set} = \textcolor{keyword}{new} LineDataSet(null, nameDataSet);
-155         \textcolor{keyword}{set}.setColor(color);
-156         \textcolor{keywordflow}{return} \textcolor{keyword}{set};
-157     \}
+151                                                                      \{
+152         LineDataSet \textcolor{keyword}{set} = \textcolor{keyword}{new} LineDataSet(null, nameDataSet);
+153         \textcolor{keyword}{set}.setColor(color);
+154         \textcolor{keywordflow}{return} \textcolor{keyword}{set};
+155     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!get\+Activity@{get\+Activity}}
@@ -131,9 +131,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-45                                           \{
-46         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_acf9c1988f7aaacc3f3354ac7e9eeef6a_acf9c1988f7aaacc3f3354ac7e9eeef6a}{activity};
-47     \}
+43                                           \{
+44         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_acf9c1988f7aaacc3f3354ac7e9eeef6a_acf9c1988f7aaacc3f3354ac7e9eeef6a}{activity};
+45     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac7dc0a849201a4a3c932fd525435b397_ac7dc0a849201a4a3c932fd525435b397}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac7dc0a849201a4a3c932fd525435b397_ac7dc0a849201a4a3c932fd525435b397} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!get\+Random\+Color@{get\+Random\+Color}}
@@ -143,14 +143,14 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-144                                  \{
-145         Random rnd = \textcolor{keyword}{new} Random();
-146         \textcolor{keywordtype}{int} color = 0;
-147         \textcolor{keywordflow}{while} (color == 0) \{
-148             color = Color.argb(255, rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
-149         \}
-150         \textcolor{keywordflow}{return} color;
-151     \}
+142                                  \{
+143         Random rnd = \textcolor{keyword}{new} Random();
+144         \textcolor{keywordtype}{int} color = 0;
+145         \textcolor{keywordflow}{while} (color == 0) \{
+146             color = Color.argb(255, rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
+147         \}
+148         \textcolor{keywordflow}{return} color;
+149     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aab1a6bd41cbf8228c53d633af6b89bb7_aab1a6bd41cbf8228c53d633af6b89bb7}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aab1a6bd41cbf8228c53d633af6b89bb7_aab1a6bd41cbf8228c53d633af6b89bb7} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!initialize\+Chart@{initialize\+Chart}}
@@ -160,48 +160,48 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-49                                    \{
-50         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets} = \textcolor{keyword}{new} ArrayList<ILineDataSet>();
+47                                    \{
+48         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets} = \textcolor{keyword}{new} ArrayList<ILineDataSet>();
+49 
+50         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setOnChartValueSelectedListener(\textcolor{keyword}{this});
 51 
-52         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setOnChartValueSelectedListener(\textcolor{keyword}{this});
-53 
-54         \textcolor{comment}{// no description text}
-55         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setDescription(\textcolor{stringliteral}{""});
-56         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setNoDataTextDescription(\textcolor{stringliteral}{"You need to provide data for the chart."});
+52         \textcolor{comment}{// no description text}
+53         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setDescription(\textcolor{stringliteral}{""});
+54         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setNoDataTextDescription(\textcolor{stringliteral}{"You need to provide data for the chart."});
+55 
+56         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setDrawGridBackground(\textcolor{keyword}{true});
 57 
-58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setDrawGridBackground(\textcolor{keyword}{true});
-59 
-60         \textcolor{comment}{// if disabled, scaling can be done on x- and y-axis separately}
-61         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setPinchZoom(\textcolor{keyword}{true});
-62 
-63         \textcolor{comment}{// set an alternative background color}
-64         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setBackgroundColor(Color.LTGRAY);
-65 
-66         Typeface mTfLight = Typeface.createFromAsset(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getAssets(), \textcolor{stringliteral}{"
+58         \textcolor{comment}{// if disabled, scaling can be done on x- and y-axis separately}
+59         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setPinchZoom(\textcolor{keyword}{true});
+60 
+61         \textcolor{comment}{// set an alternative background color}
+62         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setBackgroundColor(Color.LTGRAY);
+63 
+64         Typeface mTfLight = Typeface.createFromAsset(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getAssets(), \textcolor{stringliteral}{"
       OpenSans-Light.ttf"});
-67         Typeface mTfBold = Typeface.createFromAsset(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getAssets(), \textcolor{stringliteral}{"
+65         Typeface mTfBold = Typeface.createFromAsset(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().getAssets(), \textcolor{stringliteral}{"
       OpenSans-Bold.ttf"});
-68 
-69         \textcolor{comment}{// get the legend (only possible after setting data)}
-70         Legend l = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getLegend();
-71 \textcolor{comment}{//        l.setPosition(Legend.LegendPosition.RIGHT\_OF\_CHART);}
-72 \textcolor{comment}{//        l.setOrientation(Legend.LegendOrientation.VERTICAL);}
-73         l.setXEntrySpace(7f);
-74         l.setYEntrySpace(7f);
-75 
-76         XAxis xl = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getXAxis();
-77         xl.setTypeface(mTfLight);
-78         xl.setGridColor(Color.LTGRAY);
-79         xl.setTextColor(Color.WHITE);
-80 
-81         YAxis leftAxis = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getAxisLeft();
-82         leftAxis.setTypeface(mTfLight);
-83         leftAxis.setTextColor(Color.WHITE);
-84 
-85         YAxis rightAxis = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getAxisRight();
-86         rightAxis.setTypeface(mTfBold);
-87 
-88     \}
+66 
+67         \textcolor{comment}{// get the legend (only possible after setting data)}
+68         Legend l = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getLegend();
+69 \textcolor{comment}{//        l.setPosition(Legend.LegendPosition.RIGHT\_OF\_CHART);}
+70 \textcolor{comment}{//        l.setOrientation(Legend.LegendOrientation.VERTICAL);}
+71         l.setXEntrySpace(7f);
+72         l.setYEntrySpace(7f);
+73 
+74         XAxis xl = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getXAxis();
+75         xl.setTypeface(mTfLight);
+76         xl.setGridColor(Color.LTGRAY);
+77         xl.setTextColor(Color.WHITE);
+78 
+79         YAxis leftAxis = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getAxisLeft();
+80         leftAxis.setTypeface(mTfLight);
+81         leftAxis.setTextColor(Color.WHITE);
+82 
+83         YAxis rightAxis = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getAxisRight();
+84         rightAxis.setTypeface(mTfBold);
+85 
+86     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a3393d9aa353849188c02a63d64f2dd2d_a3393d9aa353849188c02a63d64f2dd2d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a3393d9aa353849188c02a63d64f2dd2d_a3393d9aa353849188c02a63d64f2dd2d} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!initialize\+Data\+Chart@{initialize\+Data\+Chart}}
@@ -211,17 +211,17 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-177                                                                        \{
-178 
-179         \textcolor{comment}{// create a data object with the datasets}
-180         LineData lineData = \textcolor{keyword}{new} LineData(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets});
-181         lineData.setValueTextColor(Color.RED);
-182         lineData.setValueTextSize(9f);
-183         lineData.setValueFormatter(\textcolor{keyword}{new} DefaultValueFormatter(2));
-184 
-185         \textcolor{comment}{// set data}
-186         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setData(lineData);
-187     \}
+175                                                                        \{
+176 
+177         \textcolor{comment}{// create a data object with the datasets}
+178         LineData lineData = \textcolor{keyword}{new} LineData(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets});
+179         lineData.setValueTextColor(Color.RED);
+180         lineData.setValueTextSize(9f);
+181         lineData.setValueFormatter(\textcolor{keyword}{new} DefaultValueFormatter(2));
+182 
+183         \textcolor{comment}{// set data}
+184         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setData(lineData);
+185     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7e7f15aebf87926e19bc9e1ece289fde_a7e7f15aebf87926e19bc9e1ece289fde}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7e7f15aebf87926e19bc9e1ece289fde_a7e7f15aebf87926e19bc9e1ece289fde} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!on\+Nothing\+Selected@{on\+Nothing\+Selected}}
@@ -231,9 +231,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-199                                     \{
-200         Log.i(\textcolor{stringliteral}{"Nothing selected"}, \textcolor{stringliteral}{"Nothing selected."});
-201     \}
+197                                     \{
+198         Log.i(\textcolor{stringliteral}{"Nothing selected"}, \textcolor{stringliteral}{"Nothing selected."});
+199     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7f7609b8236d269e4f272f717b0b0294_a7f7609b8236d269e4f272f717b0b0294}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a7f7609b8236d269e4f272f717b0b0294_a7f7609b8236d269e4f272f717b0b0294} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!on\+Value\+Selected@{on\+Value\+Selected}}
@@ -243,9 +243,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-194                                                       \{
-195         Log.i(\textcolor{stringliteral}{"Entry selected"}, e.toString());
-196     \}
+192                                                       \{
+193         Log.i(\textcolor{stringliteral}{"Entry selected"}, e.toString());
+194     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a86398d4aca978fbfc10c71039191635e_a86398d4aca978fbfc10c71039191635e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a86398d4aca978fbfc10c71039191635e_a86398d4aca978fbfc10c71039191635e} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!plot\+Value@{plot\+Value}}
@@ -255,23 +255,23 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-159                                                                    \{
+157                                                                    \{
+158 
+159         ILineDataSet \textcolor{keyword}{set} = data.getDataSetByIndex(index);
 160 
-161         ILineDataSet \textcolor{keyword}{set} = data.getDataSetByIndex(index);
+161         \textcolor{keyword}{set}.addEntry(\textcolor{keyword}{new} Entry(\textcolor{keyword}{set}.getEntryCount(), value.floatValue()));
 162 
-163         \textcolor{keyword}{set}.addEntry(\textcolor{keyword}{new} Entry(\textcolor{keyword}{set}.getEntryCount(), value.floatValue()));
+163         data.notifyDataChanged();
 164 
-165         data.notifyDataChanged();
-166 
-167         \textcolor{comment}{// let the chart know it's data has changed}
-168         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.notifyDataSetChanged();
-169 
-170         \textcolor{comment}{// limit the number of visible entries}
-171         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setVisibleXRangeMaximum(10);
-172 
-173         \textcolor{comment}{// move to the latest entry}
-174         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.moveViewToX(data.getEntryCount());
-175     \}
+165         \textcolor{comment}{// let the chart know it's data has changed}
+166         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.notifyDataSetChanged();
+167 
+168         \textcolor{comment}{// limit the number of visible entries}
+169         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.setVisibleXRangeMaximum(10);
+170 
+171         \textcolor{comment}{// move to the latest entry}
+172         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.moveViewToX(data.getEntryCount());
+173     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a246a056ad6773a4b2d041e693570d02c_a246a056ad6773a4b2d041e693570d02c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a246a056ad6773a4b2d041e693570d02c_a246a056ad6773a4b2d041e693570d02c} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!save\+Image\+Chart@{save\+Image\+Chart}}
@@ -281,9 +281,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-189                                  \{
-190         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.saveToGallery(\textcolor{stringliteral}{"prova"}, 100);
-191     \}
+187                                  \{
+188         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.saveToGallery(\textcolor{stringliteral}{"prova"}, 100);
+189     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa9bda04d2c2058fb1b3fcd72c5a7471d_aa9bda04d2c2058fb1b3fcd72c5a7471d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa9bda04d2c2058fb1b3fcd72c5a7471d_aa9bda04d2c2058fb1b3fcd72c5a7471d} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}!update\+Data\+Set@{update\+Data\+Set}}
@@ -293,44 +293,44 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-90                                                                        \{
-91         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread} != null)
-92             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread}.interrupt();
-93 
-94         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread} = \textcolor{keyword}{new} Thread(\textcolor{keyword}{new} Runnable() \{
-95             @Override
-96             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
-97                 \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}() != null) \{
-98 
-99                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().runOnUiThread(\textcolor{keyword}{new} Runnable() \{
-100                         @Override
-101                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+88                                                                        \{
+89         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread} != null)
+90             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread}.interrupt();
+91 
+92         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread} = \textcolor{keyword}{new} Thread(\textcolor{keyword}{new} Runnable() \{
+93             @Override
+94             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+95                 \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}() != null) \{
+96 
+97                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a59150a6d20b6d0ad2fcf8c1ba858d355_a59150a6d20b6d0ad2fcf8c1ba858d355}{getActivity}().runOnUiThread(\textcolor{keyword}{new} Runnable() \{
+98                         @Override
+99                         \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+100 
+101                             LineData data = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getData();
 102 
-103                             LineData data = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a60b5bd6796cc5dcde12d9a6bb3e67c86_a60b5bd6796cc5dcde12d9a6bb3e67c86}{mChart}.getData();
-104 
-105                             \textcolor{keywordflow}{if} (data == null) \{
-106                                 \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets} != null) \{
-107                                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a3393d9aa353849188c02a63d64f2dd2d_a3393d9aa353849188c02a63d64f2dd2d}{initializeDataChart}(
+103                             \textcolor{keywordflow}{if} (data == null) \{
+104                                 \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets} != null) \{
+105                                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a3393d9aa353849188c02a63d64f2dd2d_a3393d9aa353849188c02a63d64f2dd2d}{initializeDataChart}(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a_aa98bcaa2d5ba444b91cdc029768d380a}{dataSets});
-108                                 \} \textcolor{keywordflow}{else} \{
-109                                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Error(\textcolor{stringliteral}{"Error: dataSet is null!!!"});
-110                                 \}
-111                             \} \textcolor{keywordflow}{else} \{
-112                                 \textcolor{keywordflow}{if} (data.getDataSetCount() > 0) \{
-113 
-114                                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < doubleArrayList.size(); i++) \{
-115                                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a86398d4aca978fbfc10c71039191635e_a86398d4aca978fbfc10c71039191635e}{plotValue}(data, i, doubleArrayList.get(i));
-116                                     \}
-117                                 \}
-118                             \}
-119                         \}
-120                     \});
-121                 \}
-122             \}
-123         \});
-124 
-125         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread}.start();
-126     \}
+106                                 \} \textcolor{keywordflow}{else} \{
+107                                     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} Error(\textcolor{stringliteral}{"Error: dataSet is null!!!"});
+108                                 \}
+109                             \} \textcolor{keywordflow}{else} \{
+110                                 \textcolor{keywordflow}{if} (data.getDataSetCount() > 0) \{
+111 
+112                                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < doubleArrayList.size(); i++) \{
+113                                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a86398d4aca978fbfc10c71039191635e_a86398d4aca978fbfc10c71039191635e}{plotValue}(data, i, doubleArrayList.get(i));
+114                                     \}
+115                                 \}
+116                             \}
+117                         \}
+118                     \});
+119                 \}
+120             \}
+121         \});
+122 
+123         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_ac73af861c9ca49e226fe1218cef6c572}{thread}.start();
+124     \}
 \end{DoxyCode}
 
 

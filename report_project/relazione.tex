@@ -1,0 +1,172 @@
+\documentclass[a4paper,twoside,11pt]{report}
+\usepackage[italian]{babel}
+\usepackage[utf8x]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage[scaled]{helvet}
+%\renewcommand\familydefault{\sfdefault}
+
+%\renewcommand{\sfdefault}{cmr}
+%helvetica
+%\renewcommand{\sfdefault}{phv}
+%courier
+%\renewcommand{\sfdefault}{pcr}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{sidecap}
+
+\usepackage{quoting}
+\quotingsetup{font=small}
+
+\usepackage{eurosym}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{comment}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage[dvipsnames]{xcolor}
+%%https://en.wikibooks.org/wiki/LaTeX/Colors
+\usepackage[colorlinks]{hyperref}
+%\hypersetup{hidelinks}
+
+%\lstset{
+%	basicstyle=\ttfamily,
+%	columns=fullflexible,
+%	showstringspaces=false,
+%	commentstyle=\color{gray}\upshape,
+%	xleftmargin=\parindent,
+%	belowcaptionskip=100\baselineskip,
+%	basicstyle=\footnotesize\ttfamily	
+%}
+
+%\definecolor{forestGreen}{RGB}{34,139,34}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+%\definecolor{dkgreen}{rgb}{0,0.6,0}
+%\definecolor{gray}{rgb}{0.5,0.5,0.5}
+%\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{lightgray}{rgb}{0.95,0.95,0.90}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{azure}{rgb}{0.0, 0.5, 1.0}
+
+\hypersetup{%
+	,urlcolor=azure
+	,citecolor=lightgray
+	,linkcolor=darkgray
+}
+
+%\lstdefinelanguage{XML}
+%{
+%	basicstyle=\scriptsize,
+%	sensitive=true,
+%	showstringspaces=false,
+%	numbers=left,
+%	numberstyle=\tiny,
+%	tabsize=4,
+%	numbersep=3pt,
+%	extendedchars=true,
+%	xleftmargin=2em,
+%	lineskip=1pt,
+%	breaklines,
+%	captionpos=t,
+%	backgroundcolor=\color{lightgray},
+%	morekeywords={android},
+%	alsoletter={:,,/,?},
+%	morestring=[b]{"},
+%	morecomment=[s]{&lt;!--}{--&gt;},
+%	keywordstyle=\color{forestGreen},
+%	identifierstyle=\color{blue}\ttfamily,
+%	stringstyle=\color{orangeRed}\ttfamily,
+%	commentstyle=\color{forestGreen}\ttfamily
+%}
+
+%\lstset
+%{ 	
+%	language=Bash,
+%	basicstyle=\scriptsize,
+%	sensitive=true,
+%	showstringspaces=false,
+%	numbers=none,
+%	numberstyle=\tiny,
+%	tabsize=4,
+%	numbersep=3pt,
+%	extendedchars=true,
+%	xleftmargin=2em,
+%	lineskip=1pt,
+%	breaklines,
+%	captionpos=t,
+%	backgroundcolor=\color{lightgray},
+%	morestring=[b]{"},
+%	morecomment=[l]{\#},
+%	keywordstyle=\color{forestGreen},
+%%	identifierstyle=\color{codegreen}\ttfamily,
+%	stringstyle=\color{codepurple}\ttfamily,
+%	commentstyle=\color{codegray}\ttfamily
+%}
+
+\definecolor{codeorange}{rgb}{1,0.5,0}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\lstset{
+	language=Java,
+	basicstyle=\footnotesize\ttfamily,
+	breaklines=true,
+	breakatwhitespace=true,
+	xleftmargin=\parindent,
+	showstringspaces=false,
+	sensitive=true,
+	lineskip=1pt,
+	numberstyle=\tiny,
+	belowcaptionskip=1\baselineskip,
+	tabsize=4,
+	numbersep=3pt,
+	extendedchars=true,
+	keywordstyle=\bfseries\color{codeorange},
+	commentstyle=\itshape\color{codepurple},
+	identifierstyle=\color{codegray},
+	stringstyle=\bfseries\color{codegreen},
+	backgroundcolor=\color{lightgray}
+}
+
+
+%belowcaptionskip=100\baselineskip,
+%xleftmargin=\parindent, 
+
+%\lstset{
+%	basicstyle=\ttfamily,
+%	columns=fullflexible,
+%	showstringspaces=false,
+%	commentstyle=\color{codegreen}\upshape
+%}
+
+%opening
+\title{Ingegneria dei Sistemi Software
+	\\ Adattativi Complessi
+	\\{\Large Stima della distanza utilizzando tecnologie BLE}}
+\author{Federico Torsello - Matr. 702619}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	%\listoffigures
+	%\listoftables
+	%\lstlistoflistings
+	\include{sommario}
+	\include{introduzione}
+	\include{analisi_dei_requisiti}
+	\include{stima_distanza_beacon}
+	\include{usb_measurement}
+	\include{project}
+	\include{uml}
+%	\include{analisi_del_problema}
+%	\include{stima_distanza}
+%	\include{work_plan}
+%	\include{progetto}
+	%\include{Grafi}
+%	\input{bigliografia.tex}
+	
+\end{document}

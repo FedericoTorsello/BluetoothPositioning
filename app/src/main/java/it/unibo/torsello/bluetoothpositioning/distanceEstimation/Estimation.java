@@ -71,8 +71,8 @@ public class Estimation {
             return Math.pow(ratio, 10.0D);
         }
 
-        return (0.89976D) * Math.pow(ratio, 7.7095D) + 0.125D;
-//        return (0.89976d * Math.pow(ratio, 7.7095D)) + 0.111D;
+//        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.125D;
+        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
 
     /*
      * RSSI = TxPower - 10 * n * lg(d)

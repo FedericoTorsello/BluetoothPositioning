@@ -1,0 +1,4 @@
+<map id="it.unibo.torsello.bluetoothpositioning.model.Device" name="it.unibo.torsello.bluetoothpositioning.model.Device">
+<area shape="rect" id="node6" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation.html" title="{it.unibo.torsello.bluetoothpositioning.distance\lEstimation.Estimation\n||+ Estimation()\l+ updateDistance()\l+ getKalmanFilterDistance()\l+ getRawDistance()\l+ getDistanceWOSC()\l+ getProximity()\l&#45; calculateDistance()\l}" alt="" coords="425,505,747,685"/>
+<area shape="rect" id="node9" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter.html" title="{it.unibo.torsello.bluetoothpositioning.kalman\lFilter.KFilter\n||+ KFilter()\l+ filter()\l+ filter()\l+ lastMeasurement()\l+ setMeasurementNoise()\l+ setProcessNoise()\l}" alt="" coords="429,263,743,428"/>
+</map>

@@ -1,0 +1,49 @@
+\chapter{Introduzione}
+
+Stimare con precisione la distanza che intercorre tra un utente ed un punto target è, secondo molti, una sfida tecnologica. Sempre più sistemi	 con applicazioni mobile e non necessitano di questa informazione per poter funzionare in modo corretto. 
+	
+Per stimare la distanza esistono diverse tecnologie più o meno precise e costose. In questo senso l'avvento delle tecnologie IoT (\textit{Internet of things}) ha influito positivamente abbassando il costo dell'hardware necessario, creando community di hobbisti e professionisti, quindi ampliando il numero di librerie software (spesso open source) disponibili e progetti da cui prendere spunto.
+	
+\section{Vision}
+
+\begin{itemize}
+	\item Realizzare un sistema software mobile per stimare al meglio la distanza che intercorre tra l'utente e gli iBeacon disposti in un ambiante indoor.
+	
+	\item Utilizzare solo tecnologie open source per realizzare il tutto, ribadendone l'utilità e l'efficienza.
+\end{itemize}
+
+\section{Goals}
+\subsection{\underline{Goals principali}}
+\begin{enumerate}
+	\item Sviluppare un'app Android in grado di interagire con degli iBeacon disposti in una stanza.
+	
+	\item Realizzare un'app compatibile con tutte le API Android 18 e superiori.
+	
+	\item L'app deve utilizzare i valori RSSI dei iBeacon per determinare la distanza trasmettitore-ricevitore.
+	
+	\item Implementare diversi filtri per ridurre gli effetti indesiderati del \textit{multipath fading} sulla stima della distanza.
+	
+	\item Realizzare e testare un \textbf{filtro di Kalman}, un \textbf{filtro ARMA} (\textit{Auto Regressive Moving Average}) e un \textbf{filtro RunningAverageRssi} per limitare gli effetti indesiderati sopracitati.
+	
+	\item Visualizzare dei grafici sull'app che in tempo reale descrivano l'andamento della distanza stimata.
+	
+	\item Curare la \textit{User Experience} realizzando una GUI chiara e responsive utilizzando librerie \textit{com.android.support}
+	
+	\item Sviluppare l'intero sistema utilizzando GNU/Linux e FOSS (Free and open-source software).
+\end{enumerate}
+
+\subsection{\underline{Goals secondari}}
+\begin{enumerate}	
+	\item Realizzare un programma C++/Wiring in grado di determinare la distanza percepita da un sensore ultrasonico collegato ad una board Arduino.
+	
+	\item Realizzare un mini progetto per testare il sensore ultrasonico. Nello specifico si considera un Arduino connesso al PC attraverso la porta USB e una view di feedback per visualizzare a schermo la distanza "reale".
+	
+	\item Abilitare la comunicazione seriale mediante tecnologia \textbf{USB OTG}, facendo diventare lo smartphone un host USB.
+	
+	\item Implementare la visualizzazione della distanza percepita dall'Arduino direttamente nell'app. L'obiettivo è dare un feedback della reale distanza iBeacon-utente e poterla mettere a confronto con quella stimata utilizzando gli RSSI. 
+	
+	In questo caso si considera un \textbf{Arduino connesso allo smartphone} attraverso la porta USB.
+\end{enumerate}
+
+
+
