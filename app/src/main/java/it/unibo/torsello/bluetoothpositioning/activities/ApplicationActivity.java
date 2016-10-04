@@ -38,19 +38,23 @@ import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
  */
 public class ApplicationActivity extends MainActivity implements BeaconConsumer {
 
-    private DeviceObservable myDeviceObservable;
+    //    private final String TAG_CLASS = getClass().getSimpleName();
 
-    private final String TAG_CLASS = getClass().getSimpleName();
     private BeaconManager beaconManager;
-    private boolean isRunScan = false;
+    private DeviceObservable myDeviceObservable;
     private SharedPreferences preferences;
     private BackgroundPowerSaver backgroundPowerSaver;
-
     private UsbUtil usbUtil;
+
+    private List<Device> deviceList;
+
+    private boolean isRunScan = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        deviceList = new ArrayList<>();
 
         myDeviceObservable = DeviceObservable.getInstance();
 
@@ -71,7 +75,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         // This reduces bluetooth power usage by about 60%
         backgroundPowerSaver = new BackgroundPowerSaver(this);
 
-        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
+//        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
 
         // for finding different type of beacon,
         beaconManager.getBeaconParsers().clear();
@@ -148,8 +152,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        final List<Device> deviceList = new ArrayList<>();
 
         beaconManager.addRangeNotifier(new RangeNotifier() {
             @Override

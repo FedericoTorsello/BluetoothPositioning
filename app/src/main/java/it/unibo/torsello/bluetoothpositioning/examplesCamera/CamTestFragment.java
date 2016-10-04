@@ -1,9 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.examplesCamera;
 
-/**
- * @author Jose Davis Nidhin
- */
-
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +12,10 @@ import android.widget.FrameLayout;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class CamTestFragment extends Fragment {
     Preview preview;
     Camera camera;

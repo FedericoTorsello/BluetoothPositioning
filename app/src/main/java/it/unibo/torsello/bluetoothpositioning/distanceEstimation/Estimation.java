@@ -3,63 +3,60 @@ package it.unibo.torsello.bluetoothpositioning.distanceEstimation;
 import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
-import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFBuilder;
-import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KalmanFilter;
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstants;
+import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilterBuilder;
+import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter;
 
 /**
- * A helper class
- *
- * @author Jonathan Vidmar
- * @version 1.0
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class Estimation {
 
-    private DescriptiveStatistics mostRecentRSSI;
-    private DescriptiveStatistics mostRecentTxPower;
-    private KalmanFilter kf;
-    private double lastCalculatedDistance;
-    private double lastRawDistance;
-    private double lastWOSC;
-    private static final int WINDOW = 20;
+    private DescriptiveStatistics recentRSSI;
+    private DescriptiveStatistics recentTxPower;
+    private KFilter kf;
+    private double distanceEstimated;
+    private double rawDistanceEstimated;
+    private double WOSC;
 
     public Estimation() {
 
         // limit on the number of values that can be stored in the dataset
-        mostRecentRSSI = new DescriptiveStatistics();
-        mostRecentRSSI.setWindowSize(WINDOW);
-        mostRecentTxPower = new DescriptiveStatistics();
-        mostRecentTxPower.setWindowSize(WINDOW);
+        recentRSSI = new DescriptiveStatistics();
+        recentRSSI.setWindowSize(KFilterConstants.WINDOW);
+        recentTxPower = new DescriptiveStatistics();
+        recentTxPower.setWindowSize(KFilterConstants.WINDOW);
 
-        lastCalculatedDistance = 0;
-        lastRawDistance = 0;
-        lastWOSC = 0;
+        distanceEstimated = 0;
+        rawDistanceEstimated = 0;
+        WOSC = 0;
 
-        kf = new KFBuilder()
+        kf = new KFilterBuilder()
                 // filter for RSSI
-                .R(10) // Initial process noise
-                .Q(60.0) // Initial measurement noise
+                .R(KFilterConstants.INITIAL_PROCESS_NOISE) // Initial process noise
+                .Q(KFilterConstants.INITIAL_MEASUREMENT_NOISE) // Initial measurement noise
                 .build();
     }
 
     public void updateDistance(Beacon b, double processNoise) {
-        double lastFilteredReading = -1;
 
-        mostRecentRSSI.addValue(b.getRssi());
-        mostRecentTxPower.addValue(b.getTxPower());
+        recentRSSI.addValue(b.getRssi());
+        recentTxPower.addValue(b.getTxPower());
 
         // Update measurement noise continually
         double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
-                Math.log(1 + Math.pow(mostRecentRSSI.getMean() / mostRecentRSSI.getStandardDeviation(), 2)));
+                Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
 
         if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
             kf.setMeasurementNoise(mNoise);
         }
 
         kf.setProcessNoise(processNoise);
-        lastFilteredReading = kf.filter(mostRecentRSSI.getPercentile(50));
-        lastCalculatedDistance = calculateDistance(mostRecentTxPower.getPercentile(50), lastFilteredReading);
-        lastRawDistance = calculateDistance(b.getTxPower(), b.getRssi());
-        lastWOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
+        double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50));
+        distanceEstimated = calculateDistance(recentTxPower.getPercentile(50), lastFilteredReading);
+        rawDistanceEstimated = calculateDistance(b.getTxPower(), b.getRssi());
+        WOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
     }
 
     // radiousNetwork formula
@@ -74,8 +71,8 @@ public class Estimation {
             return Math.pow(ratio, 10.0D);
         }
 
-//        return (0.89976D) * Math.pow(ratio, 7.7095D) + 0.125D;
-        return (0.89976d * Math.pow(ratio, 7.7095D)) + 0.111D;
+        return (0.89976D) * Math.pow(ratio, 7.7095D) + 0.125D;
+//        return (0.89976d * Math.pow(ratio, 7.7095D)) + 0.111D;
 
     /*
      * RSSI = TxPower - 10 * n * lg(d)
@@ -86,19 +83,19 @@ public class Estimation {
     }
 
     public double getKalmanFilterDistance() {
-        return lastCalculatedDistance;
+        return distanceEstimated;
     }
 
     public double getRawDistance() {
-        return lastRawDistance;
+        return rawDistanceEstimated;
     }
 
     public double getDistanceWOSC() {
-        return lastWOSC;
+        return WOSC;
     }
 
     public String getProximity() {
-        double proximity = lastCalculatedDistance;
+        double proximity = distanceEstimated;
         String accuracy;
 
         if (proximity <= 0) {

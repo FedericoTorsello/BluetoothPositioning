@@ -21,9 +21,9 @@ import it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity;
 import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
 
 /**
- * Created by federico on 02/10/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
-
 public class UsbUtil {
 
     private UsbMeasurementObservable myUsbObservable;
@@ -33,6 +33,8 @@ public class UsbUtil {
     private SerialInputOutputManager mSerialIoManager;
 
     private ApplicationActivity applicationActivity;
+
+    private int BOUND_RATE = 115200;
 
     public UsbUtil(ApplicationActivity applicationActivity) {
         this.applicationActivity = applicationActivity;
@@ -71,8 +73,11 @@ public class UsbUtil {
             } else {
                 Intent startIntent = new Intent(getActivity(), getClass());
                 PendingIntent pendingIntent =
-                        PendingIntent.getService(getActivity(), 0, startIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+                        PendingIntent.getService(getActivity(), 0, startIntent, 0);
                 usbManager.requestPermission(driver.getDevice(), pendingIntent);
+
+//                PendingIntent mPendingIntent = PendingIntent.getBroadcast(getActivity(), 0, new Intent("intent"), 0);
+//                usbManager.requestPermission(driver.getDevice(), mPendingIntent);
             }
 
             if (port != null) {
@@ -82,7 +87,8 @@ public class UsbUtil {
                 if (connection != null) {
                     try {
                         port.open(connection);
-                        port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+                        port.setParameters(BOUND_RATE, UsbSerialPort.DATABITS_8,
+                                UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
 
 //                    String details = "CD  - Carrier Detect" + port.getCD() + '\n' +
 //                            "CTS - Clear To Send" + port.getCTS() + '\n' +
@@ -143,7 +149,8 @@ public class UsbUtil {
                             try {
                                 myUsbObservable.notifyObservers(true);
                                 myUsbObservable.notifyObservers(getActivity().getString(R.string.usb_device_connected));
-                                myUsbObservable.notifyObservers(Double.valueOf(new String(data).trim()) / 100);
+                                Double distanceEstimate = Double.valueOf(new String(data).trim()) / 100;
+                                myUsbObservable.notifyObservers(distanceEstimate);
                             } catch (NumberFormatException nfe) {
                             }
                         }

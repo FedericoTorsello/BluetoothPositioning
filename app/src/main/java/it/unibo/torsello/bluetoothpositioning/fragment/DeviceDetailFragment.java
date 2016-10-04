@@ -21,7 +21,6 @@ import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceDe
  */
 public class DeviceDetailFragment extends Fragment {
 
-    private final String TAG_CLASS = getClass().getSimpleName();
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     private String idDeviceSelectedName;
@@ -76,7 +75,7 @@ public class DeviceDetailFragment extends Fragment {
         fragments.add(DeviceDetailInner1Fragment.newInstance(idDeviceSelectedName));
 
         // fragment 1
-        fragments.add(DeviceDetailInner2Fragmet.newInstance("Details", idDeviceSelectedName));
+        fragments.add(DeviceDetailInner2Fragment.newInstance("Details", idDeviceSelectedName));
 
         return fragments;
     }

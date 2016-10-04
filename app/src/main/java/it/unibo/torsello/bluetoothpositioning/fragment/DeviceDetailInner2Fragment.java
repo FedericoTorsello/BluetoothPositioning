@@ -15,19 +15,18 @@ import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
 import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceChartFragment;
 
 /**
- * Created by federico on 03/10/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
+public class DeviceDetailInner2Fragment extends Fragment {
 
-public class DeviceDetailInner2Fragmet extends Fragment {
-
-    private final String TAG_CLASS = getClass().getSimpleName();
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     public static final String DEVICE_NAME = "DEVICE_NAME";
 
     private String idDeviceSelectedName;
 
-    public static DeviceDetailInner2Fragmet newInstance(String message, String deviceName) {
-        DeviceDetailInner2Fragmet fragment = new DeviceDetailInner2Fragmet();
+    public static DeviceDetailInner2Fragment newInstance(String message, String deviceName) {
+        DeviceDetailInner2Fragment fragment = new DeviceDetailInner2Fragment();
         Bundle args = new Bundle();
         args.putString(EXTRA_MESSAGE, message);
         args.putString(DEVICE_NAME, deviceName);

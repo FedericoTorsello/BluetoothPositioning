@@ -22,6 +22,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
  * federico.torsello@studio.unibo.it
  */
 public class CompassFragment extends Fragment implements SensorEventListener {
+
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;

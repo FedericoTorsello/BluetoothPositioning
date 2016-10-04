@@ -20,6 +20,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
  * federico.torsello@studio.unibo.it
  */
 public class CompassMagnoFragment extends Fragment implements SensorEventListener {
+
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -114,7 +115,7 @@ public class CompassMagnoFragment extends Fragment implements SensorEventListene
             }
 
 //            try {
-//                TextView messageTextView = (TextView) getActivity().findViewById(R.id.compass);
+//                TextView messageTextView = (TextView) getActivity().findViewById(INITIAL_PROCESS_NOISE.id.compass);
 //                messageTextView.setText(compassOrientation);
 //            }catch (NullPointerException e){
 //                e.getStackTrace();

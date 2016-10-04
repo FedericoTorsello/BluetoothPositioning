@@ -3,7 +3,6 @@ package it.unibo.torsello.bluetoothpositioning.fragment;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstansts;
+import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 
 /**
@@ -90,8 +89,8 @@ public class SettingsFragment extends Fragment {
 
     public static float getCalculatedNoise(int p) {
         double percent = (p / 10D);
-        double noise = KFilterConstansts.KALMAN_NOISE_MIN +
-                (KFilterConstansts.KALMAN_NOISE_MAX - KFilterConstansts.KALMAN_NOISE_MIN) * percent;
+        double noise = KFilterConstants.KALMAN_NOISE_MIN +
+                (KFilterConstants.KALMAN_NOISE_MAX - KFilterConstants.KALMAN_NOISE_MIN) * percent;
 
         return (float) noise;
 
@@ -137,17 +136,17 @@ public class SettingsFragment extends Fragment {
 
     /* Sets the correct text and adds an onCheckedChange onSettingsListener to the walk detection switch */
 //    private void setUpWalkDetectionSwitch() {
-//        final Switch wdSwitch = (Switch) getActivity().findViewById(R.id.walkDetectionSwitch);
+//        final Switch wdSwitch = (Switch) getActivity().findViewById(INITIAL_PROCESS_NOISE.id.walkDetectionSwitch);
 //        boolean walkDetection = preferences.getBoolean(SettingConstants.WALK_DETECTION, false);
 //        wdSwitch.setChecked(walkDetection);
-//        wdSwitch.setText((walkDetection) ? R.string.settings_enabled : R.string.settings_disabled);
+//        wdSwitch.setText((walkDetection) ? INITIAL_PROCESS_NOISE.string.settings_enabled : INITIAL_PROCESS_NOISE.string.settings_disabled);
 //        wdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 //                SharedPreferences.Editor editor = preferences.edit();
 //                editor.putBoolean(SettingConstants.WALK_DETECTION, isChecked);
 //                editor.apply();
-//                wdSwitch.setText((isChecked) ? R.string.settings_enabled : R.string.settings_disabled);
+//                wdSwitch.setText((isChecked) ? INITIAL_PROCESS_NOISE.string.settings_enabled : INITIAL_PROCESS_NOISE.string.settings_disabled);
 //                onSettingsListener.isWalkDetection(isChecked);
 //            }
 //        });

@@ -20,6 +20,10 @@ import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
 import it.unibo.torsello.bluetoothpositioning.util.ChartUtil;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class DeviceChartFragment extends Fragment implements Observer {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";

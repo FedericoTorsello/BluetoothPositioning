@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
- * Created by federico on 21/09/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
 public class SaveImageTask extends AsyncTask<byte[], Void, Void> {
 

@@ -1,12 +1,10 @@
 package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 
 /**
- * Originally written in JS by Wouter Bulten 2015
- * Rewritten to Java by Jonathan Vidmar 2016
- * Copyright 2015 Wouter Bulten
- * GNU LESSER GENERAL PUBLIC LICENSE v3
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
-public class KalmanFilter {
+public class KFilter {
 
     private double R;
     private double Q;
@@ -27,7 +25,7 @@ public class KalmanFilter {
      * @param B Control vector
      * @param C Measurement vector
      */
-    public KalmanFilter(double R, double Q, double A, double B, double C) {
+    public KFilter(double R, double Q, double A, double B, double C) {
 
         this.R = R;
         this.Q = Q;
@@ -89,7 +87,7 @@ public class KalmanFilter {
     }
 
     /**
-     * Set measurement noise Q
+     * Set measurement noise INITIAL_MEASUREMENT_NOISE
      *
      * @param noise Measurement noise
      */
@@ -98,7 +96,7 @@ public class KalmanFilter {
     }
 
     /**
-     * Set the process noise R
+     * Set the process noise INITIAL_PROCESS_NOISE
      *
      * @param noise Process noise
      */

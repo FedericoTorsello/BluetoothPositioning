@@ -1,12 +1,11 @@
 package it.unibo.torsello.bluetoothpositioning.configuration;
 
+import org.altbeacon.beacon.service.RssiFilter;
+
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-
-import org.altbeacon.beacon.service.RssiFilter;
-
 public class MyArmaRssiFilter implements RssiFilter {
     private static double armaSpeed = 0.08D;
     private static boolean isEnabled = true;

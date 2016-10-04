@@ -1,9 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.examplesCamera;
 
-/**
- * @author Jose Davis Nidhin
- */
-
 import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
@@ -18,6 +14,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
+ */
 public class Preview extends ViewGroup implements SurfaceHolder.Callback {
     private final String TAG = "Preview";
 

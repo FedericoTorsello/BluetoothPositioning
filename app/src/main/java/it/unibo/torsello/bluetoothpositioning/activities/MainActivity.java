@@ -34,7 +34,6 @@ import it.unibo.torsello.bluetoothpositioning.fragment.usbObservers.UsbMeasureme
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String TAG_CLASS = getClass().getSimpleName();
     private boolean isBackPressed = false;
     private long back_pressed;
 
@@ -108,12 +107,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_measurement:
                 replaceFragment(USB_MEASUREMENT_FRAGMENT);
                 break;
-//            case R.id.nav_share:
-//                fragment = CamTestFragment.newInstance();
-//                break;
-//            case R.id.nav_send:
-//                fragment = ViewPagerFragment.newInstance(getFragments());
-//                break;
         }
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
