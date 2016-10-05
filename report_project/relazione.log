@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.29)  4 OCT 2016 23:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.29)  5 OCT 2016 02:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -392,8 +392,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (./relazione.aux
 (./sommario.aux) (./introduzione.aux) (./analisi_dei_requisiti.aux)
-(./stima_distanza_beacon.aux) (./usb_measurement.aux) (./project.aux)
-(./uml.aux))
+(./accenni_alla_tecnologia_bt.aux) (./stima_distanza_beacon.aux)
+(./usb_measurement.aux) (./project.aux) (./uml.aux))
 \openout1 = `relazione.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
@@ -412,7 +412,8 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
 LaTeX Font Info:    ... okay on input line 152.
 LaTeX Info: Redefining \it@ocap on input line 152.
 LaTeX Info: Redefining \it@ccap on input line 152.
- (/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
+
+(/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 Package caption Info: Begin \AtBeginDocument code.
@@ -497,21 +498,21 @@ LaTeX Info: Redefining \nameref on input line 152.
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relazione.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relazione.toc [2
+
+])
 \tf@toc=\write5
 \openout5 = `relazione.toc'.
 
- [2
-
-]
+ [3]
 \openout2 = `sommario.aux'.
 
  (./sommario.texpdfTeX warning (ext4): destination with the same identifier (na
 me{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.11 \end{abstract}
-                    [1
+l.9 \end{abstract}
+                   [1
 
 ])
 \openout2 = `introduzione.aux'.
@@ -587,12 +588,17 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 35.
 
-) [3]
+)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.159 	\include{introduzione}
+                              [3]
 \openout2 = `analisi_dei_requisiti.aux'.
 
  (./analisi_dei_requisiti.tex
 Capitolo 2.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 24.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 34.
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ) [4
@@ -600,37 +606,46 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 
 
 ]
-<img/uml/use_case/use_case1.png, id=182, 993.7125pt x 501.875pt>
+<img/uml/use_case/use_case1.png, id=291, 993.7125pt x 501.875pt>
 File: img/uml/use_case/use_case1.png Graphic file (type png)
 
 <use img/uml/use_case/use_case1.png>
-Package pdftex.def Info: img/uml/use_case/use_case1.png used on input line 35.
+Package pdftex.def Info: img/uml/use_case/use_case1.png used on input line 46.
 (pdftex.def)             Requested size: 447.16649pt x 225.84166pt.
 
-Overfull \hbox (87.16649pt too wide) in paragraph at lines 35--36
+Overfull \hbox (87.16649pt too wide) in paragraph at lines 46--47
  [][] 
  []
 
-) [5 <./img/uml/use_case/use_case1.png (PNG copy)>]
+[5 <./img/uml/use_case/use_case1.png (PNG copy)>]) [6]
+\openout2 = `accenni_alla_tecnologia_bt.aux'.
+
+
+(./accenni_alla_tecnologia_bt.tex
+Capitolo 3.
+) [7
+
+
+
+]
 \openout2 = `stima_distanza_beacon.aux'.
 
-
-(./stima_distanza_beacon.tex
-Capitolo 3.
+ (./stima_distanza_beacon.tex
+Capitolo 4.
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-<img/algoritmi/RSS.png, id=196, 1086.0575pt x 851.18pt>
+<img/algoritmi/RSS.png, id=314, 1086.0575pt x 851.18pt>
 File: img/algoritmi/RSS.png Graphic file (type png)
 
 <use img/algoritmi/RSS.png>
 Package pdftex.def Info: img/algoritmi/RSS.png used on input line 20.
 (pdftex.def)             Requested size: 271.5137pt x 212.79446pt.
- [6
+ [8
 
 
 
-] [7 <./img/algoritmi/RSS.png>]
+] [9 <./img/algoritmi/RSS.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 71.
@@ -658,74 +673,225 @@ Overfull \hbox (42.6324pt too wide) detected at line 93
 \OT1/cmr/m/n/10.95 ))
  []
 
-[8] <img/algoritmi/RSS_PROBLEMI.png, id=231, 1052.93375pt x 567.11874pt>
+[10] <img/algoritmi/RSS_PROBLEMI.png, id=351, 1052.93375pt x 567.11874pt>
 File: img/algoritmi/RSS_PROBLEMI.png Graphic file (type png)
 
 <use img/algoritmi/RSS_PROBLEMI.png>
 Package pdftex.def Info: img/algoritmi/RSS_PROBLEMI.png used on input line 117.
 
 (pdftex.def)             Requested size: 168.47284pt x 90.74084pt.
-) [9 <./img/algoritmi/RSS_PROBLEMI.png>]
+) [11 <./img/algoritmi/RSS_PROBLEMI.png>]
 \openout2 = `usb_measurement.aux'.
 
 
 (./usb_measurement.tex
-Capitolo 4.
+Capitolo 5.
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-33.def
 File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
-) [10
+) [12
 
 
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <9> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 57.
- [11]) [12]
+ [13]) [14]
 \openout2 = `project.aux'.
 
 
-(./project.tex) [13
+(./project.tex) [15
 
 
 ]
 \openout2 = `uml.aux'.
 
  (./uml.tex
-Capitolo 5.
+Capitolo 6.
 
-<img/uml/inherit_graph/inherit_graph_0.png, id=321, 968.61874pt x 125.46875pt>
+<img/uml/inherit_graph/inherit_graph_0.png, id=440, 968.61874pt x 125.46875pt>
 File: img/uml/inherit_graph/inherit_graph_0.png Graphic file (type png)
 
 <use img/uml/inherit_graph/inherit_graph_0.png>
 Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_0.png used on inpu
-t line 6.
-(pdftex.def)             Requested size: 532.74196pt x 69.00801pt.
+t line 8.
+(pdftex.def)             Requested size: 435.8744pt x 56.4604pt.
 
-Overfull \hbox (172.74196pt too wide) in paragraph at lines 6--7
+Overfull \hbox (75.8744pt too wide) in paragraph at lines 8--9
  [][] 
  []
 
-) [14
+[16
 
 
 
  <./img/uml/inherit_graph/inherit_graph_0.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
- (./relazione.aux
-(./sommario.aux) (./introduzione.aux) (./analisi_dei_requisiti.aux)
+<img/uml/inherit_graph/inherit_graph_10.png, id=448, 524.96124pt x 510.90875pt>
+File: img/uml/inherit_graph/inherit_graph_10.png Graphic file (type png)
+<use img/uml/inherit_graph/inherit_graph_10.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_10.png used on inp
+ut line 17.
+(pdftex.def)             Requested size: 288.72957pt x 281.00067pt.
+
+<img/uml/inherit_graph/inherit_graph_14.png, id=449, 505.89pt x 117.43875pt>
+File: img/uml/inherit_graph/inherit_graph_14.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_14.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_14.png used on inp
+ut line 24.
+(pdftex.def)             Requested size: 278.24034pt x 64.59149pt.
+ [17 <./img/uml/inherit_graph/inherit_graph_10.png> <./img/uml/inherit_graph/in
+herit_graph_14.png>]
+<img/uml/inherit_graph/inherit_graph_11.png, id=458, 326.21875pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_11.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_11.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_11.png used on inp
+ut line 33.
+(pdftex.def)             Requested size: 179.42085pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_12.png, id=459, 326.21875pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_12.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_12.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_12.png used on inp
+ut line 40.
+(pdftex.def)             Requested size: 179.42085pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_4.png, id=460, 498.86375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_4.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_4.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_4.png used on inpu
+t line 47.
+(pdftex.def)             Requested size: 274.37592pt x 28.70734pt.
+ [18 <./img/uml/inherit_graph/inherit_graph_11.png> <./img/uml/inherit_graph/in
+herit_graph_12.png> <./img/uml/inherit_graph/inherit_graph_4.png>]
+<img/uml/inherit_graph/inherit_graph_8.png, id=471, 333.245pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_8.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_8.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_8.png used on inpu
+t line 56.
+(pdftex.def)             Requested size: 183.28531pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_13.png, id=472, 322.20375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_13.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_13.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_13.png used on inp
+ut line 63.
+(pdftex.def)             Requested size: 177.2126pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_1.png, id=473, 453.695pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_1.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_1.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_1.png used on inpu
+t line 70.
+(pdftex.def)             Requested size: 249.53302pt x 28.70734pt.
+ [19 <./img/uml/inherit_graph/inherit_graph_8.png> <./img/uml/inherit_graph/inh
+erit_graph_13.png> <./img/uml/inherit_graph/inherit_graph_1.png>]
+<img/uml/inherit_graph/inherit_graph_2.png, id=484, 332.24126pt x 76.285pt>
+File: img/uml/inherit_graph/inherit_graph_2.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_2.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_2.png used on inpu
+t line 79.
+(pdftex.def)             Requested size: 182.73325pt x 41.95686pt.
+
+<img/uml/inherit_graph/inherit_graph_3.png, id=485, 553.06625pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_3.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_3.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_3.png used on inpu
+t line 86.
+(pdftex.def)             Requested size: 304.18738pt x 28.70734pt.
+ [20 <./img/uml/inherit_graph/inherit_graph_2.png> <./img/uml/inherit_graph/inh
+erit_graph_3.png>]
+<img/uml/inherit_graph/inherit_graph_5.png, id=494, 338.26375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_5.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_5.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_5.png used on inpu
+t line 95.
+(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_6.png, id=495, 338.26375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_6.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_6.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_6.png used on inpu
+t line 102.
+(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_7.png, id=496, 338.26375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_7.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_7.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_7.png used on inpu
+t line 109.
+(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
+ [21 <./img/uml/inherit_graph/inherit_graph_5.png> <./img/uml/inherit_graph/inh
+erit_graph_6.png> <./img/uml/inherit_graph/inherit_graph_7.png>]
+<img/uml/inherit_graph/inherit_graph_16.png, id=507, 444.66125pt x 88.33pt>
+File: img/uml/inherit_graph/inherit_graph_16.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_16.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_16.png used on inp
+ut line 117.
+(pdftex.def)             Requested size: 244.56444pt x 48.58163pt.
+
+<img/uml/inherit_graph/inherit_graph_15.png, id=508, 450.68375pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_15.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_15.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_15.png used on inp
+ut line 124.
+(pdftex.def)             Requested size: 247.87682pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_17.png, id=509, 571.13374pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_17.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_17.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_17.png used on inp
+ut line 131.
+(pdftex.def)             Requested size: 314.12453pt x 28.70734pt.
+ [22 <./img/uml/inherit_graph/inherit_graph_16.png> <./img/uml/inherit_graph/in
+herit_graph_15.png> <./img/uml/inherit_graph/inherit_graph_17.png>]
+<img/uml/inherit_graph/inherit_graph_18.png, id=521, 302.12875pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_18.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_18.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_18.png used on inp
+ut line 139.
+(pdftex.def)             Requested size: 166.17131pt x 28.70734pt.
+
+<img/uml/inherit_graph/inherit_graph_9.png, id=522, 444.66125pt x 52.195pt>
+File: img/uml/inherit_graph/inherit_graph_9.png Graphic file (type png)
+
+<use img/uml/inherit_graph/inherit_graph_9.png>
+Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_9.png used on inpu
+t line 146.
+(pdftex.def)             Requested size: 244.56444pt x 28.70734pt.
+) [23 <./img/uml/inherit_graph/inherit_graph_18.png> <./img/uml/inherit_graph/i
+nherit_graph_9.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
+
+(./relazione.aux (./sommario.aux) (./introduzione.aux)
+(./analisi_dei_requisiti.aux) (./accenni_alla_tecnologia_bt.aux)
 (./stima_distanza_beacon.aux) (./usb_measurement.aux) (./project.aux)
 (./uml.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 173.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 173.
 Package rerunfilecheck Info: File `relazione.out' has not changed.
-(rerunfilecheck)             Checksum: 2FA1F4443E91088BA3E5AA3CB04ABDDE;1769.
+(rerunfilecheck)             Checksum: BDD758C634851FC44081AAD085649FFB;3226.
  ) 
 Here is how much of TeX's memory you used:
- 12472 strings out of 493013
- 173726 string characters out of 6139317
+ 12642 strings out of 493013
+ 178761 string characters out of 6139317
  300221 words of memory out of 5000000
- 15666 multiletter control sequences out of 15000+600000
+ 15761 multiletter control sequences out of 15000+600000
  24698 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,8n,41p,802b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -751,10 +917,10 @@ re/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/f
 onts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sft
 t1095.pfb>
-Output written on relazione.pdf (16 pages, 721431 bytes).
+Output written on relazione.pdf (26 pages, 851915 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
- 378 compressed objects within 4 object streams
- 104 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 646 PDF objects out of 1000 (max. 8388607)
+ 544 compressed objects within 6 object streams
+ 154 named destinations out of 1000 (max. 500000)
+ 479 words of extra memory for PDF output out of 10000 (max. 10000000)
 

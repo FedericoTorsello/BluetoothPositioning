@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jpegcallback',['jpegCallback',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1examplesCamera_1_1Preview_a66d23d916709e2283ca48282d29175e4.html#a66d23d916709e2283ca48282d29175e4',1,'it::unibo::torsello::bluetoothpositioning::examplesCamera::Preview']]]
+  ['jpegcallback',['jpegCallback',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraPreviewUtil_aff50f9e425599097ed50d6d8341ed891.html#aff50f9e425599097ed50d6d8341ed891',1,'it::unibo::torsello::bluetoothpositioning::util::CameraPreviewUtil']]]
 ];

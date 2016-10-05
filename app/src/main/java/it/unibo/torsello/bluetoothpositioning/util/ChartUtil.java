@@ -1,7 +1,9 @@
 package it.unibo.torsello.bluetoothpositioning.util;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
@@ -17,7 +19,10 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 
 import it.unibo.torsello.bluetoothpositioning.R;
@@ -34,17 +39,19 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     private ArrayList<ILineDataSet> dataSets;
 
+    private SimpleDateFormat df;
+
     public ChartUtil(FragmentActivity fragmentActivity, LineChart chart) {
         this.activity = fragmentActivity;
         this.mChart = chart;
-        initializeChart();
+        df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
     }
 
     public FragmentActivity getActivity() {
         return activity;
     }
 
-    private void initializeChart() {
+    public void initializeChart() {
         dataSets = new ArrayList<ILineDataSet>();
 
         mChart.setOnChartValueSelectedListener(this);
@@ -123,7 +130,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
         thread.start();
     }
 
-    public ArrayList<ILineDataSet> createDataSet(ArrayList<String> args) {
+    public void createDataSet(ArrayList<String> args) {
         // create a dataset and give it a type
 
         for (String s : args) {
@@ -136,7 +143,6 @@ public class ChartUtil implements OnChartValueSelectedListener {
             }
         }
 
-        return dataSets;
     }
 
     private int getRandomColor() {
@@ -184,13 +190,20 @@ public class ChartUtil implements OnChartValueSelectedListener {
         mChart.setData(lineData);
     }
 
-    public void saveImageChart() {
-        mChart.saveToGallery("prova", 100);
+    public void saveImageChart(String chartName) {
+        String formattedDate = df.format(Calendar.getInstance().getTime());
+        String nameImage = chartName + " " + System.currentTimeMillis();
+        mChart.saveToGallery(nameImage, chartName
+                + " - " + formattedDate, null, Bitmap.CompressFormat.JPEG, 90);
+
+        Snackbar.make(getActivity().findViewById(R.id.fab), nameImage + " stored"
+                , Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onValueSelected(Entry e, Highlight h) {
-        Log.i("Entry selected", e.toString());
+        Snackbar.make(getActivity().findViewById(R.id.fab), e.copy() + " selected"
+                , Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

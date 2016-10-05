@@ -1,3 +1,0 @@
-<map id="it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment" name="it.unibo.torsello.bluetoothpositioning.examplesCamera.CamTestFragment">
-<area shape="rect" id="node4" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1examplesCamera_1_1Preview.html" title="{it.unibo.torsello.bluetoothpositioning.examples\lCamera.Preview\n||+ setCamera()\l+ onPause()\l+ getCamera()\l+ surfaceCreated()\l+ surfaceDestroyed()\l+ surfaceChanged()\l+ resetCamera()\l+ takePicture()\l~ Preview()\l# onMeasure()\l# onLayout()\l&#45; getOptimalPreviewSize()\l&#45; getCameraInstance()\l}" alt="" coords="524,329,855,597"/>
-</map>

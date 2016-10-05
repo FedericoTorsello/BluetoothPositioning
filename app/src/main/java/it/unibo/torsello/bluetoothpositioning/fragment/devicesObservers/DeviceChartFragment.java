@@ -2,10 +2,15 @@ package it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers;
 
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.github.mikephil.charting.charts.LineChart;
 
@@ -33,12 +38,15 @@ public class DeviceChartFragment extends Fragment implements Observer {
     private DeviceObservable myDeviceObservable;
     private UsbMeasurementObservable myUsbObservable;
 
+    private String chartName;
     private String idDeviceSelected;
     private ChartUtil chartUtil;
 
     private Double arduinoValue = 0D;
 
     private ArrayList<String> stringArrayList;
+
+    private boolean check;
 
     public static DeviceChartFragment newInstance(String message, String deviceName,
                                                   ArrayList<String> strings) {
@@ -58,6 +66,7 @@ public class DeviceChartFragment extends Fragment implements Observer {
         myDeviceObservable = DeviceObservable.getInstance();
         myUsbObservable = UsbMeasurementObservable.getInstance();
 
+        chartName = getArguments().getString(EXTRA_MESSAGE);
         idDeviceSelected = getArguments().getString(DEVICE_NAME);
         stringArrayList = getArguments().getStringArrayList(STRINGS);
     }
@@ -66,6 +75,20 @@ public class DeviceChartFragment extends Fragment implements Observer {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_device_chart, container, false);
+
+        ToggleButton toggle = (ToggleButton) root.findViewById(R.id.button_record);
+
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                check = isChecked;
+                if (isChecked) {
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Start recording", Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(getActivity().findViewById(R.id.fab), "Stop recording", Snackbar.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         LineChart lineChart = (LineChart) root.findViewById(R.id.chart);
 
@@ -87,6 +110,7 @@ public class DeviceChartFragment extends Fragment implements Observer {
         super.onResume();
         myDeviceObservable.addObserver(this);
         myUsbObservable.addObserver(this);
+        chartUtil.initializeChart();
     }
 
     @Override
@@ -132,6 +156,11 @@ public class DeviceChartFragment extends Fragment implements Observer {
                             }
 
                             chartUtil.updateDataSet(doubleArrayList);
+
+                            if (check) {
+                                chartUtil.saveImageChart(chartName);
+                            } else {
+                            }
                         }
                     }
                 }

@@ -170,7 +170,7 @@ public interface UsbSerialPort {
     /**
      * Sets various serial port parameters.
      *
-     * @param baudRate baud rate as an integer, for example {@code 115200}.
+     * @param baudRate baud rate as an integer, for fragment_camera {@code 115200}.
      * @param dataBits one of {@link #DATABITS_5}, {@link #DATABITS_6},
      *                 {@link #DATABITS_7}, or {@link #DATABITS_8}.
      * @param stopBits one of {@link #STOPBITS_1}, {@link #STOPBITS_1_5}, or

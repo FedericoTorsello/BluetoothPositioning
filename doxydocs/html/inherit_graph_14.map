@@ -1,3 +1,4 @@
 <map id="Grafico della gerarchia delle classi" name="Grafico della gerarchia delle classi">
-<area shape="rect" id="node1" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilterBuilder.html" title="it.unibo.torsello.bluetoothpositioning.kalman\lFilter.KFilterBuilder" alt="" coords="5,5,320,47"/>
+<area shape="rect" id="node2" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable.html" title="it.unibo.torsello.bluetoothpositioning.observables.\lDeviceObservable" alt="" coords="149,5,499,47"/>
+<area shape="rect" id="node3" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable.html" title="it.unibo.torsello.bluetoothpositioning.observables.\lUsbMeasurementObservable" alt="" coords="149,71,499,112"/>
 </map>

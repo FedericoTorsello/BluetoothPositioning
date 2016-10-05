@@ -1,10 +1,9 @@
-package it.unibo.torsello.bluetoothpositioning.examplesCamera;
+package it.unibo.torsello.bluetoothpositioning.util;
 
 import android.content.Context;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -14,25 +13,24 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
 
+import it.unibo.torsello.bluetoothpositioning.task.SaveImageTask;
+
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
  */
-public class Preview extends ViewGroup implements SurfaceHolder.Callback {
-    private final String TAG = "Preview";
+public class CameraPreviewUtil extends ViewGroup implements SurfaceHolder.Callback {
 
-    SurfaceView mSurfaceView;
-    SurfaceHolder mHolder;
-    Size mPreviewSize;
-    List<Size> mSupportedPreviewSizes;
-    Camera mCamera;
+    private SurfaceView mSurfaceView;
+    private SurfaceHolder mHolder;
+    private Size mPreviewSize;
+    private List<Size> mSupportedPreviewSizes;
+    private Camera mCamera;
 
-    FragmentActivity fragmentActivity;
+    private FragmentActivity activity;
 
-    Preview(Context context, SurfaceView sv) {
+    public CameraPreviewUtil(Context context, SurfaceView sv) {
         super(context);
-
-
         mSurfaceView = sv;
 
         mHolder = mSurfaceView.getHolder();
@@ -40,9 +38,13 @@ public class Preview extends ViewGroup implements SurfaceHolder.Callback {
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
+    public FragmentActivity getActivity() {
+        return activity;
+    }
+
     public void setCamera(FragmentActivity fragmentActivity) {
 
-        this.fragmentActivity = fragmentActivity;
+        this.activity = fragmentActivity;
         try {
             mCamera = getCameraInstance();
         } catch (RuntimeException ex) {
@@ -148,10 +150,11 @@ public class Preview extends ViewGroup implements SurfaceHolder.Callback {
         // to draw.
         try {
             if (mCamera != null) {
+                mCamera.setDisplayOrientation(90);
                 mCamera.setPreviewDisplay(holder);
             }
         } catch (IOException exception) {
-            Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
+//            Log.e(TAG, "IOException caused by setPreviewDisplay()", exception);
         }
     }
 
@@ -162,7 +165,6 @@ public class Preview extends ViewGroup implements SurfaceHolder.Callback {
             mCamera.stopPreview();
         }
     }
-
 
     private Size getOptimalPreviewSize(List<Size> sizes, int w, int h) {
         final double ASPECT_TOLERANCE = 0.1;
@@ -235,11 +237,9 @@ public class Preview extends ViewGroup implements SurfaceHolder.Callback {
 
     Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
         public void onPictureTaken(byte[] data, final Camera camera) {
-            new SaveImageTask(fragmentActivity).execute(data);
+            new SaveImageTask(getActivity()).execute(data);
 
             resetCamera();
-
-            Log.d(TAG, "onPictureTaken - jpeg");
         }
     };
 

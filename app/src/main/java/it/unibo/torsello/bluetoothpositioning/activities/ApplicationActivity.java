@@ -28,6 +28,7 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
+import it.unibo.torsello.bluetoothpositioning.extra.FABBehavior;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
@@ -109,7 +110,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
     private void inizializeFloatingActionButton() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        assert fab != null;
         Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

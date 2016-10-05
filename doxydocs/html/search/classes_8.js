@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['saveimagetask',['SaveImageTask',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1examplesCamera_1_1SaveImageTask.html',1,'it::unibo::torsello::bluetoothpositioning::examplesCamera']]],
-  ['settingconstants',['SettingConstants',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1SettingConstants.html',1,'it::unibo::torsello::bluetoothpositioning::constant']]],
-  ['settingsfragment',['SettingsFragment',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment.html',1,'it::unibo::torsello::bluetoothpositioning::fragment']]],
-  ['statepageradapter',['StatePagerAdapter',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1StatePagerAdapter.html',1,'it::unibo::torsello::bluetoothpositioning::adapter']]]
+  ['usbmeasurementfragment',['UsbMeasurementFragment',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment.html',1,'it::unibo::torsello::bluetoothpositioning::fragment::usbObservers']]],
+  ['usbmeasurementobservable',['UsbMeasurementObservable',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1UsbMeasurementObservable.html',1,'it::unibo::torsello::bluetoothpositioning::observables']]],
+  ['usbutil',['UsbUtil',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil.html',1,'it::unibo::torsello::bluetoothpositioning::util']]]
 ];

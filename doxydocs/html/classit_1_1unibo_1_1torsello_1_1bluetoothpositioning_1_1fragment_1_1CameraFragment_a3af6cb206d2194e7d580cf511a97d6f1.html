@@ -86,22 +86,7 @@ $(function() {
                     <table>
                         <tr>
                             <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a127f286f45219c7891d564cc55e2a80e.html#a127f286f45219c7891d564cc55e2a80e">cameraUtil</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_abdda7813302f466435cedfb3641e45b9.html#abdda7813302f466435cedfb3641e45b9">EXTRA_MESSAGE</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a2af65faee5cb478bcf85ef8fd4cee10f.html#a2af65faee5cb478bcf85ef8fd4cee10f">initializeCamera</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_ad5779645ad5ed1ba4500a702e014bd47.html#ad5779645ad5ed1ba4500a702e014bd47">isCameraHardwarePresent</a>
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a70e1c67d2b127530751de08cb289b4c3.html#a70e1c67d2b127530751de08cb289b4c3">camera</a>
                             </td>
                         </tr>
                         <tr>
@@ -116,17 +101,22 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a33a16a26a087e288d351032db23c22a1.html#a33a16a26a087e288d351032db23c22a1">onCreate</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a3a80f360922bd6a8c749cda2a09c64cf.html#a3a80f360922bd6a8c749cda2a09c64cf">onCreateView</a>
                             </td>
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a3fb58eb9f1f5a3e516b9b21aa3e1e43d.html#a3fb58eb9f1f5a3e516b9b21aa3e1e43d">onPause</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a8981ef6a92682639b28336a018bf1475.html#a8981ef6a92682639b28336a018bf1475">onResume</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_af14f8f1e4107c9a9063cf70d1fbb5bb5.html#af14f8f1e4107c9a9063cf70d1fbb5bb5">preview</a>
                             </td>
                         </tr>
                     </table>
@@ -150,62 +140,63 @@ $(function() {
                                 <td class="paramname"><em>savedInstanceState</em></td>
                                 <td>)</td>
                                 <td></td>
-                            </tr>
+        </tr>
                         </table>
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
+                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
+                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
                                 super.onActivityCreated(savedInstanceState);
                             </div>
-                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
+                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
                             </div>
-                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
+                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
                                 getActivity().findViewById(R.id.fab_camera).setOnClickListener(<span
                                         class="keyword">new</span> View.OnClickListener() {
                             </div>
-                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
+                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
+                            <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onClick(View v) {
                             </div>
-                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
+                            <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a127f286f45219c7891d564cc55e2a80e.html#a127f286f45219c7891d564cc55e2a80e">cameraUtil</a>.<a
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_af14f8f1e4107c9a9063cf70d1fbb5bb5.html#af14f8f1e4107c9a9063cf70d1fbb5bb5">preview</a>.<a
                                         class="code"
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraUtil_a4223fa54dcdd332f394f9d4b6395ec79.html#a4223fa54dcdd332f394f9d4b6395ec79">takePicture</a>();
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraPreviewUtil_a4f4ca8b7292c4e410f1f5aca3a53423a.html#a4f4ca8b7292c4e410f1f5aca3a53423a">takePicture</a>();
                             </div>
-                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
+                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
+                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
                                 });
                             </div>
-                            <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;
+                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
                             </div>
-                            <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;
+                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
-                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraUtil_a4223fa54dcdd332f394f9d4b6395ec79_html_a4223fa54dcdd332f394f9d4b6395ec79">
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraPreviewUtil_a4f4ca8b7292c4e410f1f5aca3a53423a_html_a4f4ca8b7292c4e410f1f5aca3a53423a">
                                 <div class="ttname"><a
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraUtil_a4223fa54dcdd332f394f9d4b6395ec79.html#a4223fa54dcdd332f394f9d4b6395ec79">it.unibo.torsello.bluetoothpositioning.util.CameraUtil.takePicture</a>
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraPreviewUtil_a4f4ca8b7292c4e410f1f5aca3a53423a.html#a4f4ca8b7292c4e410f1f5aca3a53423a">it.unibo.torsello.bluetoothpositioning.util.CameraPreviewUtil.takePicture</a>
                                 </div>
                                 <div class="ttdeci">void takePicture()</div>
-                                <div class="ttdef"><b>Definition:</b> CameraUtil.java:90</div>
+                                <div class="ttdef"><b>Definition:</b> CameraPreviewUtil.java:246
+                                </div>
                             </div>
                             <div class="ttc"
-                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a127f286f45219c7891d564cc55e2a80e_html_a127f286f45219c7891d564cc55e2a80e">
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_af14f8f1e4107c9a9063cf70d1fbb5bb5_html_af14f8f1e4107c9a9063cf70d1fbb5bb5">
                                 <div class="ttname"><a
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_a127f286f45219c7891d564cc55e2a80e.html#a127f286f45219c7891d564cc55e2a80e">it.unibo.torsello.bluetoothpositioning.fragment.CameraFragment.cameraUtil</a>
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment_af14f8f1e4107c9a9063cf70d1fbb5bb5.html#af14f8f1e4107c9a9063cf70d1fbb5bb5">it.unibo.torsello.bluetoothpositioning.fragment.CameraFragment.preview</a>
                                 </div>
-                                <div class="ttdeci">CameraUtil cameraUtil</div>
-                                <div class="ttdef"><b>Definition:</b> CameraFragment.java:25</div>
+                                <div class="ttdeci">CameraPreviewUtil preview</div>
+                                <div class="ttdef"><b>Definition:</b> CameraFragment.java:22</div>
                             </div>
                         </div><!-- fragment -->
                     </div>

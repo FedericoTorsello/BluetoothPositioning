@@ -22,9 +22,10 @@ public class FABBehavior extends FloatingActionButton.Behavior {
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, final FloatingActionButton child,
                                        View directTargetChild, View target, int nestedScrollAxes) {
 
-        return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL ||
-                super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target,
-                        nestedScrollAxes);
+//        return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL ||
+//                super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target,
+//                        nestedScrollAxes);
+        return true;
     }
 
     @Override

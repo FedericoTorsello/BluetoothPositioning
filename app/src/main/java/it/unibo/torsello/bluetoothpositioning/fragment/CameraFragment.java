@@ -1,74 +1,69 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.TextureView;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.util.CameraUtil;
+import it.unibo.torsello.bluetoothpositioning.util.CameraPreviewUtil;
 
 /**
- * Created by federico on 28/09/16.
+ * Created by Federico Torsello.
+ * federico.torsello@studio.unibo.it
  */
-
 public class CameraFragment extends Fragment {
-
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-
-    private CameraUtil cameraUtil;
+    CameraPreviewUtil preview;
+    Camera camera;
 
     public static CameraFragment newInstance() {
-        CameraFragment fragment = new CameraFragment();
-        Bundle args = new Bundle();
-        args.putString(EXTRA_MESSAGE, "Camera");
-        fragment.setArguments(args);
-        return fragment;
+        return new CameraFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View root = inflater.inflate(R.layout.fragment_camera, container, false);
+        preview = new CameraPreviewUtil(getContext(), (SurfaceView) root.findViewById(R.id.surfaceView));
+        ((FrameLayout) root.findViewById(R.id.layout)).addView(preview);
+        preview.setKeepScreenOn(true);
+        preview.setOnClickListener(new OnClickListener() {
 
-        initializeCamera(root);
+            @Override
+            public void onClick(View arg0) {
+//                preview.takePicture();
+                camera.autoFocus(new Camera.AutoFocusCallback() {
+                    @Override
+                    public void onAutoFocus(boolean success, Camera arg1) {
+//                        if (success) {
+//                            preview.takePicture();
+//                        }
+                    }
+                });
+            }
+        });
+        preview.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View arg0) {
 
+                camera.autoFocus(new Camera.AutoFocusCallback() {
+                    @Override
+                    public void onAutoFocus(boolean success, Camera arg1) {
+//                        if (success) {
+//                            preview.takePicture();
+//                        }
+                    }
+                });
+                return true;
+            }
+        });
         return root;
-    }
-
-    private void initializeCamera(View root) {
-
-        if (cameraUtil != null) {
-            final TextureView mTextureView = cameraUtil.getmTextureView();
-
-            // programmatically add camera preview
-            FrameLayout preview = (FrameLayout) root.findViewById(R.id.camera_preview);
-            preview.addView(mTextureView);
-            preview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Restart the camera preview.
-                    cameraUtil.safeCameraOpenInView(mTextureView.getSurfaceTexture());
-                }
-            });
-        } else {
-            Toast.makeText(getActivity(), "No camera onCameraListener this device", Toast.LENGTH_LONG)
-                    .show();
-        }
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        cameraUtil = new CameraUtil(getActivity());
-        cameraUtil.initialize();
-
     }
 
     @Override
@@ -78,24 +73,25 @@ public class CameraFragment extends Fragment {
         getActivity().findViewById(R.id.fab_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cameraUtil.takePicture();
+                preview.takePicture();
             }
         });
 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        preview.setCamera(getActivity());
+        camera = preview.getCamera();
+    }
+
+    @Override
     public void onPause() {
-        cameraUtil.onPause();
+        preview.onPause();
         super.onPause();
     }
 
-    /**
-     * Check if this device has a camera
-     */
-    private boolean isCameraHardwarePresent() {
-        return getActivity().getPackageManager()
-                .hasSystemFeature(PackageManager.FEATURE_CAMERA);
-    }
-
 }
+
+
