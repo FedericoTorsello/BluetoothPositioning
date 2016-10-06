@@ -6,41 +6,65 @@
 \BOOKMARK [0][-]{chapter.2}{Requisiti}{}% 6
 \BOOKMARK [1][-]{section.2.1}{Requisiti funzionali}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.2}{Requisiti funzionali secondari}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.3}{Analisi dei requisiti}{chapter.2}% 9
-\BOOKMARK [2][-]{subsection.2.3.1}{Casi d'uso}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.2}{Scenari}{section.2.3}% 11
-\BOOKMARK [0][-]{chapter.3}{Accenni alla tecnologia BLE}{}% 12
-\BOOKMARK [0][-]{chapter.4}{Stima della distanza con RSSI}{}% 13
-\BOOKMARK [1][-]{section.4.1}{Attenuazione dei segnali elettromagnetici}{chapter.4}% 14
-\BOOKMARK [1][-]{section.4.2}{Received Signal Strength Indicator - RSSI}{chapter.4}% 15
-\BOOKMARK [1][-]{section.4.3}{Calcolo di RSSI}{chapter.4}% 16
-\BOOKMARK [2][-]{subsection.4.3.1}{Equazione di trasmissione di Friis}{section.4.3}% 17
-\BOOKMARK [2][-]{subsection.4.3.2}{Conversione della potenza}{section.4.3}% 18
-\BOOKMARK [2][-]{subsection.4.3.3}{Potenza media a distanza di riferimento \040d0 }{section.4.3}% 19
-\BOOKMARK [2][-]{subsection.4.3.4}{Equazione di RSSI}{section.4.3}% 20
-\BOOKMARK [1][-]{section.4.4}{Calcolo della distanza}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.5}{Problematiche della stima della distanza con RSSI}{chapter.4}% 22
-\BOOKMARK [0][-]{chapter.5}{Stima della distanza con Arduino}{}% 23
-\BOOKMARK [1][-]{section.5.1}{Progetto della stima della distanza con Arduino}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.2}{Progetto di test della comunicazione seriale PC - Arduino}{chapter.5}% 25
-\BOOKMARK [0][-]{chapter.6}{UML}{}% 26
-\BOOKMARK [1][-]{section.6.1}{Gerarchia delle classi}{chapter.6}% 27
-\BOOKMARK [2][-]{subsection.6.1.1}{ApplicationActivity}{section.6.1}% 28
-\BOOKMARK [2][-]{subsection.6.1.2}{Fragment e Observer}{section.6.1}% 29
-\BOOKMARK [2][-]{subsection.6.1.3}{Observable}{section.6.1}% 30
-\BOOKMARK [2][-]{subsection.6.1.4}{KFilter}{section.6.1}% 31
-\BOOKMARK [2][-]{subsection.6.1.5}{KFilterBuilder}{section.6.1}% 32
-\BOOKMARK [2][-]{subsection.6.1.6}{MyArmaRssiFilter}{section.6.1}% 33
-\BOOKMARK [2][-]{subsection.6.1.7}{Estimation}{section.6.1}% 34
-\BOOKMARK [2][-]{subsection.6.1.8}{Device}{section.6.1}% 35
-\BOOKMARK [2][-]{subsection.6.1.9}{DeviceCardViewAdapter}{section.6.1}% 36
-\BOOKMARK [2][-]{subsection.6.1.10}{DeviceCardViewAdapter.DeviceViewHolder}{section.6.1}% 37
-\BOOKMARK [2][-]{subsection.6.1.11}{StatePagerAdapter}{section.6.1}% 38
-\BOOKMARK [2][-]{subsection.6.1.12}{DeviceConstants}{section.6.1}% 39
-\BOOKMARK [2][-]{subsection.6.1.13}{KFilterConstants}{section.6.1}% 40
-\BOOKMARK [2][-]{subsection.6.1.14}{SettingConstants}{section.6.1}% 41
-\BOOKMARK [2][-]{subsection.6.1.15}{CameraPreviewUtil}{section.6.1}% 42
-\BOOKMARK [2][-]{subsection.6.1.16}{SaveImageTask}{section.6.1}% 43
-\BOOKMARK [2][-]{subsection.6.1.17}{ChartUtil}{section.6.1}% 44
-\BOOKMARK [2][-]{subsection.6.1.18}{UsbUtil}{section.6.1}% 45
-\BOOKMARK [2][-]{subsection.6.1.19}{FABBehavior}{section.6.1}% 46
+\BOOKMARK [1][-]{section.2.3}{Requisiti non funzionali}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.4}{Analisi dei requisiti}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.4.1}{Casi d'uso}{section.2.4}% 11
+\BOOKMARK [2][-]{subsection.2.4.2}{Scenari}{section.2.4}% 12
+\BOOKMARK [0][-]{chapter.3}{Breve introduzione alla tecnologia iBeacon}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Il protocollo iBeacon}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.1.1}{Broadcaster}{section.3.1}% 15
+\BOOKMARK [2][-]{subsection.3.1.2}{Receiver}{section.3.1}% 16
+\BOOKMARK [2][-]{subsection.3.1.3}{Advertising packet}{section.3.1}% 17
+\BOOKMARK [1][-]{section.3.2}{Frame iBeacon}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.2.1}{UUID \(128 bits\)}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.2}{Major number \(16 bits\)}{section.3.2}% 20
+\BOOKMARK [2][-]{subsection.3.2.3}{Minor number \(16 bits\)}{section.3.2}% 21
+\BOOKMARK [1][-]{section.3.3}{RSSI - Received Signal Strength Indication}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.3.1}{Advertising Interval}{section.3.3}% 23
+\BOOKMARK [1][-]{section.3.4}{iBeacon Advertising Packet Contents}{chapter.3}% 24
+\BOOKMARK [2][-]{subsection.3.4.1}{Measured power}{section.3.4}% 25
+\BOOKMARK [0][-]{chapter.4}{Stima della distanza con RSSI}{}% 26
+\BOOKMARK [1][-]{section.4.1}{Attenuazione dei segnali elettromagnetici}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{Received Signal Strength Indicator - RSSI}{chapter.4}% 28
+\BOOKMARK [1][-]{section.4.3}{Calcolo di RSSI}{chapter.4}% 29
+\BOOKMARK [2][-]{subsection.4.3.1}{Equazione di trasmissione di Friis}{section.4.3}% 30
+\BOOKMARK [2][-]{subsection.4.3.2}{Conversione della potenza}{section.4.3}% 31
+\BOOKMARK [2][-]{subsection.4.3.3}{Potenza media a distanza di riferimento \040d0 }{section.4.3}% 32
+\BOOKMARK [2][-]{subsection.4.3.4}{Equazione di RSSI}{section.4.3}% 33
+\BOOKMARK [1][-]{section.4.4}{Calcolo della distanza}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.5}{Problematiche della stima della distanza con RSSI}{chapter.4}% 35
+\BOOKMARK [0][-]{chapter.5}{Stima della distanza con Arduino}{}% 36
+\BOOKMARK [1][-]{section.5.1}{Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.2}{Progetto di test della comunicazione seriale PC - Arduino}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{Project}{}% 39
+\BOOKMARK [1][-]{section.6.1}{ApplicationActivity}{chapter.6}% 40
+\BOOKMARK [1][-]{section.6.2}{MainActivity}{chapter.6}% 41
+\BOOKMARK [1][-]{section.6.3}{DeviceViewHolder}{chapter.6}% 42
+\BOOKMARK [1][-]{section.6.4}{DeviceCardViewAdapter}{chapter.6}% 43
+\BOOKMARK [1][-]{section.6.5}{StatePagerAdapter}{chapter.6}% 44
+\BOOKMARK [1][-]{section.6.6}{MyArmaRssiFilter}{chapter.6}% 45
+\BOOKMARK [1][-]{section.6.7}{DeviceConstants}{chapter.6}% 46
+\BOOKMARK [1][-]{section.6.8}{KFilterConstants}{chapter.6}% 47
+\BOOKMARK [1][-]{section.6.9}{SettingConstants}{chapter.6}% 48
+\BOOKMARK [1][-]{section.6.10}{Estimation}{chapter.6}% 49
+\BOOKMARK [1][-]{section.6.11}{FABBehavior}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.12}{CameraFragment}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.13}{DeviceDetailFragment}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.14}{DeviceDetailInner2Fragment}{chapter.6}% 53
+\BOOKMARK [1][-]{section.6.15}{SettingsFragment}{chapter.6}% 54
+\BOOKMARK [1][-]{section.6.16}{DeviceChartFragment}{chapter.6}% 55
+\BOOKMARK [1][-]{section.6.17}{DeviceDetailInner1Fragment}{chapter.6}% 56
+\BOOKMARK [1][-]{section.6.18}{DeviceListFragment}{chapter.6}% 57
+\BOOKMARK [1][-]{section.6.19}{UsbMeasurementFragment}{chapter.6}% 58
+\BOOKMARK [1][-]{section.6.20}{KFilterBuildertFragment}{chapter.6}% 59
+\BOOKMARK [1][-]{section.6.21}{KFilter}{chapter.6}% 60
+\BOOKMARK [1][-]{section.6.22}{Device}{chapter.6}% 61
+\BOOKMARK [1][-]{section.6.23}{DeviceObservable}{chapter.6}% 62
+\BOOKMARK [1][-]{section.6.24}{UsbMeasurementObservable}{chapter.6}% 63
+\BOOKMARK [1][-]{section.6.25}{SaveImageTask}{chapter.6}% 64
+\BOOKMARK [1][-]{section.6.26}{CameraPreviewUtil}{chapter.6}% 65
+\BOOKMARK [1][-]{section.6.27}{ChartUtil}{chapter.6}% 66
+\BOOKMARK [1][-]{section.6.28}{UsbUtil}{chapter.6}% 67
+\BOOKMARK [0][-]{chapter.7}{Implementazione}{}% 68
+\BOOKMARK [0][-]{chapter.8}{Testing}{}% 69
+\BOOKMARK [1][-]{subsection.8.0.1}{Indicazioni preliminari}{chapter.8}% 70

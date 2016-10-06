@@ -33,61 +33,62 @@ import it.unibo.torsello.bluetoothpositioning.R;
  */
 public class ChartUtil implements OnChartValueSelectedListener {
 
-    private LineChart mChart;
+    private LineChart chart;
     private Thread thread;
     private FragmentActivity activity;
 
     private ArrayList<ILineDataSet> dataSets;
 
-    private SimpleDateFormat df;
 
-    public ChartUtil(FragmentActivity fragmentActivity, LineChart chart) {
+    public ChartUtil(FragmentActivity fragmentActivity) {
         this.activity = fragmentActivity;
-        this.mChart = chart;
-        df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
     }
 
     public FragmentActivity getActivity() {
         return activity;
     }
 
+    public void setChart(LineChart chart) {
+        this.chart = chart;
+    }
+
     public void initializeChart() {
         dataSets = new ArrayList<ILineDataSet>();
 
-        mChart.setOnChartValueSelectedListener(this);
+        chart.setOnChartValueSelectedListener(this);
 
         // no description text
-        mChart.setDescription("");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
+        chart.setDescription("");
+        chart.setNoDataTextDescription("You need to provide data for the chart.");
 
-        mChart.setDrawGridBackground(true);
+        chart.setDrawGridBackground(true);
 
         // if disabled, scaling can be done on x- and y-axis separately
-        mChart.setPinchZoom(true);
+        chart.setPinchZoom(true);
 
         // set an alternative background color
-        mChart.setBackgroundColor(Color.LTGRAY);
+        chart.setBackgroundColor(Color.LTGRAY);
 
         Typeface mTfLight = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
         Typeface mTfBold = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Bold.ttf");
 
         // get the legend (only possible after setting data)
-        Legend l = mChart.getLegend();
+        Legend l = chart.getLegend();
 //        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
         l.setXEntrySpace(7f);
         l.setYEntrySpace(7f);
 
-        XAxis xl = mChart.getXAxis();
+        XAxis xl = chart.getXAxis();
         xl.setTypeface(mTfLight);
         xl.setGridColor(Color.LTGRAY);
         xl.setTextColor(Color.WHITE);
 
-        YAxis leftAxis = mChart.getAxisLeft();
+        YAxis leftAxis = chart.getAxisLeft();
         leftAxis.setTypeface(mTfLight);
         leftAxis.setTextColor(Color.WHITE);
 
-        YAxis rightAxis = mChart.getAxisRight();
+        YAxis rightAxis = chart.getAxisRight();
         rightAxis.setTypeface(mTfBold);
 
     }
@@ -105,7 +106,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
                         @Override
                         public void run() {
 
-                            LineData data = mChart.getData();
+                            LineData data = chart.getData();
 
                             if (data == null) {
                                 if (dataSets != null) {
@@ -169,13 +170,13 @@ public class ChartUtil implements OnChartValueSelectedListener {
         data.notifyDataChanged();
 
         // let the chart know it's data has changed
-        mChart.notifyDataSetChanged();
+        chart.notifyDataSetChanged();
 
         // limit the number of visible entries
-        mChart.setVisibleXRangeMaximum(10);
+        chart.setVisibleXRangeMaximum(10);
 
         // move to the latest entry
-        mChart.moveViewToX(data.getEntryCount());
+        chart.moveViewToX(data.getEntryCount());
     }
 
     private void initializeDataChart(ArrayList<ILineDataSet> dataSets) {
@@ -187,16 +188,15 @@ public class ChartUtil implements OnChartValueSelectedListener {
         lineData.setValueFormatter(new DefaultValueFormatter(2));
 
         // set data
-        mChart.setData(lineData);
+        chart.setData(lineData);
     }
 
-    public void saveImageChart(String chartName) {
-        String formattedDate = df.format(Calendar.getInstance().getTime());
+    public void saveImageChart(String chartName, String formattedDate) {
         String nameImage = chartName + " " + System.currentTimeMillis();
-        mChart.saveToGallery(nameImage, chartName
-                + " - " + formattedDate, null, Bitmap.CompressFormat.JPEG, 90);
+        chart.saveToGallery(nameImage, chartName
+                + " - " + formattedDate, null, Bitmap.CompressFormat.JPEG, 100);
 
-        Snackbar.make(getActivity().findViewById(R.id.fab), nameImage + " stored"
+        Snackbar.make(getActivity().findViewById(R.id.fab), chartName + " stored"
                 , Snackbar.LENGTH_SHORT).show();
     }
 
@@ -208,7 +208,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     @Override
     public void onNothingSelected() {
-        Log.i("Nothing selected", "Nothing selected.");
+//        Log.i("Nothing selected", "Nothing selected.");
     }
 
 }

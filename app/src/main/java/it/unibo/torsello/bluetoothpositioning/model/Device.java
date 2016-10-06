@@ -14,8 +14,8 @@ public class Device {
     private String address;
     private String friendlyName;
     private Beacon beacon;
-    private Integer imageBeacon;
-    private Integer color;
+    private int imageBeacon;
+    private int color;
     private int index;
 
     public Device(int index, String address, String friendlyName, Integer color, Integer imageBeacon) {

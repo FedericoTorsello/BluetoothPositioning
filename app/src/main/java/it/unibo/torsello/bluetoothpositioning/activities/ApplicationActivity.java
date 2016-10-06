@@ -69,12 +69,12 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
     }
 
     private void initializeBeaconManager() {
-        beaconManager = BeaconManager.getInstanceForApplication(this);
+        beaconManager = BeaconManager.getInstanceForApplication(getApplicationContext());
         beaconManager.bind(this);
 
         // Save battery whenever the application is not visible.
         // This reduces bluetooth power usage by about 60%
-        backgroundPowerSaver = new BackgroundPowerSaver(this);
+        backgroundPowerSaver = new BackgroundPowerSaver(getApplicationContext());
 
 //        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());
 
@@ -110,7 +110,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
     private void inizializeFloatingActionButton() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -248,12 +247,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
     }
 
     private boolean isBluetoothAvailable() {
-
         try {
+            final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
             if (!beaconManager.checkAvailability()) {
-
-                final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-                assert fab != null;
 
                 new AlertDialog.Builder(this)
                         .setTitle(R.string.dialog_bluetooth_title)
@@ -262,12 +258,18 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                         .setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
-                                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
                                 BluetoothAdapter.getDefaultAdapter().enable();
+                                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+                                Snackbar.make(fab, R.string.snackBar_start_scanning,
+                                        Snackbar.LENGTH_INDEFINITE).show();
                             }
                         }).show();
                 fab.setImageResource(R.drawable.ic_bluetooth_disabled_black_24dp);
+                Snackbar.make(fab, R.string.snackBar_scanning_disabled,
+                        Snackbar.LENGTH_INDEFINITE).show();
                 return false;
+            } else {
+                Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
             }
         } catch (RuntimeException e) {
             e.getStackTrace();

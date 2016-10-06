@@ -9,19 +9,10 @@ Per la realizzare del sistema si necessita:
 	
 	\item un ambiente chiuso (come una stanza) in cui disporre gli iBeacon.
 \end{itemize}
-Nello specifico, per non alterare la ricezione dei segnali inviati dagli iBeacon, questi devono essere disposti:
-\begin{itemize}
-	\item su pareti regolari a circa 1 metro da terra;
-	
-	\item lontano da apparecchi che emettono onde elettromagnetiche (ad esempio router wifi);
-	
-	\item al sicuro da raffiche di vento;
-	
-	\item in aree in cui non si frappongano oggetti o persone tra lo smartphone e l'iBeacon target.
-\end{itemize}
 
 \section{Requisiti funzionali secondari}
-Per poter avere un feedback a schermo della distanza reale utente-iBeacon si necessita di:
+Ai fini di un confronto tra la distanza stimata grazie agli iBeacon e quella "reale" si vuole utilizzare una board Arduino ed un sensore ultrasonico; quindi creare un feedback a schermo. 
+Nello specifico si necessita di:
 \begin{itemize}
 	\item una board Arduino UNO (o superiore);
 	
@@ -36,8 +27,15 @@ Per poter avere un feedback a schermo della distanza reale utente-iBeacon si nec
 	\item un cavo USB OTG.
 \end{itemize}
 
-%\section{Requisiti non funzionali}
-%???
+\section{Requisiti non funzionali}
+I requisiti funzionali di questo progetto sono molteplici:
+\begin{itemize}
+	\item ottenere una GUI fluida e di facile utilizzo.
+	\item realizzare dei filtri che non incidano sulle prestazioni del sistema.
+	\item avere dei feedback reali di quello che succede, con numeri ben visibili e grafici in realtime con colori distinguibili.
+	\item poter registrare i dati (sotto forma di immagine o testo) per analisi a posteriori.
+	\item ottenere un'app che non vada in crash.
+\end{itemize}
 
 \section{Analisi dei requisiti}
 \subsection{Casi d'uso}

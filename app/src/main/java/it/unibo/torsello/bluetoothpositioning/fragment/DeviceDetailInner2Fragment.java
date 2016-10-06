@@ -75,7 +75,7 @@ public class DeviceDetailInner2Fragment extends Fragment {
         params1.add(getString(R.string.chart_altbeacon));
         params1.add(getString(R.string.chart_kalman_filter));
 
-        fragments.add(DeviceChartFragment.newInstance("chart1", idDeviceSelectedName, params1));
+        fragments.add(DeviceChartFragment.newInstance("chart1", 1, idDeviceSelectedName, params1));
 
         // inner fragment 1
         ArrayList<String> params2 = new ArrayList<>();
@@ -83,7 +83,7 @@ public class DeviceDetailInner2Fragment extends Fragment {
         params2.add(getString(R.string.chart_raw_distance));
         params2.add(getString(R.string.chart_kalman_filter));
 
-        fragments.add(DeviceChartFragment.newInstance("chart2", idDeviceSelectedName, params2));
+        fragments.add(DeviceChartFragment.newInstance("chart2", 2, idDeviceSelectedName, params2));
 
         // inner fragment 2
         ArrayList<String> params3 = new ArrayList<>();
@@ -91,7 +91,7 @@ public class DeviceDetailInner2Fragment extends Fragment {
         params3.add(getString(R.string.chart_altbeacon));
         params3.add(getString(R.string.chart_kalman_filter));
 
-        fragments.add(DeviceChartFragment.newInstance("chart3", idDeviceSelectedName, params3));
+        fragments.add(DeviceChartFragment.newInstance("chart3", 3, idDeviceSelectedName, params3));
 
         return fragments;
     }

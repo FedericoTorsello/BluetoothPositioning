@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.29)  5 OCT 2016 02:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.8.29)  6 OCT 2016 02:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -393,7 +393,8 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (./relazione.aux
 (./sommario.aux) (./introduzione.aux) (./analisi_dei_requisiti.aux)
 (./accenni_alla_tecnologia_bt.aux) (./stima_distanza_beacon.aux)
-(./usb_measurement.aux) (./project.aux) (./uml.aux))
+(./usb_measurement.aux) (./project.aux) (./implementazione.aux) (./testing.aux)
+)
 \openout1 = `relazione.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
@@ -412,8 +413,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
 LaTeX Font Info:    ... okay on input line 152.
 LaTeX Info: Redefining \it@ocap on input line 152.
 LaTeX Info: Redefining \it@ccap on input line 152.
-
-(/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
+ (/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 Package caption Info: Begin \AtBeginDocument code.
@@ -498,154 +498,189 @@ LaTeX Info: Redefining \nameref on input line 152.
 
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relazione.toc [2
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./relazione.tocpdfTeX war
+ning (ext4): destination with the same identifier (name{page.1}) has been alrea
+dy used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.37 ...riferimento $ d_0 $}{13}{subsection.4.3.3}
+                                                   [1
 
 ])
 \tf@toc=\write5
 \openout5 = `relazione.toc'.
 
- [3]
+ [2] [3]
 \openout2 = `sommario.aux'.
 
- (./sommario.texpdfTeX warning (ext4): destination with the same identifier (na
-me{page.1}) has been already used, duplicate ignored
+ (./sommario.tex (/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.9 \end{abstract}
-                   [1
+l.19 \end{abstract}
+                    [1
 
 ])
 \openout2 = `introduzione.aux'.
 
  (./introduzione.tex
 Capitolo 1.
-(/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 10.
-
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
 (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 16.
+(hyperref)                removing `math shift' on input line 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@underline' on input line 16.
+(hyperref)                removing `\@@underline' on input line 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hbox' on input line 16.
+(hyperref)                removing `\hbox' on input line 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 16.
+(hyperref)                removing `\mathsurround' on input line 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 16.
+(hyperref)                removing `\z@' on input line 19.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 16.
+(hyperref)                removing `math shift' on input line 19.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 
-      [2
+l.23 	\item R
+             ealizzare un'app compatibile con tutte le API Android 18 e supe...
+[1
 
 
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 35.
+(hyperref)                removing `math shift' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@@underline' on input line 35.
+(hyperref)                removing `\@@underline' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\hbox' on input line 35.
+(hyperref)                removing `\hbox' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 35.
+(hyperref)                removing `\mathsurround' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 35.
+(hyperref)                removing `\z@' on input line 38.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 35.
+(hyperref)                removing `math shift' on input line 38.
 
-)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+)pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.159 	\include{introduzione}
-                              [3]
+                              [2]
 \openout2 = `analisi_dei_requisiti.aux'.
 
  (./analisi_dei_requisiti.tex
 Capitolo 2.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 34.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 25.
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [4
+)pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.34 	\item r
+             ealizzare dei filtri che non incidano sulle prestazioni del sis...
+[3
 
 
 
-]
-<img/uml/use_case/use_case1.png, id=291, 993.7125pt x 501.875pt>
+] <img/uml/use_case/use_case1.png, id=422, 993.7125pt x 501.875pt>
 File: img/uml/use_case/use_case1.png Graphic file (type png)
 
 <use img/uml/use_case/use_case1.png>
-Package pdftex.def Info: img/uml/use_case/use_case1.png used on input line 46.
+Package pdftex.def Info: img/uml/use_case/use_case1.png used on input line 44.
 (pdftex.def)             Requested size: 447.16649pt x 225.84166pt.
 
-Overfull \hbox (87.16649pt too wide) in paragraph at lines 46--47
+Overfull \hbox (87.16649pt too wide) in paragraph at lines 44--45
  [][] 
  []
 
-[5 <./img/uml/use_case/use_case1.png (PNG copy)>]) [6]
+[4 <./img/uml/use_case/use_case1.png (PNG copy)>]) [5]
 \openout2 = `accenni_alla_tecnologia_bt.aux'.
 
 
 (./accenni_alla_tecnologia_bt.tex
 Capitolo 3.
-) [7
+<img/bt/BT.png, id=434, 608.2725pt x 367.3725pt>
+File: img/bt/BT.png Graphic file (type png)
+ <use img/bt/BT.png>
+Package pdftex.def Info: img/bt/BT.png used on input line 10.
+(pdftex.def)             Requested size: 152.06775pt x 91.8429pt.
+ [6
 
 
 
-]
+ <./img/bt/BT.png>] <img/bt/ibeacon.png, id=442, 678.535pt x 694.595pt>
+File: img/bt/ibeacon.png Graphic file (type png)
+
+<use img/bt/ibeacon.png>
+Package pdftex.def Info: img/bt/ibeacon.png used on input line 32.
+(pdftex.def)             Requested size: 135.70459pt x 138.91653pt.
+ [7 <./img/bt/ibeacon.png>] [8]
+<img/bt/iBeacon_advertising_packet_format.png, id=453, 1377.145pt x 293.095pt>
+File: img/bt/iBeacon_advertising_packet_format.png Graphic file (type png)
+
+<use img/bt/iBeacon_advertising_packet_format.png>
+Package pdftex.def Info: img/bt/iBeacon_advertising_packet_format.png used on i
+nput line 76.
+(pdftex.def)             Requested size: 344.2854pt x 73.27356pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+
+ []
+
+[9 <./img/bt/iBeacon_advertising_packet_format.png>]) [10]
 \openout2 = `stima_distanza_beacon.aux'.
 
- (./stima_distanza_beacon.tex
+
+(./stima_distanza_beacon.tex
 Capitolo 4.
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-<img/algoritmi/RSS.png, id=314, 1086.0575pt x 851.18pt>
+<img/algoritmi/RSS.png, id=468, 1086.0575pt x 851.18pt>
 File: img/algoritmi/RSS.png Graphic file (type png)
 
 <use img/algoritmi/RSS.png>
 Package pdftex.def Info: img/algoritmi/RSS.png used on input line 20.
 (pdftex.def)             Requested size: 271.5137pt x 212.79446pt.
- [8
+ [11
 
 
 
-] [9 <./img/algoritmi/RSS.png>]
+] [12 <./img/algoritmi/RSS.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 71.
@@ -673,14 +708,14 @@ Overfull \hbox (42.6324pt too wide) detected at line 93
 \OT1/cmr/m/n/10.95 ))
  []
 
-[10] <img/algoritmi/RSS_PROBLEMI.png, id=351, 1052.93375pt x 567.11874pt>
+[13] <img/algoritmi/RSS_PROBLEMI.png, id=502, 1052.93375pt x 567.11874pt>
 File: img/algoritmi/RSS_PROBLEMI.png Graphic file (type png)
 
 <use img/algoritmi/RSS_PROBLEMI.png>
 Package pdftex.def Info: img/algoritmi/RSS_PROBLEMI.png used on input line 117.
 
 (pdftex.def)             Requested size: 168.47284pt x 90.74084pt.
-) [11 <./img/algoritmi/RSS_PROBLEMI.png>]
+) [14 <./img/algoritmi/RSS_PROBLEMI.png>]
 \openout2 = `usb_measurement.aux'.
 
 
@@ -688,211 +723,859 @@ Package pdftex.def Info: img/algoritmi/RSS_PROBLEMI.png used on input line 117.
 Capitolo 5.
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-33.def
 File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
-) [12
+) [15
 
 
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 57.
- [13]) [14]
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 58.
+ [16]) [17]
 \openout2 = `project.aux'.
 
 
-(./project.tex) [15
-
-
-]
-\openout2 = `uml.aux'.
-
- (./uml.tex
+(./project.tex
 Capitolo 6.
 
-<img/uml/inherit_graph/inherit_graph_0.png, id=440, 968.61874pt x 125.46875pt>
-File: img/uml/inherit_graph/inherit_graph_0.png Graphic file (type png)
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activiti
+es_1_1ApplicationActivity__coll__graph.png, id=584, 2656.92625pt x 1014.79124pt
+>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1act
+ivities_1_1ApplicationActivity__coll__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_0.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_0.png used on inpu
-t line 8.
-(pdftex.def)             Requested size: 435.8744pt x 56.4604pt.
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1acti
+vities_1_1ApplicationActivity__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1activities_1_1ApplicationActivity__coll__graph.png used on inpu
+t line 25.
+(pdftex.def)             Requested size: 431.9989pt x 164.98679pt.
 
-Overfull \hbox (75.8744pt too wide) in paragraph at lines 8--9
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 25--26
  [][] 
  []
 
-[16
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activiti
+es_1_1ApplicationActivity__inherit__graph.png, id=585, 515.9275pt x 751.80875pt
+>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1act
+ivities_1_1ApplicationActivity__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1acti
+vities_1_1ApplicationActivity__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1activities_1_1ApplicationActivity__inherit__graph.png used on i
+nput line 31.
+(pdftex.def)             Requested size: 180.0pt x 262.28809pt.
+ [18
 
 
 
- <./img/uml/inherit_graph/inherit_graph_0.png>]
-<img/uml/inherit_graph/inherit_graph_10.png, id=448, 524.96124pt x 510.90875pt>
-File: img/uml/inherit_graph/inherit_graph_10.png Graphic file (type png)
-<use img/uml/inherit_graph/inherit_graph_10.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_10.png used on inp
-ut line 17.
-(pdftex.def)             Requested size: 288.72957pt x 281.00067pt.
+] [19 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1
+activities_1_1ApplicationActivity__coll__graph.png> <./img/uml/class/classit_1_
+1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity
+__inherit__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activiti
+es_1_1MainActivity__coll__graph.png, id=601, 1117.17375pt x 346.29375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1act
+ivities_1_1MainActivity__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_14.png, id=449, 505.89pt x 117.43875pt>
-File: img/uml/inherit_graph/inherit_graph_14.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1acti
+vities_1_1MainActivity__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1activities_1_1MainActivity__coll__graph.png used on input line 
+39.
+(pdftex.def)             Requested size: 431.9989pt x 133.90738pt.
 
-<use img/uml/inherit_graph/inherit_graph_14.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_14.png used on inp
-ut line 24.
-(pdftex.def)             Requested size: 278.24034pt x 64.59149pt.
- [17 <./img/uml/inherit_graph/inherit_graph_10.png> <./img/uml/inherit_graph/in
-herit_graph_14.png>]
-<img/uml/inherit_graph/inherit_graph_11.png, id=458, 326.21875pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_11.png Graphic file (type png)
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 39--40
+ [][] 
+ []
 
-<use img/uml/inherit_graph/inherit_graph_11.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_11.png used on inp
-ut line 33.
-(pdftex.def)             Requested size: 179.42085pt x 28.70734pt.
 
-<img/uml/inherit_graph/inherit_graph_12.png, id=459, 326.21875pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_12.png Graphic file (type png)
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activiti
+es_1_1MainActivity__inherit__graph.png, id=602, 406.51875pt x 751.80875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1act
+ivities_1_1MainActivity__inherit__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_12.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_12.png used on inp
-ut line 40.
-(pdftex.def)             Requested size: 179.42085pt x 28.70734pt.
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1acti
+vities_1_1MainActivity__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1activities_1_1MainActivity__inherit__graph.png used on input li
+ne 45.
+(pdftex.def)             Requested size: 180.0pt x 332.8847pt.
+ [20 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1a
+ctivities_1_1MainActivity__coll__graph.png>] [21 <./img/uml/class/classit_1_1un
+ibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity__inherit_
+_graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1DeviceCardViewAdapter_1_1DeviceViewHolder__coll__graph.png, id=616, 954.5662
+5pt x 449.68pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__coll__graph.png Graphic file
+ (type png)
 
-<img/uml/inherit_graph/inherit_graph_4.png, id=460, 498.86375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_4.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__coll__gra
+ph.png used on input line 53.
+(pdftex.def)             Requested size: 431.9989pt x 203.50687pt.
 
-<use img/uml/inherit_graph/inherit_graph_4.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_4.png used on inpu
-t line 47.
-(pdftex.def)             Requested size: 274.37592pt x 28.70734pt.
- [18 <./img/uml/inherit_graph/inherit_graph_11.png> <./img/uml/inherit_graph/in
-herit_graph_12.png> <./img/uml/inherit_graph/inherit_graph_4.png>]
-<img/uml/inherit_graph/inherit_graph_8.png, id=471, 333.245pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_8.png Graphic file (type png)
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 53--54
+ [][] 
+ []
 
-<use img/uml/inherit_graph/inherit_graph_8.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_8.png used on inpu
-t line 56.
-(pdftex.def)             Requested size: 183.28531pt x 28.70734pt.
 
-<img/uml/inherit_graph/inherit_graph_13.png, id=472, 322.20375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_13.png Graphic file (type png)
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1DeviceCardViewAdapter_1_1DeviceViewHolder__inherit__graph.png, id=617, 332.2
+4126pt x 508.90125pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__inherit__graph.png Graphic f
+ile (type png)
 
-<use img/uml/inherit_graph/inherit_graph_13.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_13.png used on inp
-ut line 63.
-(pdftex.def)             Requested size: 177.2126pt x 28.70734pt.
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__inherit__
+graph.png used on input line 59.
+(pdftex.def)             Requested size: 180.0pt x 275.7111pt.
+ [22 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1a
+dapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder__coll__graph.png>] [23 <./i
+mg/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_
+1DeviceCardViewAdapter_1_1DeviceViewHolder__inherit__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1DeviceCardViewAdapter__coll__graph.png, id=630, 1089.06876pt x 530.98375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1DeviceCardViewAdapter__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_1.png, id=473, 453.695pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_1.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1DeviceCardViewAdapter__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1DeviceCardViewAdapter__coll__graph.png used on input
+ line 67.
+(pdftex.def)             Requested size: 431.9989pt x 210.62346pt.
 
-<use img/uml/inherit_graph/inherit_graph_1.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_1.png used on inpu
-t line 70.
-(pdftex.def)             Requested size: 249.53302pt x 28.70734pt.
- [19 <./img/uml/inherit_graph/inherit_graph_8.png> <./img/uml/inherit_graph/inh
-erit_graph_13.png> <./img/uml/inherit_graph/inherit_graph_1.png>]
-<img/uml/inherit_graph/inherit_graph_2.png, id=484, 332.24126pt x 76.285pt>
-File: img/uml/inherit_graph/inherit_graph_2.png Graphic file (type png)
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 67--68
+ [][] 
+ []
 
-<use img/uml/inherit_graph/inherit_graph_2.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_2.png used on inpu
-t line 79.
-(pdftex.def)             Requested size: 182.73325pt x 41.95686pt.
 
-<img/uml/inherit_graph/inherit_graph_3.png, id=485, 553.06625pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_3.png Graphic file (type png)
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1DeviceCardViewAdapter__inherit__graph.png, id=631, 332.24126pt x 390.45876pt
+>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1DeviceCardViewAdapter__inherit__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_3.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_3.png used on inpu
-t line 86.
-(pdftex.def)             Requested size: 304.18738pt x 28.70734pt.
- [20 <./img/uml/inherit_graph/inherit_graph_2.png> <./img/uml/inherit_graph/inh
-erit_graph_3.png>]
-<img/uml/inherit_graph/inherit_graph_5.png, id=494, 338.26375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_5.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1DeviceCardViewAdapter__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1DeviceCardViewAdapter__inherit__graph.png used on in
+put line 73.
+(pdftex.def)             Requested size: 180.0pt x 211.54166pt.
+ [24 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1a
+dapter_1_1DeviceCardViewAdapter__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1StatePagerAdapter__coll__graph.png, id=638, 494.84875pt x 428.60126pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1StatePagerAdapter__coll__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_5.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_5.png used on inpu
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1StatePagerAdapter__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1StatePagerAdapter__coll__graph.png used on input lin
+e 81.
+(pdftex.def)             Requested size: 288.0011pt x 249.44562pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_
+1_1StatePagerAdapter__inherit__graph.png, id=639, 332.24126pt x 288.07625pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ada
+pter_1_1StatePagerAdapter__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adap
+ter_1_1StatePagerAdapter__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1adapter_1_1StatePagerAdapter__inherit__graph.png used on input 
+line 87.
+(pdftex.def)             Requested size: 180.0pt x 156.07314pt.
+ [25] [26 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1adapter_1_1DeviceCardViewAdapter__inherit__graph.png> <./img/uml/class/clas
+sit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1StatePagerAdapte
+r__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1configur
+ation_1_1MyArmaRssiFilter__coll__graph.png, id=653, 598.235pt x 302.12875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1con
+figuration_1_1MyArmaRssiFilter__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1conf
+iguration_1_1MyArmaRssiFilter__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1configuration_1_1MyArmaRssiFilter__coll__graph.png used on inpu
 t line 95.
-(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
+(pdftex.def)             Requested size: 360.0pt x 181.81342pt.
 
-<img/uml/inherit_graph/inherit_graph_6.png, id=495, 338.26375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_6.png Graphic file (type png)
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1configur
+ation_1_1MyArmaRssiFilter__inherit__graph.png, id=654, 368.37625pt x 332.24126p
+t>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1con
+figuration_1_1MyArmaRssiFilter__inherit__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_6.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_6.png used on inpu
-t line 102.
-(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1conf
+iguration_1_1MyArmaRssiFilter__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1configuration_1_1MyArmaRssiFilter__inherit__graph.png used on i
+nput line 101.
+(pdftex.def)             Requested size: 251.9989pt x 227.27971pt.
+ [27] [28 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1adapter_1_1StatePagerAdapter__inherit__graph.png> <./img/uml/class/classit_
+1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1configuration_1_1MyArmaRssiFilt
+er__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant
+_1_1DeviceConstants__coll__graph.png, id=667, 515.9275pt x 546.04pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1con
+stant_1_1DeviceConstants__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_7.png, id=496, 338.26375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_7.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1cons
+tant_1_1DeviceConstants__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1constant_1_1DeviceConstants__coll__graph.png used on input line
+ 109.
+(pdftex.def)             Requested size: 251.9989pt x 266.70375pt.
+ [29] [30 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1configuration_1_1MyArmaRssiFilter__inherit__graph.png> <./img/uml/class/cla
+ssit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1DeviceConstant
+s__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant
+_1_1KFilterConstants__coll__graph.png, id=680, 346.29375pt x 302.12875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1con
+stant_1_1KFilterConstants__coll__graph.png Graphic file (type png)
 
-<use img/uml/inherit_graph/inherit_graph_7.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_7.png used on inpu
-t line 109.
-(pdftex.def)             Requested size: 186.04562pt x 28.70734pt.
- [21 <./img/uml/inherit_graph/inherit_graph_5.png> <./img/uml/inherit_graph/inh
-erit_graph_6.png> <./img/uml/inherit_graph/inherit_graph_7.png>]
-<img/uml/inherit_graph/inherit_graph_16.png, id=507, 444.66125pt x 88.33pt>
-File: img/uml/inherit_graph/inherit_graph_16.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1cons
+tant_1_1KFilterConstants__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1constant_1_1KFilterConstants__coll__graph.png used on input lin
+e 117.
+(pdftex.def)             Requested size: 180.0pt x 157.04791pt.
 
-<use img/uml/inherit_graph/inherit_graph_16.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_16.png used on inp
-ut line 117.
-(pdftex.def)             Requested size: 244.56444pt x 48.58163pt.
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant
+_1_1SettingConstants__coll__graph.png, id=681, 359.3425pt x 302.12875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1con
+stant_1_1SettingConstants__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_15.png, id=508, 450.68375pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_15.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1cons
+tant_1_1SettingConstants__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1constant_1_1SettingConstants__coll__graph.png used on input lin
+e 124.
+(pdftex.def)             Requested size: 180.0pt x 151.34521pt.
 
-<use img/uml/inherit_graph/inherit_graph_15.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_15.png used on inp
-ut line 124.
-(pdftex.def)             Requested size: 247.87682pt x 28.70734pt.
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distance
+Estimation_1_1Estimation__coll__graph.png, id=682, 704.6325pt x 693.59125pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1dis
+tanceEstimation_1_1Estimation__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_17.png, id=509, 571.13374pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_17.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1dist
+anceEstimation_1_1Estimation__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1distanceEstimation_1_1Estimation__coll__graph.png used on input
+ line 131.
+(pdftex.def)             Requested size: 431.9989pt x 425.22787pt.
 
-<use img/uml/inherit_graph/inherit_graph_17.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_17.png used on inp
-ut line 131.
-(pdftex.def)             Requested size: 314.12453pt x 28.70734pt.
- [22 <./img/uml/inherit_graph/inherit_graph_16.png> <./img/uml/inherit_graph/in
-herit_graph_15.png> <./img/uml/inherit_graph/inherit_graph_17.png>]
-<img/uml/inherit_graph/inherit_graph_18.png, id=521, 302.12875pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_18.png Graphic file (type png)
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 131--132
+ [][] 
+ []
 
-<use img/uml/inherit_graph/inherit_graph_18.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_18.png used on inp
-ut line 139.
-(pdftex.def)             Requested size: 166.17131pt x 28.70734pt.
+[31 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1co
+nstant_1_1KFilterConstants__coll__graph.png> <./img/uml/class/classit_1_1unibo_
+1_1torsello_1_1bluetoothpositioning_1_1constant_1_1SettingConstants__coll__grap
+h.png>] [32 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioni
+ng_1_1distanceEstimation_1_1Estimation__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extra_1_
+1FABBehavior__coll__graph.png, id=698, 316.18124pt x 273.02pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ext
+ra_1_1FABBehavior__coll__graph.png Graphic file (type png)
 
-<img/uml/inherit_graph/inherit_graph_9.png, id=522, 444.66125pt x 52.195pt>
-File: img/uml/inherit_graph/inherit_graph_9.png Graphic file (type png)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extr
+a_1_1FABBehavior__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1extra_1_1FABBehavior__coll__graph.png used on input line 139.
+(pdftex.def)             Requested size: 180.0pt x 155.43138pt.
 
-<use img/uml/inherit_graph/inherit_graph_9.png>
-Package pdftex.def Info: img/uml/inherit_graph/inherit_graph_9.png used on inpu
-t line 146.
-(pdftex.def)             Requested size: 244.56444pt x 28.70734pt.
-) [23 <./img/uml/inherit_graph/inherit_graph_18.png> <./img/uml/inherit_graph/i
-nherit_graph_9.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extra_1_
+1FABBehavior__inherit__graph.png, id=699, 316.18124pt x 273.02pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ext
+ra_1_1FABBehavior__inherit__graph.png Graphic file (type png)
 
-(./relazione.aux (./sommario.aux) (./introduzione.aux)
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extr
+a_1_1FABBehavior__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1extra_1_1FABBehavior__inherit__graph.png used on input line 145
+.
+(pdftex.def)             Requested size: 180.0pt x 155.43138pt.
+ [33 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1e
+xtra_1_1FABBehavior__coll__graph.png> <./img/uml/class/classit_1_1unibo_1_1tors
+ello_1_1bluetoothpositioning_1_1extra_1_1FABBehavior__inherit__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1CameraFragment__coll__graph.png, id=708, 1195.46625pt x 834.11626pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1CameraFragment__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1CameraFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1CameraFragment__coll__graph.png used on input line 
+153.
+(pdftex.def)             Requested size: 431.9989pt x 301.41438pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 153--154
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1CameraFragment__inherit__graph.png, id=709, 342.27875pt x 302.12875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1CameraFragment__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1CameraFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1CameraFragment__inherit__graph.png used on input li
+ne 159.
+(pdftex.def)             Requested size: 180.0pt x 158.88734pt.
+ [34 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1f
+ragment_1_1CameraFragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1DeviceDetailFragment__coll__graph.png, id=716, 370.38374pt x 332.24126pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1DeviceDetailFragment__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1DeviceDetailFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1DeviceDetailFragment__coll__graph.png used on input
+ line 167.
+(pdftex.def)             Requested size: 251.9989pt x 226.04779pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1DeviceDetailFragment__inherit__graph.png, id=717, 342.27875pt x 317.185pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1DeviceDetailFragment__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1DeviceDetailFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1DeviceDetailFragment__inherit__graph.png used on in
+put line 173.
+(pdftex.def)             Requested size: 180.0pt x 166.80531pt.
+ [35] [36 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1fragment_1_1CameraFragment__inherit__graph.png> <./img/uml/class/classit_1_
+1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_
+_coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1DeviceDetailInner2Fragment__coll__graph.png, id=731, 372.39125pt x 346.2937
+5pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1DeviceDetailInner2Fragment__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1DeviceDetailInner2Fragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1DeviceDetailInner2Fragment__coll__graph.png used on
+ input line 181.
+(pdftex.def)             Requested size: 251.9989pt x 234.34584pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1DeviceDetailInner2Fragment__inherit__graph.png, id=732, 342.27875pt x 332.2
+4126pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1DeviceDetailInner2Fragment__inherit__graph.png Graphic file (type png)
+
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1DeviceDetailInner2Fragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1DeviceDetailInner2Fragment__inherit__graph.png used
+ on input line 187.
+(pdftex.def)             Requested size: 180.0pt x 174.7233pt.
+ [37] [38 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1fragment_1_1DeviceDetailFragment__inherit__graph.png> <./img/uml/class/clas
+sit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInn
+er2Fragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1SettingsFragment__coll__graph.png, id=746, 508.90125pt x 332.24126pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1SettingsFragment__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1SettingsFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1SettingsFragment__coll__graph.png used on input lin
+e 195.
+(pdftex.def)             Requested size: 251.9989pt x 164.51822pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1SettingsFragment__inherit__graph.png, id=747, 342.27875pt x 346.29375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1SettingsFragment__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1SettingsFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1SettingsFragment__inherit__graph.png used on input 
+line 201.
+(pdftex.def)             Requested size: 180.0pt x 182.1134pt.
+ [39] [40 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1fragment_1_1DeviceDetailInner2Fragment__inherit__graph.png> <./img/uml/clas
+s/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsF
+ragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceChartFragment__coll__graph.png, id=760, 2114.9012
+5pt x 867.24pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceChartFragment__coll__graph.png Graphic file 
+(type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceChartFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceChartFragment__coll__grap
+h.png used on input line 209.
+(pdftex.def)             Requested size: 431.9989pt x 177.13693pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 209--210
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceChartFragment__inherit__graph.png, id=761, 392.46
+625pt x 420.57124pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceChartFragment__inherit__graph.png Graphic fi
+le (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceChartFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceChartFragment__inherit__g
+raph.png used on input line 215.
+(pdftex.def)             Requested size: 180.0pt x 192.89397pt.
+ [41]
+[42 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fr
+agment_1_1SettingsFragment__inherit__graph.png> <./img/uml/class/classit_1_1uni
+bo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1Devic
+eChartFragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a27b7e447c.png, id=774, 3
+92.46625pt x 376.40625pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a27b7e447c.png Graph
+ic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a27b7e447c.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a
+27b7e447c.png used on input line 223.
+(pdftex.def)             Requested size: 180.0pt x 172.6378pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceDetailInner1Fragment__coll__graph.png, id=775, 15
+12.65125pt x 774.895pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceDetailInner1Fragment__coll__graph.png Graphi
+c file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceDetailInner1Fragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceDetailInner1Fragment__col
+l__graph.png used on input line 229.
+(pdftex.def)             Requested size: 431.9989pt x 221.29668pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 229--230
+ [][] 
+ []
+
+[43] [44 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_
+1_1fragment_1_1devicesObservers_1_1DeviceChartFragment__inherit__graph.png> <./
+img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_
+1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a27b7e447c.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceListFragment__coll__graph.png, id=789, 1536.74126
+pt x 774.895pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceListFragment__coll__graph.png Graphic file (
+type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceListFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceListFragment__coll__graph
+.png used on input line 237.
+(pdftex.def)             Requested size: 431.9989pt x 217.83226pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 237--238
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1devicesObservers_1_1DeviceListFragment__inherit__graph.png, id=790, 392.466
+25pt x 376.40625pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1devicesObservers_1_1DeviceListFragment__inherit__graph.png Graphic fil
+e (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1devicesObservers_1_1DeviceListFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1devicesObservers_1_1DeviceListFragment__inherit__gr
+aph.png used on input line 243.
+(pdftex.def)             Requested size: 180.0pt x 172.6378pt.
+ [45]
+[46 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fr
+agment_1_1devicesObservers_1_1DeviceDetailInner1Fragment__coll__graph.png> <./i
+mg/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1
+_1devicesObservers_1_1DeviceListFragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1usbObservers_1_1UsbMeasurementFragment__coll__graph.png, id=803, 1005.7575p
+t x 502.87875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1usbObservers_1_1UsbMeasurementFragment__coll__graph.png Graphic file (
+type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1usbObservers_1_1UsbMeasurementFragment__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment__coll__graph
+.png used on input line 251.
+(pdftex.def)             Requested size: 431.9989pt x 215.99577pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 251--252
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
+_1_1usbObservers_1_1UsbMeasurementFragment__inherit__graph.png, id=804, 365.365
+pt x 361.35pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fra
+gment_1_1usbObservers_1_1UsbMeasurementFragment__inherit__graph.png Graphic fil
+e (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1frag
+ment_1_1usbObservers_1_1UsbMeasurementFragment__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment__inherit__gr
+aph.png used on input line 257.
+(pdftex.def)             Requested size: 180.0pt x 178.02245pt.
+ [47]
+[48 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fr
+agment_1_1devicesObservers_1_1DeviceListFragment__inherit__graph.png> <./img/um
+l/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1usb
+Observers_1_1UsbMeasurementFragment__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFi
+lter_1_1KFilterBuilder__coll__graph.png, id=817, 326.21875pt x 376.40625pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kal
+manFilter_1_1KFilterBuilder__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalm
+anFilter_1_1KFilterBuilder__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1kalmanFilter_1_1KFilterBuilder__coll__graph.png used on input l
+ine 265.
+(pdftex.def)             Requested size: 216.0022pt x 249.24446pt.
+ [49] [50 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment__inherit__graph.png> <./
+img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFil
+ter_1_1KFilterBuilder__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFi
+lter_1_1KFilter__coll__graph.png, id=831, 326.21875pt x 434.62375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kal
+manFilter_1_1KFilter__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalm
+anFilter_1_1KFilter__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1kalmanFilter_1_1KFilter__coll__graph.png used on input line 273
+.
+(pdftex.def)             Requested size: 216.0022pt x 287.79427pt.
+ [51 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1k
+almanFilter_1_1KFilter__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_
+1Device__coll__graph.png, id=838, 932.48375pt x 1054.94125pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1mod
+el_1_1Device__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1mode
+l_1_1Device__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1model_1_1Device__coll__graph.png used on input line 281.
+(pdftex.def)             Requested size: 431.9989pt x 488.72365pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 281--282
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observab
+les_1_1DeviceObservable__coll__graph.png, id=839, 450.68375pt x 259.97125pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obs
+ervables_1_1DeviceObservable__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obse
+rvables_1_1DeviceObservable__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1observables_1_1DeviceObservable__coll__graph.png used on input 
+line 288.
+(pdftex.def)             Requested size: 180.0pt x 103.83194pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observab
+les_1_1DeviceObservable__inherit__graph.png, id=840, 361.35pt x 257.96375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obs
+ervables_1_1DeviceObservable__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obse
+rvables_1_1DeviceObservable__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1observables_1_1DeviceObservable__inherit__graph.png used on inp
+ut line 294.
+(pdftex.def)             Requested size: 180.0pt x 128.50133pt.
+ [52] [53 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1model_1_1Device__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observab
+les_1_1UsbMeasurementObservable__coll__graph.png, id=851, 450.68375pt x 259.971
+25pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obs
+ervables_1_1UsbMeasurementObservable__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obse
+rvables_1_1UsbMeasurementObservable__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1observables_1_1UsbMeasurementObservable__coll__graph.png used o
+n input line 302.
+(pdftex.def)             Requested size: 180.0pt x 103.83194pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observab
+les_1_1UsbMeasurementObservable__inherit__graph.png, id=852, 361.35pt x 257.963
+75pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obs
+ervables_1_1UsbMeasurementObservable__inherit__graph.png Graphic file (type png
+)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1obse
+rvables_1_1UsbMeasurementObservable__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1observables_1_1UsbMeasurementObservable__inherit__graph.png use
+d on input line 308.
+(pdftex.def)             Requested size: 180.0pt x 128.50133pt.
+ [54] [55 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning
+_1_1observables_1_1DeviceObservable__coll__graph.png> <./img/uml/class/classit_
+1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable
+__inherit__graph.png> <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1observables_1_1UsbMeasurementObservable__coll__graph.png> <./im
+g/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables
+_1_1UsbMeasurementObservable__inherit__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1
+SaveImageTask__coll__graph.png, id=869, 342.27875pt x 302.12875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1tas
+k_1_1SaveImageTask__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task
+_1_1SaveImageTask__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1task_1_1SaveImageTask__coll__graph.png used on input line 316.
+(pdftex.def)             Requested size: 180.0pt x 158.88734pt.
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1
+SaveImageTask__inherit__graph.png, id=870, 310.15875pt x 288.07625pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1tas
+k_1_1SaveImageTask__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task
+_1_1SaveImageTask__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1task_1_1SaveImageTask__inherit__graph.png used on input line 32
+2.
+(pdftex.def)             Requested size: 180.0pt x 167.18103pt.
+ [56 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1t
+ask_1_1SaveImageTask__coll__graph.png> <./img/uml/class/classit_1_1unibo_1_1tor
+sello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask__inherit__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1
+CameraPreviewUtil__coll__graph.png, id=881, 1217.54875pt x 619.31375pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1uti
+l_1_1CameraPreviewUtil__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util
+_1_1CameraPreviewUtil__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1util_1_1CameraPreviewUtil__coll__graph.png used on input line 3
+30.
+(pdftex.def)             Requested size: 431.9989pt x 219.73979pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 330--331
+ [][] 
+ []
+
+
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1
+CameraPreviewUtil__inherit__graph.png, id=882, 326.21875pt x 538.01pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1uti
+l_1_1CameraPreviewUtil__inherit__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util
+_1_1CameraPreviewUtil__inherit__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1util_1_1CameraPreviewUtil__inherit__graph.png used on input lin
+e 336.
+(pdftex.def)             Requested size: 180.0pt x 296.8669pt.
+ [57 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1u
+til_1_1CameraPreviewUtil__coll__graph.png>] [58 <./img/uml/class/classit_1_1uni
+bo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1CameraPreviewUtil__inherit__g
+raph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1
+ChartUtil__coll__graph.png, id=895, 809.0225pt x 546.04pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1uti
+l_1_1ChartUtil__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util
+_1_1ChartUtil__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1util_1_1ChartUtil__coll__graph.png used on input line 344.
+(pdftex.def)             Requested size: 431.9989pt x 291.57445pt.
+
+Overfull \hbox (71.9989pt too wide) in paragraph at lines 344--345
+ [][] 
+ []
+
+[59 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1ut
+il_1_1ChartUtil__coll__graph.png>]
+<img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1
+UsbUtil__coll__graph.png, id=902, 3137.7225pt x 912.40875pt>
+File: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1uti
+l_1_1UsbUtil__coll__graph.png Graphic file (type png)
+
+<use img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util
+_1_1UsbUtil__coll__graph.png>
+Package pdftex.def Info: img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoot
+hpositioning_1_1util_1_1UsbUtil__coll__graph.png used on input line 351.
+(pdftex.def)             Requested size: 450.0pt x 130.85492pt.
+
+Overfull \hbox (90.0pt too wide) in paragraph at lines 351--352
+[][] 
+ []
+
+) [60 <./img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1
+util_1_1UsbUtil__coll__graph.png>]
+\openout2 = `implementazione.aux'.
+
+ (./implementazione.tex
+Capitolo 7.
+<img/app/01.png, id=909, 481.8pt x 803.0pt>
+File: img/app/01.png Graphic file (type png)
+ <use img/app/01.png>
+Package pdftex.def Info: img/app/01.png used on input line 5.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/02.png, id=910, 481.8pt x 803.0pt>
+File: img/app/02.png Graphic file (type png)
+ <use img/app/02.png>
+Package pdftex.def Info: img/app/02.png used on input line 6.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/03.png, id=911, 481.8pt x 803.0pt>
+File: img/app/03.png Graphic file (type png)
+ <use img/app/03.png>
+Package pdftex.def Info: img/app/03.png used on input line 12.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/04.png, id=912, 481.8pt x 803.0pt>
+File: img/app/04.png Graphic file (type png)
+ <use img/app/04.png>
+Package pdftex.def Info: img/app/04.png used on input line 18.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/05.png, id=913, 481.8pt x 803.0pt>
+File: img/app/05.png Graphic file (type png)
+ <use img/app/05.png>
+Package pdftex.def Info: img/app/05.png used on input line 24.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/06.png, id=914, 481.8pt x 803.0pt>
+File: img/app/06.png Graphic file (type png)
+ <use img/app/06.png>
+Package pdftex.def Info: img/app/06.png used on input line 30.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/07.png, id=915, 481.8pt x 803.0pt>
+File: img/app/07.png Graphic file (type png)
+ <use img/app/07.png>
+Package pdftex.def Info: img/app/07.png used on input line 36.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/08.png, id=916, 481.8pt x 803.0pt>
+File: img/app/08.png Graphic file (type png)
+ <use img/app/08.png>
+Package pdftex.def Info: img/app/08.png used on input line 37.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/09.png, id=917, 481.8pt x 803.0pt>
+File: img/app/09.png Graphic file (type png)
+ <use img/app/09.png>
+Package pdftex.def Info: img/app/09.png used on input line 43.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/10.png, id=918, 481.8pt x 803.0pt>
+File: img/app/10.png Graphic file (type png)
+ <use img/app/10.png>
+Package pdftex.def Info: img/app/10.png used on input line 44.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+
+<img/app/11.png, id=919, 481.8pt x 803.0pt>
+File: img/app/11.png Graphic file (type png)
+ <use img/app/11.png>
+Package pdftex.def Info: img/app/11.png used on input line 50.
+(pdftex.def)             Requested size: 133.19824pt x 221.99582pt.
+) [61
+
+
+
+ <./img/app/01.png> <./img/app/02.png>] [62 <./img/app/03.png> <./img/app/04.pn
+g>]
+[63 <./img/app/05.png> <./img/app/06.png>] [64 <./img/app/07.png> <./img/app/08
+.png> <./img/app/09.png> <./img/app/10.png>] [65 <./img/app/11.png>]
+\openout2 = `testing.aux'.
+
+
+(./testing.tex
+Capitolo 8.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 3.
+
+) [66
+
+
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 175.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 175.
+ (./relazione.aux (./sommario.aux) (./introduzione.aux)
 (./analisi_dei_requisiti.aux) (./accenni_alla_tecnologia_bt.aux)
 (./stima_distanza_beacon.aux) (./usb_measurement.aux) (./project.aux)
-(./uml.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 173.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 173.
+(./implementazione.aux) (./testing.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 175.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 175.
 Package rerunfilecheck Info: File `relazione.out' has not changed.
-(rerunfilecheck)             Checksum: BDD758C634851FC44081AAD085649FFB;3226.
+(rerunfilecheck)             Checksum: BE7AED10B0E8E274607DC9B894F951EE;4779.
  ) 
 Here is how much of TeX's memory you used:
- 12642 strings out of 493013
- 178761 string characters out of 6139317
- 300221 words of memory out of 5000000
- 15761 multiletter control sequences out of 15000+600000
- 24698 words of font info for 56 fonts, out of 8000000 for 9000
+ 12994 strings out of 493013
+ 206612 string characters out of 6139317
+ 307183 words of memory out of 5000000
+ 15955 multiletter control sequences out of 15000+600000
+ 25011 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,8n,41p,802b,1944s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
@@ -915,12 +1598,12 @@ m-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm120
 0.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf-dist/f
 onts/type1/public/cm-super/sfti1095.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sft
-t1095.pfb>
-Output written on relazione.pdf (26 pages, 851915 bytes).
+ic/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sft
+t0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on relazione.pdf (71 pages, 3475394 bytes).
 PDF statistics:
- 646 PDF objects out of 1000 (max. 8388607)
- 544 compressed objects within 6 object streams
- 154 named destinations out of 1000 (max. 500000)
- 479 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1096 PDF objects out of 1200 (max. 8388607)
+ 873 compressed objects within 9 object streams
+ 261 named destinations out of 1000 (max. 500000)
+ 881 words of extra memory for PDF output out of 10000 (max. 10000000)
 
