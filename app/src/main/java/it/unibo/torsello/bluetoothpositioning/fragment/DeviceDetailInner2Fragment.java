@@ -58,6 +58,10 @@ public class DeviceDetailInner2Fragment extends Fragment {
     private void addChildFragment(View root) {
 
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager);
+
+        // avoid casual fragment's destruction
+        mViewPager.setOffscreenPageLimit(getFragments().size());
+
         StatePagerAdapter myPageAdapter = new StatePagerAdapter(getChildFragmentManager(), getFragments());
         mViewPager.setAdapter(myPageAdapter);
 

@@ -77,6 +77,7 @@ public class DeviceDetailInner1Fragment extends Fragment implements Observer {
     private void initializeDeviceDetail(View root) {
         // add RecyclerView
         RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(deviceViewAdapter);
     }
