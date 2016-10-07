@@ -42,13 +42,24 @@ public class DeviceDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_device_detail, container, false);
+        final View root = inflater.inflate(R.layout.fragment_device_detail, container, false);
 
         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 
         ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
-        addChildFragment(root);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        addChildFragment(root);
+                    }
+                });
+            }
+        }).start();
 
         return root;
     }

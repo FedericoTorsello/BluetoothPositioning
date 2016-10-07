@@ -3,74 +3,114 @@
 \contentsline {chapter}{\numberline {1}Introduzione}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Vision}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}\relax $\@@underline {\hbox {Goals principali}}\mathsurround \z@ $\relax }{2}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}\relax $\@@underline {\hbox {Goals secondari}}\mathsurround \z@ $\relax }{2}{subsection.1.2.2}
-\contentsline {chapter}{\numberline {2}Requisiti}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Requisiti funzionali}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Requisiti funzionali secondari}{3}{section.2.2}
-\contentsline {section}{\numberline {2.3}Requisiti non funzionali}{4}{section.2.3}
-\contentsline {section}{\numberline {2.4}Analisi dei requisiti}{4}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Casi d'uso}{4}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Scenari}{4}{subsection.2.4.2}
-\contentsline {subsubsection}{\relax $\@@underline {\hbox {Scenario classico}}\mathsurround \z@ $\relax }{4}{section*.3}
-\contentsline {subsubsection}{\relax $\@@underline {\hbox {Scenario classico avanzato}}\mathsurround \z@ $\relax }{5}{section*.4}
-\contentsline {chapter}{\numberline {3}Breve introduzione alla tecnologia iBeacon}{6}{chapter.3}
-\contentsline {section}{\numberline {3.1}Il protocollo iBeacon}{7}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Broadcaster}{7}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Receiver}{7}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Advertising packet}{7}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Frame iBeacon}{7}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}UUID (128 bits)}{8}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Major number (16 bits)}{8}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Minor number (16 bits)}{8}{subsection.3.2.3}
-\contentsline {section}{\numberline {3.3}RSSI - Received Signal Strength Indication}{9}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Advertising Interval}{9}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}iBeacon Advertising Packet Contents}{9}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Measured power}{9}{subsection.3.4.1}
-\contentsline {paragraph}{Esempio:}{9}{section*.8}
-\contentsline {chapter}{\numberline {4}Stima della distanza con RSSI}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Attenuazione dei segnali elettromagnetici}{11}{section.4.1}
-\contentsline {section}{\numberline {4.2}Received Signal Strength Indicator - RSSI}{11}{section.4.2}
-\contentsline {section}{\numberline {4.3}Calcolo di RSSI}{11}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Equazione di trasmissione di Friis}{12}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Conversione della potenza}{13}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Potenza media a distanza di riferimento $ d_0 $}{13}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Equazione di RSSI}{13}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Calcolo della distanza}{13}{section.4.4}
-\contentsline {section}{\numberline {4.5}Problematiche della stima della distanza con RSSI}{14}{section.4.5}
-\contentsline {chapter}{\numberline {5}Stima della distanza con Arduino}{15}{chapter.5}
-\contentsline {section}{\numberline {5.1}Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{15}{section.5.1}
-\contentsline {subsubsection}{\relax $\@@underline {\hbox {\href {http://playground.arduino.cc/Code/NewPing}{NewPing}}}\mathsurround \z@ $\relax }{15}{section*.11}
-\contentsline {section}{\numberline {5.2}Progetto di test della comunicazione seriale PC - Arduino}{16}{section.5.2}
-\contentsline {chapter}{\numberline {6}Project}{18}{chapter.6}
-\contentsline {section}{\numberline {6.1}ApplicationActivity}{18}{section.6.1}
-\contentsline {section}{\numberline {6.2}MainActivity}{20}{section.6.2}
-\contentsline {section}{\numberline {6.3}DeviceViewHolder}{22}{section.6.3}
-\contentsline {section}{\numberline {6.4}DeviceCardViewAdapter}{24}{section.6.4}
-\contentsline {section}{\numberline {6.5}StatePagerAdapter}{25}{section.6.5}
-\contentsline {section}{\numberline {6.6}MyArmaRssiFilter}{27}{section.6.6}
-\contentsline {section}{\numberline {6.7}DeviceConstants}{29}{section.6.7}
-\contentsline {section}{\numberline {6.8}KFilterConstants}{31}{section.6.8}
-\contentsline {section}{\numberline {6.9}SettingConstants}{31}{section.6.9}
-\contentsline {section}{\numberline {6.10}Estimation}{31}{section.6.10}
-\contentsline {section}{\numberline {6.11}FABBehavior}{33}{section.6.11}
-\contentsline {section}{\numberline {6.12}CameraFragment}{34}{section.6.12}
-\contentsline {section}{\numberline {6.13}DeviceDetailFragment}{35}{section.6.13}
-\contentsline {section}{\numberline {6.14}DeviceDetailInner2Fragment}{37}{section.6.14}
-\contentsline {section}{\numberline {6.15}SettingsFragment}{39}{section.6.15}
-\contentsline {section}{\numberline {6.16}DeviceChartFragment}{41}{section.6.16}
-\contentsline {section}{\numberline {6.17}DeviceDetailInner1Fragment}{43}{section.6.17}
-\contentsline {section}{\numberline {6.18}DeviceListFragment}{45}{section.6.18}
-\contentsline {section}{\numberline {6.19}UsbMeasurementFragment}{47}{section.6.19}
-\contentsline {section}{\numberline {6.20}KFilterBuildertFragment}{49}{section.6.20}
-\contentsline {section}{\numberline {6.21}KFilter}{51}{section.6.21}
-\contentsline {section}{\numberline {6.22}Device}{52}{section.6.22}
-\contentsline {section}{\numberline {6.23}DeviceObservable}{52}{section.6.23}
-\contentsline {section}{\numberline {6.24}UsbMeasurementObservable}{54}{section.6.24}
-\contentsline {section}{\numberline {6.25}SaveImageTask}{56}{section.6.25}
-\contentsline {section}{\numberline {6.26}CameraPreviewUtil}{57}{section.6.26}
-\contentsline {section}{\numberline {6.27}ChartUtil}{59}{section.6.27}
-\contentsline {section}{\numberline {6.28}UsbUtil}{60}{section.6.28}
-\contentsline {chapter}{\numberline {7}Implementazione}{61}{chapter.7}
-\contentsline {chapter}{\numberline {8}Testing}{66}{chapter.8}
-\contentsline {subsection}{\numberline {8.0.1}Indicazioni preliminari}{66}{subsection.8.0.1}
+\contentsline {subsection}{\numberline {1.2.1}Goals principali}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Goals secondari}{2}{subsection.1.2.2}
+\contentsline {part}{I\hspace {1em}Requisiti}{3}{part.1}
+\contentsline {chapter}{\numberline {2}Definizione dei requisiti}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Requisiti funzionali}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Requisiti funzionali secondari}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Requisiti non funzionali}{5}{section.2.3}
+\contentsline {section}{\numberline {2.4}Analisi dei requisiti}{5}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Casi d'uso}{5}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Scenari}{5}{subsection.2.4.2}
+\contentsline {subsubsection}{\relax $\@@underline {\hbox {Scenario classico}}\mathsurround \z@ $\relax }{5}{section*.3}
+\contentsline {subsubsection}{\relax $\@@underline {\hbox {Scenario classico avanzato}}\mathsurround \z@ $\relax }{6}{section*.4}
+\contentsline {part}{II\hspace {1em}Analisi del problema}{7}{part.2}
+\contentsline {chapter}{\numberline {3}Breve introduzione alla tecnologia iBeacon}{8}{chapter.3}
+\contentsline {section}{\numberline {3.1}Il protocollo iBeacon}{9}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Broadcaster}{9}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Receiver}{9}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Advertising packet}{9}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Frame iBeacon}{9}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}UUID (128 bits)}{10}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Major number (16 bits)}{10}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Minor number (16 bits)}{10}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}RSSI - Received Signal Strength Indication}{11}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Advertising Interval}{11}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}iBeacon Advertising Packet Contents}{11}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Measured power}{11}{subsection.3.4.1}
+\contentsline {paragraph}{Esempio:}{11}{section*.8}
+\contentsline {chapter}{\numberline {4}Stima della distanza con RSSI}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Attenuazione dei segnali elettromagnetici}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}Received Signal Strength Indicator - RSSI}{13}{section.4.2}
+\contentsline {section}{\numberline {4.3}Calcolo di RSSI}{13}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Equazione di trasmissione di Friis}{14}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Conversione della potenza}{15}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Potenza media a distanza di riferimento $ d_0 $}{15}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Equazione di RSSI}{15}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Calcolo della distanza}{15}{section.4.4}
+\contentsline {section}{\numberline {4.5}Problematiche della stima della distanza con RSSI}{16}{section.4.5}
+\contentsline {section}{\numberline {4.6}Filtro di Kalman}{16}{section.4.6}
+\contentsline {chapter}{\numberline {5}Stima della distanza con RSSI, Android e tecnologie BLE}{18}{chapter.5}
+\contentsline {section}{\numberline {5.1}Sviluppare un'app Android compatibile con BLE}{18}{section.5.1}
+\contentsline {chapter}{\numberline {6}Stima della distanza con Arduino}{20}{chapter.6}
+\contentsline {section}{\numberline {6.1}Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{20}{section.6.1}
+\contentsline {subsubsection}{\relax $\@@underline {\hbox {\href {http://playground.arduino.cc/Code/NewPing}{NewPing}}}\mathsurround \z@ $\relax }{21}{section*.11}
+\contentsline {section}{\numberline {6.2}Progetto di test della comunicazione seriale PC - Arduino}{21}{section.6.2}
+\contentsline {part}{III\hspace {1em}Progetto}{23}{part.3}
+\contentsline {chapter}{\numberline {7}Struttura}{24}{chapter.7}
+\contentsline {section}{\numberline {7.1}ApplicationActivity}{24}{section.7.1}
+\contentsline {section}{\numberline {7.2}MainActivity}{25}{section.7.2}
+\contentsline {section}{\numberline {7.3}Device}{26}{section.7.3}
+\contentsline {section}{\numberline {7.4}Estimation}{27}{section.7.4}
+\contentsline {section}{\numberline {7.5}DeviceObservable}{28}{section.7.5}
+\contentsline {section}{\numberline {7.6}DeviceCardViewAdapter}{29}{section.7.6}
+\contentsline {section}{\numberline {7.7}DeviceViewHolder}{30}{section.7.7}
+\contentsline {section}{\numberline {7.8}StatePagerAdapter}{31}{section.7.8}
+\contentsline {section}{\numberline {7.9}MyArmaRssiFilter}{32}{section.7.9}
+\contentsline {section}{\numberline {7.10}DeviceConstants}{33}{section.7.10}
+\contentsline {section}{\numberline {7.11}KFilterConstants}{34}{section.7.11}
+\contentsline {section}{\numberline {7.12}SettingConstants}{35}{section.7.12}
+\contentsline {section}{\numberline {7.13}FABBehavior}{36}{section.7.13}
+\contentsline {section}{\numberline {7.14}CameraFragment}{37}{section.7.14}
+\contentsline {section}{\numberline {7.15}DeviceDetailFragment}{38}{section.7.15}
+\contentsline {section}{\numberline {7.16}DeviceDetailInner2Fragment}{39}{section.7.16}
+\contentsline {section}{\numberline {7.17}SettingsFragment}{40}{section.7.17}
+\contentsline {section}{\numberline {7.18}DeviceChartFragment}{41}{section.7.18}
+\contentsline {section}{\numberline {7.19}DeviceDetailInner1Fragment}{42}{section.7.19}
+\contentsline {section}{\numberline {7.20}DeviceListFragment}{43}{section.7.20}
+\contentsline {section}{\numberline {7.21}UsbMeasurementFragment}{44}{section.7.21}
+\contentsline {section}{\numberline {7.22}KFilterBuildertFragment}{45}{section.7.22}
+\contentsline {section}{\numberline {7.23}KFilter}{46}{section.7.23}
+\contentsline {section}{\numberline {7.24}UsbMeasurementObservable}{47}{section.7.24}
+\contentsline {section}{\numberline {7.25}CameraPreviewUtil}{48}{section.7.25}
+\contentsline {section}{\numberline {7.26}ChartUtil}{49}{section.7.26}
+\contentsline {section}{\numberline {7.27}UsbUtil}{50}{section.7.27}
+\contentsline {section}{\numberline {7.28}SaveImageTask}{51}{section.7.28}
+\contentsline {chapter}{\numberline {8}Interazione}{52}{chapter.8}
+\contentsline {section}{\numberline {8.1}ApplicationActivity}{52}{section.8.1}
+\contentsline {section}{\numberline {8.2}MainActivity}{53}{section.8.2}
+\contentsline {section}{\numberline {8.3}DeviceObservable}{54}{section.8.3}
+\contentsline {section}{\numberline {8.4}DeviceListFragment}{55}{section.8.4}
+\contentsline {section}{\numberline {8.5}DeviceCardViewAdapter}{56}{section.8.5}
+\contentsline {section}{\numberline {8.6}DeviceViewHolder}{57}{section.8.6}
+\contentsline {section}{\numberline {8.7}StatePagerAdapter}{58}{section.8.7}
+\contentsline {section}{\numberline {8.8}MyArmaRssiFilter}{59}{section.8.8}
+\contentsline {section}{\numberline {8.9}FABBehavior}{60}{section.8.9}
+\contentsline {section}{\numberline {8.10}CameraFragment}{61}{section.8.10}
+\contentsline {section}{\numberline {8.11}DeviceDetailFragment}{62}{section.8.11}
+\contentsline {section}{\numberline {8.12}DeviceDetailInner1Fragment}{63}{section.8.12}
+\contentsline {section}{\numberline {8.13}CameraPreviewUtil}{64}{section.8.13}
+\contentsline {section}{\numberline {8.14}DeviceDetailInner2Fragment}{65}{section.8.14}
+\contentsline {section}{\numberline {8.15}DeviceChartFragment}{66}{section.8.15}
+\contentsline {section}{\numberline {8.16}SettingsFragment}{67}{section.8.16}
+\contentsline {section}{\numberline {8.17}UsbMeasurementFragment}{68}{section.8.17}
+\contentsline {section}{\numberline {8.18}UsbMeasurementObservable}{69}{section.8.18}
+\contentsline {section}{\numberline {8.19}SaveImageTask}{70}{section.8.19}
+\contentsline {chapter}{\numberline {9}Comportamento}{71}{chapter.9}
+\contentsline {section}{\numberline {9.1}title}{71}{section.9.1}
+\contentsline {part}{IV\hspace {1em}Implementazione}{72}{part.4}
+\contentsline {part}{V\hspace {1em}GUI dell'app}{73}{part.5}
+\contentsline {section}{\numberline {9.2}Avvio dell'app}{74}{section.9.2}
+\contentsline {section}{\numberline {9.3}Abilitazione dellla radio Bluetooth}{75}{section.9.3}
+\contentsline {section}{\numberline {9.4}Scansione dei dispositivi}{76}{section.9.4}
+\contentsline {section}{\numberline {9.5}Men\IeC {\`u} a sinistra}{77}{section.9.5}
+\contentsline {section}{\numberline {9.6}Men\IeC {\`u} a destra}{78}{section.9.6}
+\contentsline {section}{\numberline {9.7}Dettagli di un dispositivo}{79}{section.9.7}
+\contentsline {section}{\numberline {9.8}Dettagli avanzati e grafici realtime}{80}{section.9.8}
+\contentsline {section}{\numberline {9.9}Connessione con Arduino via USB OTG}{81}{section.9.9}
+\contentsline {section}{\numberline {9.10}Feedback della stima della distanza con Arduino}{82}{section.9.10}
+\contentsline {chapter}{\numberline {10}Testing}{83}{chapter.10}
+\contentsline {section}{\numberline {10.1}Configurazione dell'ambiente indoor}{83}{section.10.1}
+\contentsline {section}{\numberline {10.2}Collegamento Arduino-smartphone}{84}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Materiale utilizzato}{85}{subsection.10.2.1}

@@ -66,6 +66,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         initializeBeaconManager();
 
         inizializeFloatingActionButton();
+
     }
 
     private void initializeBeaconManager() {
@@ -110,6 +111,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
     private void inizializeFloatingActionButton() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -268,8 +270,6 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                 Snackbar.make(fab, R.string.snackBar_scanning_disabled,
                         Snackbar.LENGTH_INDEFINITE).show();
                 return false;
-            } else {
-                Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
             }
         } catch (RuntimeException e) {
             e.getStackTrace();

@@ -3,7 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.constant;
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
- *
+ * <p>
  * A class containing constants for the SharedPreference objects.
  */
 public class SettingConstants {

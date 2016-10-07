@@ -3,7 +3,7 @@ package it.unibo.torsello.bluetoothpositioning.kalmanFilter;
 /**
  * Created by Federico Torsello.
  * federico.torsello@studio.unibo.it
- *
+ * <p>
  * Simple builder class for 1-dimensional Kalman filter with predefined
  */
 public class KFilterBuilder {

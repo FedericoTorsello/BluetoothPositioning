@@ -12,6 +12,7 @@ import com.hoho.android.usbserial.driver.UsbSerialProber;
 import com.hoho.android.usbserial.util.SerialInputOutputManager;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -149,9 +150,11 @@ public class UsbUtil {
                             try {
                                 myUsbObservable.notifyObservers(true);
                                 myUsbObservable.notifyObservers(getActivity().getString(R.string.usb_device_connected));
-                                Double distanceEstimate = Double.valueOf(new String(data).trim()) / 100;
+                                String value = new String(data, "UTF-8").trim();
+                                double distanceEstimate = Double.valueOf(value) / 100;
                                 myUsbObservable.notifyObservers(distanceEstimate);
-                            } catch (NumberFormatException nfe) {
+                            } catch (NumberFormatException | UnsupportedEncodingException nfe) {
+                                nfe.printStackTrace();
                             }
                         }
                     };
