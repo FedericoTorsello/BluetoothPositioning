@@ -66,11 +66,10 @@
     <!-- SETTINGS -->
     <string name="settings_kalman_status">Kalman Filter System Noise</string>
     <string name="settings_kalman_value"> </string>
-    <string name="settings_wd_status">Walk detection?</string>
+    <!--<string name="settings_wd_status">Walk detection?</string>-->
     <string name="settings_sorting">Sorting device</string>
-    <string name="settings_enabled">enabled</string>
-    <string name="settings_disabled">disabled</string>
-    <string name="settings_selfcorrection_status">Self-correcting beacon</string>
+    <!--<string name="settings_enabled">enabled</string>-->
+    <!--<string name="settings_disabled">disabled</string>-->
 
     <string name="radioB_default_sorting">Default sort (list device order)</string>
     <string name="radioB_color_sorting">Sort by color</string>
@@ -82,6 +81,16 @@
     <string name="average_rssi_filter">Average RSSI Filter</string>
     <!--<string name="text_arma_filter">ARMA filter is %1$s</string>-->
     <!---->
+
+    <string name="arma_filter_options">ARMA filter options</string>
+    <string name="arma_default_value">Default speed (0.1)</string>
+    <string name="arma_0_25">Speed 0.25</string>
+    <string name="arma_0_5">Speed 0.5</string>
+
+    <string name="average_filter_options">Average filter options</string>
+    <string name="avg_default_value">20000 ms</string>
+    <string name="avg_10000">10000 ms</string>
+    <string name="avg_5000">5000 ms</string>
 
     <!-- MEASUREMENT -->
     <string name="distance_estimation_arduino">Arduino distance estimation</string>
@@ -96,24 +105,11 @@
     <string name="chart_raw_distance">Raw distance</string>
     <string name="chart_altbeacon">AltBeacon</string>
     <string name="chart_kalman_filter">Kalman Filter</string>
-    <!---->
-
-    <string name="picture">Picture</string>
-    <string name="description_info">Info</string>
-    <string name="request_permission">This sample needs camera permission.</string>
-    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
-
-    <string name="intro_message">
-        <![CDATA[
 
 
-            This sample demonstrates the basic use of Camera2 API. Check the source code to see how
-            you can display camera preview and take pictures.
-
-
-        ]]>
-    </string>
     <string name="record_data">Record data</string>
     <string name="save_a_image">save a image</string>
+    <string name="settings_disabled">Please start scanning\n\nSettings are disabled</string>
+    <!---->
 
 </resources>

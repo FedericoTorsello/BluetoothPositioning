@@ -1,6 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -46,21 +47,10 @@ public class DeviceDetailFragment extends Fragment {
 
         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 
+        ((AppBarLayout) root.findViewById(R.id.appbar_detail)).setExpanded(false);
         ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getActivity().runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        addChildFragment(root);
-                    }
-                });
-            }
-        }).start();
-
+        addChildFragment(root);
         return root;
     }
 
@@ -81,12 +71,15 @@ public class DeviceDetailFragment extends Fragment {
     }
 
     private ArrayList<Fragment> getFragments() {
+
         ArrayList<Fragment> fragments = new ArrayList<>();
+
         // fragment 0
         fragments.add(DeviceDetailInner1Fragment.newInstance(idDeviceSelectedName));
 
         // fragment 1
         fragments.add(DeviceDetailInner2Fragment.newInstance("Details", idDeviceSelectedName));
+
 
         return fragments;
     }

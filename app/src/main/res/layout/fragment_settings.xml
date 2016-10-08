@@ -6,9 +6,19 @@
     tools:context=".fragment.SettingsFragment"
     android:paddingTop="5dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_setting_disabled"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/settings_disabled" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/nested_setting"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,6 +110,99 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/average_rssi_filter" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/arma_filter_options"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupArmaOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:layout_margin="@dimen/card_margin">
+
+                        <RadioButton
+                            android:id="@+id/radioButton_arma_op1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arma_default_value"
+                            android:checked="true" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_arma_op2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arma_0_25" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_arma_op3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arma_0_5" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/card_margin">
+
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/average_filter_options"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupAverageOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/card_margin">
+
+                        <RadioButton
+                            android:id="@+id/radioButton_avg_op1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avg_default_value"
+                            android:checked="true" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_avg_op2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avg_10000" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton_avg_op3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/avg_5000" />
                     </RadioGroup>
 
                 </LinearLayout>

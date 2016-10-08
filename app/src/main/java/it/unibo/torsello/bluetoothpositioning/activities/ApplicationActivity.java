@@ -8,7 +8,6 @@ import android.os.RemoteException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 
 import org.altbeacon.beacon.Beacon;
@@ -28,7 +27,6 @@ import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
-import it.unibo.torsello.bluetoothpositioning.extra.FABBehavior;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 import it.unibo.torsello.bluetoothpositioning.util.UsbUtil;
@@ -65,7 +63,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
         initializeBeaconManager();
 
-        inizializeFloatingActionButton();
+        initializeFloatingActionButton();
 
     }
 
@@ -109,7 +107,7 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         beaconManager.setMaxTrackingAge(1000);
     }
 
-    private void inizializeFloatingActionButton() {
+    private void initializeFloatingActionButton() {
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         Snackbar.make(fab, R.string.snackBar_start_scanning, Snackbar.LENGTH_INDEFINITE).show();
         fab.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +118,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
                     isRunScan = !isRunScan;
                     Region region = new Region("RegionId", null, null, null);
+
+                    setSettingsVisible(isRunScan);
 
                     if (isRunScan) {
                         fab.setImageResource(R.drawable.ic_bluetooth_searching_white_24dp);
@@ -140,6 +140,21 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                         Snackbar.make(view, R.string.snackBar_scanning_disabled,
                                 Snackbar.LENGTH_INDEFINITE).show();
                     }
+                }
+            }
+        });
+    }
+
+    private void setSettingsVisible(final boolean scanStarted) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (!scanStarted) {
+                    findViewById(R.id.text_setting_disabled).setVisibility(View.VISIBLE);
+                    findViewById(R.id.nested_setting).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.text_setting_disabled).setVisibility(View.GONE);
+                    findViewById(R.id.nested_setting).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -199,17 +214,82 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
             case 0:
             case R.id.radioButton_no_rssi_filtering:
                 MyArmaRssiFilter.enableArmaFilter(false);
+                setArmaOptionsVisible(false);
+                setAvgOptionsVisible(false);
+
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
+
             case R.id.radioButton_arma_rssi_filter:
                 MyArmaRssiFilter.enableArmaFilter(true);
+                setArmaOptionsVisible(true);
+                setAvgOptionsVisible(false);
+
+                int armaOption = preferences.getInt(SettingConstants.ARMA_OPTION, 0);
+                switch (armaOption) {
+                    case 0:
+                    case R.id.radioButton_arma_op1:
+                        MyArmaRssiFilter.setArmaSpeed(0.08D);
+                        break;
+                    case R.id.radioButton_arma_op2:
+                        MyArmaRssiFilter.setArmaSpeed(0.25D);
+                        break;
+                    case R.id.radioButton_arma_op3:
+                        MyArmaRssiFilter.setArmaSpeed(0.5D);
+                        break;
+                }
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
+
             case R.id.radioButton_average_rssi_filter:
+                setArmaOptionsVisible(false);
+                setAvgOptionsVisible(true);
+
+                int avgOption = preferences.getInt(SettingConstants.ARMA_OPTION, 0);
+                switch (avgOption) {
+                    case 0:
+                    case R.id.radioButton_arma_op1:
+                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(20000L);
+                        break;
+                    case R.id.radioButton_arma_op2:
+                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(10000L);
+                        break;
+                    case R.id.radioButton_arma_op3:
+                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(5000L);
+                        break;
+                }
+
                 BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
                 break;
         }
     }
+
+    private void setArmaOptionsVisible(final boolean visible) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (visible) {
+                    findViewById(R.id.radioGroupArmaOptions).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.radioGroupArmaOptions).setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    private void setAvgOptionsVisible(final boolean visible) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (visible) {
+                    findViewById(R.id.radioGroupAverageOptions).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.radioGroupAverageOptions).setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void onPause() {

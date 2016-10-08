@@ -48,9 +48,13 @@ public class SettingsFragment extends Fragment {
 
         setKalmanFilterSeekBar(root);
 
-        setSorting(root);
-
         setFiltering(root);
+
+        setArmaOption(root);
+
+        setAvgOption(root);
+
+        setSorting(root);
 
         return root;
     }
@@ -96,25 +100,6 @@ public class SettingsFragment extends Fragment {
 
     }
 
-    private void setSorting(View root) {
-        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
-        int checkedRadioButton;
-        if (rg.getCheckedRadioButtonId() != 0) {
-            checkedRadioButton = preferences.getInt(SettingConstants.DISTANCE_SORTING, rg.getCheckedRadioButtonId());
-        } else {
-            checkedRadioButton = 0;
-        }
-        rg.check(checkedRadioButton);
-        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(SettingConstants.DISTANCE_SORTING, checkedId);
-                editor.apply();
-            }
-        });
-    }
-
     private void setFiltering(View root) {
         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupFilter);
         int checkedRadioButton;
@@ -129,6 +114,63 @@ public class SettingsFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putInt(SettingConstants.FILTER_RSSI, checkedId);
+                editor.apply();
+            }
+        });
+    }
+
+    private void setAvgOption(View root) {
+        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupAverageOptions);
+        int checkedRadioButton;
+        if (rg.getCheckedRadioButtonId() != 0) {
+            checkedRadioButton = preferences.getInt(SettingConstants.AVG_OPTION, rg.getCheckedRadioButtonId());
+        } else {
+            checkedRadioButton = 0;
+        }
+        rg.check(checkedRadioButton);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(SettingConstants.AVG_OPTION, checkedId);
+                editor.apply();
+            }
+        });
+    }
+
+    private void setArmaOption(View root) {
+        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupArmaOptions);
+        int checkedRadioButton;
+        if (rg.getCheckedRadioButtonId() != 0) {
+            checkedRadioButton = preferences.getInt(SettingConstants.ARMA_OPTION, rg.getCheckedRadioButtonId());
+        } else {
+            checkedRadioButton = 0;
+        }
+        rg.check(checkedRadioButton);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(SettingConstants.ARMA_OPTION, checkedId);
+                editor.apply();
+            }
+        });
+    }
+
+    private void setSorting(View root) {
+        RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
+        int checkedRadioButton;
+        if (rg.getCheckedRadioButtonId() != 0) {
+            checkedRadioButton = preferences.getInt(SettingConstants.DISTANCE_SORTING, rg.getCheckedRadioButtonId());
+        } else {
+            checkedRadioButton = 0;
+        }
+        rg.check(checkedRadioButton);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt(SettingConstants.DISTANCE_SORTING, checkedId);
                 editor.apply();
             }
         });

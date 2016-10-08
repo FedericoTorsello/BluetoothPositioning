@@ -9,6 +9,8 @@ package it.unibo.torsello.bluetoothpositioning.constant;
 public class SettingConstants {
     public static final String SETTINGS_PREFERENCES = "settings_preferences";
     public static final String FILTER_RSSI = "filter_rssi";
+    public static final String ARMA_OPTION = "arma_option";
+    public static final String AVG_OPTION = "avg_option";
     //    public static final String WALK_DETECTION = "walk_detection";
     public static final String KALMAN_SEEKBAR_VALUE = "kalman_filter_seek_value";
     public static final String KALMAN_NOISE_VALUE = "kalman_filter_noise_value";

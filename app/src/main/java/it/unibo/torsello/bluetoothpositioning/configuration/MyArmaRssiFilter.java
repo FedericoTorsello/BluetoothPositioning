@@ -1,5 +1,7 @@
 package it.unibo.torsello.bluetoothpositioning.configuration;
 
+import android.util.Log;
+
 import org.altbeacon.beacon.service.RssiFilter;
 
 /**
@@ -7,13 +9,17 @@ import org.altbeacon.beacon.service.RssiFilter;
  * federico.torsello@studio.unibo.it
  */
 public class MyArmaRssiFilter implements RssiFilter {
-    private static double armaSpeed = 0.08D;
+    private static double armaSpeed = 0.1D; // default value
     private static boolean isEnabled = true;
     private double armaMeasurement;
     private boolean isInitialized = false;
 
     public static void setArmaSpeed(double arma_speed) {
         armaSpeed = arma_speed;
+    }
+
+    public static double getArmaSpeed() {
+        return armaSpeed;
     }
 
     public static void enableArmaFilter(boolean set) {
