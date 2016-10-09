@@ -46,7 +46,7 @@ import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
  */
 public class DeviceListFragment extends Fragment implements Observer {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     private DeviceCardViewAdapter deviceViewAdapter;
     private SharedPreferences preferences;

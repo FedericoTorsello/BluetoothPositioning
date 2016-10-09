@@ -35,7 +35,7 @@ public class UsbUtil {
 
     private ApplicationActivity applicationActivity;
 
-    private int BOUND_RATE = 115200;
+    private static final int BOUND_RATE = 115200;
 
     public UsbUtil(ApplicationActivity applicationActivity) {
         this.applicationActivity = applicationActivity;

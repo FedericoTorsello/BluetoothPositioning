@@ -34,13 +34,6 @@ void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
 \item 
 static \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment}{Device\+Detail\+Inner2\+Fragment} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a27471a2d140a8dd11636ef23ffc20657_a27471a2d140a8dd11636ef23ffc20657}{new\+Instance} (String message, String device\+Name)
 \end{DoxyCompactItemize}
-\subsubsection*{Attributi pubblici statici}
-\begin{DoxyCompactItemize}
-\item 
-static final String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a5093b051b0d458a870b6eef51b088e7d_a5093b051b0d458a870b6eef51b088e7d}{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE} = \char`\"{}E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE\char`\"{}
-\item 
-static final String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_aa28d537983d4cf578120a9c51eb2b0bb_aa28d537983d4cf578120a9c51eb2b0bb}{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME} = \char`\"{}D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME\char`\"{}
-\end{DoxyCompactItemize}
 \subsubsection*{Membri privati}
 \begin{DoxyCompactItemize}
 \item 
@@ -52,6 +45,13 @@ Array\+List$<$ Fragment $>$ \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetooth
 \begin{DoxyCompactItemize}
 \item 
 String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5}{id\+Device\+Selected\+Name}
+\end{DoxyCompactItemize}
+\subsubsection*{Attributi privati statici}
+\begin{DoxyCompactItemize}
+\item 
+static final String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a5093b051b0d458a870b6eef51b088e7d_a5093b051b0d458a870b6eef51b088e7d}{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE} = \char`\"{}E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE\char`\"{}
+\item 
+static final String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_aa28d537983d4cf578120a9c51eb2b0bb_aa28d537983d4cf578120a9c51eb2b0bb}{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME} = \char`\"{}D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME\char`\"{}
 \end{DoxyCompactItemize}
 
 
@@ -70,13 +70,17 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 58                                              \{
 59 
 60         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view\_pager);
-61         StatePagerAdapter myPageAdapter = \textcolor{keyword}{new} StatePagerAdapter(getChildFragmentManager(), 
+61 
+62         \textcolor{comment}{// avoid casual fragment's destruction}
+63         mViewPager.setOffscreenPageLimit(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a74ebcb936381919cfe4f3542585203c4_a74ebcb936381919cfe4f3542585203c4}{getFragments}().size());
+64 
+65         StatePagerAdapter myPageAdapter = \textcolor{keyword}{new} StatePagerAdapter(getChildFragmentManager(), 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a74ebcb936381919cfe4f3542585203c4_a74ebcb936381919cfe4f3542585203c4}{getFragments}());
-62         mViewPager.setAdapter(myPageAdapter);
-63 
-64         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding\_tabs);
-65         tabLayout.setupWithViewPager(mViewPager);
-66     \}
+66         mViewPager.setAdapter(myPageAdapter);
+67 
+68         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding\_tabs);
+69         tabLayout.setupWithViewPager(mViewPager);
+70     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a74ebcb936381919cfe4f3542585203c4_a74ebcb936381919cfe4f3542585203c4}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a74ebcb936381919cfe4f3542585203c4_a74ebcb936381919cfe4f3542585203c4} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}!get\+Fragments@{get\+Fragments}}
@@ -86,39 +90,39 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-68                                                \{
-69         ArrayList<Fragment> fragments = \textcolor{keyword}{new} ArrayList<>();
-70 
-71         \textcolor{comment}{// inner fragment 0}
-72         ArrayList<String> params1 = \textcolor{keyword}{new} ArrayList<>();
-73         params1.add(getString(R.string.chart\_arduino));
-74         params1.add(getString(R.string.chart\_raw\_distance));
-75         params1.add(getString(R.string.chart\_altbeacon));
-76         params1.add(getString(R.string.chart\_kalman\_filter));
-77 
-78         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart1"}, 
+72                                                \{
+73         ArrayList<Fragment> fragments = \textcolor{keyword}{new} ArrayList<>();
+74 
+75         \textcolor{comment}{// inner fragment 0}
+76         ArrayList<String> params1 = \textcolor{keyword}{new} ArrayList<>();
+77         params1.add(getString(R.string.chart\_arduino));
+78         params1.add(getString(R.string.chart\_raw\_distance));
+79         params1.add(getString(R.string.chart\_altbeacon));
+80         params1.add(getString(R.string.chart\_kalman\_filter));
+81 
+82         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart1"}, 1, 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5}{idDeviceSelectedName}, params1));
-79 
-80         \textcolor{comment}{// inner fragment 1}
-81         ArrayList<String> params2 = \textcolor{keyword}{new} ArrayList<>();
-82         params2.add(getString(R.string.chart\_arduino));
-83         params2.add(getString(R.string.chart\_raw\_distance));
-84         params2.add(getString(R.string.chart\_kalman\_filter));
-85 
-86         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart2"}, 
+83 
+84         \textcolor{comment}{// inner fragment 1}
+85         ArrayList<String> params2 = \textcolor{keyword}{new} ArrayList<>();
+86         params2.add(getString(R.string.chart\_arduino));
+87         params2.add(getString(R.string.chart\_raw\_distance));
+88         params2.add(getString(R.string.chart\_kalman\_filter));
+89 
+90         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart2"}, 2, 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5}{idDeviceSelectedName}, params2));
-87 
-88         \textcolor{comment}{// inner fragment 2}
-89         ArrayList<String> params3 = \textcolor{keyword}{new} ArrayList<>();
-90         params3.add(getString(R.string.chart\_arduino));
-91         params3.add(getString(R.string.chart\_altbeacon));
-92         params3.add(getString(R.string.chart\_kalman\_filter));
-93 
-94         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart3"}, 
+91 
+92         \textcolor{comment}{// inner fragment 2}
+93         ArrayList<String> params3 = \textcolor{keyword}{new} ArrayList<>();
+94         params3.add(getString(R.string.chart\_arduino));
+95         params3.add(getString(R.string.chart\_altbeacon));
+96         params3.add(getString(R.string.chart\_kalman\_filter));
+97 
+98         fragments.add(DeviceChartFragment.newInstance(\textcolor{stringliteral}{"chart3"}, 3, 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5}{idDeviceSelectedName}, params3));
-95 
-96         \textcolor{keywordflow}{return} fragments;
-97     \}
+99 
+100         \textcolor{keywordflow}{return} fragments;
+101     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a27471a2d140a8dd11636ef23ffc20657_a27471a2d140a8dd11636ef23ffc20657}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a27471a2d140a8dd11636ef23ffc20657_a27471a2d140a8dd11636ef23ffc20657} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}!new\+Instance@{new\+Instance}}
@@ -187,13 +191,13 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}!D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME@{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME}}
 \index{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME@{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}}
 \paragraph{\texorpdfstring{D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME}{DEVICE\_NAME}}
-{\footnotesize\ttfamily final String it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner2\+Fragment.\+D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME = \char`\"{}D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily final String it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner2\+Fragment.\+D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME = \char`\"{}D\+E\+V\+I\+C\+E\+\_\+\+N\+A\+ME\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a5093b051b0d458a870b6eef51b088e7d_a5093b051b0d458a870b6eef51b088e7d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a5093b051b0d458a870b6eef51b088e7d_a5093b051b0d458a870b6eef51b088e7d} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}!E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE@{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}}
 \index{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE@{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}}
 \paragraph{\texorpdfstring{E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}{EXTRA\_MESSAGE}}
-{\footnotesize\ttfamily final String it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner2\+Fragment.\+E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE = \char`\"{}E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily final String it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner2\+Fragment.\+E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE = \char`\"{}E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment_a84cd6ba00a3c2e8b7a53cac62c73f1b5_a84cd6ba00a3c2e8b7a53cac62c73f1b5} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}!id\+Device\+Selected\+Name@{id\+Device\+Selected\+Name}}

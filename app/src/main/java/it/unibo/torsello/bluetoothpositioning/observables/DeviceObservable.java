@@ -10,12 +10,12 @@ public class DeviceObservable extends Observable {
 
     private static DeviceObservable instance = new DeviceObservable();
 
-    public static DeviceObservable getInstance() {
-        return instance;
-    }
-
     private DeviceObservable() {
         super();
+    }
+
+    public static DeviceObservable getInstance() {
+        return instance;
     }
 
     @Override

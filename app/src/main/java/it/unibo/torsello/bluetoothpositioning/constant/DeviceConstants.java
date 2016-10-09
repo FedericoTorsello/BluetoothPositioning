@@ -27,13 +27,15 @@ public class DeviceConstants {
 
 
     // Beacons
-    public static final Map<String, Device> DEVICE_MAP;
+
     private static final String DEVICE_1 = "C1:9B:B0:B9:01:9E"; //ice1
     private static final String DEVICE_2 = "D1:BE:E2:E9:67:A6"; //ice2
     private static final String DEVICE_3 = "FA:6B:72:1E:EB:46"; //mint1
     private static final String DEVICE_4 = "D9:80:00:B7:16:78"; //mint2
     private static final String DEVICE_5 = "DB:F6:F5:0C:23:BF"; //blueberry1
     private static final String DEVICE_6 = "E7:E4:0E:F6:79:3F"; //blueberry2
+
+    public static final Map<String, Device> DEVICE_MAP;
 
     static {
         Map<String, Device> map = new ArrayMap<>();

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 //public class StatePagerAdapter extends FragmentStatePagerAdapter {
 public class StatePagerAdapter extends FragmentPagerAdapter {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
 
     private ArrayList<Fragment> fragments;
 

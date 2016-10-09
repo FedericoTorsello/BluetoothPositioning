@@ -116,7 +116,7 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 \begin{DoxyCode}
 58                                            \{
-59         \textcolor{keywordflow}{if} (file != null)\{
+59         \textcolor{keywordflow}{if} (file != null) \{
 60             Intent mediaScanIntent = \textcolor{keyword}{new} Intent(Intent.ACTION\_MEDIA\_SCANNER\_SCAN\_FILE);
 61             mediaScanIntent.setData(Uri.fromFile(file));
 62             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().sendBroadcast(mediaScanIntent);
@@ -125,7 +125,7 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 65                     \textcolor{stringliteral}{"Your picture has been saved"}, Snackbar.LENGTH\_SHORT).show();
 66         \} \textcolor{keywordflow}{else} \{
 67             Snackbar.make(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().findViewById(R.id.fab),
-68                         \textcolor{stringliteral}{"Image retrieval failed"}, Snackbar.LENGTH\_SHORT).show();
+68                     \textcolor{stringliteral}{"Image retrieval failed"}, Snackbar.LENGTH\_SHORT).show();
 69         \}
 70     \}
 \end{DoxyCode}

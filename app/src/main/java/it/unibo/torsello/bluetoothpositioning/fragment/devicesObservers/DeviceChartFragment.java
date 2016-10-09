@@ -37,10 +37,10 @@ import it.unibo.torsello.bluetoothpositioning.util.Report;
  */
 public class DeviceChartFragment extends Fragment implements Observer {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    public static final String ID = "ID";
-    public static final String DEVICE_NAME = "DEVICE_NAME";
-    public static final String STRINGS = "STRINGS";
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final String ID = "ID";
+    private static final String DEVICE_NAME = "DEVICE_NAME";
+    private static final String STRINGS = "STRINGS";
 
     private DeviceObservable myDeviceObservable;
     private UsbMeasurementObservable myUsbObservable;

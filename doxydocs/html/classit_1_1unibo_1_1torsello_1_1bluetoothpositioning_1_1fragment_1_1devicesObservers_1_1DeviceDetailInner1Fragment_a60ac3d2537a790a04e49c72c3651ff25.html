@@ -182,24 +182,28 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
+                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
+                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
                                 <span class="comment">// add RecyclerView</span></div>
-                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
+                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
                                 RecyclerView recyclerView = (RecyclerView)
                                 root.findViewById(R.id.recycler_view);
                             </div>
-                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
+                            <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;
+                                recyclerView.setNestedScrollingEnabled(<span
+                                        class="keyword">false</span>);
+                            </div>
+                            <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;
                                 recyclerView.setLayoutManager(<span class="keyword">new</span>
                                 LinearLayoutManager(getContext()));
                             </div>
-                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
+                            <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;
                                 recyclerView.setAdapter(<a class="code"
                                                            href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceDetailInner1Fragment_a981ec49aae98052b414864feb742cbc5.html#a981ec49aae98052b414864feb742cbc5">deviceViewAdapter</a>);
                             </div>
-                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
+                            <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -209,7 +213,7 @@ $(function() {
                                 </div>
                                 <div class="ttdeci">DeviceCardViewAdapter deviceViewAdapter</div>
                                 <div class="ttdef"><b>Definition:</b>
-                                    DeviceDetailInner1Fragment.java:31
+                                    DeviceDetailInner1Fragment.java:35
                                 </div>
                             </div>
                         </div><!-- fragment -->

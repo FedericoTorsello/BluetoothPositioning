@@ -31,17 +31,24 @@ View \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment
 \begin{DoxyCompactItemize}
 \item 
 static \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment}{Settings\+Fragment} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a4eb69c78cde2ba119eb62453688280f5_a4eb69c78cde2ba119eb62453688280f5}{new\+Instance} ()
-\item 
-static float \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{get\+Calculated\+Noise} (int p)
 \end{DoxyCompactItemize}
 \subsubsection*{Membri privati}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a84057f1633708ec85de5968ed9e7f032_a84057f1633708ec85de5968ed9e7f032}{set\+Kalman\+Filter\+Seek\+Bar} (View root)
 \item 
-void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1}{set\+Sorting} (View root)
-\item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088_a0d7b911602439aaf2a9ee4d5f9e41088}{set\+Filtering} (View root)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0f26c84f3a3dfffabfed1db04303b8b0_a0f26c84f3a3dfffabfed1db04303b8b0}{set\+Avg\+Option} (View root)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a093ab503fb5dc6ddb859b128b614d902_a093ab503fb5dc6ddb859b128b614d902}{set\+Arma\+Option} (View root)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1}{set\+Sorting} (View root)
+\end{DoxyCompactItemize}
+\subsubsection*{Membri privati statici}
+\begin{DoxyCompactItemize}
+\item 
+static float \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{get\+Calculated\+Noise} (int p)
 \end{DoxyCompactItemize}
 \subsubsection*{Attributi privati}
 \begin{DoxyCompactItemize}
@@ -65,18 +72,18 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!get\+Calculated\+Noise@{get\+Calculated\+Noise}}
 \index{get\+Calculated\+Noise@{get\+Calculated\+Noise}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}}
 \paragraph{\texorpdfstring{get\+Calculated\+Noise()}{getCalculatedNoise()}}
-{\footnotesize\ttfamily static float it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Settings\+Fragment.\+get\+Calculated\+Noise (\begin{DoxyParamCaption}\item[{int}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily static float it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Settings\+Fragment.\+get\+Calculated\+Noise (\begin{DoxyParamCaption}\item[{int}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 
 \begin{DoxyCode}
-90                                                   \{
-91         \textcolor{keywordtype}{double} percent = (p / 10D);
-92         \textcolor{keywordtype}{double} noise = KFilterConstants.KALMAN\_NOISE\_MIN +
-93                 (KFilterConstants.KALMAN\_NOISE\_MAX - KFilterConstants.KALMAN\_NOISE\_MIN) * percent;
-94 
-95         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{float}) noise;
-96 
-97     \}
+94                                                    \{
+95         \textcolor{keywordtype}{double} percent = (p / 10D);
+96         \textcolor{keywordtype}{double} noise = KFilterConstants.KALMAN\_NOISE\_MIN +
+97                 (KFilterConstants.KALMAN\_NOISE\_MAX - KFilterConstants.KALMAN\_NOISE\_MIN) * percent;
+98 
+99         \textcolor{keywordflow}{return} (\textcolor{keywordtype}{float}) noise;
+100 
+101     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a4eb69c78cde2ba119eb62453688280f5_a4eb69c78cde2ba119eb62453688280f5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a4eb69c78cde2ba119eb62453688280f5_a4eb69c78cde2ba119eb62453688280f5} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!new\+Instance@{new\+Instance}}
@@ -123,12 +130,72 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 48 
 49         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a84057f1633708ec85de5968ed9e7f032_a84057f1633708ec85de5968ed9e7f032}{setKalmanFilterSeekBar}(root);
 50 
-51         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1}{setSorting}(root);
+51         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088_a0d7b911602439aaf2a9ee4d5f9e41088}{setFiltering}(root);
 52 
-53         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088_a0d7b911602439aaf2a9ee4d5f9e41088}{setFiltering}(root);
+53         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a093ab503fb5dc6ddb859b128b614d902_a093ab503fb5dc6ddb859b128b614d902}{setArmaOption}(root);
 54 
-55         \textcolor{keywordflow}{return} root;
-56     \}
+55         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0f26c84f3a3dfffabfed1db04303b8b0_a0f26c84f3a3dfffabfed1db04303b8b0}{setAvgOption}(root);
+56 
+57         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1}{setSorting}(root);
+58 
+59         \textcolor{keywordflow}{return} root;
+60     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a093ab503fb5dc6ddb859b128b614d902_a093ab503fb5dc6ddb859b128b614d902}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a093ab503fb5dc6ddb859b128b614d902_a093ab503fb5dc6ddb859b128b614d902} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!set\+Arma\+Option@{set\+Arma\+Option}}
+\index{set\+Arma\+Option@{set\+Arma\+Option}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}}
+\paragraph{\texorpdfstring{set\+Arma\+Option()}{setArmaOption()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Settings\+Fragment.\+set\+Arma\+Option (\begin{DoxyParamCaption}\item[{View}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+141                                           \{
+142         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupArmaOptions);
+143         \textcolor{keywordtype}{int} checkedRadioButton;
+144         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
+145             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.ARMA\_OPTION, rg.
+      getCheckedRadioButtonId());
+146         \} \textcolor{keywordflow}{else} \{
+147             checkedRadioButton = 0;
+148         \}
+149         rg.check(checkedRadioButton);
+150         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
+151             @Override
+152             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
+153                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
+154                 editor.putInt(SettingConstants.ARMA\_OPTION, checkedId);
+155                 editor.apply();
+156             \}
+157         \});
+158     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0f26c84f3a3dfffabfed1db04303b8b0_a0f26c84f3a3dfffabfed1db04303b8b0}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0f26c84f3a3dfffabfed1db04303b8b0_a0f26c84f3a3dfffabfed1db04303b8b0} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!set\+Avg\+Option@{set\+Avg\+Option}}
+\index{set\+Avg\+Option@{set\+Avg\+Option}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}}
+\paragraph{\texorpdfstring{set\+Avg\+Option()}{setAvgOption()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Settings\+Fragment.\+set\+Avg\+Option (\begin{DoxyParamCaption}\item[{View}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+122                                          \{
+123         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupAverageOptions);
+124         \textcolor{keywordtype}{int} checkedRadioButton;
+125         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
+126             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.AVG\_OPTION, rg.
+      getCheckedRadioButtonId());
+127         \} \textcolor{keywordflow}{else} \{
+128             checkedRadioButton = 0;
+129         \}
+130         rg.check(checkedRadioButton);
+131         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
+132             @Override
+133             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
+134                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
+135                 editor.putInt(SettingConstants.AVG\_OPTION, checkedId);
+136                 editor.apply();
+137             \}
+138         \});
+139     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088_a0d7b911602439aaf2a9ee4d5f9e41088}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088_a0d7b911602439aaf2a9ee4d5f9e41088} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!set\+Filtering@{set\+Filtering}}
@@ -138,25 +205,25 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-118                                          \{
-119         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupFilter);
-120         \textcolor{keywordtype}{int} checkedRadioButton;
-121         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
-122             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.FILTER\_RSSI, rg.
+103                                          \{
+104         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupFilter);
+105         \textcolor{keywordtype}{int} checkedRadioButton;
+106         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
+107             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.FILTER\_RSSI, rg.
       getCheckedRadioButtonId());
-123         \} \textcolor{keywordflow}{else} \{
-124             checkedRadioButton = 0;
-125         \}
-126         rg.check(checkedRadioButton);
-127         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
-128             @Override
-129             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
-130                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
-131                 editor.putInt(SettingConstants.FILTER\_RSSI, checkedId);
-132                 editor.apply();
-133             \}
-134         \});
-135     \}
+108         \} \textcolor{keywordflow}{else} \{
+109             checkedRadioButton = 0;
+110         \}
+111         rg.check(checkedRadioButton);
+112         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
+113             @Override
+114             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
+115                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
+116                 editor.putInt(SettingConstants.FILTER\_RSSI, checkedId);
+117                 editor.apply();
+118             \}
+119         \});
+120     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a84057f1633708ec85de5968ed9e7f032_a84057f1633708ec85de5968ed9e7f032}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a84057f1633708ec85de5968ed9e7f032_a84057f1633708ec85de5968ed9e7f032} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!set\+Kalman\+Filter\+Seek\+Bar@{set\+Kalman\+Filter\+Seek\+Bar}}
@@ -166,37 +233,37 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-59                                                    \{
-60         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
-61         \textcolor{keywordtype}{int} seekValue = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.KALMAN\_SEEKBAR\_VALUE, 4);
-62         kalmanSeek.setMax(10);
-63         kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
-64 
-65         \textcolor{keyword}{final} TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
-66         kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(seekValue)));
-67 
-68         kalmanSeek.setOnSeekBarChangeListener(\textcolor{keyword}{new} SeekBar.OnSeekBarChangeListener() \{
-69             @Override
-70             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onProgressChanged(SeekBar seekBar, \textcolor{keywordtype}{int} seekValue, \textcolor{keywordtype}{boolean} fromUser) \{
-71                 kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(seekValue)));
-72             \}
-73 
-74             @Override
-75             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onStartTrackingTouch(SeekBar seekBar) \{
+63                                                    \{
+64         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
+65         \textcolor{keywordtype}{int} seekValue = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.KALMAN\_SEEKBAR\_VALUE, 4);
+66         kalmanSeek.setMax(10);
+67         kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
+68 
+69         \textcolor{keyword}{final} TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
+70         kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(seekValue)));
+71 
+72         kalmanSeek.setOnSeekBarChangeListener(\textcolor{keyword}{new} SeekBar.OnSeekBarChangeListener() \{
+73             @Override
+74             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onProgressChanged(SeekBar seekBar, \textcolor{keywordtype}{int} seekValue, \textcolor{keywordtype}{boolean} fromUser) \{
+75                 kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(seekValue)));
 76             \}
 77 
 78             @Override
-79             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onStopTrackingTouch(SeekBar seekBar) \{
-80                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
-81                 \textcolor{keywordtype}{int} progress = seekBar.getProgress();
-82                 editor.putInt(SettingConstants.KALMAN\_SEEKBAR\_VALUE, progress);
-83                 editor.putFloat(SettingConstants.KALMAN\_NOISE\_VALUE, 
+79             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onStartTrackingTouch(SeekBar seekBar) \{
+80             \}
+81 
+82             @Override
+83             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onStopTrackingTouch(SeekBar seekBar) \{
+84                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
+85                 \textcolor{keywordtype}{int} progress = seekBar.getProgress();
+86                 editor.putInt(SettingConstants.KALMAN\_SEEKBAR\_VALUE, progress);
+87                 editor.putFloat(SettingConstants.KALMAN\_NOISE\_VALUE, 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(progress));
-84                 editor.apply();
-85                 kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(progress)));
-86             \}
-87         \});
-88     \}
+88                 editor.apply();
+89                 kalmanFilterValue.setText(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694_af6b80a700dc80c39a56d001b68a47694}{df}.format(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6_a595d859602f34ca81957a0578c1602a6}{getCalculatedNoise}(progress)));
+90             \}
+91         \});
+92     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae29f0b3d6fc60f1ceeab5dcc530166c1_ae29f0b3d6fc60f1ceeab5dcc530166c1} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}!set\+Sorting@{set\+Sorting}}
@@ -206,25 +273,25 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-99                                        \{
-100         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
-101         \textcolor{keywordtype}{int} checkedRadioButton;
-102         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
-103             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.DISTANCE\_SORTING, rg.
+160                                        \{
+161         RadioGroup rg = (RadioGroup) root.findViewById(R.id.radioGroupSortingMode);
+162         \textcolor{keywordtype}{int} checkedRadioButton;
+163         \textcolor{keywordflow}{if} (rg.getCheckedRadioButtonId() != 0) \{
+164             checkedRadioButton = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.getInt(SettingConstants.DISTANCE\_SORTING, rg.
       getCheckedRadioButtonId());
-104         \} \textcolor{keywordflow}{else} \{
-105             checkedRadioButton = 0;
-106         \}
-107         rg.check(checkedRadioButton);
-108         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
-109             @Override
-110             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
-111                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
-112                 editor.putInt(SettingConstants.DISTANCE\_SORTING, checkedId);
-113                 editor.apply();
-114             \}
-115         \});
-116     \}
+165         \} \textcolor{keywordflow}{else} \{
+166             checkedRadioButton = 0;
+167         \}
+168         rg.check(checkedRadioButton);
+169         rg.setOnCheckedChangeListener(\textcolor{keyword}{new} RadioGroup.OnCheckedChangeListener() \{
+170             @Override
+171             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onCheckedChanged(RadioGroup group, \textcolor{keywordtype}{int} checkedId) \{
+172                 SharedPreferences.Editor editor = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4_a52480c4d5d81ca59fe4a98ae3c623ea4}{preferences}.edit();
+173                 editor.putInt(SettingConstants.DISTANCE\_SORTING, checkedId);
+174                 editor.apply();
+175             \}
+176         \});
+177     \}
 \end{DoxyCode}
 
 

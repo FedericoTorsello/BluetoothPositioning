@@ -17,13 +17,16 @@ Diagramma di collaborazione per it.\+unibo.\+torsello.\+bluetoothpositioning.\+k
 \item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a6904818e94d959f8e25a8699d6885c21_a6904818e94d959f8e25a8699d6885c21}{filter} (double z)
 \item 
-double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a376767db8e40babdacbbc9165a50a1a2_a376767db8e40babdacbbc9165a50a1a2}{filter} (double z, double u)
-\item 
-double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa2eb3f57a84ca002ceb97a0d7c9f9eed_aa2eb3f57a84ca002ceb97a0d7c9f9eed}{last\+Measurement} ()
-\item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a0ed62a630ff52aacdcd8832b9416f406_a0ed62a630ff52aacdcd8832b9416f406}{set\+Measurement\+Noise} (double noise)
 \item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a7651339cfddb4cdaa1e47906b27745fc_a7651339cfddb4cdaa1e47906b27745fc}{set\+Process\+Noise} (double noise)
+\end{DoxyCompactItemize}
+\subsubsection*{Membri privati}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a376767db8e40babdacbbc9165a50a1a2_a376767db8e40babdacbbc9165a50a1a2}{filter} (double z, double u)
+\item 
+double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa2eb3f57a84ca002ceb97a0d7c9f9eed_aa2eb3f57a84ca002ceb97a0d7c9f9eed}{last\+Measurement} ()
 \end{DoxyCompactItemize}
 \subsubsection*{Attributi privati}
 \begin{DoxyCompactItemize}
@@ -106,7 +109,7 @@ Create 1-\/dimensional kalman filter
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter}!filter@{filter}}
 \index{filter@{filter}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter}}
 \paragraph{\texorpdfstring{filter()}{filter()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+kalman\+Filter.\+K\+Filter.\+filter (\begin{DoxyParamCaption}\item[{double}]{z,  }\item[{double}]{u }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+kalman\+Filter.\+K\+Filter.\+filter (\begin{DoxyParamCaption}\item[{double}]{z,  }\item[{double}]{u }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 Filter a new value
 
@@ -122,7 +125,7 @@ x
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-52                                              \{
+52                                               \{
 53 
 54         \textcolor{keywordflow}{if} (Double.isNaN(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa6f9d5594f6870767679dbb79e40918d_aa6f9d5594f6870767679dbb79e40918d}{x})) \{
 55             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa6f9d5594f6870767679dbb79e40918d_aa6f9d5594f6870767679dbb79e40918d}{x} = (1 / \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a850cd09cf3a3a8ee28e16636069cb9a0_a850cd09cf3a3a8ee28e16636069cb9a0}{C}) * z;
@@ -154,7 +157,7 @@ x
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter}!last\+Measurement@{last\+Measurement}}
 \index{last\+Measurement@{last\+Measurement}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::kalman\+Filter\+::\+K\+Filter}}
 \paragraph{\texorpdfstring{last\+Measurement()}{lastMeasurement()}}
-{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+kalman\+Filter.\+K\+Filter.\+last\+Measurement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+kalman\+Filter.\+K\+Filter.\+last\+Measurement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 Return the last filtered measurement
 
@@ -163,7 +166,7 @@ x Estimated signal without noise
 \end{DoxyReturn}
 
 \begin{DoxyCode}
-85                                     \{
+85                                      \{
 86         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_aa6f9d5594f6870767679dbb79e40918d_aa6f9d5594f6870767679dbb79e40918d}{x};
 87     \}
 \end{DoxyCode}

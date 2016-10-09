@@ -20,8 +20,8 @@ import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceCh
  */
 public class DeviceDetailInner2Fragment extends Fragment {
 
-    public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
-    public static final String DEVICE_NAME = "DEVICE_NAME";
+    private static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    private static final String DEVICE_NAME = "DEVICE_NAME";
 
     private String idDeviceSelectedName;
 

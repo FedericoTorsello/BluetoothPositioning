@@ -91,7 +91,7 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    public static float getCalculatedNoise(int p) {
+    private static float getCalculatedNoise(int p) {
         double percent = (p / 10D);
         double noise = KFilterConstants.KALMAN_NOISE_MIN +
                 (KFilterConstants.KALMAN_NOISE_MAX - KFilterConstants.KALMAN_NOISE_MIN) * percent;

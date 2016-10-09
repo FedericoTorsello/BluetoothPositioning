@@ -1,6 +1,7 @@
 var searchData=
 [
   ['datasets',['dataSets',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a.html#aa98bcaa2d5ba444b91cdc029768d380a',1,'it::unibo::torsello::bluetoothpositioning::util::ChartUtil']]],
+  ['date',['date',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1Report_a949f502cfb2781802504ef43baf64830.html#a949f502cfb2781802504ef43baf64830',1,'it::unibo::torsello::bluetoothpositioning::util::Report']]],
   ['defaultnametextview',['defaultNameTextView',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder_a26c7f741a315cf43fca6570375dca93a.html#a26c7f741a315cf43fca6570375dca93a',1,'it::unibo::torsello::bluetoothpositioning::adapter::DeviceCardViewAdapter::DeviceViewHolder']]],
   ['device_5f1',['DEVICE_1',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1DeviceConstants_a1be810cb4e758baabfa5350f2185b4e1.html#a1be810cb4e758baabfa5350f2185b4e1',1,'it::unibo::torsello::bluetoothpositioning::constant::DeviceConstants']]],
   ['device_5f2',['DEVICE_2',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1DeviceConstants_a6e71224c86695cf216855bc6c0c77a2d.html#a6e71224c86695cf216855bc6c0c77a2d',1,'it::unibo::torsello::bluetoothpositioning::constant::DeviceConstants']]],

@@ -19,8 +19,9 @@ import it.unibo.torsello.bluetoothpositioning.util.CameraPreviewUtil;
  * federico.torsello@studio.unibo.it
  */
 public class CameraFragment extends Fragment {
-    CameraPreviewUtil preview;
-    Camera camera;
+
+    private CameraPreviewUtil preview;
+    private Camera camera;
 
     public static CameraFragment newInstance() {
         return new CameraFragment();

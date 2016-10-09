@@ -43,9 +43,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-17                                                             \{
-18         super();
-19     \}
+18                                                             \{
+19         super();
+20     \}
 \end{DoxyCode}
 
 
@@ -58,21 +58,21 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-32                                                                                                            
+34                                                                                                            
            \{
-33         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
-34                 dyUnconsumed);
-35 
-36         \textcolor{keywordflow}{if} ((dyConsumed > 0 || dyUnconsumed == 0) && child.getVisibility() == View.VISIBLE) \{
-37             child.hide();
-38             \textcolor{keyword}{new} Handler().postDelayed(\textcolor{keyword}{new} Runnable() \{
-39                 @Override
-40                 \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
-41                     child.show();
-42                 \}
-43             \}, 1000);
-44         \}
-45     \}
+35         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
+36                 dyUnconsumed);
+37 
+38         \textcolor{keywordflow}{if} ((dyConsumed > 0 || dyUnconsumed == 0) && child.getVisibility() == View.VISIBLE) \{
+39             child.hide();
+40             \textcolor{keyword}{new} Handler().postDelayed(\textcolor{keyword}{new} Runnable() \{
+41                 @Override
+42                 \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+43                     child.show();
+44                 \}
+45             \}, 1000);
+46         \}
+47     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extra_1_1FABBehavior_a5c6501a08ec79dd6bd92106b72c14979_a5c6501a08ec79dd6bd92106b72c14979}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1extra_1_1FABBehavior_a5c6501a08ec79dd6bd92106b72c14979_a5c6501a08ec79dd6bd92106b72c14979} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior}!on\+Start\+Nested\+Scroll@{on\+Start\+Nested\+Scroll}}
@@ -82,12 +82,13 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-23                                                                                                   \{
-24 
-25         \textcolor{keywordflow}{return} nestedScrollAxes == ViewCompat.SCROLL\_AXIS\_VERTICAL ||
-26                 super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target,
-27                         nestedScrollAxes);
-28     \}
+24                                                                                                   \{
+25 
+26 \textcolor{comment}{//        return nestedScrollAxes == ViewCompat.SCROLL\_AXIS\_VERTICAL ||}
+27 \textcolor{comment}{//                super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target,}
+28 \textcolor{comment}{//                        nestedScrollAxes);}
+29         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+30     \}
 \end{DoxyCode}
 
 

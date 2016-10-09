@@ -49,7 +49,7 @@ public class KFilter {
      * @param u Control
      * @return x
      */
-    public double filter(double z, double u) {
+    private double filter(double z, double u) {
 
         if (Double.isNaN(x)) {
             x = (1 / C) * z;
@@ -82,7 +82,7 @@ public class KFilter {
      *
      * @return x Estimated signal without noise
      */
-    public double lastMeasurement() {
+    private double lastMeasurement() {
         return x;
     }
 

@@ -106,7 +106,7 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a290aa5909dd27864e0d7d772403ca900.html#a290aa5909dd27864e0d7d772403ca900">inizializeFloatingActionButton</a>
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430.html#a5a35f7c0be6dfbdb4e5021b74dd88430">initializeFloatingActionButton</a>
                             </td>
                         </tr>
                         <tr>
@@ -155,8 +155,23 @@ $(function() {
                             </td>
                         </tr>
                         <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">setAvgOptionsVisible</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="navtab"><a class="qindexHL"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a8b2514096adfe574c15cc5317a45cd58.html#a8b2514096adfe574c15cc5317a45cd58">setRssiFilter</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53d1d26ad17526c6c518c4d8b4db3a8e.html#a53d1d26ad17526c6c518c4d8b4db3a8e">setSettingsVisible</a>
                             </td>
                         </tr>
                         <tr>
@@ -198,63 +213,209 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;
+                            <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;
+                            <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;
                             </div>
-                            <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;
+                            <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;
                                 <span class="keywordtype">int</span> sorting = <a class="code"
                                                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>.getInt(SettingConstants.FILTER_RSSI,
                                 0);
                             </div>
-                            <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;
+                            <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;
                                 <span class="keywordflow">switch</span> (sorting) {
                             </div>
-                            <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;
+                            <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;
                                 <span class="keywordflow">case</span> 0:
                             </div>
-                            <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;
+                            <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;
                                 <span class="keywordflow">case</span>
                                 R.id.radioButton_no_rssi_filtering:
                             </div>
-                            <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;
+                            <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;
                                 MyArmaRssiFilter.enableArmaFilter(<span class="keyword">false</span>);
                             </div>
-                            <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;
+                            <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>(<span
+                                        class="keyword">false</span>);
+                            </div>
+                            <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">setAvgOptionsVisible</a>(<span
+                                        class="keyword">false</span>);
+                            </div>
+                            <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;
                                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                             </div>
-                            <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;
+                            <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;
                                 <span class="keywordflow">break</span>;
                             </div>
-                            <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;
+                            <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;
                                 <span class="keywordflow">case</span>
                                 R.id.radioButton_arma_rssi_filter:
                             </div>
-                            <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;
+                            <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;
                                 MyArmaRssiFilter.enableArmaFilter(<span class="keyword">true</span>);
                             </div>
-                            <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;
-                                BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+                            <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>(<span
+                                        class="keyword">true</span>);
                             </div>
-                            <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;
+                            <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">setAvgOptionsVisible</a>(<span
+                                        class="keyword">false</span>);
+                            </div>
+                            <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;
+                                <span class="keywordtype">int</span> armaOption = <a class="code"
+                                                                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>.getInt(SettingConstants.ARMA_OPTION,
+                                0);
+                            </div>
+                            <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;
+                                <span class="keywordflow">switch</span> (armaOption) {
+                            </div>
+                            <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;
+                                <span class="keywordflow">case</span> 0:
+                            </div>
+                            <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op1:
+                            </div>
+                            <div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;
+                                MyArmaRssiFilter.setArmaSpeed(0.08D);
+                            </div>
+                            <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;
                                 <span class="keywordflow">break</span>;
                             </div>
-                            <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;
+                            <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op2:
+                            </div>
+                            <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;
+                                MyArmaRssiFilter.setArmaSpeed(0.25D);
+                            </div>
+                            <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op3:
+                            </div>
+                            <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;
+                                MyArmaRssiFilter.setArmaSpeed(0.5D);
+                            </div>
+                            <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;
+                                BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+                            </div>
+                            <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;
                                 <span class="keywordflow">case</span>
                                 R.id.radioButton_average_rssi_filter:
                             </div>
-                            <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;
-                                BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+                            <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>(<span
+                                        class="keyword">false</span>);
                             </div>
-                            <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;
+                            <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">setAvgOptionsVisible</a>(<span
+                                        class="keyword">true</span>);
+                            </div>
+                            <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;
+                                <span class="keywordtype">int</span> avgOption = <a class="code"
+                                                                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>.getInt(SettingConstants.ARMA_OPTION,
+                                0);
+                            </div>
+                            <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;
+                                <span class="keywordflow">switch</span> (avgOption) {
+                            </div>
+                            <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;
+                                <span class="keywordflow">case</span> 0:
+                            </div>
+                            <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op1:
+                            </div>
+                            <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;
+                                RunningAverageRssiFilter.setSampleExpirationMilliseconds(20000L);
+                            </div>
+                            <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;
                                 <span class="keywordflow">break</span>;
                             </div>
-                            <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;
+                            <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op2:
+                            </div>
+                            <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;
+                                RunningAverageRssiFilter.setSampleExpirationMilliseconds(10000L);
+                            </div>
+                            <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;
+                                <span class="keywordflow">case</span> R.id.radioButton_arma_op3:
+                            </div>
+                            <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;
+                                RunningAverageRssiFilter.setSampleExpirationMilliseconds(5000L);
+                            </div>
+                            <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;
+                            <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;
+                                BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+                            </div>
+                            <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;
+                                <span class="keywordflow">break</span>;
+                            </div>
+                            <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;
                                 }
+                            </div>
+                            <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;
+                                }
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_html_ab50a70cb5d2d98211598b297a10bc44f">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity.setAvgOptionsVisible</a>
+                                </div>
+                                <div class="ttdeci">void setAvgOptionsVisible(final boolean
+                                    visible)
+                                </div>
+                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:280
+                                </div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_html_a53f68b9ea3a7805d43d4d2c84a920871">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity.setArmaOptionsVisible</a>
+                                </div>
+                                <div class="ttdeci">void setArmaOptionsVisible(final boolean
+                                    visible)
+                                </div>
+                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:267
+                                </div>
                             </div>
                             <div class="ttc"
                                  id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_html_a3ee672ef79c268d0618ff3276c2e85f0">
@@ -262,7 +423,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity.preferences</a>
                                 </div>
                                 <div class="ttdeci">SharedPreferences preferences</div>
-                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:45
+                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:44
                                 </div>
                             </div>
                         </div><!-- fragment -->

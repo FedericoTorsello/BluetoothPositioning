@@ -1,6 +1,7 @@
 var searchData=
 [
   ['datasets',['dataSets',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a.html#aa98bcaa2d5ba444b91cdc029768d380a',1,'it::unibo::torsello::bluetoothpositioning::util::ChartUtil']]],
+  ['date',['date',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1Report_a949f502cfb2781802504ef43baf64830.html#a949f502cfb2781802504ef43baf64830',1,'it::unibo::torsello::bluetoothpositioning::util::Report']]],
   ['defaultnametextview',['defaultNameTextView',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder_a26c7f741a315cf43fca6570375dca93a.html#a26c7f741a315cf43fca6570375dca93a',1,'it::unibo::torsello::bluetoothpositioning::adapter::DeviceCardViewAdapter::DeviceViewHolder']]],
   ['device',['Device',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device.html',1,'it::unibo::torsello::bluetoothpositioning::model']]],
   ['device',['Device',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a2617f025dd33e0cae4adb3323245f865.html#a2617f025dd33e0cae4adb3323245f865',1,'it::unibo::torsello::bluetoothpositioning::model::Device']]],

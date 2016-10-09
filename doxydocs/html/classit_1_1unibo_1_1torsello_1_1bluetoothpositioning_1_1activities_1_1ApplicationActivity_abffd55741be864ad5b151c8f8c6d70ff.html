@@ -106,7 +106,7 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
-                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a290aa5909dd27864e0d7d772403ca900.html#a290aa5909dd27864e0d7d772403ca900">inizializeFloatingActionButton</a>
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430.html#a5a35f7c0be6dfbdb4e5021b74dd88430">initializeFloatingActionButton</a>
                             </td>
                         </tr>
                         <tr>
@@ -156,7 +156,22 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f.html#ab50a70cb5d2d98211598b297a10bc44f">setAvgOptionsVisible</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a8b2514096adfe574c15cc5317a45cd58.html#a8b2514096adfe574c15cc5317a45cd58">setRssiFilter</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53d1d26ad17526c6c518c4d8b4db3a8e.html#a53d1d26ad17526c6c518c4d8b4db3a8e">setSettingsVisible</a>
                             </td>
                         </tr>
                         <tr>
@@ -198,91 +213,96 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;
+                            <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;
+                            <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;
                                 <span class="keywordflow">try</span> {
                             </div>
-                            <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;
+                            <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;
+                                <span class="keyword">final</span> FloatingActionButton fab =
+                                (FloatingActionButton) findViewById(R.id.fab);
+                            </div>
+                            <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;
                                 <span class="keywordflow">if</span> (!<a class="code"
                                                                          href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.checkAvailability())
                                 {
                             </div>
-                            <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;
+                            <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;
                             </div>
-                            <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;
-                                <span class="keyword">final</span> FloatingActionButton fab =
-                                (FloatingActionButton) findViewById(R.id.fab);
-                            </div>
-                            <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;
-                                assert fab != null;
-                            </div>
-                            <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;
+                            <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;
                                 <span class="keyword">new</span> AlertDialog.Builder(<span
                                         class="keyword">this</span>)
                             </div>
-                            <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;
+                            <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;
                                 .setTitle(R.string.dialog_bluetooth_title)
                             </div>
-                            <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;
+                            <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;
                                 .setMessage(R.string.dialog_bluetooth_text)
                             </div>
-                            <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;
+                            <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;
                                 .setPositiveButton(android.R.string.ok, null)
                             </div>
-                            <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;
+                            <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;
                                 .setOnDismissListener(<span class="keyword">new</span>
                                 DialogInterface.OnDismissListener() {
                             </div>
-                            <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;
+                            <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;
+                            <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onDismiss(DialogInterface
                                 dialog) {
                             </div>
-                            <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;
-                                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
-                            </div>
-                            <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;
+                            <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;
                                 BluetoothAdapter.getDefaultAdapter().enable();
                             </div>
-                            <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;
+                            <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;
+                                fab.setImageResource(R.drawable.ic_bluetooth_white_24dp);
+                            </div>
+                            <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;
+                                Snackbar.make(fab, R.string.snackBar_start_scanning,
+                            </div>
+                            <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;
+                                Snackbar.LENGTH_INDEFINITE).show();
+                            </div>
+                            <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;
+                            <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;
                                 }).show();
                             </div>
-                            <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;
+                            <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;
                                 fab.setImageResource(R.drawable.ic_bluetooth_disabled_black_24dp);
                             </div>
-                            <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;
+                            <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;
+                                Snackbar.make(fab, R.string.snackBar_scanning_disabled,
+                            </div>
+                            <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;
+                                Snackbar.LENGTH_INDEFINITE).show();
+                            </div>
+                            <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;
                                 <span class="keywordflow">return</span> <span
                                         class="keyword">false</span>;
                             </div>
-                            <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;
+                            <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;
+                            <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;
                                 } <span class="keywordflow">catch</span> (RuntimeException e) {
                             </div>
-                            <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;
+                            <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;
                                 e.getStackTrace();
                             </div>
-                            <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;
+                            <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;
+                            <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;
                                 <span class="keywordflow">return</span> <span
                                         class="keyword">true</span>;
                             </div>
-                            <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;
+                            <div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -291,7 +311,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity.beaconManager</a>
                                 </div>
                                 <div class="ttdeci">BeaconManager beaconManager</div>
-                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:43
+                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:42
                                 </div>
                             </div>
                         </div><!-- fragment -->

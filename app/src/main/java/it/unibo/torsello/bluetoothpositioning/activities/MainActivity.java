@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity
 
     private final int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
-    public static final String DEVICE_FRAGMENT = "device";
-    public static final String USB_MEASUREMENT_FRAGMENT = "usb measurement";
+    private static final String DEVICE_FRAGMENT = "device";
+    private static final String USB_MEASUREMENT_FRAGMENT = "usb measurement";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -39,7 +39,6 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     private ArrayList<ILineDataSet> dataSets;
 
-
     public ChartUtil(FragmentActivity fragmentActivity) {
         this.activity = fragmentActivity;
     }
