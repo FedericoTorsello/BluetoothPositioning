@@ -15,12 +15,6 @@
             android:layout_height="wrap_content"
             android:text="@string/save_a_image" />
 
-        <ToggleButton
-            android:id="@+id/toggle_button_record_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/record_data" />
-
     </LinearLayout>
 
 

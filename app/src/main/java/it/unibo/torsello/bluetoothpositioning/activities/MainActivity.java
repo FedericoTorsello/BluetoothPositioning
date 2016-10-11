@@ -17,15 +17,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceListFragment;
-import it.unibo.torsello.bluetoothpositioning.fragment.usbObservers.UsbMeasurementFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment;
+import it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment;
 
 /**
  * Created by Federico Torsello.

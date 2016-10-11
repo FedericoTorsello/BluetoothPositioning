@@ -17,10 +17,10 @@
             <TextView
                 android:id="@+id/value_friendly_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:textAlignment="center"
-                android:padding="@dimen/custom_margin" />
+                android:padding="@dimen/custom_margin"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,14 +51,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:layout_marginEnd="@dimen/custom_margin"
                             android:text="@string/default_name"
                             android:textStyle="italic" />
 
                         <TextView
                             android:id="@+id/value_default_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -75,8 +77,9 @@
 
                         <TextView
                             android:id="@+id/value_color"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -94,8 +97,9 @@
 
                         <TextView
                             android:id="@+id/value_standard_raw_distance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -113,8 +117,9 @@
 
                         <TextView
                             android:id="@+id/value_altbeacon_distance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -132,8 +137,9 @@
 
                         <TextView
                             android:id="@+id/value_kalman_filter_distance"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -148,7 +154,7 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="@dimen/custom_margin"
                                 android:text="@string/rssi"
                                 android:textStyle="bold" />
@@ -156,8 +162,9 @@
                             <TextView
                                 android:id="@+id/value_rssi"
                                 android:layout_marginEnd="@dimen/custom_margin"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -175,8 +182,9 @@
                             <TextView
                                 android:id="@+id/value_power"
                                 android:layout_marginEnd="@dimen/custom_margin"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -201,8 +209,9 @@
 
                             <TextView
                                 android:id="@+id/value_major"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -219,8 +228,9 @@
 
                             <TextView
                                 android:id="@+id/value_minor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -237,8 +247,9 @@
 
                             <TextView
                                 android:id="@+id/value_uuid"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -263,8 +274,9 @@
 
                             <TextView
                                 android:id="@+id/value_name_space"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -281,8 +293,9 @@
 
                             <TextView
                                 android:id="@+id/value_instance"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -301,8 +314,9 @@
 
                         <TextView
                             android:id="@+id/value_mac_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -319,8 +333,9 @@
 
                         <TextView
                             android:id="@+id/value_proximity"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                 </LinearLayout>

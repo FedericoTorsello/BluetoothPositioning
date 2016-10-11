@@ -1,4 +1,4 @@
-<map id="it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceListFragment" name="it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceListFragment">
+<map id="it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment" name="it.unibo.torsello.bluetoothpositioning.fragment.DeviceListFragment">
 <area shape="rect" id="node7" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter.html" title="{it.unibo.torsello.bluetoothpositioning.adapter.\lDeviceCardViewAdapter\n||+ DeviceCardViewAdapter()\l+ onCreateViewHolder()\l+ onBindViewHolder()\l+ getItemCount()\l&#45; getActivity()\l&#45; setDistance()\l&#45; setInfoDevice()\l}" alt="" coords="389,344,709,524"/>
 <area shape="rect" id="node5" href="$classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable.html" title="{it.unibo.torsello.bluetoothpositioning.observables.\lDeviceObservable\n||+ notifyObservers()\l+ getInstance()\l&#45; DeviceObservable()\l}" alt="" coords="915,373,1265,495"/>
 </map>

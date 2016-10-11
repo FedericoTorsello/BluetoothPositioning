@@ -91,6 +91,8 @@ Nel particolare si usa l'oggetto \texttt{SharedPreferences} per salvare le impos
 
 \newpage
 \section{SettingConstants}
+
+Classe in cui si settano le costanti relative ai settaggi. Tali costanti sono intese come chiavi per risalire alle impostazioni scelte dall'utente, come ad esempio il filtro o l'ordinamento dei dispositivi trovati.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1SettingConstants__coll__graph.png}
@@ -121,7 +123,8 @@ publilc void update(Observable o, Object arg) {
 		// optional sorting
 		Collections.sort(devices, new Comparator<Device>() {
 			public int compare(Device b1, Device b2) {
-				int sorting = preferences.getInt(SettingConstants.DISTANCE_SORTING, 0);
+				int sorting = preferences
+					.getInt(SettingConstants.DISTANCE_SORTING, 0);
 				switch (sorting) {
 					case 0:
 					case R.id.radioButton_default_sorting:
@@ -131,7 +134,8 @@ publilc void update(Observable o, Object arg) {
 					case R.id.radioButton_distance_sorting:
 					return Double.compare(b1.getKalmanFilterDistance(), b2.getKalmanFilterDistance());
 				} // default sorting (a good basic ordering for the other options)
-				return Double.compare(b1.getIndex(), b2.getIndex());
+				return Double.compare(b1.getIndex(), 
+						b2.getIndex());
 			}
 		});
 		
@@ -201,6 +205,7 @@ Classe in cui si esegue il filtraggio ARMA spiegato in \ref{ch:filtro_arma}.
 
 \newpage
 \section{KFilterBuildertFragment}
+Classe di supporto per la creazione di un \texttt{KFilter}. Il suo scopo è inizializzare tale oggetto con dei parametri passati al costruttore.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilterBuilder__coll__graph.png}
@@ -209,6 +214,9 @@ Classe in cui si esegue il filtraggio ARMA spiegato in \ref{ch:filtro_arma}.
 
 \newpage
 \section{KFilter}
+
+Classe per l'implementazione del filtro di Kalman. Il suo funzionamento viene spiegato in \ref{ch:kfilter}.
+
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter__coll__graph.png}
@@ -353,6 +361,8 @@ Classe in cui si generano i grafici in realtime. I valori che vengono plottati s
 
 \newpage
 \section{ChartUtil}
+
+Classe per la creazione di grafici in real time. Viene sfuttata da \texttt{DeviceChartFragment} per istanziare un oggetto \texttt{LinearChart} a cui passare le varie distanze stimate via RSSI e USB.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=1.2\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil__coll__graph.png}
@@ -385,6 +395,64 @@ Classe che visualizza su di un fragment i valori di distanza stimati dall'Arduin
 
 \newpage
 \section{UsbUtil}
+
+Classe che permette di comunicare con la porta USB dello smartphone e in questo caso di ricevere i dati della distanza stimata da Arduino. 
+
+Per inizializzare la comunicazione su USB si utilizza il metodo \texttt{initializeUsb()}
+\subsubsection{Metodo initializeUsb()}
+\begin{lstlisting}[language=Java]
+private void initializeUsb() {
+	
+	// Find all available drivers from attached devices.
+	UsbManager usbManager = (UsbManager) getActivity().getSystemService(Context.USB_SERVICE);
+	List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber()
+		.findAllDrivers(usbManager);
+		
+	if (!availableDrivers.isEmpty()) {
+		
+		// Open a connection to the first available driver.
+		UsbSerialDriver driver = availableDrivers.get(0);
+		
+		if (usbManager.hasPermission(driver.getDevice())) {
+			if (usbManager.openDevice(driver.getDevice()) != null) {
+				// Read some data! Most have just one port (port 0).
+				port = driver.getPorts().get(0);
+			}
+		} else {
+			Intent startIntent = new Intent(getActivity(), getClass());
+			PendingIntent pendingIntent =
+				PendingIntent.getService(getActivity(), 0, startIntent, 0);
+			usbManager.requestPermission(driver.getDevice(), pendingIntent);
+		}
+		
+		if (port != null) {
+			
+			UsbDeviceConnection connection = 
+				usbManager.openDevice(port.getDriver()
+					.getDevice());
+			
+			if (connection != null) {
+				try {
+					port.open(connection);
+					port.setParameters(BOUND_RATE, UsbSerialPort.DATABITS_8,
+					UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+				} catch (IOException e) {
+					myUsbObservable.notifyObservers(getActivity()
+						.getString(R.string.error_opening_device)
+						+ " " + e.getMessage());
+					myUsbObservable.notifyObservers(false);
+					closePort();
+					return;
+				}
+				
+				stopIoManager();
+				startIoManager();
+			}
+		}
+	}
+}
+\end{lstlisting}
+
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=1.85\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil__coll__graph.png}

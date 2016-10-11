@@ -47,6 +47,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
     private List<Device> deviceList;
 
+    private String rssiFilterSelected;
+
     private boolean isRunScan = false;
 
     @Override
@@ -209,6 +211,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
 
     private void setRssiFilter() {
 
+        StringBuilder selectOption = new StringBuilder();
+
         int sorting = preferences.getInt(SettingConstants.FILTER_RSSI, 0);
         switch (sorting) {
             case 0:
@@ -216,6 +220,8 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                 MyArmaRssiFilter.enableArmaFilter(false);
                 setArmaOptionsVisible(false);
                 setAvgOptionsVisible(false);
+
+                selectOption.append("No filtering");
 
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
@@ -225,11 +231,13 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                 setArmaOptionsVisible(true);
                 setAvgOptionsVisible(false);
 
+                selectOption.append("ARMA filter - Speed ");
+
                 int armaOption = preferences.getInt(SettingConstants.ARMA_OPTION, 0);
                 switch (armaOption) {
                     case 0:
                     case R.id.radioButton_arma_op1:
-                        MyArmaRssiFilter.setArmaSpeed(0.08D);
+                        MyArmaRssiFilter.setArmaSpeed(0.1D);
                         break;
                     case R.id.radioButton_arma_op2:
                         MyArmaRssiFilter.setArmaSpeed(0.25D);
@@ -238,6 +246,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                         MyArmaRssiFilter.setArmaSpeed(0.5D);
                         break;
                 }
+
+                selectOption.append(MyArmaRssiFilter.getArmaSpeed());
+
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
 
@@ -245,23 +256,37 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                 setArmaOptionsVisible(false);
                 setAvgOptionsVisible(true);
 
-                int avgOption = preferences.getInt(SettingConstants.ARMA_OPTION, 0);
+                selectOption.append("AVG filter - ");
+
+                int avgOption = preferences.getInt(SettingConstants.AVG_OPTION, 0);
+
+                long sampleExpirationMilliseconds = 0;
+
                 switch (avgOption) {
                     case 0:
-                    case R.id.radioButton_arma_op1:
-                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(20000L);
+                    case R.id.radioButton_avg_op1:
+                        sampleExpirationMilliseconds = 20000L;
                         break;
-                    case R.id.radioButton_arma_op2:
-                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(10000L);
+                    case R.id.radioButton_avg_op2:
+                        sampleExpirationMilliseconds = 10000L;
                         break;
-                    case R.id.radioButton_arma_op3:
-                        RunningAverageRssiFilter.setSampleExpirationMilliseconds(5000L);
+                    case R.id.radioButton_avg_op3:
+                        sampleExpirationMilliseconds = 5000L;
                         break;
                 }
+
+                RunningAverageRssiFilter.setSampleExpirationMilliseconds(sampleExpirationMilliseconds);
+                selectOption.append(sampleExpirationMilliseconds).append(" ms");
 
                 BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
                 break;
         }
+
+        rssiFilterSelected = String.valueOf(selectOption);
+    }
+
+    public String getRssiFilterSelected() {
+        return rssiFilterSelected;
     }
 
     private void setArmaOptionsVisible(final boolean visible) {

@@ -40,56 +40,57 @@
 \BOOKMARK [1][-]{section.5.1}{Sviluppare un'app Android compatibile con BLE}{chapter.5}% 40
 \BOOKMARK [1][-]{section.5.2}{Compatibilit\340 con Android 5.0+}{chapter.5}% 41
 \BOOKMARK [1][-]{section.5.3}{Libreria AltBeacon - android-beacon-library}{chapter.5}% 42
-\BOOKMARK [1][-]{section.5.4}{Filtri}{chapter.5}% 43
-\BOOKMARK [2][-]{subsection.5.4.1}{Filtro RunningAverageRssi}{section.5.4}% 44
-\BOOKMARK [2][-]{subsection.5.4.2}{Implementazione del filtro di Kalman}{section.5.4}% 45
-\BOOKMARK [2][-]{subsection.5.4.3}{Implementazione del filtro ARMA}{section.5.4}% 46
-\BOOKMARK [2][-]{subsection.5.4.4}{Grafici in tempo reale}{section.5.4}% 47
-\BOOKMARK [0][-]{chapter.6}{Stima della distanza con Arduino}{part.2}% 48
-\BOOKMARK [1][-]{section.6.1}{Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{chapter.6}% 49
-\BOOKMARK [1][-]{section.6.2}{Progetto di test della comunicazione seriale PC - Arduino}{chapter.6}% 50
-\BOOKMARK [-1][-]{part.3}{III Progetto}{}% 51
-\BOOKMARK [0][-]{chapter.7}{Gerarchia delle classi}{part.3}% 52
-\BOOKMARK [1][-]{section.7.1}{MainActivity}{chapter.7}% 53
-\BOOKMARK [1][-]{section.7.2}{ApplicationActivity}{chapter.7}% 54
-\BOOKMARK [1][-]{section.7.3}{Device}{chapter.7}% 55
-\BOOKMARK [1][-]{section.7.4}{DeviceConstants}{chapter.7}% 56
-\BOOKMARK [1][-]{section.7.5}{DeviceObservable}{chapter.7}% 57
-\BOOKMARK [1][-]{section.7.6}{Estimation}{chapter.7}% 58
-\BOOKMARK [1][-]{section.7.7}{SettingsFragment}{chapter.7}% 59
-\BOOKMARK [1][-]{section.7.8}{SettingConstants}{chapter.7}% 60
-\BOOKMARK [1][-]{section.7.9}{DeviceListFragment}{chapter.7}% 61
-\BOOKMARK [1][-]{section.7.10}{DeviceCardViewAdapter}{chapter.7}% 62
-\BOOKMARK [1][-]{section.7.11}{DeviceViewHolder}{chapter.7}% 63
-\BOOKMARK [1][-]{section.7.12}{MyArmaRssiFilter}{chapter.7}% 64
-\BOOKMARK [1][-]{section.7.13}{KFilterBuildertFragment}{chapter.7}% 65
-\BOOKMARK [1][-]{section.7.14}{KFilter}{chapter.7}% 66
-\BOOKMARK [1][-]{section.7.15}{KFilterConstants}{chapter.7}% 67
-\BOOKMARK [1][-]{section.7.16}{StatePagerAdapter}{chapter.7}% 68
-\BOOKMARK [1][-]{section.7.17}{DeviceDetailFragment}{chapter.7}% 69
-\BOOKMARK [1][-]{section.7.18}{CameraFragment}{chapter.7}% 70
-\BOOKMARK [1][-]{section.7.19}{CameraPreviewUtil}{chapter.7}% 71
-\BOOKMARK [1][-]{section.7.20}{SaveImageTask}{chapter.7}% 72
-\BOOKMARK [1][-]{section.7.21}{DeviceDetailInner1Fragment}{chapter.7}% 73
-\BOOKMARK [1][-]{section.7.22}{DeviceDetailInner2Fragment}{chapter.7}% 74
-\BOOKMARK [1][-]{section.7.23}{DeviceChartFragment}{chapter.7}% 75
-\BOOKMARK [1][-]{section.7.24}{ChartUtil}{chapter.7}% 76
-\BOOKMARK [1][-]{section.7.25}{UsbMeasurementFragment}{chapter.7}% 77
-\BOOKMARK [1][-]{section.7.26}{UsbUtil}{chapter.7}% 78
-\BOOKMARK [1][-]{section.7.27}{UsbMeasurementObservable}{chapter.7}% 79
-\BOOKMARK [1][-]{section.7.28}{FABBehavior}{chapter.7}% 80
-\BOOKMARK [-1][-]{part.4}{IV Implementazione}{}% 81
-\BOOKMARK [0][-]{chapter.8}{GUI dell'app}{part.4}% 82
-\BOOKMARK [1][-]{section.8.1}{Avvio dell'app}{chapter.8}% 83
-\BOOKMARK [1][-]{section.8.2}{Abilitazione dellla radio Bluetooth}{chapter.8}% 84
-\BOOKMARK [1][-]{section.8.3}{Scansione dei dispositivi}{chapter.8}% 85
-\BOOKMARK [1][-]{section.8.4}{Men\371 a sinistra}{chapter.8}% 86
-\BOOKMARK [1][-]{section.8.5}{Men\371 a destra}{chapter.8}% 87
-\BOOKMARK [1][-]{section.8.6}{Dettagli di un dispositivo}{chapter.8}% 88
-\BOOKMARK [1][-]{section.8.7}{Dettagli avanzati e grafici realtime}{chapter.8}% 89
-\BOOKMARK [1][-]{section.8.8}{Connessione con Arduino via USB OTG}{chapter.8}% 90
-\BOOKMARK [1][-]{section.8.9}{Feedback della stima della distanza con Arduino}{chapter.8}% 91
-\BOOKMARK [0][-]{chapter.9}{Testing}{part.4}% 92
-\BOOKMARK [1][-]{section.9.1}{Configurazione dell'ambiente indoor}{chapter.9}% 93
-\BOOKMARK [1][-]{section.9.2}{Collegamento Arduino-smartphone}{chapter.9}% 94
-\BOOKMARK [2][-]{subsection.9.2.1}{Materiale utilizzato}{section.9.2}% 95
+\BOOKMARK [1][-]{section.5.4}{Calcolo della distanza RAW}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.5}{Filtri}{chapter.5}% 44
+\BOOKMARK [2][-]{subsection.5.5.1}{Filtro RunningAverageRssi}{section.5.5}% 45
+\BOOKMARK [2][-]{subsection.5.5.2}{Implementazione del filtro di Kalman}{section.5.5}% 46
+\BOOKMARK [2][-]{subsection.5.5.3}{Implementazione del filtro ARMA}{section.5.5}% 47
+\BOOKMARK [2][-]{subsection.5.5.4}{Grafici in tempo reale}{section.5.5}% 48
+\BOOKMARK [0][-]{chapter.6}{Stima della distanza con Arduino}{part.2}% 49
+\BOOKMARK [1][-]{section.6.1}{Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.2}{Progetto di test della comunicazione seriale PC - Arduino}{chapter.6}% 51
+\BOOKMARK [-1][-]{part.3}{III Progetto}{}% 52
+\BOOKMARK [0][-]{chapter.7}{Gerarchia delle classi}{part.3}% 53
+\BOOKMARK [1][-]{section.7.1}{MainActivity}{chapter.7}% 54
+\BOOKMARK [1][-]{section.7.2}{ApplicationActivity}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.3}{Device}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.4}{DeviceConstants}{chapter.7}% 57
+\BOOKMARK [1][-]{section.7.5}{DeviceObservable}{chapter.7}% 58
+\BOOKMARK [1][-]{section.7.6}{Estimation}{chapter.7}% 59
+\BOOKMARK [1][-]{section.7.7}{SettingsFragment}{chapter.7}% 60
+\BOOKMARK [1][-]{section.7.8}{SettingConstants}{chapter.7}% 61
+\BOOKMARK [1][-]{section.7.9}{DeviceListFragment}{chapter.7}% 62
+\BOOKMARK [1][-]{section.7.10}{DeviceCardViewAdapter}{chapter.7}% 63
+\BOOKMARK [1][-]{section.7.11}{DeviceViewHolder}{chapter.7}% 64
+\BOOKMARK [1][-]{section.7.12}{MyArmaRssiFilter}{chapter.7}% 65
+\BOOKMARK [1][-]{section.7.13}{KFilterBuildertFragment}{chapter.7}% 66
+\BOOKMARK [1][-]{section.7.14}{KFilter}{chapter.7}% 67
+\BOOKMARK [1][-]{section.7.15}{KFilterConstants}{chapter.7}% 68
+\BOOKMARK [1][-]{section.7.16}{StatePagerAdapter}{chapter.7}% 69
+\BOOKMARK [1][-]{section.7.17}{DeviceDetailFragment}{chapter.7}% 70
+\BOOKMARK [1][-]{section.7.18}{CameraFragment}{chapter.7}% 71
+\BOOKMARK [1][-]{section.7.19}{CameraPreviewUtil}{chapter.7}% 72
+\BOOKMARK [1][-]{section.7.20}{SaveImageTask}{chapter.7}% 73
+\BOOKMARK [1][-]{section.7.21}{DeviceDetailInner1Fragment}{chapter.7}% 74
+\BOOKMARK [1][-]{section.7.22}{DeviceDetailInner2Fragment}{chapter.7}% 75
+\BOOKMARK [1][-]{section.7.23}{DeviceChartFragment}{chapter.7}% 76
+\BOOKMARK [1][-]{section.7.24}{ChartUtil}{chapter.7}% 77
+\BOOKMARK [1][-]{section.7.25}{UsbMeasurementFragment}{chapter.7}% 78
+\BOOKMARK [1][-]{section.7.26}{UsbUtil}{chapter.7}% 79
+\BOOKMARK [1][-]{section.7.27}{UsbMeasurementObservable}{chapter.7}% 80
+\BOOKMARK [1][-]{section.7.28}{FABBehavior}{chapter.7}% 81
+\BOOKMARK [-1][-]{part.4}{IV Implementazione}{}% 82
+\BOOKMARK [0][-]{chapter.8}{GUI dell'app}{part.4}% 83
+\BOOKMARK [1][-]{section.8.1}{Avvio dell'app}{chapter.8}% 84
+\BOOKMARK [1][-]{section.8.2}{Abilitazione della radio Bluetooth}{chapter.8}% 85
+\BOOKMARK [1][-]{section.8.3}{Scansione dei dispositivi}{chapter.8}% 86
+\BOOKMARK [1][-]{section.8.4}{Men\371 a sinistra}{chapter.8}% 87
+\BOOKMARK [1][-]{section.8.5}{Men\371 a destra}{chapter.8}% 88
+\BOOKMARK [1][-]{section.8.6}{Foto ad un dispositivo}{chapter.8}% 89
+\BOOKMARK [1][-]{section.8.7}{Dettagli e grafici real time}{chapter.8}% 90
+\BOOKMARK [1][-]{section.8.8}{Connessione con Arduino via USB OTG}{chapter.8}% 91
+\BOOKMARK [1][-]{section.8.9}{Feedback della stima della distanza con Arduino}{chapter.8}% 92
+\BOOKMARK [0][-]{chapter.9}{Testing}{part.4}% 93
+\BOOKMARK [1][-]{section.9.1}{Configurazione dell'ambiente indoor}{chapter.9}% 94
+\BOOKMARK [1][-]{section.9.2}{Collegamento Arduino-smartphone}{chapter.9}% 95
+\BOOKMARK [2][-]{subsection.9.2.1}{Materiale utilizzato}{section.9.2}% 96

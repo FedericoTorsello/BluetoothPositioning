@@ -34,23 +34,26 @@ public class SaveImageTask extends AsyncTask<byte[], Void, Void> {
     @Override
     protected Void doInBackground(byte[]... data) {
 
-        // Write to SD Card
-        try {
-            File sdCard = Environment.getExternalStorageDirectory();
-            File dir = new File(sdCard.getAbsolutePath() + "/" + getActivity().getString(R.string.app_name));
-            dir.mkdirs();
+        // Write to disk
+        if (isExternalStorageWritable()) {
+            File root = Environment.getExternalStorageDirectory();
+            File dir = new File(root.getAbsolutePath() + "/"
+                    + getActivity().getString(R.string.app_name));
+            dir.mkdir();
 
             String fileName = String.format(Locale.getDefault(), "%d.jpg", System.currentTimeMillis());
             File outFile = new File(dir, fileName);
+            try {
 
-            FileOutputStream outStream = new FileOutputStream(outFile);
-            outStream.write(data[0]);
-            outStream.flush();
-            outStream.close();
+                FileOutputStream outStream = new FileOutputStream(outFile);
+                outStream.write(data[0]);
+                outStream.flush();
+                outStream.close();
 
-            refreshGallery(outFile);
-        } catch (IOException e) {
-            e.printStackTrace();
+                refreshGallery(outFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -67,5 +70,15 @@ public class SaveImageTask extends AsyncTask<byte[], Void, Void> {
             Snackbar.make(getActivity().findViewById(R.id.fab),
                     "Image retrieval failed", Snackbar.LENGTH_SHORT).show();
         }
+    }
+
+    /* Checks if external storage is available for read and write */
+    private boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        Log.d("sure", "not writeable");
+        return false;
     }
 }

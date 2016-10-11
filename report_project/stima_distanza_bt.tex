@@ -30,14 +30,18 @@ private void checkAndroidMPermission() {
    	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
    		final List<String> permissions = new ArrayList<>();
    		
-   		if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+   		if (checkSelfPermission(Manifest.permission
+		   	.ACCESS_FINE_LOCATION)
 		   		!= PackageManager.PERMISSION_GRANTED) {
-   			permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+   			permissions.add(Manifest.permission
+	   			.ACCESS_FINE_LOCATION);
    		}
    		
-   		if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+   		if (checkSelfPermission(Manifest.permission
+	   		.ACCESS_COARSE_LOCATION)
 		   		!= PackageManager.PERMISSION_GRANTED) {
-   			permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+   			permissions.add(Manifest.permission
+	   			.ACCESS_COARSE_LOCATION);
    		}
    		
    		if (!permissions.isEmpty()) {
@@ -49,7 +53,8 @@ private void checkAndroidMPermission() {
    				@TargetApi(23)
    				@Override
    				public void onDismiss(DialogInterface dialog) {
-   					requestPermissions(permissions.toArray(new String[permissions.size()]),
+   					requestPermissions(permissions.toArray(
+	   					new String[permissions.size()]),
    					REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
    				}
    				
@@ -72,8 +77,29 @@ dependencies {
 }
 \end{lstlisting}
 
+\section{Calcolo della distanza RAW}
+La stima della distanza in base ai RSSI calcolati si esegue nel metodo \texttt{calculateDistance(double txPower, double rssi)}.
+
+\subsubsection{Stima della distanza in base agli RSSI}
+\begin{lstlisting}[language=Java]
+// radiousNetwork formula
+private double calculateDistance(double txPower, double rssi) {
+	
+	if (rssi == 0.0D) {
+		return -1.0D; // if we cannot determine accuracy, return -1.
+	}
+	
+	double ratio = (rssi * 1.0D) / txPower;
+	if (ratio < 1.0D) {
+		return Math.pow(ratio, 10.0D);
+	}
+	
+	return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
+}
+\end{lstlisting}
+
 \section{Filtri}
-Per ridurre le problematiche di rilevamento di RSSI(\ref{ch:problematiche}) sono stati sviluppati e/o utilizzati tre filtri: RunningAverageRssi, filtro di Kalman, filtro ARMA. Questi possono essere combinati tra loro senza inficiare le prestazioni del sistema. Presentano delle parametrizzazioni controllabili dal \textit{Setting} per adattarsi a tutti vari contesti di stima.
+Per ridurre le problematiche di rilevamento di RSSI(\ref{ch:problematiche}) sono stati sviluppati e/o utilizzati tre filtri: RunningAverageRssi, filtro di Kalman, filtro ARMA. Questi possono essere combinati tra loro senza inficiare le prestazioni del sistema. Presentano delle parametrizzazioni controllabili dal \textit{Settings} per adattarsi a tutti vari contesti di stima.
 
 Per scelta progettuale il filtro di Kalman è sempre attivo. Si è fatto in modo che il valore filtrato col questo filtro sia confrontabile con la misurazione della distanza RAW e con quella filtrata dalla libreria AltBeacon.
 
@@ -130,7 +156,7 @@ public void updateDistance(Beacon b, double processNoise) {
 }
 \end{lstlisting}
 
-\subsubsection{Filtering nella classe KFilter}
+\subsubsection{Filtering nella classe KFilter}\label{ch:kfilter}
 \begin{lstlisting}[language=Java]
 /**
 * Filter a new value

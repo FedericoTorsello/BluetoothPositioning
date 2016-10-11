@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
-import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceDetailInner1Fragment;
 
 /**
  * Created by Federico Torsello.
@@ -65,6 +64,8 @@ public class DeviceDetailFragment extends Fragment {
         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager);
         StatePagerAdapter myPageAdapter = new StatePagerAdapter(getChildFragmentManager(), getFragments());
         mViewPager.setAdapter(myPageAdapter);
+        mViewPager.setOffscreenPageLimit(getFragments().size());
+        mViewPager.setCurrentItem(1);
 
         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -75,9 +76,12 @@ public class DeviceDetailFragment extends Fragment {
         ArrayList<Fragment> fragments = new ArrayList<>();
 
         // fragment 0
-        fragments.add(DeviceDetailInner1Fragment.newInstance(idDeviceSelectedName));
+        fragments.add(ReportFragment.newInstance("Report", idDeviceSelectedName));
 
         // fragment 1
+        fragments.add(DeviceDetailInner1Fragment.newInstance(idDeviceSelectedName));
+
+        // fragment 2
         fragments.add(DeviceDetailInner2Fragment.newInstance("Details", idDeviceSelectedName));
 
 

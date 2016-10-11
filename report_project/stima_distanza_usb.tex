@@ -5,14 +5,17 @@ Per poter stimare la distanza con Arduino è stato utilizzato un sensore ultraso
 \begin{lstlisting}[language=XML]
 <intent-filter>
 	<action android:name="android.intent.action.MAIN" />
-	<action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+	<action android:name="android.hardware.usb.action
+		.USB_DEVICE_ATTACHED"/>
 
 	<category android:name="android.intent.category.DEFAULT" />
 	<category android:name="android.intent.category.LAUNCHER" />
 
 </intent-filter>
 
-<meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
+<meta-data android:name="android.hardware.usb.action
+		.USB_DEVICE_ATTACHED" 
+	android:resource="@xml/device_filter" />
 \end{lstlisting}
 
 

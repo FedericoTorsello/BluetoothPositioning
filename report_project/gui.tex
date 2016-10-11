@@ -1,75 +1,99 @@
 \chapter{GUI dell'app}
 
 \section{Avvio dell'app}
+
+Quando si avvia l'app viene visualizzato un avviso che invita l'utente a premere sul bottone in basso a destra per far partire la scansione dei dispositivi BT.
+
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=.35\linewidth]{img/app/01.png}
-	\caption{}
+	\caption{Avvio dell'app}
 \end{figure}
 
 \newpage
-\section{Abilitazione dellla radio Bluetooth}
+\section{Abilitazione della radio Bluetooth}
+
+Questa schermata viene visualizzata se la radio BT è spenta. Appare all'avvio dell'app o di una nuova scansione.
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=.35\linewidth]{img/app/12.png}
-	\caption{}
+	\includegraphics[width=.35\linewidth]{img/app/13.png}
+	\caption{Abilitazione della radio Bluetooth}
 \end{figure}
 
 \newpage
 \section{Scansione dei dispositivi}
+
+In questo fragment viene caricata la RecycleView con i dati dei dispositivi. Questa lista può essere ordinata in base ai settaggi scelti. Se si seleziona un dispositivo vengono visualizzati i dettagli e grafici per mettere in relazione le diverse stime sulla distanza.
+
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=.35\linewidth]{img/app/02.png}
 	\includegraphics[width=.35\linewidth]{img/app/03.png}
-	\caption{}
+	\caption{Scansione dei dispositivi}
 \end{figure}
 
 \newpage
 \section{Menù a sinistra}
+
+In questo menù viene data la possibilità di tarare la distanza con Arduino (campo Measurement), visualizzare i settings oppure ritornare alla vista principale.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=.35\linewidth]{img/app/04.png}
-	\caption{}
+	\caption{Menù a sinistra}
 \end{figure}
 
 \newpage
 \section{Menù a destra}
+
+Il menù a destra consiste in un fragment in cui l'utente può selezionare le proprie preferenze. Nel caso in cui la scansione fosse interrotta, i settaggi risultano non abilitati.
+
 \begin{figure}[ph]
 	\centering
+	\includegraphics[width=.35\linewidth]{img/app/15.png}
 	\includegraphics[width=.35\linewidth]{img/app/05.png}
-	\caption{}
+	\\
+	\includegraphics[width=.35\linewidth]{img/app/16.png}
+	\includegraphics[width=.35\linewidth]{img/app/14.png}
+	\caption{Menù a destra}
 \end{figure}
 
 \newpage
-\section{Dettagli di un dispositivo}
+\section{Foto ad un dispositivo}
+Possibilità di scattare una foto a un dispositivo BT per ricordare dove è stato posizionato.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=.35\linewidth]{img/app/06.png}
 	\includegraphics[width=.35\linewidth]{img/app/07.png}
-	\caption{}
+	\caption{Foto ad un dispositivo}
 \end{figure}
 
 \newpage
-\section{Dettagli avanzati e grafici realtime}
+\section{Dettagli e grafici real time}
+Il fragment dei dettagli è diviso in due parti, la parte a sinistra indica i dettagli del dispositivo selezionato e la distanza stimata dall'Arduino, a destra vi è sempre la stima di Arduino ma sono indicati dei grafici.
+
+Tali grafici sono realizzati in real time. Visualizzano l'andamento della stima delle distanze stimate.
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=.35\linewidth]{img/app/08.png}
-	\caption{}
+	\includegraphics[width=.35\linewidth]{img/app/09.png}
+	\caption{Dettagli e grafici real time}
 \end{figure}
 
 \newpage
 \section{Connessione con Arduino via USB OTG}
+Con questi messaggi si richiede all'utente di abilitare la comunicazione USB sul dispositivo. Senza questo abilitazione la comunicazione con l'Arduino non può avvenire.
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=.35\linewidth]{img/app/09.png}
 	\includegraphics[width=.35\linewidth]{img/app/10.png}
-	\caption{}
+	\includegraphics[width=.35\linewidth]{img/app/11.png}
+	\caption{Connessione con Arduino via USB OTG}
 \end{figure}
 
 \newpage
 \section{Feedback della stima della distanza con Arduino}
+Qui si fa vedere come appare la stima della distanza con Arduino quando il cavo è connesso e la comunicazione USB con OTG è abilitata.
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=.35\linewidth]{img/app/11.png}
-	\caption{}
+	\includegraphics[width=.35\linewidth]{img/app/12.png}
+	\caption{Feedback della stima della distanza con Arduino}
 \end{figure}

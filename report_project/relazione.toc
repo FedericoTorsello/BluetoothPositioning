@@ -28,8 +28,8 @@
 \contentsline {section}{\numberline {3.3}RSSI - Received Signal Strength Indication}{11}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Advertising Interval}{11}{subsection.3.3.1}
 \contentsline {section}{\numberline {3.4}iBeacon Advertising Packet Contents}{11}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Measured power}{11}{subsection.3.4.1}
-\contentsline {paragraph}{Esempio:}{11}{section*.8}
+\contentsline {subsection}{\numberline {3.4.1}Measured power}{12}{subsection.3.4.1}
+\contentsline {paragraph}{Esempio:}{12}{section*.8}
 \contentsline {chapter}{\numberline {4}Stima della distanza con RSSI}{13}{chapter.4}
 \contentsline {section}{\numberline {4.1}Attenuazione dei segnali elettromagnetici}{13}{section.4.1}
 \contentsline {section}{\numberline {4.2}Received Signal Strength Indicator - RSSI}{13}{section.4.2}
@@ -46,61 +46,64 @@
 \contentsline {section}{\numberline {5.2}Compatibilit\IeC {\`a} con Android 5.0+}{18}{section.5.2}
 \contentsline {subsubsection}{Controllo della compatibilit\IeC {\`a} con Android 5.0+}{19}{section*.11}
 \contentsline {section}{\numberline {5.3}Libreria AltBeacon - android-beacon-library}{20}{section.5.3}
-\contentsline {section}{\numberline {5.4}Filtri}{20}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Filtro RunningAverageRssi}{20}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Implementazione del filtro di Kalman}{20}{subsection.5.4.2}
-\contentsline {subsubsection}{Filtraggio in base agli input}{21}{section*.12}
-\contentsline {subsubsection}{Filtering nella classe KFilter}{22}{section*.13}
-\contentsline {subsection}{\numberline {5.4.3}Implementazione del filtro ARMA}{23}{subsection.5.4.3}
-\contentsline {subsubsection}{Aggiornamento del filtro ARMA}{23}{section*.14}
-\contentsline {subsection}{\numberline {5.4.4}Grafici in tempo reale}{24}{subsection.5.4.4}
-\contentsline {subsubsection}{Dettaglio di un grafico in tempo reale}{24}{section*.15}
-\contentsline {chapter}{\numberline {6}Stima della distanza con Arduino}{25}{chapter.6}
-\contentsline {section}{\numberline {6.1}Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{25}{section.6.1}
-\contentsline {subsubsection}{\relax $\@@underline {\hbox {\href {http://playground.arduino.cc/Code/NewPing}{NewPing}}}\mathsurround \z@ $\relax }{26}{section*.17}
-\contentsline {section}{\numberline {6.2}Progetto di test della comunicazione seriale PC - Arduino}{26}{section.6.2}
-\contentsline {part}{III\hspace {1em}Progetto}{28}{part.3}
-\contentsline {chapter}{\numberline {7}Gerarchia delle classi}{29}{chapter.7}
-\contentsline {section}{\numberline {7.1}MainActivity}{29}{section.7.1}
-\contentsline {section}{\numberline {7.2}ApplicationActivity}{31}{section.7.2}
-\contentsline {section}{\numberline {7.3}Device}{33}{section.7.3}
-\contentsline {section}{\numberline {7.4}DeviceConstants}{34}{section.7.4}
-\contentsline {section}{\numberline {7.5}DeviceObservable}{35}{section.7.5}
-\contentsline {section}{\numberline {7.6}Estimation}{36}{section.7.6}
-\contentsline {section}{\numberline {7.7}SettingsFragment}{37}{section.7.7}
-\contentsline {section}{\numberline {7.8}SettingConstants}{39}{section.7.8}
-\contentsline {section}{\numberline {7.9}DeviceListFragment}{40}{section.7.9}
-\contentsline {section}{\numberline {7.10}DeviceCardViewAdapter}{43}{section.7.10}
-\contentsline {section}{\numberline {7.11}DeviceViewHolder}{45}{section.7.11}
-\contentsline {section}{\numberline {7.12}MyArmaRssiFilter}{47}{section.7.12}
-\contentsline {section}{\numberline {7.13}KFilterBuildertFragment}{48}{section.7.13}
-\contentsline {section}{\numberline {7.14}KFilter}{49}{section.7.14}
-\contentsline {section}{\numberline {7.15}KFilterConstants}{50}{section.7.15}
-\contentsline {section}{\numberline {7.16}StatePagerAdapter}{51}{section.7.16}
-\contentsline {section}{\numberline {7.17}DeviceDetailFragment}{52}{section.7.17}
-\contentsline {section}{\numberline {7.18}CameraFragment}{53}{section.7.18}
-\contentsline {section}{\numberline {7.19}CameraPreviewUtil}{55}{section.7.19}
-\contentsline {section}{\numberline {7.20}SaveImageTask}{57}{section.7.20}
-\contentsline {section}{\numberline {7.21}DeviceDetailInner1Fragment}{58}{section.7.21}
-\contentsline {section}{\numberline {7.22}DeviceDetailInner2Fragment}{60}{section.7.22}
-\contentsline {section}{\numberline {7.23}DeviceChartFragment}{61}{section.7.23}
-\contentsline {section}{\numberline {7.24}ChartUtil}{63}{section.7.24}
-\contentsline {section}{\numberline {7.25}UsbMeasurementFragment}{64}{section.7.25}
-\contentsline {section}{\numberline {7.26}UsbUtil}{66}{section.7.26}
-\contentsline {section}{\numberline {7.27}UsbMeasurementObservable}{68}{section.7.27}
-\contentsline {section}{\numberline {7.28}FABBehavior}{69}{section.7.28}
-\contentsline {part}{IV\hspace {1em}Implementazione}{70}{part.4}
-\contentsline {chapter}{\numberline {8}GUI dell'app}{71}{chapter.8}
-\contentsline {section}{\numberline {8.1}Avvio dell'app}{71}{section.8.1}
-\contentsline {section}{\numberline {8.2}Abilitazione dellla radio Bluetooth}{72}{section.8.2}
-\contentsline {section}{\numberline {8.3}Scansione dei dispositivi}{73}{section.8.3}
-\contentsline {section}{\numberline {8.4}Men\IeC {\`u} a sinistra}{74}{section.8.4}
-\contentsline {section}{\numberline {8.5}Men\IeC {\`u} a destra}{75}{section.8.5}
-\contentsline {section}{\numberline {8.6}Dettagli di un dispositivo}{76}{section.8.6}
-\contentsline {section}{\numberline {8.7}Dettagli avanzati e grafici realtime}{77}{section.8.7}
-\contentsline {section}{\numberline {8.8}Connessione con Arduino via USB OTG}{78}{section.8.8}
-\contentsline {section}{\numberline {8.9}Feedback della stima della distanza con Arduino}{79}{section.8.9}
-\contentsline {chapter}{\numberline {9}Testing}{80}{chapter.9}
-\contentsline {section}{\numberline {9.1}Configurazione dell'ambiente indoor}{80}{section.9.1}
-\contentsline {section}{\numberline {9.2}Collegamento Arduino-smartphone}{81}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}Materiale utilizzato}{82}{subsection.9.2.1}
+\contentsline {section}{\numberline {5.4}Calcolo della distanza RAW}{20}{section.5.4}
+\contentsline {subsubsection}{Stima della distanza in base agli RSSI}{20}{section*.12}
+\contentsline {section}{\numberline {5.5}Filtri}{20}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Filtro RunningAverageRssi}{21}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Implementazione del filtro di Kalman}{21}{subsection.5.5.2}
+\contentsline {subsubsection}{Filtraggio in base agli input}{22}{section*.13}
+\contentsline {subsubsection}{Filtering nella classe KFilter}{22}{section*.14}
+\contentsline {subsection}{\numberline {5.5.3}Implementazione del filtro ARMA}{23}{subsection.5.5.3}
+\contentsline {subsubsection}{Aggiornamento del filtro ARMA}{23}{section*.15}
+\contentsline {subsection}{\numberline {5.5.4}Grafici in tempo reale}{24}{subsection.5.5.4}
+\contentsline {subsubsection}{Dettaglio di un grafico in tempo reale}{24}{section*.16}
+\contentsline {chapter}{\numberline {6}Stima della distanza con Arduino}{26}{chapter.6}
+\contentsline {section}{\numberline {6.1}Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{26}{section.6.1}
+\contentsline {subsubsection}{\relax $\@@underline {\hbox {\href {http://playground.arduino.cc/Code/NewPing}{NewPing}}}\mathsurround \z@ $\relax }{27}{section*.18}
+\contentsline {section}{\numberline {6.2}Progetto di test della comunicazione seriale PC - Arduino}{27}{section.6.2}
+\contentsline {part}{III\hspace {1em}Progetto}{29}{part.3}
+\contentsline {chapter}{\numberline {7}Gerarchia delle classi}{30}{chapter.7}
+\contentsline {section}{\numberline {7.1}MainActivity}{30}{section.7.1}
+\contentsline {section}{\numberline {7.2}ApplicationActivity}{32}{section.7.2}
+\contentsline {section}{\numberline {7.3}Device}{34}{section.7.3}
+\contentsline {section}{\numberline {7.4}DeviceConstants}{35}{section.7.4}
+\contentsline {section}{\numberline {7.5}DeviceObservable}{36}{section.7.5}
+\contentsline {section}{\numberline {7.6}Estimation}{37}{section.7.6}
+\contentsline {section}{\numberline {7.7}SettingsFragment}{38}{section.7.7}
+\contentsline {section}{\numberline {7.8}SettingConstants}{40}{section.7.8}
+\contentsline {section}{\numberline {7.9}DeviceListFragment}{41}{section.7.9}
+\contentsline {section}{\numberline {7.10}DeviceCardViewAdapter}{44}{section.7.10}
+\contentsline {section}{\numberline {7.11}DeviceViewHolder}{46}{section.7.11}
+\contentsline {section}{\numberline {7.12}MyArmaRssiFilter}{48}{section.7.12}
+\contentsline {section}{\numberline {7.13}KFilterBuildertFragment}{49}{section.7.13}
+\contentsline {section}{\numberline {7.14}KFilter}{50}{section.7.14}
+\contentsline {section}{\numberline {7.15}KFilterConstants}{51}{section.7.15}
+\contentsline {section}{\numberline {7.16}StatePagerAdapter}{52}{section.7.16}
+\contentsline {section}{\numberline {7.17}DeviceDetailFragment}{53}{section.7.17}
+\contentsline {section}{\numberline {7.18}CameraFragment}{54}{section.7.18}
+\contentsline {section}{\numberline {7.19}CameraPreviewUtil}{56}{section.7.19}
+\contentsline {section}{\numberline {7.20}SaveImageTask}{58}{section.7.20}
+\contentsline {section}{\numberline {7.21}DeviceDetailInner1Fragment}{59}{section.7.21}
+\contentsline {section}{\numberline {7.22}DeviceDetailInner2Fragment}{61}{section.7.22}
+\contentsline {section}{\numberline {7.23}DeviceChartFragment}{62}{section.7.23}
+\contentsline {section}{\numberline {7.24}ChartUtil}{64}{section.7.24}
+\contentsline {section}{\numberline {7.25}UsbMeasurementFragment}{65}{section.7.25}
+\contentsline {section}{\numberline {7.26}UsbUtil}{67}{section.7.26}
+\contentsline {subsubsection}{Metodo initializeUsb()}{67}{section*.60}
+\contentsline {section}{\numberline {7.27}UsbMeasurementObservable}{70}{section.7.27}
+\contentsline {section}{\numberline {7.28}FABBehavior}{71}{section.7.28}
+\contentsline {part}{IV\hspace {1em}Implementazione}{72}{part.4}
+\contentsline {chapter}{\numberline {8}GUI dell'app}{73}{chapter.8}
+\contentsline {section}{\numberline {8.1}Avvio dell'app}{73}{section.8.1}
+\contentsline {section}{\numberline {8.2}Abilitazione della radio Bluetooth}{74}{section.8.2}
+\contentsline {section}{\numberline {8.3}Scansione dei dispositivi}{75}{section.8.3}
+\contentsline {section}{\numberline {8.4}Men\IeC {\`u} a sinistra}{76}{section.8.4}
+\contentsline {section}{\numberline {8.5}Men\IeC {\`u} a destra}{77}{section.8.5}
+\contentsline {section}{\numberline {8.6}Foto ad un dispositivo}{78}{section.8.6}
+\contentsline {section}{\numberline {8.7}Dettagli e grafici real time}{79}{section.8.7}
+\contentsline {section}{\numberline {8.8}Connessione con Arduino via USB OTG}{80}{section.8.8}
+\contentsline {section}{\numberline {8.9}Feedback della stima della distanza con Arduino}{81}{section.8.9}
+\contentsline {chapter}{\numberline {9}Testing}{82}{chapter.9}
+\contentsline {section}{\numberline {9.1}Configurazione dell'ambiente indoor}{82}{section.9.1}
+\contentsline {section}{\numberline {9.2}Collegamento Arduino-smartphone}{83}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Materiale utilizzato}{84}{subsection.9.2.1}

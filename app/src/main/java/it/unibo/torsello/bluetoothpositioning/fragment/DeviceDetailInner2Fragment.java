@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import it.unibo.torsello.bluetoothpositioning.R;
 import it.unibo.torsello.bluetoothpositioning.adapter.StatePagerAdapter;
-import it.unibo.torsello.bluetoothpositioning.fragment.devicesObservers.DeviceChartFragment;
 
 /**
  * Created by Federico Torsello.
@@ -57,7 +56,7 @@ public class DeviceDetailInner2Fragment extends Fragment {
 
     private void addChildFragment(View root) {
 
-        ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager);
+        ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager2);
 
         // avoid casual fragment's destruction
         mViewPager.setOffscreenPageLimit(getFragments().size());

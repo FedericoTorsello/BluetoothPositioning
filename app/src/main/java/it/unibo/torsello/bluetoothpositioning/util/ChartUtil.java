@@ -106,7 +106,6 @@ public class ChartUtil implements OnChartValueSelectedListener {
                         public void run() {
 
                             LineData data = chart.getData();
-
                             if (data == null) {
                                 if (dataSets != null) {
                                     initializeDataChart(dataSets);
@@ -116,6 +115,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
                             } else {
                                 if (data.getDataSetCount() > 0) {
 
+//                                    Log.i("miao", data.getDataSetCount()  +" ");
                                     for (int i = 0; i < doubleArrayList.size(); i++) {
                                         plotValue(data, i, doubleArrayList.get(i));
                                     }
@@ -137,6 +137,12 @@ public class ChartUtil implements OnChartValueSelectedListener {
             if (s != null) {
                 if (s.equals(getActivity().getString(R.string.chart_arduino))) {
                     dataSets.add(createDataSet(s, Color.RED));
+                } else if (s.equals(getActivity().getString(R.string.chart_raw_distance))) {
+                    dataSets.add(createDataSet(s, Color.GREEN));
+                } else if (s.equals(getActivity().getString(R.string.chart_altbeacon))) {
+                    dataSets.add(createDataSet(s, Color.BLUE));
+                } else if (s.equals(getActivity().getString(R.string.chart_kalman_filter))) {
+                    dataSets.add(createDataSet(s, Color.CYAN));
                 } else {
                     dataSets.add(createDataSet(s, getRandomColor()));
                 }
@@ -147,11 +153,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
     private int getRandomColor() {
         Random rnd = new Random();
-        int color = 0;
-        while (color == 0) {
-            color = Color.argb(255, rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
-        }
-        return color;
+        return Color.argb(255, rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
     }
 
     private LineDataSet createDataSet(String nameDataSet, int color) {
