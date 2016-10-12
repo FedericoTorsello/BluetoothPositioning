@@ -52,7 +52,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
     }
 
     public void initializeChart() {
-        dataSets = new ArrayList<ILineDataSet>();
+        dataSets = new ArrayList<>();
 
         chart.setOnChartValueSelectedListener(this);
 
@@ -119,6 +119,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
                                     for (int i = 0; i < doubleArrayList.size(); i++) {
                                         plotValue(data, i, doubleArrayList.get(i));
                                     }
+
                                 }
                             }
                         }
@@ -178,6 +179,7 @@ public class ChartUtil implements OnChartValueSelectedListener {
 
         // move to the latest entry
         chart.moveViewToX(data.getEntryCount());
+
     }
 
     private void initializeDataChart(ArrayList<ILineDataSet> dataSets) {

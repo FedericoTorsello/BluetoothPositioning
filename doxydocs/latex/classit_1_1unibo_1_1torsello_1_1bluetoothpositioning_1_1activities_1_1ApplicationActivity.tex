@@ -26,6 +26,8 @@ Diagramma di collaborazione per it.\+unibo.\+torsello.\+bluetoothpositioning.\+a
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a395bfa7ec016998b254b9e197ef8d754_a395bfa7ec016998b254b9e197ef8d754}{on\+Create} (Bundle saved\+Instance\+State)
 \item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a0cdfc0658ba462b43e9e6b94bab90da1_a0cdfc0658ba462b43e9e6b94bab90da1}{on\+Beacon\+Service\+Connect} ()
+\item 
+String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a54fb622e186f1a1e4af2b84b7466c560_a54fb622e186f1a1e4af2b84b7466c560}{get\+Rssi\+Filter\+Selected} ()
 \end{DoxyCompactItemize}
 \subsubsection*{Membri protetti}
 \begin{DoxyCompactItemize}
@@ -68,6 +70,8 @@ Background\+Power\+Saver \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpos
 \item 
 List$<$ \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device}{Device} $>$ \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad146f35cfee210f7191442658a235a2f_ad146f35cfee210f7191442658a235a2f}{device\+List}
 \item 
+String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca_aa0775c805f735289a7fc6c380ff81fca}{rssi\+Filter\+Selected}
+\item 
 boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a16080640c95a73d18c2b7ec21b785af1_a16080640c95a73d18c2b7ec21b785af1}{is\+Run\+Scan} = false
 \end{DoxyCompactItemize}
 
@@ -76,6 +80,18 @@ boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activ
 Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\tt federico.\+torsello@studio.\+unibo.\+it} 
 
 \subsubsection{Documentazione delle funzioni membro}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a54fb622e186f1a1e4af2b84b7466c560_a54fb622e186f1a1e4af2b84b7466c560}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a54fb622e186f1a1e4af2b84b7466c560_a54fb622e186f1a1e4af2b84b7466c560} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!get\+Rssi\+Filter\+Selected@{get\+Rssi\+Filter\+Selected}}
+\index{get\+Rssi\+Filter\+Selected@{get\+Rssi\+Filter\+Selected}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}}
+\paragraph{\texorpdfstring{get\+Rssi\+Filter\+Selected()}{getRssiFilterSelected()}}
+{\footnotesize\ttfamily String it.\+unibo.\+torsello.\+bluetoothpositioning.\+activities.\+Application\+Activity.\+get\+Rssi\+Filter\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+287                                           \{
+288         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca_aa0775c805f735289a7fc6c380ff81fca}{rssiFilterSelected};
+289     \}
+\end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf_a55d4f45ce163b9f613420686f6dfe1cf}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf_a55d4f45ce163b9f613420686f6dfe1cf} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!initialize\+Beacon\+Manager@{initialize\+Beacon\+Manager}}
 \index{initialize\+Beacon\+Manager@{initialize\+Beacon\+Manager}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}}
@@ -84,44 +100,42 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-70                                            \{
-71         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager} = BeaconManager.getInstanceForApplication(getApplicationContext());
-72         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.bind(\textcolor{keyword}{this});
-73 
-74         \textcolor{comment}{// Save battery whenever the application is not visible.}
-75         \textcolor{comment}{// This reduces bluetooth power usage by about 60%}
-76         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver} = \textcolor{keyword}{new} BackgroundPowerSaver(getApplicationContext());
-77 
-78 \textcolor{comment}{//        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());}
+72                                            \{
+73         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager} = BeaconManager.getInstanceForApplication(getApplicationContext());
+74         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.bind(\textcolor{keyword}{this});
+75 
+76         \textcolor{comment}{// Save battery whenever the application is not visible.}
+77         \textcolor{comment}{// This reduces bluetooth power usage by about 60%}
+78         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver} = \textcolor{keyword}{new} BackgroundPowerSaver(getApplicationContext());
 79 
-80         \textcolor{comment}{// for finding different type of beacon,}
-81         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().clear();
-82 
-83         \textcolor{comment}{// Alt beacon}
-84         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-85                 .setBeaconLayout(BeaconParser.ALTBEACON\_LAYOUT));
-86         \textcolor{comment}{// Detect the main identifier (UID) frame:}
-87         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-88                 .setBeaconLayout(BeaconParser.EDDYSTONE\_UID\_LAYOUT));
-89         \textcolor{comment}{// Detect the telemetry (TLM) frame:}
-90         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-91                 .setBeaconLayout(BeaconParser.EDDYSTONE\_TLM\_LAYOUT));
-92         \textcolor{comment}{// Detect the URL frame:}
-93         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-94                 .setBeaconLayout(BeaconParser.EDDYSTONE\_URL\_LAYOUT));
-95         \textcolor{comment}{// Standard Apple iBeacon}
-96         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-97                 .setBeaconLayout(DeviceConstants.APPLE\_BEACON\_LAYOUT));
-98         \textcolor{comment}{// Estimote Nearable}
-99         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
-100                 .setBeaconLayout(DeviceConstants.ESTIMOTE\_NEARABLE\_LAYOUT));
-101 
-102         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setForegroundScanPeriod(250L);
-103         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setForegroundBetweenScanPeriod(0L);
-104         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundScanPeriod(250L);
-105         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundBetweenScanPeriod(0L);
+80 \textcolor{comment}{//        Log.i("AltBeacon filter used:", BeaconManager.getRssiFilterImplClass().getSimpleName());}
+81 
+82         \textcolor{comment}{// for finding different type of beacon,}
+83         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().clear();
+84 
+85         \textcolor{comment}{// Alt beacon}
+86         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+87                 .setBeaconLayout(BeaconParser.ALTBEACON\_LAYOUT));
+88         \textcolor{comment}{// Detect the main identifier (UID) frame:}
+89         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+90                 .setBeaconLayout(BeaconParser.EDDYSTONE\_UID\_LAYOUT));
+91         \textcolor{comment}{// Detect the telemetry (TLM) frame:}
+92         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+93                 .setBeaconLayout(BeaconParser.EDDYSTONE\_TLM\_LAYOUT));
+94         \textcolor{comment}{// Detect the URL frame:}
+95         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+96                 .setBeaconLayout(BeaconParser.EDDYSTONE\_URL\_LAYOUT));
+97         \textcolor{comment}{// Standard Apple iBeacon}
+98         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+99                 .setBeaconLayout(DeviceConstants.APPLE\_BEACON\_LAYOUT));
+100         \textcolor{comment}{// Estimote Nearable}
+101         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.getBeaconParsers().add(\textcolor{keyword}{new} BeaconParser()
+102                 .setBeaconLayout(DeviceConstants.ESTIMOTE\_NEARABLE\_LAYOUT));
+103 
+104         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setForegroundScanPeriod(500L);
+105         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setForegroundBetweenScanPeriod(0L);
 106 
-107         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setMaxTrackingAge(1000);
+107 \textcolor{comment}{//        beaconManager.setMaxTrackingAge(2000);}
 108     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430_a5a35f7c0be6dfbdb4e5021b74dd88430}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430_a5a35f7c0be6dfbdb4e5021b74dd88430} 
@@ -178,34 +192,34 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-331                                            \{
-332         \textcolor{keywordflow}{try} \{
-333             \textcolor{keyword}{final} FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-334             \textcolor{keywordflow}{if} (!\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.checkAvailability()) \{
-335 
-336                 \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
-337                         .setTitle(R.string.dialog\_bluetooth\_title)
-338                         .setMessage(R.string.dialog\_bluetooth\_text)
-339                         .setPositiveButton(android.R.string.ok, null)
-340                         .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
-341                             @Override
-342                             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
-343                                 BluetoothAdapter.getDefaultAdapter().enable();
-344                                 fab.setImageResource(R.drawable.ic\_bluetooth\_white\_24dp);
-345                                 Snackbar.make(fab, R.string.snackBar\_start\_scanning,
-346                                         Snackbar.LENGTH\_INDEFINITE).show();
-347                             \}
-348                         \}).show();
-349                 fab.setImageResource(R.drawable.ic\_bluetooth\_disabled\_black\_24dp);
-350                 Snackbar.make(fab, R.string.snackBar\_scanning\_disabled,
-351                         Snackbar.LENGTH\_INDEFINITE).show();
-352                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
-353             \}
-354         \} \textcolor{keywordflow}{catch} (RuntimeException e) \{
-355             e.getStackTrace();
-356         \}
-357         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-358     \}
+355                                            \{
+356         \textcolor{keywordflow}{try} \{
+357             \textcolor{keyword}{final} FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+358             \textcolor{keywordflow}{if} (!\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.checkAvailability()) \{
+359 
+360                 \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
+361                         .setTitle(R.string.dialog\_bluetooth\_title)
+362                         .setMessage(R.string.dialog\_bluetooth\_text)
+363                         .setPositiveButton(android.R.string.ok, null)
+364                         .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
+365                             @Override
+366                             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
+367                                 BluetoothAdapter.getDefaultAdapter().enable();
+368                                 fab.setImageResource(R.drawable.ic\_bluetooth\_white\_24dp);
+369                                 Snackbar.make(fab, R.string.snackBar\_start\_scanning,
+370                                         Snackbar.LENGTH\_INDEFINITE).show();
+371                             \}
+372                         \}).show();
+373                 fab.setImageResource(R.drawable.ic\_bluetooth\_disabled\_black\_24dp);
+374                 Snackbar.make(fab, R.string.snackBar\_scanning\_disabled,
+375                         Snackbar.LENGTH\_INDEFINITE).show();
+376                 \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+377             \}
+378         \} \textcolor{keywordflow}{catch} (RuntimeException e) \{
+379             e.getStackTrace();
+380         \}
+381         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+382     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a0cdfc0658ba462b43e9e6b94bab90da1_a0cdfc0658ba462b43e9e6b94bab90da1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a0cdfc0658ba462b43e9e6b94bab90da1_a0cdfc0658ba462b43e9e6b94bab90da1} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!on\+Beacon\+Service\+Connect@{on\+Beacon\+Service\+Connect}}
@@ -271,22 +285,22 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-53                                                     \{
-54         super.onCreate(savedInstanceState);
-55 
-56         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad146f35cfee210f7191442658a235a2f_ad146f35cfee210f7191442658a235a2f}{deviceList} = \textcolor{keyword}{new} ArrayList<>();
+55                                                     \{
+56         super.onCreate(savedInstanceState);
 57 
-58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa6481e11e062d3539e6848f0790852b8_aa6481e11e062d3539e6848f0790852b8}{myDeviceObservable} = DeviceObservable.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable_ab16792c5848440646624b2a41553954a_ab16792c5848440646624b2a41553954a}{getInstance}();
+58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad146f35cfee210f7191442658a235a2f_ad146f35cfee210f7191442658a235a2f}{deviceList} = \textcolor{keyword}{new} ArrayList<>();
 59 
-60         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences} = getSharedPreferences(SettingConstants.SETTINGS\_PREFERENCES, 0);
+60         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa6481e11e062d3539e6848f0790852b8_aa6481e11e062d3539e6848f0790852b8}{myDeviceObservable} = DeviceObservable.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable_ab16792c5848440646624b2a41553954a_ab16792c5848440646624b2a41553954a}{getInstance}();
 61 
-62         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil} = \textcolor{keyword}{new} UsbUtil(\textcolor{keyword}{this});
+62         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences} = getSharedPreferences(SettingConstants.SETTINGS\_PREFERENCES, 0);
 63 
-64         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf_a55d4f45ce163b9f613420686f6dfe1cf}{initializeBeaconManager}();
+64         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil} = \textcolor{keyword}{new} UsbUtil(\textcolor{keyword}{this});
 65 
-66         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430_a5a35f7c0be6dfbdb4e5021b74dd88430}{initializeFloatingActionButton}();
+66         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf_a55d4f45ce163b9f613420686f6dfe1cf}{initializeBeaconManager}();
 67 
-68     \}
+68         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430_a5a35f7c0be6dfbdb4e5021b74dd88430}{initializeFloatingActionButton}();
+69 
+70     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a219ab2598668ab85771f3f8e3c6fec22_a219ab2598668ab85771f3f8e3c6fec22}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a219ab2598668ab85771f3f8e3c6fec22_a219ab2598668ab85771f3f8e3c6fec22} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!on\+Destroy@{on\+Destroy}}
@@ -296,14 +310,14 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-322                                \{
-323         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
-324             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.unbind(\textcolor{keyword}{this});
-325             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityDestroyed(\textcolor{keyword}{this});
-326         \}
-327 
-328         super.onDestroy();
-329     \}
+346                                \{
+347         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
+348             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.unbind(\textcolor{keyword}{this});
+349             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityDestroyed(\textcolor{keyword}{this});
+350         \}
+351 
+352         super.onDestroy();
+353     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a06ed1cf654098045b1317b25067af877_a06ed1cf654098045b1317b25067af877}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a06ed1cf654098045b1317b25067af877_a06ed1cf654098045b1317b25067af877} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!on\+Pause@{on\+Pause}}
@@ -313,16 +327,16 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-295                              \{
-296         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
-297             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundMode(\textcolor{keyword}{true});
-298             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityPaused(\textcolor{keyword}{this});
-299         \}
-300 
-301         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ab4f2c73fa6b776c9d4967ff89da0d8ca_ab4f2c73fa6b776c9d4967ff89da0d8ca}{onPause}();
-302 
-303         super.onPause();
-304     \}
+319                              \{
+320         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
+321             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundMode(\textcolor{keyword}{true});
+322             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityPaused(\textcolor{keyword}{this});
+323         \}
+324 
+325         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ab4f2c73fa6b776c9d4967ff89da0d8ca_ab4f2c73fa6b776c9d4967ff89da0d8ca}{onPause}();
+326 
+327         super.onPause();
+328     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad9e5c029636aac4d7baa2ca8695b3a18_ad9e5c029636aac4d7baa2ca8695b3a18}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad9e5c029636aac4d7baa2ca8695b3a18_ad9e5c029636aac4d7baa2ca8695b3a18} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!on\+Resume@{on\+Resume}}
@@ -332,19 +346,19 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-307                               \{
-308         super.onResume();
-309 
-310         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
-311             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundMode(\textcolor{keyword}{false});
-312             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityResumed(\textcolor{keyword}{this});
-313         \}
-314 
-315         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abffd55741be864ad5b151c8f8c6d70ff_abffd55741be864ad5b151c8f8c6d70ff}{isBluetoothAvailable}();
-316 
-317         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae814610c8dc793fea3a9a314fb26e3cb_ae814610c8dc793fea3a9a314fb26e3cb}{onResume}();
-318 
-319     \}
+331                               \{
+332         super.onResume();
+333 
+334         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.isBound(\textcolor{keyword}{this})) \{
+335             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65_a973c37226a3dbba6016966c3555aff65}{beaconManager}.setBackgroundMode(\textcolor{keyword}{false});
+336             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace_a85885639575161f4d73d4fc788f44ace}{backgroundPowerSaver}.onActivityResumed(\textcolor{keyword}{this});
+337         \}
+338 
+339         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abffd55741be864ad5b151c8f8c6d70ff_abffd55741be864ad5b151c8f8c6d70ff}{isBluetoothAvailable}();
+340 
+341         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{usbUtil}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil_ae814610c8dc793fea3a9a314fb26e3cb_ae814610c8dc793fea3a9a314fb26e3cb}{onResume}();
+342 
+343     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!set\+Arma\+Options\+Visible@{set\+Arma\+Options\+Visible}}
@@ -354,18 +368,18 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-267                                                               \{
-268         runOnUiThread(\textcolor{keyword}{new} Runnable() \{
-269             @Override
-270             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
-271                 \textcolor{keywordflow}{if} (visible) \{
-272                     findViewById(R.id.radioGroupArmaOptions).setVisibility(View.VISIBLE);
-273                 \} \textcolor{keywordflow}{else} \{
-274                     findViewById(R.id.radioGroupArmaOptions).setVisibility(View.GONE);
-275                 \}
-276             \}
-277         \});
-278     \}
+291                                                               \{
+292         runOnUiThread(\textcolor{keyword}{new} Runnable() \{
+293             @Override
+294             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+295                 \textcolor{keywordflow}{if} (visible) \{
+296                     findViewById(R.id.radioGroupArmaOptions).setVisibility(View.VISIBLE);
+297                 \} \textcolor{keywordflow}{else} \{
+298                     findViewById(R.id.radioGroupArmaOptions).setVisibility(View.GONE);
+299                 \}
+300             \}
+301         \});
+302     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!set\+Avg\+Options\+Visible@{set\+Avg\+Options\+Visible}}
@@ -375,18 +389,18 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-280                                                              \{
-281         runOnUiThread(\textcolor{keyword}{new} Runnable() \{
-282             @Override
-283             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
-284                 \textcolor{keywordflow}{if} (visible) \{
-285                     findViewById(R.id.radioGroupAverageOptions).setVisibility(View.VISIBLE);
-286                 \} \textcolor{keywordflow}{else} \{
-287                     findViewById(R.id.radioGroupAverageOptions).setVisibility(View.GONE);
-288                 \}
-289             \}
-290         \});
-291     \}
+304                                                              \{
+305         runOnUiThread(\textcolor{keyword}{new} Runnable() \{
+306             @Override
+307             \textcolor{keyword}{public} \textcolor{keywordtype}{void} run() \{
+308                 \textcolor{keywordflow}{if} (visible) \{
+309                     findViewById(R.id.radioGroupAverageOptions).setVisibility(View.VISIBLE);
+310                 \} \textcolor{keywordflow}{else} \{
+311                     findViewById(R.id.radioGroupAverageOptions).setVisibility(View.GONE);
+312                 \}
+313             \}
+314         \});
+315     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a8b2514096adfe574c15cc5317a45cd58_a8b2514096adfe574c15cc5317a45cd58}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a8b2514096adfe574c15cc5317a45cd58_a8b2514096adfe574c15cc5317a45cd58} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!set\+Rssi\+Filter@{set\+Rssi\+Filter}}
@@ -398,60 +412,80 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \begin{DoxyCode}
 210                                  \{
 211 
-212         \textcolor{keywordtype}{int} sorting = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.FILTER\_RSSI, 0);
-213         \textcolor{keywordflow}{switch} (sorting) \{
-214             \textcolor{keywordflow}{case} 0:
-215             \textcolor{keywordflow}{case} R.id.radioButton\_no\_rssi\_filtering:
-216                 MyArmaRssiFilter.enableArmaFilter(\textcolor{keyword}{false});
-217                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{false});
-218                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{false});
-219 
-220                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
-221                 \textcolor{keywordflow}{break};
+212         StringBuilder selectOption = \textcolor{keyword}{new} StringBuilder();
+213 
+214         \textcolor{keywordtype}{int} sorting = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.FILTER\_RSSI, 0);
+215         \textcolor{keywordflow}{switch} (sorting) \{
+216             \textcolor{keywordflow}{case} 0:
+217             \textcolor{keywordflow}{case} R.id.radioButton\_no\_rssi\_filtering:
+218                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{false});
+219                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{false});
+220 
+221                 selectOption.append(\textcolor{stringliteral}{"No RSSI filtering"});
 222 
-223             \textcolor{keywordflow}{case} R.id.radioButton\_arma\_rssi\_filter:
-224                 MyArmaRssiFilter.enableArmaFilter(\textcolor{keyword}{true});
-225                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{true});
-226                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{false});
-227 
-228                 \textcolor{keywordtype}{int} armaOption = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.ARMA\_OPTION, 0);
-229                 \textcolor{keywordflow}{switch} (armaOption) \{
-230                     \textcolor{keywordflow}{case} 0:
-231                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op1:
-232                         MyArmaRssiFilter.setArmaSpeed(0.08D);
-233                         \textcolor{keywordflow}{break};
-234                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op2:
-235                         MyArmaRssiFilter.setArmaSpeed(0.25D);
-236                         \textcolor{keywordflow}{break};
-237                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op3:
-238                         MyArmaRssiFilter.setArmaSpeed(0.5D);
-239                         \textcolor{keywordflow}{break};
-240                 \}
-241                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
-242                 \textcolor{keywordflow}{break};
-243 
-244             \textcolor{keywordflow}{case} R.id.radioButton\_average\_rssi\_filter:
-245                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{false});
-246                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{true});
-247 
-248                 \textcolor{keywordtype}{int} avgOption = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.ARMA\_OPTION, 0);
-249                 \textcolor{keywordflow}{switch} (avgOption) \{
-250                     \textcolor{keywordflow}{case} 0:
-251                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op1:
-252                         RunningAverageRssiFilter.setSampleExpirationMilliseconds(20000L);
-253                         \textcolor{keywordflow}{break};
-254                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op2:
-255                         RunningAverageRssiFilter.setSampleExpirationMilliseconds(10000L);
-256                         \textcolor{keywordflow}{break};
-257                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op3:
-258                         RunningAverageRssiFilter.setSampleExpirationMilliseconds(5000L);
-259                         \textcolor{keywordflow}{break};
-260                 \}
+223                 MyArmaRssiFilter.enableArmaFilter(\textcolor{keyword}{false});
+224                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+225                 \textcolor{keywordflow}{break};
+226 
+227             \textcolor{keywordflow}{case} R.id.radioButton\_arma\_rssi\_filter:
+228                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{true});
+229                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{false});
+230 
+231                 selectOption.append(\textcolor{stringliteral}{"ARMA RSSI filter"});
+232 
+233                 \textcolor{keywordtype}{int} armaOption = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.ARMA\_OPTION, 0);
+234                 \textcolor{keywordflow}{switch} (armaOption) \{
+235                     \textcolor{keywordflow}{case} 0:
+236                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op1:
+237                         MyArmaRssiFilter.setArmaSpeed(0.1D);
+238                         \textcolor{keywordflow}{break};
+239                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op2:
+240                         MyArmaRssiFilter.setArmaSpeed(0.25D);
+241                         \textcolor{keywordflow}{break};
+242                     \textcolor{keywordflow}{case} R.id.radioButton\_arma\_op3:
+243                         MyArmaRssiFilter.setArmaSpeed(0.5D);
+244                         \textcolor{keywordflow}{break};
+245                 \}
+246 
+247                 selectOption.append(\textcolor{stringliteral}{" - Speed "}).append(MyArmaRssiFilter.getArmaSpeed());
+248 
+249                 MyArmaRssiFilter.enableArmaFilter(\textcolor{keyword}{true});
+250                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
+251                 \textcolor{keywordflow}{break};
+252 
+253             \textcolor{keywordflow}{case} R.id.radioButton\_average\_rssi\_filter:
+254 
+255                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871_a53f68b9ea3a7805d43d4d2c84a920871}{setArmaOptionsVisible}(\textcolor{keyword}{false});
+256                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ab50a70cb5d2d98211598b297a10bc44f_ab50a70cb5d2d98211598b297a10bc44f}{setAvgOptionsVisible}(\textcolor{keyword}{true});
+257 
+258                 selectOption.append(\textcolor{stringliteral}{"AVG RSSI filter"});
+259 
+260                 \textcolor{keywordtype}{int} avgOption = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0_a3ee672ef79c268d0618ff3276c2e85f0}{preferences}.getInt(SettingConstants.AVG\_OPTION, 0);
 261 
-262                 BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
-263                 \textcolor{keywordflow}{break};
-264         \}
-265     \}
+262                 \textcolor{keywordtype}{long} sampleExpirationMilliseconds = 0;
+263 
+264                 \textcolor{keywordflow}{switch} (avgOption) \{
+265                     \textcolor{keywordflow}{case} 0:
+266                     \textcolor{keywordflow}{case} R.id.radioButton\_avg\_op1:
+267                         sampleExpirationMilliseconds = 20000L;
+268                         \textcolor{keywordflow}{break};
+269                     \textcolor{keywordflow}{case} R.id.radioButton\_avg\_op2:
+270                         sampleExpirationMilliseconds = 10000L;
+271                         \textcolor{keywordflow}{break};
+272                     \textcolor{keywordflow}{case} R.id.radioButton\_avg\_op3:
+273                         sampleExpirationMilliseconds = 5000L;
+274                         \textcolor{keywordflow}{break};
+275                 \}
+276 
+277                 selectOption.append(\textcolor{stringliteral}{" - "}).append(sampleExpirationMilliseconds).append(\textcolor{stringliteral}{" ms"});
+278 
+279                 RunningAverageRssiFilter.setSampleExpirationMilliseconds(sampleExpirationMilliseconds);
+280                 BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
+281                 \textcolor{keywordflow}{break};
+282         \}
+283 
+284         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca_aa0775c805f735289a7fc6c380ff81fca}{rssiFilterSelected} = String.valueOf(selectOption);
+285     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53d1d26ad17526c6c518c4d8b4db3a8e_a53d1d26ad17526c6c518c4d8b4db3a8e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53d1d26ad17526c6c518c4d8b4db3a8e_a53d1d26ad17526c6c518c4d8b4db3a8e} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!set\+Settings\+Visible@{set\+Settings\+Visible}}
@@ -514,6 +548,12 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \index{preferences@{preferences}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}}
 \paragraph{\texorpdfstring{preferences}{preferences}}
 {\footnotesize\ttfamily Shared\+Preferences it.\+unibo.\+torsello.\+bluetoothpositioning.\+activities.\+Application\+Activity.\+preferences\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca_aa0775c805f735289a7fc6c380ff81fca}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca_aa0775c805f735289a7fc6c380ff81fca} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!rssi\+Filter\+Selected@{rssi\+Filter\+Selected}}
+\index{rssi\+Filter\+Selected@{rssi\+Filter\+Selected}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}}
+\paragraph{\texorpdfstring{rssi\+Filter\+Selected}{rssiFilterSelected}}
+{\footnotesize\ttfamily String it.\+unibo.\+torsello.\+bluetoothpositioning.\+activities.\+Application\+Activity.\+rssi\+Filter\+Selected\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093_abe62157d98c81406ae3d79dbc0fd9093} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}!usb\+Util@{usb\+Util}}

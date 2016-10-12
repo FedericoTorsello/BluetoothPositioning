@@ -40,6 +40,8 @@ double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7aff672e35f15a271dd93bd59e413f28_a7aff672e35f15a271dd93bd59e413f28}{set\+Beacon} (Beacon \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon})
 \item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_af6e2efc8c50b88d07cc651db1f4bbb34_af6e2efc8c50b88d07cc651db1f4bbb34}{update\+Distance} (double process\+Noise)
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7eb63440da744a389cc02d1d9a9b2421_a7eb63440da744a389cc02d1d9a9b2421}{is\+Kalman\+Filter\+Enabled} ()
 \end{DoxyCompactItemize}
 \subsubsection*{Attributi privati}
 \begin{DoxyCompactItemize}
@@ -140,9 +142,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-71                                     \{
-72         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5c7bce21cd77c98a8d1e6df4c930397c_a5c7bce21cd77c98a8d1e6df4c930397c}{getDistanceWOSC}();
-73     \}
+75                                     \{
+76         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5c7bce21cd77c98a8d1e6df4c930397c_a5c7bce21cd77c98a8d1e6df4c930397c}{getDistanceWOSC}();
+77     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ab96e3e3bd6e9c9e27a42e619ca03ed71_ab96e3e3bd6e9c9e27a42e619ca03ed71}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ab96e3e3bd6e9c9e27a42e619ca03ed71_ab96e3e3bd6e9c9e27a42e619ca03ed71} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}!get\+Friendly\+Name@{get\+Friendly\+Name}}
@@ -189,8 +191,12 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 \begin{DoxyCode}
 63                                             \{
-64         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a985e9b8b61c3d1e917a2e818b5f8b679_a985e9b8b61c3d1e917a2e818b5f8b679}{getKalmanFilterDistance}();
-65     \}
+64         \textcolor{keywordflow}{if} (!\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9_a0863741935c878f7fa6f8c7c6cc086c9}{isKalmanFilterEnabled}())\{
+65             \textcolor{keywordflow}{return} 0;
+66         \}
+67 
+68         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a985e9b8b61c3d1e917a2e818b5f8b679_a985e9b8b61c3d1e917a2e818b5f8b679}{getKalmanFilterDistance}();
+69     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a34510d139c99bc9cfba247ab6ff1b16f_a34510d139c99bc9cfba247ab6ff1b16f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a34510d139c99bc9cfba247ab6ff1b16f_a34510d139c99bc9cfba247ab6ff1b16f} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}!get\+Proximity@{get\+Proximity}}
@@ -212,9 +218,21 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-67                                    \{
-68         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b_ad355b2e850a8d6013ef771eecd740e1b}{getRawDistance}();
-69     \}
+71                                    \{
+72         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b_ad355b2e850a8d6013ef771eecd740e1b}{getRawDistance}();
+73     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7eb63440da744a389cc02d1d9a9b2421_a7eb63440da744a389cc02d1d9a9b2421}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7eb63440da744a389cc02d1d9a9b2421_a7eb63440da744a389cc02d1d9a9b2421} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}!is\+Kalman\+Filter\+Enabled@{is\+Kalman\+Filter\+Enabled}}
+\index{is\+Kalman\+Filter\+Enabled@{is\+Kalman\+Filter\+Enabled}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}}
+\paragraph{\texorpdfstring{is\+Kalman\+Filter\+Enabled()}{isKalmanFilterEnabled()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+model.\+Device.\+is\+Kalman\+Filter\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+89                                           \{
+90         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9_a0863741935c878f7fa6f8c7c6cc086c9}{isKalmanFilterEnabled}();
+91     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7aff672e35f15a271dd93bd59e413f28_a7aff672e35f15a271dd93bd59e413f28}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_a7aff672e35f15a271dd93bd59e413f28_a7aff672e35f15a271dd93bd59e413f28} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}!set\+Beacon@{set\+Beacon}}
@@ -224,9 +242,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-75                                          \{
-76         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon};
-77     \}
+79                                          \{
+80         this.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon};
+81     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_af6e2efc8c50b88d07cc651db1f4bbb34_af6e2efc8c50b88d07cc651db1f4bbb34}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_af6e2efc8c50b88d07cc651db1f4bbb34_af6e2efc8c50b88d07cc651db1f4bbb34} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}!update\+Distance@{update\+Distance}}
@@ -236,11 +254,11 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-79                                                     \{
-80         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon} != null) \{
-81             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_aaf86439861db7facf3f5338ec2fc6cde_aaf86439861db7facf3f5338ec2fc6cde}{updateDistance}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon}, processNoise);
-82         \}
-83     \}
+83                                                     \{
+84         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon} != null) \{
+85             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ac619c42728cd40f41a5f12fde56b4425_ac619c42728cd40f41a5f12fde56b4425}{estimation}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_aaf86439861db7facf3f5338ec2fc6cde_aaf86439861db7facf3f5338ec2fc6cde}{updateDistance}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device_ad5ffce680eb2eb38fc6bb8aee234f155_ad5ffce680eb2eb38fc6bb8aee234f155}{beacon}, processNoise);
+86         \}
+87     \}
 \end{DoxyCode}
 
 

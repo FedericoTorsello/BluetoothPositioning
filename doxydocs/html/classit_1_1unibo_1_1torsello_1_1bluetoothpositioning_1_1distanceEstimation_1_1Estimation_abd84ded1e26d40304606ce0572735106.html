@@ -95,6 +95,16 @@ $(function() {
                             </td>
                         </tr>
                         <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e.html#ac3451825d5672d5e761269afc563e88e">estimateKalmanFilterDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d.html#a0cc72ed8871490402b1fac0a10520f7d">estimateRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="navtab"><a class="qindexHL"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abd84ded1e26d40304606ce0572735106.html#abd84ded1e26d40304606ce0572735106">Estimation</a>
                             </td>
@@ -117,6 +127,16 @@ $(function() {
                         <tr>
                             <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b.html#ad355b2e850a8d6013ef771eecd740e1b">getRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9.html#a0863741935c878f7fa6f8c7c6cc086c9">isKalmanFilterEnabled</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8.html#abfb2f400444016cb1323e100d2d8c5b8">kalmanFilterEnabled</a>
                             </td>
                         </tr>
                         <tr>
@@ -174,69 +194,71 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;
+                            <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;
-                                <span class="comment">// limit on the number of values that can be stored in the dataset</span>
-                            </div>
                             <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a.html#a4edd1c580372b087a9d8fc167715088a">recentRSSI</a>
-                                = <span class="keyword">new</span> DescriptiveStatistics();
                             </div>
                             <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a.html#a4edd1c580372b087a9d8fc167715088a">recentRSSI</a>.setWindowSize(KFilterConstants.WINDOW);
-                            </div>
-                            <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940.html#a4258d96e807fa104223635ecb7ddc940">recentTxPower</a>
-                                = <span class="keyword">new</span> DescriptiveStatistics();
-                            </div>
-                            <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940.html#a4258d96e807fa104223635ecb7ddc940">recentTxPower</a>.setWindowSize(KFilterConstants.WINDOW);
-                            </div>
-                            <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d.html#a7a5514b25ac6495842a53e54319be10d">distanceEstimated</a>
-                                = 0;
-                            </div>
-                            <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db.html#a5afcd0b9b73a92b64669f060206f35db">rawDistanceEstimated</a>
                                 = 0;
                             </div>
+                            <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;
+                                <span class="comment">// limit on the number of values that can be stored in the dataset</span>
+                            </div>
+                            <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a.html#a4edd1c580372b087a9d8fc167715088a">recentRSSI</a>
+                                = <span class="keyword">new</span> DescriptiveStatistics();
+                            </div>
+                            <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a.html#a4edd1c580372b087a9d8fc167715088a">recentRSSI</a>.setWindowSize(KFilterConstants.WINDOW);
+                            </div>
+                            <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940.html#a4258d96e807fa104223635ecb7ddc940">recentTxPower</a>
+                                = <span class="keyword">new</span> DescriptiveStatistics();
+                            </div>
                             <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595.html#a53237b14bc1d27ae4f751b02d798b595">WOSC</a>
-                                = 0;
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940.html#a4258d96e807fa104223635ecb7ddc940">recentTxPower</a>.setWindowSize(KFilterConstants.WINDOW);
                             </div>
                             <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;
                             </div>
                             <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;
                                 <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d.html#a7a5514b25ac6495842a53e54319be10d">distanceEstimated</a>
+                                = 0;
+                            </div>
+                            <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595.html#a53237b14bc1d27ae4f751b02d798b595">WOSC</a>
+                                = 0;
+                            </div>
+                            <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;
+                                <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982.html#a93af801219b710f3a048e7db1c7a8982">kf</a>
                                 = <span class="keyword">new</span> KFilterBuilder()
                             </div>
-                            <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;
+                            <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;
                                 <span class="comment">// filter for RSSI</span></div>
-                            <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;
+                            <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;
                                 .<a class="code"
-                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a8dd220ba0a0b0f20c368b13efeb1fe43.html#a8dd220ba0a0b0f20c368b13efeb1fe43">R</a>(KFilterConstants.INITIAL_PROCESS_NOISE)
+                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_ac5b2a95b9934717adadb214003d7e7bc.html#ac5b2a95b9934717adadb214003d7e7bc">R</a>(KFilterConstants.INITIAL_PROCESS_NOISE)
                                 <span class="comment">// Initial process noise</span></div>
-                            <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;
+                            <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;
                                 .Q(KFilterConstants.INITIAL_MEASUREMENT_NOISE) <span
                                         class="comment">// Initial measurement noise</span></div>
-                            <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;
+                            <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;
                                 .build();
                             </div>
-                            <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;
+                            <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -248,9 +270,9 @@ $(function() {
                                 <div class="ttdef"><b>Definition:</b> Estimation.java:18</div>
                             </div>
                             <div class="ttc"
-                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a8dd220ba0a0b0f20c368b13efeb1fe43_html_a8dd220ba0a0b0f20c368b13efeb1fe43">
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_ac5b2a95b9934717adadb214003d7e7bc_html_ac5b2a95b9934717adadb214003d7e7bc">
                                 <div class="ttname"><a
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a8dd220ba0a0b0f20c368b13efeb1fe43.html#a8dd220ba0a0b0f20c368b13efeb1fe43">it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter.R</a>
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_ac5b2a95b9934717adadb214003d7e7bc.html#ac5b2a95b9934717adadb214003d7e7bc">it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter.KFilter.R</a>
                                 </div>
                                 <div class="ttdeci">double R</div>
                                 <div class="ttdef"><b>Definition:</b> KFilter.java:9</div>

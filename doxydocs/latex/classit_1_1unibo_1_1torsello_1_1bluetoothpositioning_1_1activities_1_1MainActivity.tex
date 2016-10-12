@@ -71,39 +71,39 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-166                                            \{
-167 
-168         \textcolor{keywordflow}{if} (Build.VERSION.SDK\_INT >= Build.VERSION\_CODES.M) \{
-169             \textcolor{keyword}{final} List<String> permissions = \textcolor{keyword}{new} ArrayList<>();
-170 
-171             \textcolor{keywordflow}{if} (checkSelfPermission(Manifest.permission.ACCESS\_FINE\_LOCATION)
-172                     != PackageManager.PERMISSION\_GRANTED) \{
-173                 permissions.add(Manifest.permission.ACCESS\_FINE\_LOCATION);
-174             \}
-175 
-176             \textcolor{keywordflow}{if} (checkSelfPermission(Manifest.permission.ACCESS\_COARSE\_LOCATION)
-177                     != PackageManager.PERMISSION\_GRANTED) \{
-178                 permissions.add(Manifest.permission.ACCESS\_COARSE\_LOCATION);
-179             \}
-180 
-181             \textcolor{keywordflow}{if} (!permissions.isEmpty()) \{
-182                 \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
-183                         .setTitle(R.string.dialog\_location\_access\_title)
-184                         .setMessage(R.string.dialog\_bluetooth\_text)
-185                         .setPositiveButton(android.R.string.ok, null)
-186                         .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
-187                             @TargetApi(23)
-188                             @Override
-189                             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
-190                                 requestPermissions(permissions.toArray(\textcolor{keyword}{new} String[permissions.size()]),
-191                                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a319aed5cdd5724e043302babe5fcfeac_a319aed5cdd5724e043302babe5fcfeac}{REQUEST\_CODE\_ASK\_MULTIPLE\_PERMISSIONS}
+165                                            \{
+166 
+167         \textcolor{keywordflow}{if} (Build.VERSION.SDK\_INT >= Build.VERSION\_CODES.M) \{
+168             \textcolor{keyword}{final} List<String> permissions = \textcolor{keyword}{new} ArrayList<>();
+169 
+170             \textcolor{keywordflow}{if} (checkSelfPermission(Manifest.permission.ACCESS\_FINE\_LOCATION)
+171                     != PackageManager.PERMISSION\_GRANTED) \{
+172                 permissions.add(Manifest.permission.ACCESS\_FINE\_LOCATION);
+173             \}
+174 
+175             \textcolor{keywordflow}{if} (checkSelfPermission(Manifest.permission.ACCESS\_COARSE\_LOCATION)
+176                     != PackageManager.PERMISSION\_GRANTED) \{
+177                 permissions.add(Manifest.permission.ACCESS\_COARSE\_LOCATION);
+178             \}
+179 
+180             \textcolor{keywordflow}{if} (!permissions.isEmpty()) \{
+181                 \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
+182                         .setTitle(R.string.dialog\_location\_access\_title)
+183                         .setMessage(R.string.dialog\_bluetooth\_text)
+184                         .setPositiveButton(android.R.string.ok, null)
+185                         .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
+186                             @TargetApi(23)
+187                             @Override
+188                             \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
+189                                 requestPermissions(permissions.toArray(\textcolor{keyword}{new} String[permissions.size()]),
+190                                         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a319aed5cdd5724e043302babe5fcfeac_a319aed5cdd5724e043302babe5fcfeac}{REQUEST\_CODE\_ASK\_MULTIPLE\_PERMISSIONS}
       );
-192                             \}
-193 
-194                         \}).show();
-195             \}
-196         \}
-197     \}
+191                             \}
+192 
+193                         \}).show();
+194             \}
+195         \}
+196     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_ab0010b6d3fe518fabfea843626d7b5f1_ab0010b6d3fe518fabfea843626d7b5f1}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_ab0010b6d3fe518fabfea843626d7b5f1_ab0010b6d3fe518fabfea843626d7b5f1} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}!on\+Back\+Pressed@{on\+Back\+Pressed}}
@@ -113,30 +113,30 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-69                                 \{
-70 
-71         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
-72         \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.START)) \{
-73             drawer.closeDrawer(GravityCompat.START);
-74         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.END)) \{
-75             drawer.closeDrawer(GravityCompat.END);
-76         \} \textcolor{keywordflow}{else} \{
-77 
-78             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
-79 
-80             \textcolor{keyword}{final} \textcolor{keywordtype}{long} DOUBLE\_PRESS\_INTERVAL = 1500L;
-81             \textcolor{keywordflow}{if} (!\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a73d74411ec7bb55eb827bb81018174bd_a73d74411ec7bb55eb827bb81018174bd}{isBackPressed} || \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a5e1ae38b2bbdcc45f2164fdc393ca495_a5e1ae38b2bbdcc45f2164fdc393ca495}{back\_pressed} + DOUBLE\_PRESS\_INTERVAL <= System.
+68                                 \{
+69 
+70         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
+71         \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.START)) \{
+72             drawer.closeDrawer(GravityCompat.START);
+73         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.END)) \{
+74             drawer.closeDrawer(GravityCompat.END);
+75         \} \textcolor{keywordflow}{else} \{
+76 
+77             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
+78 
+79             \textcolor{keyword}{final} \textcolor{keywordtype}{long} DOUBLE\_PRESS\_INTERVAL = 1500L;
+80             \textcolor{keywordflow}{if} (!\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a73d74411ec7bb55eb827bb81018174bd_a73d74411ec7bb55eb827bb81018174bd}{isBackPressed} || \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a5e1ae38b2bbdcc45f2164fdc393ca495_a5e1ae38b2bbdcc45f2164fdc393ca495}{back\_pressed} + DOUBLE\_PRESS\_INTERVAL <= System.
       currentTimeMillis()) \{
-82                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a73d74411ec7bb55eb827bb81018174bd_a73d74411ec7bb55eb827bb81018174bd}{isBackPressed} = \textcolor{keyword}{true};
-83                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-84                 assert fab != null;
-85                 Snackbar.make(fab, R.string.snackBar\_exit, Snackbar.LENGTH\_SHORT).show();
-86             \} \textcolor{keywordflow}{else} \{
-87                 super.finish();
-88             \}
-89             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a5e1ae38b2bbdcc45f2164fdc393ca495_a5e1ae38b2bbdcc45f2164fdc393ca495}{back\_pressed} = System.currentTimeMillis();
-90         \}
-91     \}
+81                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a73d74411ec7bb55eb827bb81018174bd_a73d74411ec7bb55eb827bb81018174bd}{isBackPressed} = \textcolor{keyword}{true};
+82                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+83                 assert fab != null;
+84                 Snackbar.make(fab, R.string.snackBar\_exit, Snackbar.LENGTH\_SHORT).show();
+85             \} \textcolor{keywordflow}{else} \{
+86                 super.finish();
+87             \}
+88             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a5e1ae38b2bbdcc45f2164fdc393ca495_a5e1ae38b2bbdcc45f2164fdc393ca495}{back\_pressed} = System.currentTimeMillis();
+89         \}
+90     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a8ffa5fa91fb4ae13a758a12682872a79_a8ffa5fa91fb4ae13a758a12682872a79}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a8ffa5fa91fb4ae13a758a12682872a79_a8ffa5fa91fb4ae13a758a12682872a79} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}!on\+Create@{on\+Create}}
@@ -146,27 +146,27 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-46                                                        \{
-47         super.onCreate(savedInstanceState);
-48         setContentView(R.layout.activity\_main);
-49 
-50         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-51         setSupportActionBar(toolbar);
-52 
-53         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
-54         ActionBarDrawerToggle toggle = \textcolor{keyword}{new} ActionBarDrawerToggle(
-55                 \textcolor{keyword}{this}, drawer, toolbar, R.string.navigation\_drawer\_open, R.string.navigation\_drawer\_close);
-56         drawer.addDrawerListener(toggle);
-57         toggle.syncState();
-58 
-59         ((NavigationView) findViewById(R.id.nav\_view)).setNavigationItemSelectedListener(\textcolor{keyword}{this});
-60 
-61         ((NavigationView) findViewById(R.id.nav\_view2)).setNavigationItemSelectedListener(\textcolor{keyword}{this});
-62 
-63         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
-64 
-65         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_ab762aac3d11f5b0ccc6042a140804d5d_ab762aac3d11f5b0ccc6042a140804d5d}{checkAndroidMPermission}();
-66     \}
+45                                                        \{
+46         super.onCreate(savedInstanceState);
+47         setContentView(R.layout.activity\_main);
+48 
+49         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+50         setSupportActionBar(toolbar);
+51 
+52         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
+53         ActionBarDrawerToggle toggle = \textcolor{keyword}{new} ActionBarDrawerToggle(
+54                 \textcolor{keyword}{this}, drawer, toolbar, R.string.navigation\_drawer\_open, R.string.navigation\_drawer\_close);
+55         drawer.addDrawerListener(toggle);
+56         toggle.syncState();
+57 
+58         ((NavigationView) findViewById(R.id.nav\_view)).setNavigationItemSelectedListener(\textcolor{keyword}{this});
+59 
+60         ((NavigationView) findViewById(R.id.nav\_view2)).setNavigationItemSelectedListener(\textcolor{keyword}{this});
+61 
+62         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
+63 
+64         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_ab762aac3d11f5b0ccc6042a140804d5d_ab762aac3d11f5b0ccc6042a140804d5d}{checkAndroidMPermission}();
+65     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a7cfc0a2ee94c12afaac3b7472eeb75b7_a7cfc0a2ee94c12afaac3b7472eeb75b7}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a7cfc0a2ee94c12afaac3b7472eeb75b7_a7cfc0a2ee94c12afaac3b7472eeb75b7} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}!on\+Navigation\+Item\+Selected@{on\+Navigation\+Item\+Selected}}
@@ -176,29 +176,29 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-95                                                            \{
-96 
-97         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
-98 
-99         \textcolor{comment}{// Handle navigation view item clicks here.}
-100         \textcolor{keywordflow}{switch} (item.getItemId()) \{
-101             \textcolor{keywordflow}{case} R.id.nav\_home:
-102                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
-103                 \textcolor{keywordflow}{break};
-104             \textcolor{keywordflow}{case} R.id.nav\_settings:
-105                 drawer.openDrawer(GravityCompat.END);
-106                 \textcolor{keywordflow}{break};
-107             \textcolor{keywordflow}{case} R.id.nav\_measurement:
-108                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a64bac06e6db556ba1e36c8773e61137b_a64bac06e6db556ba1e36c8773e61137b}{USB\_MEASUREMENT\_FRAGMENT});
-109                 \textcolor{keywordflow}{break};
-110         \}
-111 
-112         \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.START)) \{
-113             drawer.closeDrawer(GravityCompat.START);
-114         \}
-115 
-116         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
-117     \}
+94                                                            \{
+95 
+96         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer\_layout);
+97 
+98         \textcolor{comment}{// Handle navigation view item clicks here.}
+99         \textcolor{keywordflow}{switch} (item.getItemId()) \{
+100             \textcolor{keywordflow}{case} R.id.nav\_home:
+101                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT});
+102                 \textcolor{keywordflow}{break};
+103             \textcolor{keywordflow}{case} R.id.nav\_settings:
+104                 drawer.openDrawer(GravityCompat.END);
+105                 \textcolor{keywordflow}{break};
+106             \textcolor{keywordflow}{case} R.id.nav\_measurement:
+107                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{replaceFragment}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a64bac06e6db556ba1e36c8773e61137b_a64bac06e6db556ba1e36c8773e61137b}{USB\_MEASUREMENT\_FRAGMENT});
+108                 \textcolor{keywordflow}{break};
+109         \}
+110 
+111         \textcolor{keywordflow}{if} (drawer.isDrawerOpen(GravityCompat.START)) \{
+112             drawer.closeDrawer(GravityCompat.START);
+113         \}
+114 
+115         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+116     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a81d7581dfa4998b2ad8139f103328cf9_a81d7581dfa4998b2ad8139f103328cf9}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a81d7581dfa4998b2ad8139f103328cf9_a81d7581dfa4998b2ad8139f103328cf9} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}!on\+Request\+Permissions\+Result@{on\+Request\+Permissions\+Result}}
@@ -208,32 +208,32 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-139                                                                         \{
-140         \textcolor{keywordflow}{switch} (requestCode) \{
-141             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a319aed5cdd5724e043302babe5fcfeac_a319aed5cdd5724e043302babe5fcfeac}{REQUEST\_CODE\_ASK\_MULTIPLE\_PERMISSIONS}:
-142                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < permissions.length; i++) \{
-143                     \textcolor{keywordflow}{if} (grantResults[i] == PackageManager.PERMISSION\_GRANTED) \{
-144 \textcolor{comment}{//                        Log.d(TAG\_CLASS, "Permission Granted: " + permissions[i]);}
-145                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (grantResults[i] == PackageManager.PERMISSION\_DENIED) \{
-146 \textcolor{comment}{//                        Log.d(TAG\_CLASS, "Permission Denied: " + permissions[i]);}
-147                         \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
-148                                 .setTitle(R.string.dialog\_permissions\_location\_access\_title)
-149                                 .setMessage(R.string.dialog\_permissions\_location\_access\_text)
-150                                 .setPositiveButton(android.R.string.ok, null)
-151                                 .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
-152 
-153                                     @Override
-154                                     \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
-155                                     \}
-156 
-157                                 \}).show();
-158                     \}
-159                 \}
-160                 \textcolor{keywordflow}{break};
-161             \textcolor{keywordflow}{default}:
-162                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-163         \}
-164     \}
+138                                                                         \{
+139         \textcolor{keywordflow}{switch} (requestCode) \{
+140             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a319aed5cdd5724e043302babe5fcfeac_a319aed5cdd5724e043302babe5fcfeac}{REQUEST\_CODE\_ASK\_MULTIPLE\_PERMISSIONS}:
+141                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < permissions.length; i++) \{
+142                     \textcolor{keywordflow}{if} (grantResults[i] == PackageManager.PERMISSION\_GRANTED) \{
+143 \textcolor{comment}{//                        Log.d(TAG\_CLASS, "Permission Granted: " + permissions[i]);}
+144                     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (grantResults[i] == PackageManager.PERMISSION\_DENIED) \{
+145 \textcolor{comment}{//                        Log.d(TAG\_CLASS, "Permission Denied: " + permissions[i]);}
+146                         \textcolor{keyword}{new} AlertDialog.Builder(\textcolor{keyword}{this})
+147                                 .setTitle(R.string.dialog\_permissions\_location\_access\_title)
+148                                 .setMessage(R.string.dialog\_permissions\_location\_access\_text)
+149                                 .setPositiveButton(android.R.string.ok, null)
+150                                 .setOnDismissListener(\textcolor{keyword}{new} DialogInterface.OnDismissListener() \{
+151 
+152                                     @Override
+153                                     \textcolor{keyword}{public} \textcolor{keywordtype}{void} onDismiss(DialogInterface dialog) \{
+154                                     \}
+155 
+156                                 \}).show();
+157                     \}
+158                 \}
+159                 \textcolor{keywordflow}{break};
+160             \textcolor{keywordflow}{default}:
+161                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+162         \}
+163     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a98db4478d28cd91118138d0b652ceb2c_a98db4478d28cd91118138d0b652ceb2c} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}!replace\+Fragment@{replace\+Fragment}}
@@ -243,23 +243,23 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-119                                                 \{
-120         Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(fragTag);
-121         \textcolor{keywordflow}{switch} (fragTag) \{
-122             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT}:
-123                 currentFragment = DeviceListFragment.newInstance();
-124                 \textcolor{keywordflow}{break};
-125             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a64bac06e6db556ba1e36c8773e61137b_a64bac06e6db556ba1e36c8773e61137b}{USB\_MEASUREMENT\_FRAGMENT}:
-126                 currentFragment = UsbMeasurementFragment.newInstance();
-127                 \textcolor{keywordflow}{break};
-128         \}
-129 
-130         \textcolor{keywordflow}{if} (currentFragment != null) \{
-131             getSupportFragmentManager().beginTransaction()
-132                     .replace(R.id.contentMainLayout, currentFragment, fragTag)
-133                     .commit();
-134         \}
-135     \}
+118                                                 \{
+119         Fragment currentFragment = getSupportFragmentManager().findFragmentByTag(fragTag);
+120         \textcolor{keywordflow}{switch} (fragTag) \{
+121             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a2f77c0245ac2525dc58905e38e1817d1_a2f77c0245ac2525dc58905e38e1817d1}{DEVICE\_FRAGMENT}:
+122                 currentFragment = DeviceListFragment.newInstance();
+123                 \textcolor{keywordflow}{break};
+124             \textcolor{keywordflow}{case} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity_a64bac06e6db556ba1e36c8773e61137b_a64bac06e6db556ba1e36c8773e61137b}{USB\_MEASUREMENT\_FRAGMENT}:
+125                 currentFragment = UsbMeasurementFragment.newInstance();
+126                 \textcolor{keywordflow}{break};
+127         \}
+128 
+129         \textcolor{keywordflow}{if} (currentFragment != null) \{
+130             getSupportFragmentManager().beginTransaction()
+131                     .replace(R.id.contentMainLayout, currentFragment, fragTag)
+132                     .commit();
+133         \}
+134     \}
 \end{DoxyCode}
 
 

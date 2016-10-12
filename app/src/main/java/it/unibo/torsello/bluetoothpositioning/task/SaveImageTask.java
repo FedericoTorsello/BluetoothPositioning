@@ -37,7 +37,7 @@ public class SaveImageTask extends AsyncTask<byte[], Void, Void> {
         // Write to disk
         if (isExternalStorageWritable()) {
             File root = Environment.getExternalStorageDirectory();
-            File dir = new File(root.getAbsolutePath() + "/"
+            File dir = new File(root.getAbsolutePath() + File.separator
                     + getActivity().getString(R.string.app_name));
             dir.mkdir();
 

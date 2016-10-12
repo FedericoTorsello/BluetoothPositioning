@@ -1,6 +1,5 @@
 package it.unibo.torsello.bluetoothpositioning.fragment;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 import it.unibo.torsello.bluetoothpositioning.observables.DeviceObservable;
 import it.unibo.torsello.bluetoothpositioning.observables.UsbMeasurementObservable;
@@ -44,11 +42,9 @@ public class DeviceChartFragment extends Fragment implements Observer {
     private String idDeviceSelected;
     private ChartUtil chartUtil;
 
-    private double arduinoActualValue = 0D;
+    private double arduinoDistance = 0D;
 
     private String formattedDate;
-
-    private SharedPreferences preferences;
 
     private ArrayList<String> stringArrayList;
 
@@ -78,8 +74,6 @@ public class DeviceChartFragment extends Fragment implements Observer {
 
         chartUtil = new ChartUtil(getActivity());
 
-        preferences = getActivity().getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
         formattedDate = df.format(Calendar.getInstance().getTime());
     }
@@ -87,7 +81,7 @@ public class DeviceChartFragment extends Fragment implements Observer {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_device_chart, container, false);
+        View root = inflater.inflate(R.layout.fragment_device_detail_chart, container, false);
 
         Button button = (Button) root.findViewById(R.id.button_save_image);
         button.setOnClickListener(new View.OnClickListener() {
@@ -121,15 +115,15 @@ public class DeviceChartFragment extends Fragment implements Observer {
     }
 
     @Override
-    public void update(Observable o, Object arg) {
+    public void update(Observable observable, Object arg) {
 
-        if (o instanceof UsbMeasurementObservable) {
+        if (observable instanceof UsbMeasurementObservable) {
             if (arg instanceof Double) {
-                arduinoActualValue = (Double) arg;
+                arduinoDistance = (Double) arg;
             }
         }
 
-        if (o instanceof DeviceObservable) {
+        if (observable instanceof DeviceObservable) {
             if (arg instanceof List) {
 
                 List<Device> devices = (List<Device>) arg;
@@ -146,7 +140,7 @@ public class DeviceChartFragment extends Fragment implements Observer {
 
                             for (String s : stringArrayList) {
                                 if (s.equals(getString(R.string.chart_arduino))) {
-                                    dataSetForUpdates.add(arduinoActualValue);
+                                    dataSetForUpdates.add(arduinoDistance);
                                 }
 
                                 if (s.equals(getString(R.string.chart_raw_distance))) {
@@ -164,7 +158,6 @@ public class DeviceChartFragment extends Fragment implements Observer {
                             }
 
                             chartUtil.updateDataSet(dataSetForUpdates);
-
                         }
                     }
                 }

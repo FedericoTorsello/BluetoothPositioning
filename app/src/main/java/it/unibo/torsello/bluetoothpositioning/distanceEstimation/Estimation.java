@@ -4,8 +4,8 @@ import org.altbeacon.beacon.Beacon;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstants;
-import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilterBuilder;
-import it.unibo.torsello.bluetoothpositioning.kalmanFilter.KFilter;
+import it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter.KFilterBuilder;
+import it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter.KFilter;
 
 /**
  * Created by Federico Torsello.
@@ -20,7 +20,11 @@ public class Estimation {
     private double rawDistanceEstimated;
     private double WOSC;
 
+    private boolean kalmanFilterEnabled;
+
     public Estimation() {
+
+        rawDistanceEstimated = 0;
 
         // limit on the number of values that can be stored in the dataset
         recentRSSI = new DescriptiveStatistics();
@@ -29,7 +33,6 @@ public class Estimation {
         recentTxPower.setWindowSize(KFilterConstants.WINDOW);
 
         distanceEstimated = 0;
-        rawDistanceEstimated = 0;
         WOSC = 0;
 
         kf = new KFilterBuilder()
@@ -39,24 +42,49 @@ public class Estimation {
                 .build();
     }
 
+    public boolean isKalmanFilterEnabled() {
+        return kalmanFilterEnabled;
+    }
+
     public void updateDistance(Beacon b, double processNoise) {
 
-        recentRSSI.addValue(b.getRssi());
-        recentTxPower.addValue(b.getTxPower());
+        estimateRawDistance(b);
 
-        // Update measurement noise continually
-        double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
-                Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
+        estimateKalmanFilterDistance(b, processNoise);
+    }
 
-        if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
-            kf.setMeasurementNoise(mNoise);
-        }
-
-        kf.setProcessNoise(processNoise);
-        double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50));
-        distanceEstimated = calculateDistance(recentTxPower.getPercentile(50), lastFilteredReading);
+    private void estimateRawDistance(Beacon b) {
+        // raw distance
         rawDistanceEstimated = calculateDistance(b.getTxPower(), b.getRssi());
-        WOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
+    }
+
+    private void estimateKalmanFilterDistance(Beacon b, double processNoise) {
+
+        if (!(processNoise > 0)) {
+            kalmanFilterEnabled = false;
+        } else {
+            kalmanFilterEnabled = true;
+
+            recentRSSI.addValue(b.getRssi());
+            recentTxPower.addValue(b.getTxPower());
+
+            // Update measurement noise continually
+            double mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
+                    Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
+
+            if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
+                kf.setMeasurementNoise(mNoise);
+            }
+
+            kf.setProcessNoise(processNoise);
+
+            // update measurement, z parameter
+            double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50));
+
+            WOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
+
+            distanceEstimated = calculateDistance(recentTxPower.getPercentile(50), lastFilteredReading);
+        }
     }
 
     // radiousNetwork formula
@@ -73,13 +101,6 @@ public class Estimation {
 
 //        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.125D;
         return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
-
-    /*
-     * RSSI = TxPower - 10 * n * lg(d)
-     * n = 2 (in free space)
-     * d = 10 ^ ((TxPower - RSSI) / (10 * n))
-     */
-        // return Math.pow(10D, (txPower - rssi) / (10 * 2));
     }
 
     public double getKalmanFilterDistance() {

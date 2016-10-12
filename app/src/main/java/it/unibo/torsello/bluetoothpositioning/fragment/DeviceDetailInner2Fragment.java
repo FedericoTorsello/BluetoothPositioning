@@ -24,10 +24,10 @@ public class DeviceDetailInner2Fragment extends Fragment {
 
     private String idDeviceSelectedName;
 
-    public static DeviceDetailInner2Fragment newInstance(String message, String deviceName) {
+    public static DeviceDetailInner2Fragment newInstance(String deviceName) {
         DeviceDetailInner2Fragment fragment = new DeviceDetailInner2Fragment();
         Bundle args = new Bundle();
-        args.putString(EXTRA_MESSAGE, message);
+        args.putString(EXTRA_MESSAGE, "real time charts");
         args.putString(DEVICE_NAME, deviceName);
         fragment.setArguments(args);
         return fragment;
@@ -56,7 +56,7 @@ public class DeviceDetailInner2Fragment extends Fragment {
 
     private void addChildFragment(View root) {
 
-        ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager2);
+        ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view_pager_inner_2);
 
         // avoid casual fragment's destruction
         mViewPager.setOffscreenPageLimit(getFragments().size());

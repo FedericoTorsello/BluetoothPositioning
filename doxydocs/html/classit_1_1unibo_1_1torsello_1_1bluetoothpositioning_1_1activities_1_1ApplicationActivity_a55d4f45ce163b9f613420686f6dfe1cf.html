@@ -100,6 +100,11 @@ $(function() {
                             </td>
                         </tr>
                         <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a54fb622e186f1a1e4af2b84b7466c560.html#a54fb622e186f1a1e4af2b84b7466c560">getRssiFilterSelected</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="navtab"><a class="qindexHL"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf.html#a55d4f45ce163b9f613420686f6dfe1cf">initializeBeaconManager</a>
                             </td>
@@ -152,6 +157,11 @@ $(function() {
                         <tr>
                             <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca.html#aa0775c805f735289a7fc6c380ff81fca">rssiFilterSelected</a>
                             </td>
                         </tr>
                         <tr>
@@ -213,134 +223,125 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
+                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
+                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>
                                 = BeaconManager.getInstanceForApplication(getApplicationContext());
                             </div>
-                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
+                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.bind(<span
                                         class="keyword">this</span>);
                             </div>
-                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;
-                                <span class="comment">// Save battery whenever the application is not visible.</span>
-                            </div>
                             <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
-                                <span class="comment">// This reduces bluetooth power usage by about 60%</span>
                             </div>
                             <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
+                                <span class="comment">// Save battery whenever the application is not visible.</span>
+                            </div>
+                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
+                                <span class="comment">// This reduces bluetooth power usage by about 60%</span>
+                            </div>
+                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a85885639575161f4d73d4fc788f44ace.html#a85885639575161f4d73d4fc788f44ace">backgroundPowerSaver</a>
                                 = <span class="keyword">new</span>
                                 BackgroundPowerSaver(getApplicationContext());
                             </div>
-                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span
-                                    class="comment">//        Log.i(&quot;AltBeacon filter used:&quot;, BeaconManager.getRssiFilterImplClass().getSimpleName());</span>
-                            </div>
                             <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
                             </div>
-                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
-                                <span class="comment">// for finding different type of beacon,</span>
+                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span
+                                    class="comment">//        Log.i(&quot;AltBeacon filter used:&quot;, BeaconManager.getRssiFilterImplClass().getSimpleName());</span>
                             </div>
                             <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
+                                <span class="comment">// for finding different type of beacon,</span>
+                            </div>
+                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().clear();
                             </div>
-                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
-                                <span class="comment">// Alt beacon</span></div>
                             <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
-                                        class="keyword">new</span> BeaconParser()
                             </div>
                             <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;
-                                .setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
-                            </div>
+                                <span class="comment">// Alt beacon</span></div>
                             <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;
-                                <span class="comment">// Detect the main identifier (UID) frame:</span>
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
+                                        class="keyword">new</span> BeaconParser()
                             </div>
                             <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
-                                        class="keyword">new</span> BeaconParser()
+                                .setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
                             </div>
                             <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;
-                                .setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+                                <span class="comment">// Detect the main identifier (UID) frame:</span>
                             </div>
                             <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;
-                                <span class="comment">// Detect the telemetry (TLM) frame:</span>
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
+                                        class="keyword">new</span> BeaconParser()
                             </div>
                             <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
-                                        class="keyword">new</span> BeaconParser()
+                                .setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
                             </div>
                             <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;
-                                .setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
+                                <span class="comment">// Detect the telemetry (TLM) frame:</span>
                             </div>
                             <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;
-                                <span class="comment">// Detect the URL frame:</span></div>
-                            <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
                                         class="keyword">new</span> BeaconParser()
+                            </div>
+                            <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;
+                                .setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
                             </div>
                             <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;
+                                <span class="comment">// Detect the URL frame:</span></div>
+                            <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
+                                        class="keyword">new</span> BeaconParser()
+                            </div>
+                            <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;
                                 .setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
                             </div>
-                            <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;
+                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
                                 <span class="comment">// Standard Apple iBeacon</span></div>
-                            <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;
+                            <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
                                         class="keyword">new</span> BeaconParser()
                             </div>
-                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
+                            <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;
                                 .setBeaconLayout(DeviceConstants.APPLE_BEACON_LAYOUT));
                             </div>
-                            <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;
+                            <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;
                                 <span class="comment">// Estimote Nearable</span></div>
-                            <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;
+                            <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.getBeaconParsers().add(<span
                                         class="keyword">new</span> BeaconParser()
                             </div>
-                            <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;
+                            <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;
                                 .setBeaconLayout(DeviceConstants.ESTIMOTE_NEARABLE_LAYOUT));
                             </div>
-                            <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setForegroundScanPeriod(250L);
-                            </div>
                             <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setForegroundBetweenScanPeriod(0L);
                             </div>
                             <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setBackgroundScanPeriod(250L);
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setForegroundScanPeriod(500L);
                             </div>
                             <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setBackgroundBetweenScanPeriod(0L);
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setForegroundBetweenScanPeriod(0L);
                             </div>
                             <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;
                             </div>
-                            <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a973c37226a3dbba6016966c3555aff65.html#a973c37226a3dbba6016966c3555aff65">beaconManager</a>.setMaxTrackingAge(1000);
+                            <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span
+                                    class="comment">//        beaconManager.setMaxTrackingAge(2000);</span>
                             </div>
                             <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;
                                 }

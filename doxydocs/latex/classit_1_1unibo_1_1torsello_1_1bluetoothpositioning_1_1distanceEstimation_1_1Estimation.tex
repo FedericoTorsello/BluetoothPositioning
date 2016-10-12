@@ -15,6 +15,8 @@ Diagramma di collaborazione per it.\+unibo.\+torsello.\+bluetoothpositioning.\+d
 \item 
 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abd84ded1e26d40304606ce0572735106_abd84ded1e26d40304606ce0572735106}{Estimation} ()
 \item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9_a0863741935c878f7fa6f8c7c6cc086c9}{is\+Kalman\+Filter\+Enabled} ()
+\item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_aaf86439861db7facf3f5338ec2fc6cde_aaf86439861db7facf3f5338ec2fc6cde}{update\+Distance} (Beacon b, double process\+Noise)
 \item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a985e9b8b61c3d1e917a2e818b5f8b679_a985e9b8b61c3d1e917a2e818b5f8b679}{get\+Kalman\+Filter\+Distance} ()
@@ -28,6 +30,10 @@ String \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distan
 \subsubsection*{Membri privati}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d_a0cc72ed8871490402b1fac0a10520f7d}{estimate\+Raw\+Distance} (Beacon b)
+\item 
+void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e_ac3451825d5672d5e761269afc563e88e}{estimate\+Kalman\+Filter\+Distance} (Beacon b, double process\+Noise)
+\item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculate\+Distance} (double tx\+Power, double rssi)
 \end{DoxyCompactItemize}
 \subsubsection*{Attributi privati}
@@ -37,13 +43,15 @@ Descriptive\+Statistics \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothposi
 \item 
 Descriptive\+Statistics \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recent\+Tx\+Power}
 \item 
-\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter}{K\+Filter} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}
+\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter}{K\+Filter} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}
 \item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distance\+Estimated}
 \item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{raw\+Distance\+Estimated}
 \item 
 double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{W\+O\+SC}
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8}{kalman\+Filter\+Enabled}
 \end{DoxyCompactItemize}
 
 
@@ -59,24 +67,25 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-23                         \{
-24 
-25         \textcolor{comment}{// limit on the number of values that can be stored in the dataset}
-26         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI} = \textcolor{keyword}{new} DescriptiveStatistics();
-27         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.setWindowSize(KFilterConstants.WINDOW);
-28         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower} = \textcolor{keyword}{new} DescriptiveStatistics();
-29         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.setWindowSize(KFilterConstants.WINDOW);
-30 
-31         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated} = 0;
-32         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated} = 0;
-33         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC} = 0;
+25                         \{
+26 
+27         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated} = 0;
+28 
+29         \textcolor{comment}{// limit on the number of values that can be stored in the dataset}
+30         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI} = \textcolor{keyword}{new} DescriptiveStatistics();
+31         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.setWindowSize(KFilterConstants.WINDOW);
+32         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower} = \textcolor{keyword}{new} DescriptiveStatistics();
+33         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.setWindowSize(KFilterConstants.WINDOW);
 34 
-35         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf} = \textcolor{keyword}{new} KFilterBuilder()
-36                 \textcolor{comment}{// filter for RSSI}
-37                 .\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a8dd220ba0a0b0f20c368b13efeb1fe43_a8dd220ba0a0b0f20c368b13efeb1fe43}{R}(KFilterConstants.INITIAL\_PROCESS\_NOISE) \textcolor{comment}{// Initial process noise}
-38                 .Q(KFilterConstants.INITIAL\_MEASUREMENT\_NOISE) \textcolor{comment}{// Initial measurement noise}
-39                 .build();
-40     \}
+35         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated} = 0;
+36         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC} = 0;
+37 
+38         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf} = \textcolor{keyword}{new} KFilterBuilder()
+39                 \textcolor{comment}{// filter for RSSI}
+40                 .\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_ac5b2a95b9934717adadb214003d7e7bc_ac5b2a95b9934717adadb214003d7e7bc}{R}(KFilterConstants.INITIAL\_PROCESS\_NOISE) \textcolor{comment}{// Initial process noise}
+41                 .Q(KFilterConstants.INITIAL\_MEASUREMENT\_NOISE) \textcolor{comment}{// Initial measurement noise}
+42                 .build();
+43     \}
 \end{DoxyCode}
 
 
@@ -89,27 +98,73 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-63                                                                   \{
-64 
-65         \textcolor{keywordflow}{if} (rssi == 0.0D) \{
-66             \textcolor{keywordflow}{return} -1.0D; \textcolor{comment}{// if we cannot determine accuracy, return -1.}
-67         \}
-68 
-69         \textcolor{keywordtype}{double} ratio = (rssi * 1.0D) / txPower;
-70         \textcolor{keywordflow}{if} (ratio < 1.0D) \{
-71             \textcolor{keywordflow}{return} Math.pow(ratio, 10.0D);
-72         \}
-73 
-74 \textcolor{comment}{//        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.125D;}
-75         \textcolor{keywordflow}{return} (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
-76 
-77     \textcolor{comment}{/*}
-78 \textcolor{comment}{     * RSSI = TxPower - 10 * n * lg(d)}
-79 \textcolor{comment}{     * n = 2 (in free space)}
-80 \textcolor{comment}{     * d = 10 ^ ((TxPower - RSSI) / (10 * n))}
-81 \textcolor{comment}{     */}
-82         \textcolor{comment}{// return Math.pow(10D, (txPower - rssi) / (10 * 2));}
-83     \}
+91                                                                   \{
+92 
+93         \textcolor{keywordflow}{if} (rssi == 0.0D) \{
+94             \textcolor{keywordflow}{return} -1.0D; \textcolor{comment}{// if we cannot determine accuracy, return -1.}
+95         \}
+96 
+97         \textcolor{keywordtype}{double} ratio = (rssi * 1.0D) / txPower;
+98         \textcolor{keywordflow}{if} (ratio < 1.0D) \{
+99             \textcolor{keywordflow}{return} Math.pow(ratio, 10.0D);
+100         \}
+101 
+102 \textcolor{comment}{//        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.125D;}
+103         \textcolor{keywordflow}{return} (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
+104     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e_ac3451825d5672d5e761269afc563e88e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e_ac3451825d5672d5e761269afc563e88e} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!estimate\+Kalman\+Filter\+Distance@{estimate\+Kalman\+Filter\+Distance}}
+\index{estimate\+Kalman\+Filter\+Distance@{estimate\+Kalman\+Filter\+Distance}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}}
+\paragraph{\texorpdfstring{estimate\+Kalman\+Filter\+Distance()}{estimateKalmanFilterDistance()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+estimate\+Kalman\+Filter\+Distance (\begin{DoxyParamCaption}\item[{Beacon}]{b,  }\item[{double}]{process\+Noise }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+61                                                                             \{
+62 
+63         \textcolor{keywordflow}{if} (!(processNoise > 0))\{
+64             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8}{kalmanFilterEnabled} = \textcolor{keyword}{false};
+65         \} \textcolor{keywordflow}{else} \{
+66             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8}{kalmanFilterEnabled} = \textcolor{keyword}{true};
+67 
+68             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.addValue(b.getRssi());
+69             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.addValue(b.getTxPower());
+70 
+71             \textcolor{comment}{// Update measurement noise continually}
+72             \textcolor{keywordtype}{double} mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
+73                     Math.log(1 + Math.pow(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getMean() / 
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getStandardDeviation(), 2)));
+74 
+75             \textcolor{keywordflow}{if} (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) \{
+76                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_a75bc6ea2e1d879f4fbca6143e6c0f0a8_a75bc6ea2e1d879f4fbca6143e6c0f0a8}{setMeasurementNoise}(mNoise);
+77             \}
+78 
+79             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_a6d9b8430448f2912c70d7e13c27fbed4_a6d9b8430448f2912c70d7e13c27fbed4}{setProcessNoise}(processNoise);
+80 
+81             \textcolor{comment}{// update measurement, z parameter}
+82             \textcolor{keywordtype}{double} lastFilteredReading = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_a58554e5bc1f7e2c5692bfaf2ea496a45_a58554e5bc1f7e2c5692bfaf2ea496a45}{filter}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getPercentile(50));
+83 
+84             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(b.getTxPower(), lastFilteredReading);
+85 
+86             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.getPercentile(50), lastFilteredReading);
+87         \}
+88     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d_a0cc72ed8871490402b1fac0a10520f7d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d_a0cc72ed8871490402b1fac0a10520f7d} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!estimate\+Raw\+Distance@{estimate\+Raw\+Distance}}
+\index{estimate\+Raw\+Distance@{estimate\+Raw\+Distance}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}}
+\paragraph{\texorpdfstring{estimate\+Raw\+Distance()}{estimateRawDistance()}}
+{\footnotesize\ttfamily void it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+estimate\+Raw\+Distance (\begin{DoxyParamCaption}\item[{Beacon}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+56                                               \{
+57         \textcolor{comment}{// raw distance}
+58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(b.getTxPower(), b.
+      getRssi());
+59     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5c7bce21cd77c98a8d1e6df4c930397c_a5c7bce21cd77c98a8d1e6df4c930397c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5c7bce21cd77c98a8d1e6df4c930397c_a5c7bce21cd77c98a8d1e6df4c930397c} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!get\+Distance\+W\+O\+SC@{get\+Distance\+W\+O\+SC}}
@@ -119,9 +174,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-93                                     \{
-94         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC};
-95     \}
+114                                     \{
+115         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC};
+116     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a985e9b8b61c3d1e917a2e818b5f8b679_a985e9b8b61c3d1e917a2e818b5f8b679}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a985e9b8b61c3d1e917a2e818b5f8b679_a985e9b8b61c3d1e917a2e818b5f8b679} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!get\+Kalman\+Filter\+Distance@{get\+Kalman\+Filter\+Distance}}
@@ -131,9 +186,9 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-85                                             \{
-86         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated};
-87     \}
+106                                             \{
+107         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated};
+108     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a2edfb9f301730647277474c61b41dbd5_a2edfb9f301730647277474c61b41dbd5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a2edfb9f301730647277474c61b41dbd5_a2edfb9f301730647277474c61b41dbd5} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!get\+Proximity@{get\+Proximity}}
@@ -143,21 +198,21 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-97                                  \{
-98         \textcolor{keywordtype}{double} proximity = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated};
-99         String accuracy;
-100 
-101         \textcolor{keywordflow}{if} (proximity <= 0) \{
-102             accuracy = \textcolor{stringliteral}{"unknown"};
-103         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (proximity <= 0.5) \{
-104             accuracy = \textcolor{stringliteral}{"immediate"};
-105         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (proximity <= 4.0) \{
-106             accuracy = \textcolor{stringliteral}{"near"};
-107         \} \textcolor{keywordflow}{else} \{
-108             accuracy = \textcolor{stringliteral}{"far"};
-109         \}
-110         \textcolor{keywordflow}{return} accuracy;
-111     \}
+118                                  \{
+119         \textcolor{keywordtype}{double} proximity = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated};
+120         String accuracy;
+121 
+122         \textcolor{keywordflow}{if} (proximity <= 0) \{
+123             accuracy = \textcolor{stringliteral}{"unknown"};
+124         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (proximity <= 0.5) \{
+125             accuracy = \textcolor{stringliteral}{"immediate"};
+126         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (proximity <= 4.0) \{
+127             accuracy = \textcolor{stringliteral}{"near"};
+128         \} \textcolor{keywordflow}{else} \{
+129             accuracy = \textcolor{stringliteral}{"far"};
+130         \}
+131         \textcolor{keywordflow}{return} accuracy;
+132     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b_ad355b2e850a8d6013ef771eecd740e1b}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b_ad355b2e850a8d6013ef771eecd740e1b} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!get\+Raw\+Distance@{get\+Raw\+Distance}}
@@ -167,9 +222,21 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-89                                    \{
-90         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated};
-91     \}
+110                                    \{
+111         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated};
+112     \}
+\end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9_a0863741935c878f7fa6f8c7c6cc086c9}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9_a0863741935c878f7fa6f8c7c6cc086c9} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!is\+Kalman\+Filter\+Enabled@{is\+Kalman\+Filter\+Enabled}}
+\index{is\+Kalman\+Filter\+Enabled@{is\+Kalman\+Filter\+Enabled}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}}
+\paragraph{\texorpdfstring{is\+Kalman\+Filter\+Enabled()}{isKalmanFilterEnabled()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+is\+Kalman\+Filter\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+45                                           \{
+46         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8}{kalmanFilterEnabled};
+47     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_aaf86439861db7facf3f5338ec2fc6cde_aaf86439861db7facf3f5338ec2fc6cde}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_aaf86439861db7facf3f5338ec2fc6cde_aaf86439861db7facf3f5338ec2fc6cde} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!update\+Distance@{update\+Distance}}
@@ -179,28 +246,12 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-42                                                               \{
-43 
-44         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.addValue(b.getRssi());
-45         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.addValue(b.getTxPower());
-46 
-47         \textcolor{comment}{// Update measurement noise continually}
-48         \textcolor{keywordtype}{double} mNoise = Math.sqrt((100 * 9 / Math.log(10)) *
-49                 Math.log(1 + Math.pow(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getMean() / 
-      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getStandardDeviation(), 2)));
+49                                                               \{
 50 
-51         \textcolor{keywordflow}{if} (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) \{
-52             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a0ed62a630ff52aacdcd8832b9416f406_a0ed62a630ff52aacdcd8832b9416f406}{setMeasurementNoise}(mNoise);
-53         \}
-54 
-55         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a7651339cfddb4cdaa1e47906b27745fc_a7651339cfddb4cdaa1e47906b27745fc}{setProcessNoise}(processNoise);
-56         \textcolor{keywordtype}{double} lastFilteredReading = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{kf}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter_a6904818e94d959f8e25a8699d6885c21_a6904818e94d959f8e25a8699d6885c21}{filter}(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4edd1c580372b087a9d8fc167715088a_a4edd1c580372b087a9d8fc167715088a}{recentRSSI}.getPercentile(50));
-57         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d_a7a5514b25ac6495842a53e54319be10d}{distanceEstimated} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(
-      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a4258d96e807fa104223635ecb7ddc940_a4258d96e807fa104223635ecb7ddc940}{recentTxPower}.getPercentile(50), lastFilteredReading);
-58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{rawDistanceEstimated} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(b.getTxPower(), b.
-      getRssi());
-59         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595_a53237b14bc1d27ae4f751b02d798b595}{WOSC} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a6e33d4e0b776517a86c6aa87cd51b66b_a6e33d4e0b776517a86c6aa87cd51b66b}{calculateDistance}(b.getTxPower(), lastFilteredReading);
-60     \}
+51         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d_a0cc72ed8871490402b1fac0a10520f7d}{estimateRawDistance}(b);
+52 
+53         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e_ac3451825d5672d5e761269afc563e88e}{estimateKalmanFilterDistance}(b,processNoise);
+54     \}
 \end{DoxyCode}
 
 
@@ -211,11 +262,17 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \paragraph{\texorpdfstring{distance\+Estimated}{distanceEstimated}}
 {\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+distance\+Estimated\hspace{0.3cm}{\ttfamily [private]}}
 
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8_abfb2f400444016cb1323e100d2d8c5b8} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!kalman\+Filter\+Enabled@{kalman\+Filter\+Enabled}}
+\index{kalman\+Filter\+Enabled@{kalman\+Filter\+Enabled}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}}
+\paragraph{\texorpdfstring{kalman\+Filter\+Enabled}{kalmanFilterEnabled}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+kalman\+Filter\+Enabled\hspace{0.3cm}{\ttfamily [private]}}
+
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a93af801219b710f3a048e7db1c7a8982_a93af801219b710f3a048e7db1c7a8982} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!kf@{kf}}
 \index{kf@{kf}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}}
 \paragraph{\texorpdfstring{kf}{kf}}
-{\footnotesize\ttfamily \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter}{K\+Filter} it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+kf\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter}{K\+Filter} it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation.\+kf\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a5afcd0b9b73a92b64669f060206f35db_a5afcd0b9b73a92b64669f060206f35db} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}!raw\+Distance\+Estimated@{raw\+Distance\+Estimated}}

@@ -61,6 +61,10 @@ public class Device {
 
     /* Kalman filter*/
     public double getKalmanFilterDistance() {
+        if (!estimation.isKalmanFilterEnabled()) {
+            return 0;
+        }
+
         return estimation.getKalmanFilterDistance();
     }
 
@@ -80,6 +84,10 @@ public class Device {
         if (beacon != null) {
             estimation.updateDistance(beacon, processNoise);
         }
+    }
+
+    public boolean isKalmanFilterEnabled() {
+        return estimation.isKalmanFilterEnabled();
     }
 
 }

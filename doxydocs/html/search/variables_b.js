@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1Report_a0495bf689006bace414e202fd6fc14f2.html#a0495bf689006bace414e202fd6fc14f2',1,'it::unibo::torsello::bluetoothpositioning::util::Report']]],
   ['namespacetextview',['nameSpaceTextView',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_1_1DeviceViewHolder_a7c487cde57093a878929990ba61d173c.html#a7c487cde57093a878929990ba61d173c',1,'it::unibo::torsello::bluetoothpositioning::adapter::DeviceCardViewAdapter::DeviceViewHolder']]]
 ];

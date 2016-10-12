@@ -36,6 +36,8 @@ Void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1
 Fragment\+Activity \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{get\+Activity} ()
 \item 
 void \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08_a813b3e0d75f59558de551aa6251e3d08}{refresh\+Gallery} (File file)
+\item 
+boolean \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873_a676fc75dd0bd436fdf8f9e80d4aae873}{is\+External\+Storage\+Writable} ()
 \end{DoxyCompactItemize}
 \subsubsection*{Attributi privati}
 \begin{DoxyCompactItemize}
@@ -73,27 +75,29 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \begin{DoxyCode}
 35                                                   \{
 36 
-37         \textcolor{comment}{// Write to SD Card}
-38         \textcolor{keywordflow}{try} \{
-39             File sdCard = Environment.getExternalStorageDirectory();
-40             File dir = \textcolor{keyword}{new} File(sdCard.getAbsolutePath() + \textcolor{stringliteral}{"/"} + \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().getString(R.
-      string.app\_name));
-41             dir.mkdirs();
-42 
-43             String fileName = String.format(Locale.getDefault(), \textcolor{stringliteral}{"%d.jpg"}, System.currentTimeMillis());
-44             File outFile = \textcolor{keyword}{new} File(dir, fileName);
-45 
-46             FileOutputStream outStream = \textcolor{keyword}{new} FileOutputStream(outFile);
-47             outStream.write(data[0]);
-48             outStream.flush();
-49             outStream.close();
-50 
-51             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08_a813b3e0d75f59558de551aa6251e3d08}{refreshGallery}(outFile);
-52         \} \textcolor{keywordflow}{catch} (IOException e) \{
-53             e.printStackTrace();
-54         \}
-55         \textcolor{keywordflow}{return} null;
-56     \}
+37         \textcolor{comment}{// Write to disk}
+38         \textcolor{keywordflow}{if} (\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873_a676fc75dd0bd436fdf8f9e80d4aae873}{isExternalStorageWritable}()) \{
+39             File root = Environment.getExternalStorageDirectory();
+40             File dir = \textcolor{keyword}{new} File(root.getAbsolutePath() + File.separator
+41                     + \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().getString(R.string.app\_name));
+42             dir.mkdir();
+43 
+44             String fileName = String.format(Locale.getDefault(), \textcolor{stringliteral}{"%d.jpg"}, System.currentTimeMillis());
+45             File outFile = \textcolor{keyword}{new} File(dir, fileName);
+46             \textcolor{keywordflow}{try} \{
+47 
+48                 FileOutputStream outStream = \textcolor{keyword}{new} FileOutputStream(outFile);
+49                 outStream.write(data[0]);
+50                 outStream.flush();
+51                 outStream.close();
+52 
+53                 \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08_a813b3e0d75f59558de551aa6251e3d08}{refreshGallery}(outFile);
+54             \} \textcolor{keywordflow}{catch} (IOException e) \{
+55                 e.printStackTrace();
+56             \}
+57         \}
+58         \textcolor{keywordflow}{return} null;
+59     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}!get\+Activity@{get\+Activity}}
@@ -107,6 +111,23 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 31         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a340aca6a2cdcfbf41aed236588669203_a340aca6a2cdcfbf41aed236588669203}{activity};
 32     \}
 \end{DoxyCode}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873_a676fc75dd0bd436fdf8f9e80d4aae873}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873_a676fc75dd0bd436fdf8f9e80d4aae873} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}!is\+External\+Storage\+Writable@{is\+External\+Storage\+Writable}}
+\index{is\+External\+Storage\+Writable@{is\+External\+Storage\+Writable}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}}
+\paragraph{\texorpdfstring{is\+External\+Storage\+Writable()}{isExternalStorageWritable()}}
+{\footnotesize\ttfamily boolean it.\+unibo.\+torsello.\+bluetoothpositioning.\+task.\+Save\+Image\+Task.\+is\+External\+Storage\+Writable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+\begin{DoxyCode}
+76                                                 \{
+77         String state = Environment.getExternalStorageState();
+78         \textcolor{keywordflow}{if} (Environment.MEDIA\_MOUNTED.equals(state)) \{
+79             \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+80         \}
+81         Log.d(\textcolor{stringliteral}{"sure"}, \textcolor{stringliteral}{"not writeable"});
+82         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+83     \}
+\end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08_a813b3e0d75f59558de551aa6251e3d08}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08_a813b3e0d75f59558de551aa6251e3d08} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}!refresh\+Gallery@{refresh\+Gallery}}
 \index{refresh\+Gallery@{refresh\+Gallery}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}}
@@ -115,19 +136,19 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-58                                            \{
-59         \textcolor{keywordflow}{if} (file != null) \{
-60             Intent mediaScanIntent = \textcolor{keyword}{new} Intent(Intent.ACTION\_MEDIA\_SCANNER\_SCAN\_FILE);
-61             mediaScanIntent.setData(Uri.fromFile(file));
-62             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().sendBroadcast(mediaScanIntent);
-63 
-64             Snackbar.make(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().findViewById(R.id.fab),
-65                     \textcolor{stringliteral}{"Your picture has been saved"}, Snackbar.LENGTH\_SHORT).show();
-66         \} \textcolor{keywordflow}{else} \{
+61                                            \{
+62         \textcolor{keywordflow}{if} (file != null) \{
+63             Intent mediaScanIntent = \textcolor{keyword}{new} Intent(Intent.ACTION\_MEDIA\_SCANNER\_SCAN\_FILE);
+64             mediaScanIntent.setData(Uri.fromFile(file));
+65             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().sendBroadcast(mediaScanIntent);
+66 
 67             Snackbar.make(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().findViewById(R.id.fab),
-68                     \textcolor{stringliteral}{"Image retrieval failed"}, Snackbar.LENGTH\_SHORT).show();
-69         \}
-70     \}
+68                     \textcolor{stringliteral}{"Your picture has been saved"}, Snackbar.LENGTH\_SHORT).show();
+69         \} \textcolor{keywordflow}{else} \{
+70             Snackbar.make(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_a6fda270f42937b64e3767644e7dd63a5}{getActivity}().findViewById(R.id.fab),
+71                     \textcolor{stringliteral}{"Image retrieval failed"}, Snackbar.LENGTH\_SHORT).show();
+72         \}
+73     \}
 \end{DoxyCode}
 
 

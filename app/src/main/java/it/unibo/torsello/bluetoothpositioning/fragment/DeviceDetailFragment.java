@@ -46,8 +46,8 @@ public class DeviceDetailFragment extends Fragment {
 
         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
 
-        ((AppBarLayout) root.findViewById(R.id.appbar_detail)).setExpanded(false);
-        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
+//        ((AppBarLayout) root.findViewById(R.id.appbar_detail)).setExpanded(false);
+//        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);
 
         addChildFragment(root);
         return root;
@@ -76,13 +76,13 @@ public class DeviceDetailFragment extends Fragment {
         ArrayList<Fragment> fragments = new ArrayList<>();
 
         // fragment 0
-        fragments.add(ReportFragment.newInstance("Report", idDeviceSelectedName));
+        fragments.add(DeviceDetailInner0Fragment.newInstance(idDeviceSelectedName));
 
         // fragment 1
         fragments.add(DeviceDetailInner1Fragment.newInstance(idDeviceSelectedName));
 
         // fragment 2
-        fragments.add(DeviceDetailInner2Fragment.newInstance("Details", idDeviceSelectedName));
+        fragments.add(DeviceDetailInner2Fragment.newInstance(idDeviceSelectedName));
 
 
         return fragments;

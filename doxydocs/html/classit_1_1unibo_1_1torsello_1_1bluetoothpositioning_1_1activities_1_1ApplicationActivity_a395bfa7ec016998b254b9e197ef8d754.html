@@ -101,6 +101,11 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a54fb622e186f1a1e4af2b84b7466c560.html#a54fb622e186f1a1e4af2b84b7466c560">getRssiFilterSelected</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf.html#a55d4f45ce163b9f613420686f6dfe1cf">initializeBeaconManager</a>
                             </td>
                         </tr>
@@ -156,6 +161,11 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa0775c805f735289a7fc6c380ff81fca.html#aa0775c805f735289a7fc6c380ff81fca">rssiFilterSelected</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a53f68b9ea3a7805d43d4d2c84a920871.html#a53f68b9ea3a7805d43d4d2c84a920871">setArmaOptionsVisible</a>
                             </td>
                         </tr>
@@ -205,56 +215,56 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;
+                            <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;
-                                super.onCreate(savedInstanceState);
-                            </div>
-                            <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;
-                            </div>
                             <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;
-                                <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad146f35cfee210f7191442658a235a2f.html#ad146f35cfee210f7191442658a235a2f">deviceList</a>
-                                = <span class="keyword">new</span> ArrayList&lt;&gt;();
+                                super.onCreate(savedInstanceState);
                             </div>
                             <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;
                             </div>
                             <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa6481e11e062d3539e6848f0790852b8.html#aa6481e11e062d3539e6848f0790852b8">myDeviceObservable</a>
-                                = DeviceObservable.<a class="code"
-                                                      href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable_ab16792c5848440646624b2a41553954a.html#ab16792c5848440646624b2a41553954a">getInstance</a>();
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_ad146f35cfee210f7191442658a235a2f.html#ad146f35cfee210f7191442658a235a2f">deviceList</a>
+                                = <span class="keyword">new</span> ArrayList&lt;&gt;();
                             </div>
                             <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;
                             </div>
                             <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>
-                                = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_aa6481e11e062d3539e6848f0790852b8.html#aa6481e11e062d3539e6848f0790852b8">myDeviceObservable</a>
+                                = DeviceObservable.<a class="code"
+                                                      href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables_1_1DeviceObservable_ab16792c5848440646624b2a41553954a.html#ab16792c5848440646624b2a41553954a">getInstance</a>();
                             </div>
                             <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;
                             </div>
                             <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093.html#abe62157d98c81406ae3d79dbc0fd9093">usbUtil</a>
-                                = <span class="keyword">new</span> UsbUtil(<span class="keyword">this</span>);
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a3ee672ef79c268d0618ff3276c2e85f0.html#a3ee672ef79c268d0618ff3276c2e85f0">preferences</a>
+                                = getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
                             </div>
                             <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;
                             </div>
                             <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf.html#a55d4f45ce163b9f613420686f6dfe1cf">initializeBeaconManager</a>();
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_abe62157d98c81406ae3d79dbc0fd9093.html#abe62157d98c81406ae3d79dbc0fd9093">usbUtil</a>
+                                = <span class="keyword">new</span> UsbUtil(<span class="keyword">this</span>);
                             </div>
                             <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;
                             </div>
                             <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;
                                 <a class="code"
-                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430.html#a5a35f7c0be6dfbdb4e5021b74dd88430">initializeFloatingActionButton</a>();
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf.html#a55d4f45ce163b9f613420686f6dfe1cf">initializeBeaconManager</a>();
                             </div>
                             <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;
                             </div>
                             <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a5a35f7c0be6dfbdb4e5021b74dd88430.html#a5a35f7c0be6dfbdb4e5021b74dd88430">initializeFloatingActionButton</a>();
+                            </div>
+                            <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -289,7 +299,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity_a55d4f45ce163b9f613420686f6dfe1cf.html#a55d4f45ce163b9f613420686f6dfe1cf">it.unibo.torsello.bluetoothpositioning.activities.ApplicationActivity.initializeBeaconManager</a>
                                 </div>
                                 <div class="ttdeci">void initializeBeaconManager()</div>
-                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:70
+                                <div class="ttdef"><b>Definition:</b> ApplicationActivity.java:72
                                 </div>
                             </div>
                             <div class="ttc"

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="it.unibo.torsello.bluetoothpositioning.fragment.UsbMeasurementFragment"
+            android:id="@+id/usbArduino"
+            tools:layout="@layout/fragment_usb_measurement" />
+
+    </android.support.v7.widget.CardView>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="@string/start_recording"
+        android:textOn="@string/on_recording" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_inner_0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@android:color/background_light"
+            app:tabTextColor="@android:color/darker_gray" />
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>
+

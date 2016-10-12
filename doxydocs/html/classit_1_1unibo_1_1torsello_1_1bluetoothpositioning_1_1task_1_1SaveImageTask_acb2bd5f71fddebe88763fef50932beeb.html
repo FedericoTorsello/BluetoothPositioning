@@ -101,6 +101,11 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873.html#a676fc75dd0bd436fdf8f9e80d4aae873">isExternalStorageWritable</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08.html#a813b3e0d75f59558de551aa6251e3d08">refreshGallery</a>
                             </td>
                         </tr>
@@ -150,67 +155,85 @@ $(function() {
                             <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;
                             </div>
                             <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;
-                                <span class="comment">// Write to SD Card</span></div>
+                                <span class="comment">// Write to disk</span></div>
                             <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;
-                                <span class="keywordflow">try</span> {
+                                <span class="keywordflow">if</span> (<a class="code"
+                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873.html#a676fc75dd0bd436fdf8f9e80d4aae873">isExternalStorageWritable</a>())
+                                {
                             </div>
                             <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;
-                                File sdCard = Environment.getExternalStorageDirectory();
+                                File root = Environment.getExternalStorageDirectory();
                             </div>
                             <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;
                                 File dir = <span class="keyword">new</span>
-                                File(sdCard.getAbsolutePath() + <span class="stringliteral">&quot;/&quot;</span>
+                                File(root.getAbsolutePath() + File.separator
+                            </div>
+                            <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;
                                 + <a class="code"
                                      href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5.html#a6fda270f42937b64e3767644e7dd63a5">getActivity</a>().getString(R.string.app_name));
                             </div>
-                            <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;
-                                dir.mkdirs();
-                            </div>
                             <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;
+                                dir.mkdir();
                             </div>
                             <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;
                                 String fileName = String.format(Locale.getDefault(), <span
                                         class="stringliteral">&quot;%d.jpg&quot;</span>,
                                 System.currentTimeMillis());
                             </div>
-                            <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;
+                            <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;
                                 File outFile = <span class="keyword">new</span> File(dir, fileName);
                             </div>
-                            <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;
-                            </div>
                             <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;
+                                <span class="keywordflow">try</span> {
+                            </div>
+                            <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;
                                 FileOutputStream outStream = <span class="keyword">new</span>
                                 FileOutputStream(outFile);
                             </div>
-                            <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;
+                            <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;
                                 outStream.write(data[0]);
                             </div>
-                            <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;
+                            <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;
                                 outStream.flush();
                             </div>
-                            <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;
+                            <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;
                                 outStream.close();
                             </div>
-                            <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;
+                            <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;
                             </div>
-                            <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;
+                            <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08.html#a813b3e0d75f59558de551aa6251e3d08">refreshGallery</a>(outFile);
                             </div>
-                            <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;
+                            <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;
                                 } <span class="keywordflow">catch</span> (IOException e) {
                             </div>
-                            <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;
-                                e.printStackTrace();
-                            </div>
-                            <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;
-                                }
-                            </div>
                             <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;
-                                <span class="keywordflow">return</span> null;
+                                e.printStackTrace();
                             </div>
                             <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;
                                 }
+                            </div>
+                            <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;
+                                <span class="keywordflow">return</span> null;
+                            </div>
+                            <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;
+                                }
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873_html_a676fc75dd0bd436fdf8f9e80d4aae873">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a676fc75dd0bd436fdf8f9e80d4aae873.html#a676fc75dd0bd436fdf8f9e80d4aae873">it.unibo.torsello.bluetoothpositioning.task.SaveImageTask.isExternalStorageWritable</a>
+                                </div>
+                                <div class="ttdeci">boolean isExternalStorageWritable()</div>
+                                <div class="ttdef"><b>Definition:</b> SaveImageTask.java:76</div>
                             </div>
                             <div class="ttc"
                                  id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a6fda270f42937b64e3767644e7dd63a5_html_a6fda270f42937b64e3767644e7dd63a5">
@@ -226,7 +249,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task_1_1SaveImageTask_a813b3e0d75f59558de551aa6251e3d08.html#a813b3e0d75f59558de551aa6251e3d08">it.unibo.torsello.bluetoothpositioning.task.SaveImageTask.refreshGallery</a>
                                 </div>
                                 <div class="ttdeci">void refreshGallery(File file)</div>
-                                <div class="ttdef"><b>Definition:</b> SaveImageTask.java:58</div>
+                                <div class="ttdef"><b>Definition:</b> SaveImageTask.java:61</div>
                             </div>
                         </div><!-- fragment -->
                     </div>

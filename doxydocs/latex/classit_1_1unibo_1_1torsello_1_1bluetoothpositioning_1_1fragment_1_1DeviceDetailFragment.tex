@@ -65,16 +65,18 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-63                                              \{
-64 
-65         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view\_pager);
-66         StatePagerAdapter myPageAdapter = \textcolor{keyword}{new} StatePagerAdapter(getChildFragmentManager(), 
+62                                              \{
+63 
+64         ViewPager mViewPager = (ViewPager) root.findViewById(R.id.view\_pager);
+65         StatePagerAdapter myPageAdapter = \textcolor{keyword}{new} StatePagerAdapter(getChildFragmentManager(), 
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639_a98e370cfcbfe5eaa4e1fe9242b00e639}{getFragments}());
-67         mViewPager.setAdapter(myPageAdapter);
-68 
-69         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding\_tabs);
-70         tabLayout.setupWithViewPager(mViewPager);
-71     \}
+66         mViewPager.setAdapter(myPageAdapter);
+67         mViewPager.setOffscreenPageLimit(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639_a98e370cfcbfe5eaa4e1fe9242b00e639}{getFragments}().size());
+68         mViewPager.setCurrentItem(1);
+69 
+70         TabLayout tabLayout = (TabLayout) root.findViewById(R.id.sliding\_tabs);
+71         tabLayout.setupWithViewPager(mViewPager);
+72     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639_a98e370cfcbfe5eaa4e1fe9242b00e639}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639_a98e370cfcbfe5eaa4e1fe9242b00e639} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}!get\+Fragments@{get\+Fragments}}
@@ -84,21 +86,25 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-73                                                \{
-74 
-75         ArrayList<Fragment> fragments = \textcolor{keyword}{new} ArrayList<>();
-76 
-77         \textcolor{comment}{// fragment 0}
-78         fragments.add(DeviceDetailInner1Fragment.newInstance(
+74                                                \{
+75 
+76         ArrayList<Fragment> fragments = \textcolor{keyword}{new} ArrayList<>();
+77 
+78         \textcolor{comment}{// fragment 0}
+79         fragments.add(DeviceDetailInner0Fragment.newInstance(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName}));
-79 
-80         \textcolor{comment}{// fragment 1}
-81         fragments.add(DeviceDetailInner2Fragment.newInstance(\textcolor{stringliteral}{"Details"}, 
+80 
+81         \textcolor{comment}{// fragment 1}
+82         fragments.add(DeviceDetailInner1Fragment.newInstance(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName}));
-82 
 83 
-84         \textcolor{keywordflow}{return} fragments;
-85     \}
+84         \textcolor{comment}{// fragment 2}
+85         fragments.add(DeviceDetailInner2Fragment.newInstance(
+      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName}));
+86 
+87 
+88         \textcolor{keywordflow}{return} fragments;
+89     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a626de18d36d44ae0b4ff21c2527bdf5a_a626de18d36d44ae0b4ff21c2527bdf5a}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a626de18d36d44ae0b4ff21c2527bdf5a_a626de18d36d44ae0b4ff21c2527bdf5a} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}!new\+Instance@{new\+Instance}}
@@ -108,13 +114,13 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-29                                                                    \{
-30         DeviceDetailFragment fragment = \textcolor{keyword}{new} DeviceDetailFragment();
-31         Bundle args = \textcolor{keyword}{new} Bundle();
-32         args.putString(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a9f7fff4a2b22105976f2c7223d88f9ae_a9f7fff4a2b22105976f2c7223d88f9ae}{EXTRA\_MESSAGE}, message);
-33         fragment.setArguments(args);
-34         \textcolor{keywordflow}{return} fragment;
-35     \}
+28                                                                    \{
+29         DeviceDetailFragment fragment = \textcolor{keyword}{new} DeviceDetailFragment();
+30         Bundle args = \textcolor{keyword}{new} Bundle();
+31         args.putString(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a9f7fff4a2b22105976f2c7223d88f9ae_a9f7fff4a2b22105976f2c7223d88f9ae}{EXTRA\_MESSAGE}, message);
+32         fragment.setArguments(args);
+33         \textcolor{keywordflow}{return} fragment;
+34     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_af33d782c107be10fe752f16f04cc5e5d_af33d782c107be10fe752f16f04cc5e5d}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_af33d782c107be10fe752f16f04cc5e5d_af33d782c107be10fe752f16f04cc5e5d} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}!on\+Create@{on\+Create}}
@@ -124,12 +130,12 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-38                                                     \{
-39         super.onCreate(savedInstanceState);
-40 
-41         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName} = getArguments().getString(
+37                                                     \{
+38         super.onCreate(savedInstanceState);
+39 
+40         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName} = getArguments().getString(
       \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a9f7fff4a2b22105976f2c7223d88f9ae_a9f7fff4a2b22105976f2c7223d88f9ae}{EXTRA\_MESSAGE});
-42     \}
+41     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d43be281b577e0d9f2540fea30c2fdf_a6d43be281b577e0d9f2540fea30c2fdf}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d43be281b577e0d9f2540fea30c2fdf_a6d43be281b577e0d9f2540fea30c2fdf} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}!on\+Create\+View@{on\+Create\+View}}
@@ -139,18 +145,18 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-45                                                                                                       \{
-46         \textcolor{keyword}{final} View root = inflater.inflate(R.layout.fragment\_device\_detail, container, \textcolor{keyword}{false});
-47 
-48         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
-49 
-50         ((AppBarLayout) root.findViewById(R.id.appbar\_detail)).setExpanded(\textcolor{keyword}{false});
-51         ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing\_toolbar)).setTitle(
-      \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_a6d52d8371a07fb8da75879758d1d6942}{idDeviceSelectedName});
-52 
-53         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a62c541b8382a522f06a5d9c56cf50b26_a62c541b8382a522f06a5d9c56cf50b26}{addChildFragment}(root);
-54         \textcolor{keywordflow}{return} root;
-55     \}
+44                                                                                                       \{
+45         \textcolor{keyword}{final} View root = inflater.inflate(R.layout.fragment\_device\_detail, container, \textcolor{keyword}{false});
+46 
+47         getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
+48 
+49 \textcolor{comment}{//        ((AppBarLayout) root.findViewById(R.id.appbar\_detail)).setExpanded(false);}
+50 \textcolor{comment}{//        ((CollapsingToolbarLayout)
+       root.findViewById(R.id.collapsing\_toolbar)).setTitle(idDeviceSelectedName);}
+51 
+52         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a62c541b8382a522f06a5d9c56cf50b26_a62c541b8382a522f06a5d9c56cf50b26}{addChildFragment}(root);
+53         \textcolor{keywordflow}{return} root;
+54     \}
 \end{DoxyCode}
 \hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a1ed4762356dd3067ce48aa73da50404e_a1ed4762356dd3067ce48aa73da50404e}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a1ed4762356dd3067ce48aa73da50404e_a1ed4762356dd3067ce48aa73da50404e} 
 \index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}!on\+Pause@{on\+Pause}}
@@ -160,10 +166,10 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 
 
 \begin{DoxyCode}
-58                           \{
-59         getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
-60         super.onPause();
-61     \}
+57                           \{
+58         getActivity().findViewById(R.id.toolbar).setVisibility(View.VISIBLE);
+59         super.onPause();
+60     \}
 \end{DoxyCode}
 
 

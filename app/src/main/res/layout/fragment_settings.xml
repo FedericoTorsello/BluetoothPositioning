@@ -60,6 +60,7 @@
                         <SeekBar
                             style="@style/Widget.AppCompat.SeekBar.Discrete"
                             android:id="@+id/kalmanSeek"
+                            android:max="10"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical" />

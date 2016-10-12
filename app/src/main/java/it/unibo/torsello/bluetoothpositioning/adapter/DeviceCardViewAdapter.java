@@ -1,5 +1,6 @@
 package it.unibo.torsello.bluetoothpositioning.adapter;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
+import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
 
@@ -150,7 +152,11 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
 
         holder.standardRawDistanceTextView.setText(String.format("%sm", df.format(device.getRawDistance())));
 
-        holder.kalmanFilterDistanceTextView.setText(String.format("%s", df.format(device.getKalmanFilterDistance())));
+        if (!device.isKalmanFilterEnabled()) {
+            holder.kalmanFilterDistanceTextView.setText(getActivity().getText(R.string.kalman_filter_disabled));
+        } else {
+            holder.kalmanFilterDistanceTextView.setText(String.format("%s", df.format(device.getKalmanFilterDistance())));
+        }
     }
 
     private void setInfoDevice(DeviceViewHolder holder, Beacon beacon) {

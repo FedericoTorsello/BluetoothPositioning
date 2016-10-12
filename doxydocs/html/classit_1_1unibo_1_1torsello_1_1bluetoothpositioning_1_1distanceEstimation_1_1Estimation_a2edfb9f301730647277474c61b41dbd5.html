@@ -96,6 +96,16 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e.html#ac3451825d5672d5e761269afc563e88e">estimateKalmanFilterDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d.html#a0cc72ed8871490402b1fac0a10520f7d">estimateRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abd84ded1e26d40304606ce0572735106.html#abd84ded1e26d40304606ce0572735106">Estimation</a>
                             </td>
                         </tr>
@@ -117,6 +127,16 @@ $(function() {
                         <tr>
                             <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b.html#ad355b2e850a8d6013ef771eecd740e1b">getRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9.html#a0863741935c878f7fa6f8c7c6cc086c9">isKalmanFilterEnabled</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8.html#abfb2f400444016cb1323e100d2d8c5b8">kalmanFilterEnabled</a>
                             </td>
                         </tr>
                         <tr>
@@ -174,51 +194,51 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
+                            <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;
+                            <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;
                                 <span class="keywordtype">double</span> proximity = <a class="code"
                                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a7a5514b25ac6495842a53e54319be10d.html#a7a5514b25ac6495842a53e54319be10d">distanceEstimated</a>;
                             </div>
-                            <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;
+                            <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;
                                 String accuracy;
                             </div>
-                            <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;
+                            <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;
                             </div>
-                            <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;
+                            <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;
                                 <span class="keywordflow">if</span> (proximity &lt;= 0) {
                             </div>
-                            <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;
+                            <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;
                                 accuracy = <span class="stringliteral">&quot;unknown&quot;</span>;
                             </div>
-                            <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;
+                            <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;
                                 } <span class="keywordflow">else</span> <span
                                         class="keywordflow">if</span> (proximity &lt;= 0.5) {
                             </div>
-                            <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;
+                            <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;
                                 accuracy = <span class="stringliteral">&quot;immediate&quot;</span>;
                             </div>
-                            <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;
+                            <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;
                                 } <span class="keywordflow">else</span> <span
                                         class="keywordflow">if</span> (proximity &lt;= 4.0) {
                             </div>
-                            <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;
+                            <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;
                                 accuracy = <span class="stringliteral">&quot;near&quot;</span>;
                             </div>
-                            <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;
+                            <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;
                                 } <span class="keywordflow">else</span> {
                             </div>
-                            <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;
+                            <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;
                                 accuracy = <span class="stringliteral">&quot;far&quot;</span>;
                             </div>
-                            <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;
+                            <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;
+                            <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;
                                 <span class="keywordflow">return</span> accuracy;
                             </div>
-                            <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;
+                            <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;
                                 }
                             </div>
                             <div class="ttc"

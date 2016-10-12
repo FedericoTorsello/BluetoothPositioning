@@ -159,33 +159,40 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;
+                            <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;
+                            <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;
                             </div>
-                            <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;
+                            <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;
                                 ViewPager mViewPager = (ViewPager)
                                 root.findViewById(R.id.view_pager);
                             </div>
-                            <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;
+                            <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;
                                 StatePagerAdapter myPageAdapter = <span class="keyword">new</span>
                                 StatePagerAdapter(getChildFragmentManager(), <a class="code"
                                                                                 href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639.html#a98e370cfcbfe5eaa4e1fe9242b00e639">getFragments</a>());
                             </div>
-                            <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;
+                            <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;
                                 mViewPager.setAdapter(myPageAdapter);
                             </div>
+                            <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;
+                                mViewPager.setOffscreenPageLimit(<a class="code"
+                                                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639.html#a98e370cfcbfe5eaa4e1fe9242b00e639">getFragments</a>().size());
+                            </div>
                             <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;
+                                mViewPager.setCurrentItem(1);
                             </div>
                             <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
                                 TabLayout tabLayout = (TabLayout)
                                 root.findViewById(R.id.sliding_tabs);
                             </div>
-                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
+                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
                                 tabLayout.setupWithViewPager(mViewPager);
                             </div>
-                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
+                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -194,7 +201,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a98e370cfcbfe5eaa4e1fe9242b00e639.html#a98e370cfcbfe5eaa4e1fe9242b00e639">it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment.getFragments</a>
                                 </div>
                                 <div class="ttdeci">ArrayList&lt; Fragment &gt; getFragments()</div>
-                                <div class="ttdef"><b>Definition:</b> DeviceDetailFragment.java:73
+                                <div class="ttdef"><b>Definition:</b> DeviceDetailFragment.java:74
                                 </div>
                             </div>
                         </div><!-- fragment -->

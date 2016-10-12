@@ -250,7 +250,7 @@ public class ProlificSerialDriver implements UsbSerialDriver {
                 }
             }
 
-            /* throw and clear an exception which occured in the status read thread */
+            /* throw and clearRecordedValues an exception which occured in the status read thread */
             IOException readStatusException = mReadStatusException;
             if (mReadStatusException != null) {
                 mReadStatusException = null;

@@ -96,6 +96,16 @@ $(function() {
                         </tr>
                         <tr>
                             <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ac3451825d5672d5e761269afc563e88e.html#ac3451825d5672d5e761269afc563e88e">estimateKalmanFilterDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0cc72ed8871490402b1fac0a10520f7d.html#a0cc72ed8871490402b1fac0a10520f7d">estimateRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abd84ded1e26d40304606ce0572735106.html#abd84ded1e26d40304606ce0572735106">Estimation</a>
                             </td>
                         </tr>
@@ -117,6 +127,16 @@ $(function() {
                         <tr>
                             <td class="navtab"><a class="qindex"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_ad355b2e850a8d6013ef771eecd740e1b.html#ad355b2e850a8d6013ef771eecd740e1b">getRawDistance</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a0863741935c878f7fa6f8c7c6cc086c9.html#a0863741935c878f7fa6f8c7c6cc086c9">isKalmanFilterEnabled</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_abfb2f400444016cb1323e100d2d8c5b8.html#abfb2f400444016cb1323e100d2d8c5b8">kalmanFilterEnabled</a>
                             </td>
                         </tr>
                         <tr>
@@ -183,7 +203,7 @@ $(function() {
                                             <td>)</td>
                                             <td></td>
                                             <td></td>
-                                        </tr>
+        </tr>
                                     </table>
                                 </td>
                                 <td class="mlabels-right">
@@ -194,63 +214,46 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;
+                            <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;
+                            <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;
                             </div>
-                            <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;
+                            <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;
                                 <span class="keywordflow">if</span> (rssi == 0.0D) {
                             </div>
-                            <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;
+                            <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;
                                 <span class="keywordflow">return</span> -1.0D; <span
                                         class="comment">// if we cannot determine accuracy, return -1.</span>
                             </div>
-                            <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;
+                            <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;
+                            <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;
                             </div>
-                            <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;
+                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
                                 <span class="keywordtype">double</span> ratio = (rssi * 1.0D) /
                                 txPower;
                             </div>
-                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
+                            <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;
                                 <span class="keywordflow">if</span> (ratio &lt; 1.0D) {
                             </div>
-                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
+                            <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;
                                 <span class="keywordflow">return</span> Math.pow(ratio, 10.0D);
                             </div>
-                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
+                            <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
+                            <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;
                             </div>
-                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span
+                            <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span
                                     class="comment">//        return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.125D;</span>
                             </div>
-                            <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
+                            <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;
                                 <span class="keywordflow">return</span> (0.89976D * Math.pow(ratio,
                                 7.7095D)) + 0.111D;
                             </div>
-                            <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
-                                <span class="comment">/*</span></div>
-                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span
-                                    class="comment">     * RSSI = TxPower - 10 * n * lg(d)</span>
-                            </div>
-                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span
-                                    class="comment">     * n = 2 (in free space)</span></div>
-                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span
-                                    class="comment">     * d = 10 ^ ((TxPower - RSSI) / (10 * n))</span>
-                            </div>
-                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span
-                                    class="comment">     */</span></div>
-                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
-                                <span class="comment">// return Math.pow(10D, (txPower - rssi) / (10 * 2));</span>
-                            </div>
-                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
+                            <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;
                                 }
                             </div>
                         </div><!-- fragment -->

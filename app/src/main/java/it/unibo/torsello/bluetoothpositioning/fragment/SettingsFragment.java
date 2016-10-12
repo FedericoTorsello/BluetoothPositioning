@@ -62,9 +62,8 @@ public class SettingsFragment extends Fragment {
     /* Sets the correct text and adds a onChange onSettingsListener to the kalman filter seekbar */
     private void setKalmanFilterSeekBar(View root) {
         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
-        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 4);
-        kalmanSeek.setMax(10);
-        kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
+        int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 1);
+        kalmanSeek.setProgress(seekValue);
 
         final TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
         kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
@@ -72,7 +71,7 @@ public class SettingsFragment extends Fragment {
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int seekValue, boolean fromUser) {
-                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
+//                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
             }
 
             @Override
@@ -83,10 +82,16 @@ public class SettingsFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SharedPreferences.Editor editor = preferences.edit();
                 int progress = seekBar.getProgress();
+
+                if (!(progress > 0)) {
+                    editor.putBoolean(SettingConstants.KALMAN_FILTER_ENABLED, false);
+                }
+
+                float storeProgress = getCalculatedNoise(progress);
                 editor.putInt(SettingConstants.KALMAN_SEEKBAR_VALUE, progress);
-                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, getCalculatedNoise(progress));
+                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, storeProgress);
                 editor.apply();
-                kalmanFilterValue.setText(df.format(getCalculatedNoise(progress)));
+                kalmanFilterValue.setText(df.format(storeProgress));
             }
         });
     }

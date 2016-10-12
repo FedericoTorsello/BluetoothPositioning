@@ -248,40 +248,41 @@ $(function() {
                                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a6c34176fdfb85bac1d3aa1529b49ad5f.html#a6c34176fdfb85bac1d3aa1529b49ad5f">chart</a>.getData();
                             </div>
                             <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;
                                 <span class="keywordflow">if</span> (data == null) {
                             </div>
-                            <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;
+                            <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;
                                 <span class="keywordflow">if</span> (<a class="code"
                                                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a.html#aa98bcaa2d5ba444b91cdc029768d380a">dataSets</a>
                                 != null) {
                             </div>
-                            <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;
+                            <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a3393d9aa353849188c02a63d64f2dd2d.html#a3393d9aa353849188c02a63d64f2dd2d">initializeDataChart</a>(<a
                                         class="code"
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_aa98bcaa2d5ba444b91cdc029768d380a.html#aa98bcaa2d5ba444b91cdc029768d380a">dataSets</a>);
                             </div>
-                            <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;
+                            <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;
                                 } <span class="keywordflow">else</span> {
                             </div>
-                            <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;
+                            <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;
                                 <span class="keywordflow">throw</span> <span
                                         class="keyword">new</span> Error(<span
                                         class="stringliteral">&quot;Error: dataSet is null!!!&quot;</span>);
                             </div>
-                            <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;
+                            <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;
+                            <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;
                                 } <span class="keywordflow">else</span> {
                             </div>
-                            <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;
+                            <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;
                                 <span class="keywordflow">if</span> (data.getDataSetCount() &gt; 0)
                                 {
                             </div>
-                            <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;
+                            <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span
+                                    class="comment">//                                    Log.i(&quot;miao&quot;, data.getDataSetCount()  +&quot; &quot;);</span>
                             </div>
                             <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;
                                 <span class="keywordflow">for</span> (<span
@@ -297,7 +298,6 @@ $(function() {
                                 }
                             </div>
                             <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;
-                                }
                             </div>
                             <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;
                                 }
@@ -306,24 +306,27 @@ $(function() {
                                 }
                             </div>
                             <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;
-                                });
+                                }
                             </div>
                             <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;
-                                }
+                                });
                             </div>
                             <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;
                                 }
                             </div>
                             <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;
-                                });
+                                }
                             </div>
                             <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;
+                                });
                             </div>
                             <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572.html#ac73af861c9ca49e226fe1218cef6c572">thread</a>.start();
                             </div>
-                            <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;
+                            <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -334,7 +337,7 @@ $(function() {
                                 <div class="ttdeci">void initializeDataChart(ArrayList&lt;
                                     ILineDataSet &gt; dataSets)
                                 </div>
-                                <div class="ttdef"><b>Definition:</b> ChartUtil.java:181</div>
+                                <div class="ttdef"><b>Definition:</b> ChartUtil.java:185</div>
                             </div>
                             <div class="ttc"
                                  id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_a6c34176fdfb85bac1d3aa1529b49ad5f_html_a6c34176fdfb85bac1d3aa1529b49ad5f">
@@ -352,7 +355,7 @@ $(function() {
                                 <div class="ttdeci">void plotValue(LineData data, int index, Double
                                     value)
                                 </div>
-                                <div class="ttdef"><b>Definition:</b> ChartUtil.java:163</div>
+                                <div class="ttdef"><b>Definition:</b> ChartUtil.java:166</div>
                             </div>
                             <div class="ttc"
                                  id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ChartUtil_ac73af861c9ca49e226fe1218cef6c572_html_ac73af861c9ca49e226fe1218cef6c572">

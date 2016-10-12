@@ -155,7 +155,7 @@ $(function() {
                                 <td></td>
                                 <td class="paramtype">Bundle&#160;</td>
                                 <td class="paramname"><em>savedInstanceState</em>&#160;</td>
-                            </tr>
+        </tr>
                             <tr>
                                 <td></td>
                                 <td>)</td>
@@ -166,41 +166,37 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;
+                            <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;
+                            <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;
                                 <span class="keyword">final</span> View root =
                                 inflater.inflate(R.layout.fragment_device_detail, container, <span
                                         class="keyword">false</span>);
                             </div>
-                            <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;
+                            <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;
                             </div>
-                            <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;
+                            <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;
                                 getActivity().findViewById(R.id.toolbar).setVisibility(View.GONE);
                             </div>
-                            <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;
+                            <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;
                             </div>
-                            <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;
-                                ((AppBarLayout)
-                                root.findViewById(R.id.appbar_detail)).setExpanded(<span
-                                        class="keyword">false</span>);
+                            <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span
+                                    class="comment">//        ((AppBarLayout) root.findViewById(R.id.appbar_detail)).setExpanded(false);</span>
+                            </div>
+                            <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span
+                                    class="comment">//        ((CollapsingToolbarLayout) root.findViewById(R.id.collapsing_toolbar)).setTitle(idDeviceSelectedName);</span>
                             </div>
                             <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;
-                                ((CollapsingToolbarLayout)
-                                root.findViewById(R.id.collapsing_toolbar)).setTitle(<a class="code"
-                                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942.html#a6d52d8371a07fb8da75879758d1d6942">idDeviceSelectedName</a>);
                             </div>
                             <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;
                                 <a class="code"
                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a62c541b8382a522f06a5d9c56cf50b26.html#a62c541b8382a522f06a5d9c56cf50b26">addChildFragment</a>(root);
                             </div>
-                            <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;
+                            <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;
                                 <span class="keywordflow">return</span> root;
                             </div>
-                            <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;
+                            <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -209,16 +205,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a62c541b8382a522f06a5d9c56cf50b26.html#a62c541b8382a522f06a5d9c56cf50b26">it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment.addChildFragment</a>
                                 </div>
                                 <div class="ttdeci">void addChildFragment(View root)</div>
-                                <div class="ttdef"><b>Definition:</b> DeviceDetailFragment.java:63
-                                </div>
-                            </div>
-                            <div class="ttc"
-                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942_html_a6d52d8371a07fb8da75879758d1d6942">
-                                <div class="ttname"><a
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailFragment_a6d52d8371a07fb8da75879758d1d6942.html#a6d52d8371a07fb8da75879758d1d6942">it.unibo.torsello.bluetoothpositioning.fragment.DeviceDetailFragment.idDeviceSelectedName</a>
-                                </div>
-                                <div class="ttdeci">String idDeviceSelectedName</div>
-                                <div class="ttdef"><b>Definition:</b> DeviceDetailFragment.java:27
+                                <div class="ttdef"><b>Definition:</b> DeviceDetailFragment.java:62
                                 </div>
                             </div>
                         </div><!-- fragment -->

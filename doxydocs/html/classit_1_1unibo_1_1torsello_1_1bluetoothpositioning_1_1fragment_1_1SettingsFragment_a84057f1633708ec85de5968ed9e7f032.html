@@ -188,105 +188,116 @@ $(function() {
                             <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;
                                 <span class="keywordtype">int</span> seekValue = <a class="code"
                                                                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4.html#a52480c4d5d81ca59fe4a98ae3c623ea4">preferences</a>.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE,
-                                4);
+                                1);
                             </div>
                             <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;
-                                kalmanSeek.setMax(10);
+                                kalmanSeek.setProgress(seekValue);
                             </div>
                             <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;
-                                kalmanSeek.setProgress(kalmanSeek.getMax() / 2);
                             </div>
                             <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;
-                            </div>
-                            <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;
                                 <span class="keyword">final</span> TextView kalmanFilterValue =
                                 (TextView) root.findViewById(R.id.kalmanValue);
                             </div>
-                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
+                            <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;
                                 kalmanFilterValue.setText(<a class="code"
                                                              href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694.html#af6b80a700dc80c39a56d001b68a47694">df</a>.format(<a
                                         class="code"
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">getCalculatedNoise</a>(seekValue)));
                             </div>
-                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
+                            <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;
                             </div>
-                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
+                            <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;
                                 kalmanSeek.setOnSeekBarChangeListener(<span
                                         class="keyword">new</span> SeekBar.OnSeekBarChangeListener()
                                 {
                             </div>
-                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
+                            <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;
+                            <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onProgressChanged(SeekBar
                                 seekBar, <span class="keywordtype">int</span> seekValue, <span
                                         class="keywordtype">boolean</span> fromUser) {
                             </div>
-                            <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
-                                kalmanFilterValue.setText(<a class="code"
-                                                             href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694.html#af6b80a700dc80c39a56d001b68a47694">df</a>.format(<a
-                                        class="code"
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">getCalculatedNoise</a>(seekValue)));
+                            <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span
+                                    class="comment">//                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));</span>
                             </div>
-                            <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
+                            <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
+                            <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;
                             </div>
-                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
+                            <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
+                            <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onStartTrackingTouch(SeekBar
                                 seekBar) {
                             </div>
-                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
+                            <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
+                            <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;
                             </div>
-                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
+                            <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
+                            <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onStopTrackingTouch(SeekBar
                                 seekBar) {
                             </div>
-                            <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;
+                            <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;
                                 SharedPreferences.Editor editor = <a class="code"
                                                                      href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4.html#a52480c4d5d81ca59fe4a98ae3c623ea4">preferences</a>.edit();
                             </div>
-                            <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;
+                            <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;
                                 <span class="keywordtype">int</span> progress =
                                 seekBar.getProgress();
                             </div>
+                            <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;
+                            </div>
                             <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;
-                                editor.putInt(SettingConstants.KALMAN_SEEKBAR_VALUE, progress);
+                                <span class="keywordflow">if</span> (!(progress&gt;0)){
                             </div>
                             <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;
-                                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, <a class="code"
-                                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">getCalculatedNoise</a>(progress));
+                                editor.putBoolean(SettingConstants.KALMAN_FILTER_ENABLED, <span
+                                        class="keyword">false</span>);
                             </div>
                             <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;
-                                editor.apply();
-                            </div>
-                            <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;
-                                kalmanFilterValue.setText(<a class="code"
-                                                             href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694.html#af6b80a700dc80c39a56d001b68a47694">df</a>.format(<a
-                                        class="code"
-                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">getCalculatedNoise</a>(progress)));
-                            </div>
-                            <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;
                                 }
                             </div>
+                            <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;
+                                <span class="keywordtype">float</span> storeProgress = <a
+                                        class="code"
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">getCalculatedNoise</a>(progress);
+                            </div>
                             <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;
-                                });
+                                editor.putInt(SettingConstants.KALMAN_SEEKBAR_VALUE, progress);
                             </div>
                             <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;
+                                editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, storeProgress
+                                );
+                            </div>
+                            <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;
+                                editor.apply();
+                            </div>
+                            <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;
+                                kalmanFilterValue.setText(<a class="code"
+                                                             href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_af6b80a700dc80c39a56d001b68a47694.html#af6b80a700dc80c39a56d001b68a47694">df</a>.format(storeProgress));
+                            </div>
+                            <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;
+                                });
+                            </div>
+                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -311,7 +322,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a595d859602f34ca81957a0578c1602a6.html#a595d859602f34ca81957a0578c1602a6">it.unibo.torsello.bluetoothpositioning.fragment.SettingsFragment.getCalculatedNoise</a>
                                 </div>
                                 <div class="ttdeci">static float getCalculatedNoise(int p)</div>
-                                <div class="ttdef"><b>Definition:</b> SettingsFragment.java:94</div>
+                                <div class="ttdef"><b>Definition:</b> SettingsFragment.java:99</div>
                             </div>
                         </div><!-- fragment -->
                     </div>

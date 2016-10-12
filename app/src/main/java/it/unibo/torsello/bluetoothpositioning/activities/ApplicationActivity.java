@@ -24,7 +24,7 @@ import java.util.Collection;
 import java.util.List;
 
 import it.unibo.torsello.bluetoothpositioning.R;
-import it.unibo.torsello.bluetoothpositioning.configuration.MyArmaRssiFilter;
+import it.unibo.torsello.bluetoothpositioning.filters.MyArmaRssiFilter;
 import it.unibo.torsello.bluetoothpositioning.constant.DeviceConstants;
 import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 import it.unibo.torsello.bluetoothpositioning.model.Device;
@@ -101,12 +101,10 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         beaconManager.getBeaconParsers().add(new BeaconParser()
                 .setBeaconLayout(DeviceConstants.ESTIMOTE_NEARABLE_LAYOUT));
 
-        beaconManager.setForegroundScanPeriod(250L);
+        beaconManager.setForegroundScanPeriod(500L);
         beaconManager.setForegroundBetweenScanPeriod(0L);
-        beaconManager.setBackgroundScanPeriod(250L);
-        beaconManager.setBackgroundBetweenScanPeriod(0L);
 
-        beaconManager.setMaxTrackingAge(1000);
+//        beaconManager.setMaxTrackingAge(2000);
     }
 
     private void initializeFloatingActionButton() {
@@ -217,21 +215,20 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
         switch (sorting) {
             case 0:
             case R.id.radioButton_no_rssi_filtering:
-                MyArmaRssiFilter.enableArmaFilter(false);
                 setArmaOptionsVisible(false);
                 setAvgOptionsVisible(false);
 
-                selectOption.append("No filtering");
+                selectOption.append("No RSSI filtering");
 
+                MyArmaRssiFilter.enableArmaFilter(false);
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
 
             case R.id.radioButton_arma_rssi_filter:
-                MyArmaRssiFilter.enableArmaFilter(true);
                 setArmaOptionsVisible(true);
                 setAvgOptionsVisible(false);
 
-                selectOption.append("ARMA filter - Speed ");
+                selectOption.append("ARMA RSSI filter");
 
                 int armaOption = preferences.getInt(SettingConstants.ARMA_OPTION, 0);
                 switch (armaOption) {
@@ -247,16 +244,18 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                         break;
                 }
 
-                selectOption.append(MyArmaRssiFilter.getArmaSpeed());
+                selectOption.append(" - Speed ").append(MyArmaRssiFilter.getArmaSpeed());
 
+                MyArmaRssiFilter.enableArmaFilter(true);
                 BeaconManager.setRssiFilterImplClass(MyArmaRssiFilter.class);
                 break;
 
             case R.id.radioButton_average_rssi_filter:
+
                 setArmaOptionsVisible(false);
                 setAvgOptionsVisible(true);
 
-                selectOption.append("AVG filter - ");
+                selectOption.append("AVG RSSI filter");
 
                 int avgOption = preferences.getInt(SettingConstants.AVG_OPTION, 0);
 
@@ -275,9 +274,9 @@ public class ApplicationActivity extends MainActivity implements BeaconConsumer 
                         break;
                 }
 
-                RunningAverageRssiFilter.setSampleExpirationMilliseconds(sampleExpirationMilliseconds);
-                selectOption.append(sampleExpirationMilliseconds).append(" ms");
+                selectOption.append(" - ").append(sampleExpirationMilliseconds).append(" ms");
 
+                RunningAverageRssiFilter.setSampleExpirationMilliseconds(sampleExpirationMilliseconds);
                 BeaconManager.setRssiFilterImplClass(RunningAverageRssiFilter.class);
                 break;
         }

@@ -14,6 +14,7 @@ public class SettingConstants {
     //    public static final String WALK_DETECTION = "walk_detection";
     public static final String KALMAN_SEEKBAR_VALUE = "kalman_filter_seek_value";
     public static final String KALMAN_NOISE_VALUE = "kalman_filter_noise_value";
+    public static final String KALMAN_FILTER_ENABLED = "kalma_filrer_enabled";
     public static final String DISTANCE_SORTING = "distance_sorting_selected";
 
 }
