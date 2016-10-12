@@ -56,7 +56,7 @@
     <string name="kalman_filter">Kalman Filter:</string>
     <string name="proximity">Proximity:</string>
 
-    <string name="kalman_filter_disabled">disabled</string>
+    <string name="kalman_filter_disabled">no data - filter disabled</string>
     <!---->
 
     <!-- DEVICE COLOR -->
@@ -116,6 +116,8 @@
 
     <string name="start_recording">start recording</string>
     <string name="on_recording">on recording</string>
+
+    <string name="arduino_not_connected">no data - arduino not connected</string>
     <!---->
 
 </resources>

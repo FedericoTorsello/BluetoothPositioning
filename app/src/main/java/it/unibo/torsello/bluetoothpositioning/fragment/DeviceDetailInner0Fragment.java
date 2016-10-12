@@ -116,7 +116,7 @@ public class DeviceDetailInner0Fragment extends Fragment implements Observer {
                     Snackbar.make(getActivity().findViewById(R.id.fab),
                             "Start recording", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    reportUtils.createJson();
+                    reportUtils.createReport();
                 }
             }
         });

@@ -62,6 +62,7 @@ public class Estimation {
 
         if (!(processNoise > 0)) {
             kalmanFilterEnabled = false;
+            distanceEstimated = 0;
         } else {
             kalmanFilterEnabled = true;
 

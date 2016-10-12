@@ -63,6 +63,9 @@ public class SettingsFragment extends Fragment {
     private void setKalmanFilterSeekBar(View root) {
         SeekBar kalmanSeek = (SeekBar) root.findViewById(R.id.kalmanSeek);
         int seekValue = preferences.getInt(SettingConstants.KALMAN_SEEKBAR_VALUE, 1);
+
+        setEnabledKalmanFilter(seekValue);
+
         kalmanSeek.setProgress(seekValue);
 
         final TextView kalmanFilterValue = (TextView) root.findViewById(R.id.kalmanValue);
@@ -71,7 +74,7 @@ public class SettingsFragment extends Fragment {
         kalmanSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int seekValue, boolean fromUser) {
-//                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
+                kalmanFilterValue.setText(df.format(getCalculatedNoise(seekValue)));
             }
 
             @Override
@@ -81,19 +84,29 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SharedPreferences.Editor editor = preferences.edit();
-                int progress = seekBar.getProgress();
 
-                if (!(progress > 0)) {
-                    editor.putBoolean(SettingConstants.KALMAN_FILTER_ENABLED, false);
-                }
+                int progress = seekBar.getProgress();
 
                 float storeProgress = getCalculatedNoise(progress);
                 editor.putInt(SettingConstants.KALMAN_SEEKBAR_VALUE, progress);
                 editor.putFloat(SettingConstants.KALMAN_NOISE_VALUE, storeProgress);
                 editor.apply();
+
+                setEnabledKalmanFilter(progress);
                 kalmanFilterValue.setText(df.format(storeProgress));
             }
         });
+    }
+
+    private void setEnabledKalmanFilter(int progress) {
+        SharedPreferences.Editor editor = preferences.edit();
+
+        if (progress > 0) {
+            editor.putBoolean(SettingConstants.KALMAN_FILTER_ENABLED, true);
+        } else {
+            editor.putBoolean(SettingConstants.KALMAN_FILTER_ENABLED, false);
+        }
+        editor.apply();
     }
 
     private static float getCalculatedNoise(int p) {

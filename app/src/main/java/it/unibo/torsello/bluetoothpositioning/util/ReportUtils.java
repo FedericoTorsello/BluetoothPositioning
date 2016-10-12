@@ -14,15 +14,16 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -36,26 +37,26 @@ import it.unibo.torsello.bluetoothpositioning.constant.SettingConstants;
 
 public class ReportUtils {
 
-    private Gson gson;
-
     private String idDeviceSelectedName;
 
-    private int indexFile = 0;
-    private String rssiFilterSelected;
+    private FragmentActivity activity;
 
+    private String rssiFilterSelected;
     private ArrayList<Double> arduinoValues;
     private ArrayList<Double> rawValues;
     private ArrayList<Double> altBeaconValues;
+
     private ArrayList<Double> kFilterValues;
+    private String formattedDate;
 
-    private SimpleDateFormat sdf;
+    private String formattedTime;
+    private DecimalFormat dfValues;
 
+    private DecimalFormat dfJsonFile;
 
-    private DecimalFormat df;
-    private FragmentActivity activity;
-
+    private Gson gson;
     private File jsonFile;
-
+    private int indexFile = 1;
 
     private SharedPreferences preferences;
 
@@ -68,9 +69,16 @@ public class ReportUtils {
         altBeaconValues = new ArrayList<>();
         kFilterValues = new ArrayList<>();
 
-        sdf = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        formattedDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
+                .format(Calendar.getInstance().getTime());
 
-        df = new DecimalFormat("00", DecimalFormatSymbols.getInstance());
+        formattedTime = new SimpleDateFormat("HH:mm", Locale.getDefault())
+                .format(Calendar.getInstance().getTime());
+
+        dfValues = new DecimalFormat("0.00", DecimalFormatSymbols.getInstance());
+
+        dfJsonFile = new DecimalFormat("00", DecimalFormatSymbols.getInstance());
+
 
         gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -83,9 +91,7 @@ public class ReportUtils {
         return activity;
     }
 
-    public void createJson() {
-
-        String formattedDate = sdf.format(Calendar.getInstance().getTime());
+    public void createReport() {
 
         double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
 
@@ -95,10 +101,6 @@ public class ReportUtils {
         }
 
         rssiFilterSelected = ((ApplicationActivity) getActivity()).getRssiFilterSelected();
-
-        if (!rssiFilterSelected.equals(tempFilter)) {
-            indexFile = 0;
-        }
 
         if (isExternalStorageWritable()) {
             File root = Environment.getExternalStorageDirectory();
@@ -121,24 +123,25 @@ public class ReportUtils {
                     + rssiFilterSelected);
             subDir3.mkdirs();
 
-            String fileName = String.format(idDeviceSelectedName + " - %s.json", df.format(indexFile));
+            if (!rssiFilterSelected.equals(tempFilter)) {
+                indexFile = 1;
+            }
 
-            jsonFile = new File(subDir3, fileName);
+            jsonFile = new File(subDir3, getNameFile());
 
             if (jsonFile.exists()) {
                 if (!rssiFilterSelected.equals(tempFilter)) {
-                    indexFile = 0;
+                    indexFile = 1;
                 } else {
                     String name = jsonFile.getName();
                     String substring = name.substring(name.length() - 7, name.length() - 5);
                     indexFile = Integer.parseInt(substring);
                     indexFile++;
-                    fileName = String.format(idDeviceSelectedName + " - %s.json", df.format(indexFile));
-                    jsonFile = new File(subDir3, fileName);
-                }
 
+                    jsonFile = new File(subDir3, getNameFile());
+                }
             } else {
-                indexFile = 0;
+                indexFile = 1;
             }
 
             try {
@@ -149,9 +152,12 @@ public class ReportUtils {
 
             writeJsonFile();
 
-            refreshDirectory(jsonFile);
-
+            writeResumeFile();
         }
+    }
+
+    private String getNameFile() {
+        return String.format(idDeviceSelectedName + " - %s.json", dfJsonFile.format(indexFile));
     }
 
     public String getJson() {
@@ -189,45 +195,56 @@ public class ReportUtils {
 
         StringBuilder sb = new StringBuilder();
 
-        String min = "Min ";
-        String max = "Max ";
-        String avg = "AVG ";
+        sb.append("Reference: ").append(indexFile).append("m").append("\n\n");
 
-        String arduino = "Arduino values: ";
-        String altBeacon = "AltBeacon values: ";
-        String raw = "Raw values: ";
-        String kf = "Kalman Filter values: ";
+        sb.append(appendResume("Raw", rawValues));
 
-        if (!arduinoValues.isEmpty()) {
-            sb.append(min).append(arduino).append(Collections.min(arduinoValues)).append("\n");
-            sb.append(max).append(arduino).append(Collections.max(arduinoValues)).append("\n");
-            sb.append(avg).append(arduino).append(calculateAverage(arduinoValues)).append("\n");
-
-            sb.append("\n\n");
-        }
-
-        sb.append(min).append(raw).append(Collections.min(rawValues)).append("\n");
-        sb.append(max).append(raw).append(Collections.max(rawValues)).append("\n");
-        sb.append(avg).append(raw).append(calculateAverage(rawValues)).append("\n");
-
-        sb.append("\n\n");
-
-        sb.append(min).append(altBeacon).append(Collections.min(altBeaconValues)).append("\n");
-        sb.append(max).append(altBeacon).append(Collections.max(altBeaconValues)).append("\n");
-        sb.append(avg).append(altBeacon).append(calculateAverage(altBeaconValues)).append("\n");
-
-        sb.append("\n\n");
+        sb.append(appendResume("AltBeacon", altBeaconValues));
 
         if (isKalmanFilterEnabled) {
-            sb.append(min).append(kf).append(Collections.min(kFilterValues)).append("\n");
-            sb.append(max).append(kf).append(Collections.max(kFilterValues)).append("\n");
-            sb.append(avg).append(kf).append(calculateAverage(kFilterValues)).append("\n");
+            sb.append(appendResume("Kalman Filter", kFilterValues));
+        } else {
+            sb.append("Kalman Filter").append("\n");
+            sb.append("no data - filter disabled").append("\n\n");
+        }
+        if (!arduinoValues.isEmpty()) {
+            sb.append(appendResume("Arduino", arduinoValues));
+        } else {
+            sb.append("Arduino").append("\n");
+            sb.append("no data - arduino not connected");
         }
 
         return String.valueOf(sb);
     }
 
-    private double calculateAverage(ArrayList<Double> value) {
+    private String appendResume(String arg, ArrayList<Double> value) {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(arg).append("\n");
+        sb.append("Min:\t").append(getMinAsString(value))
+                .append("\t\tdeviation:\t").append(getDeviation(Collections.min(value))).append("\n");
+        sb.append("Max:\t").append(getMaxAsString(value))
+                .append("\t\tdeviation:\t").append(getDeviation(Collections.max(value))).append("\n");
+        sb.append("Avg:\t").append(getAvgAsString(value))
+                .append("\t\tdeviation:\t").append(getDeviation(getAvg(value))).append("\n");
+        sb.append("\n\n");
+        return String.valueOf(sb);
+    }
+
+    private String getMinAsString(ArrayList<Double> value) {
+        return dfValues.format(Collections.min(value)) + "m";
+    }
+
+    private String getMaxAsString(ArrayList<Double> value) {
+        return dfValues.format(Collections.max(value)) + "m";
+    }
+
+    private String getAvgAsString(ArrayList<Double> value) {
+        return dfValues.format(getAvg(value)) + "m";
+    }
+
+    private Double getAvg(ArrayList<Double> value) {
         Double sum = 0D;
         if (!value.isEmpty()) {
             for (Double mark : value) {
@@ -238,13 +255,39 @@ public class ReportUtils {
         return sum;
     }
 
+    private String getDeviation(Double value) {
+
+        double deviation = (value - indexFile);
+        if (deviation >= 0) {
+            return "+" + dfValues.format(deviation) + "m";
+        } else {
+            return dfValues.format(deviation) + "m";
+        }
+    }
+
+    private void writeResumeFile() {
+
+        try {
+
+            String fileTxtName = String.format(idDeviceSelectedName + " - %s.txt", dfJsonFile.format(indexFile));
+            File myFile = new File(jsonFile.getParent(), fileTxtName);
+            myFile.createNewFile();
+            FileOutputStream fOut = new FileOutputStream(myFile);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+            myOutWriter.append(getResume());
+            myOutWriter.close();
+            fOut.close();
+            refreshDirectory(myFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void writeJsonFile() {
-        String formattedDate = sdf.format(Calendar.getInstance().getTime());
-        SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm", Locale.getDefault());
-        String time = sdf2.format(Calendar.getInstance().getTime());
 
         double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
-        boolean isKalmanFilterEnabled = preferences.getBoolean(SettingConstants.KALMAN_FILTER_ENABLED, false);
+        boolean isKalmanFilterEnabled = preferences.getBoolean(SettingConstants.KALMAN_FILTER_ENABLED, true);
 
         try {
             Writer writer = new FileWriter(jsonFile);
@@ -253,48 +296,82 @@ public class ReportUtils {
 
             jw.beginObject();
             {
-                jw.name("id").value("report " + df.format(indexFile));
+                jw.name("id").value("report " + dfJsonFile.format(indexFile));
                 jw.name("date").value(formattedDate);
-                jw.name("time").value(time);
+                jw.name("time").value(formattedTime);
                 jw.name("filter").value(rssiFilterSelected);
+                jw.name("reference").value(indexFile + "m");
                 jw.name("distance_estimation");
                 jw.beginObject();
                 {
-                    jw.name("arduino");
-                    if (arduinoValues.isEmpty()) {
-                        jw.value("no data");
-                    } else {
+                    jw.name("raw");
+                    jw.beginObject();
+                    {
+                        appendData(jw, rawValues);
+
+                        jw.name("raw_values");
                         jw.beginArray();
-                        for (Double value : arduinoValues) {
+                        for (Double value : rawValues) {
                             jw.value(value);
                         }
                         jw.endArray();
                     }
-
-                    jw.name("raw");
-                    jw.beginArray();
-                    for (Double value : rawValues) {
-                        jw.value(value);
-                    }
-                    jw.endArray();
+                    jw.endObject();
 
                     jw.name("altbeacon");
-                    jw.beginArray();
-                    for (Double value : altBeaconValues) {
-                        jw.value(value);
-                    }
-                    jw.endArray();
+                    jw.beginObject();
+                    {
+                        appendData(jw, altBeaconValues);
 
-                    jw.name("kFilter");
-                    if (isKalmanFilterEnabled) {
-                        jw.name("kFilter_processNoise").value(processNoise);
+                        jw.name("altbeacon_values");
                         jw.beginArray();
-                        for (Double value : kFilterValues) {
+                        for (Double value : altBeaconValues) {
                             jw.value(value);
                         }
                         jw.endArray();
+                    }
+                    jw.endObject();
+
+
+                    if (isKalmanFilterEnabled) {
+
+                        jw.name("kFilter_processNoise").value(processNoise);
+
+                        jw.name("kFilter");
+                        jw.beginObject();
+                        {
+                            appendData(jw, kFilterValues);
+
+                            jw.name("kFilter_values");
+                            jw.beginArray();
+                            for (Double value : kFilterValues) {
+                                jw.value(value);
+                            }
+                            jw.endArray();
+                        }
+                        jw.endObject();
+
                     } else {
-                        jw.value(getActivity().getString(R.string.kalman_filter_disabled));
+                        jw.name("kFilter").value(getActivity().getString(R.string.kalman_filter_disabled));
+                    }
+
+                    if (!arduinoValues.isEmpty()) {
+                        jw.name("arduino");
+                        jw.beginObject();
+                        {
+                            appendData(jw, arduinoValues);
+
+                            jw.name("arduino_values");
+                            jw.beginArray();
+                            for (Double value : arduinoValues) {
+                                jw.value(value);
+                            }
+                            jw.endArray();
+                        }
+                        jw.endObject();
+
+                    } else {
+                        jw.name("arduino").value("no data - arduino not connected");
                     }
                 }
                 jw.endObject();
@@ -302,10 +379,22 @@ public class ReportUtils {
             jw.endObject();
 
             writer.close();
+
+            refreshDirectory(jsonFile);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    private JsonWriter appendData(JsonWriter jw, ArrayList<Double> value) throws IOException {
+        jw.name("min").value(getMinAsString(value));
+        jw.name("max").value(getMaxAsString(value));
+        jw.name("avg").value(getAvgAsString(value));
+        jw.name("min dev").value(getDeviation(Collections.min(value)));
+        jw.name("max dev").value(getDeviation(Collections.max(value)));
+        jw.name("avg dev").value(getDeviation(getAvg(value)));
+        return jw;
     }
 
     private void refreshDirectory(File file) {
