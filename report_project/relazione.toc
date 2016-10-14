@@ -55,8 +55,8 @@
 \contentsline {subsubsection}{Filtering nella classe KFilter}{22}{section*.14}
 \contentsline {subsection}{\numberline {5.5.3}Implementazione del filtro ARMA}{23}{subsection.5.5.3}
 \contentsline {subsubsection}{Aggiornamento del filtro ARMA}{23}{section*.15}
-\contentsline {subsection}{\numberline {5.5.4}Grafici in tempo reale}{24}{subsection.5.5.4}
-\contentsline {subsubsection}{Dettaglio di un grafico in tempo reale}{24}{section*.16}
+\contentsline {subsection}{\numberline {5.5.4}Grafici in tempo reale}{25}{subsection.5.5.4}
+\contentsline {subsubsection}{Dettaglio di un grafico in tempo reale}{25}{section*.16}
 \contentsline {chapter}{\numberline {6}Stima della distanza con Arduino}{26}{chapter.6}
 \contentsline {section}{\numberline {6.1}Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}{26}{section.6.1}
 \contentsline {subsubsection}{\relax $\@@underline {\hbox {\href {http://playground.arduino.cc/Code/NewPing}{NewPing}}}\mathsurround \z@ $\relax }{27}{section*.18}
@@ -84,26 +84,27 @@
 \contentsline {section}{\numberline {7.19}CameraPreviewUtil}{56}{section.7.19}
 \contentsline {section}{\numberline {7.20}SaveImageTask}{58}{section.7.20}
 \contentsline {section}{\numberline {7.21}DeviceDetailInner1Fragment}{59}{section.7.21}
-\contentsline {section}{\numberline {7.22}DeviceDetailInner2Fragment}{61}{section.7.22}
-\contentsline {section}{\numberline {7.23}DeviceChartFragment}{62}{section.7.23}
-\contentsline {section}{\numberline {7.24}ChartUtil}{64}{section.7.24}
-\contentsline {section}{\numberline {7.25}UsbMeasurementFragment}{65}{section.7.25}
-\contentsline {section}{\numberline {7.26}UsbUtil}{67}{section.7.26}
-\contentsline {subsubsection}{Metodo initializeUsb()}{67}{section*.60}
-\contentsline {section}{\numberline {7.27}UsbMeasurementObservable}{70}{section.7.27}
-\contentsline {section}{\numberline {7.28}FABBehavior}{71}{section.7.28}
-\contentsline {part}{IV\hspace {1em}Implementazione}{72}{part.4}
-\contentsline {chapter}{\numberline {8}GUI dell'app}{73}{chapter.8}
-\contentsline {section}{\numberline {8.1}Avvio dell'app}{73}{section.8.1}
-\contentsline {section}{\numberline {8.2}Abilitazione della radio Bluetooth}{74}{section.8.2}
-\contentsline {section}{\numberline {8.3}Scansione dei dispositivi}{75}{section.8.3}
-\contentsline {section}{\numberline {8.4}Men\IeC {\`u} a sinistra}{76}{section.8.4}
-\contentsline {section}{\numberline {8.5}Men\IeC {\`u} a destra}{77}{section.8.5}
-\contentsline {section}{\numberline {8.6}Foto ad un dispositivo}{78}{section.8.6}
-\contentsline {section}{\numberline {8.7}Dettagli e grafici real time}{79}{section.8.7}
-\contentsline {section}{\numberline {8.8}Connessione con Arduino via USB OTG}{80}{section.8.8}
-\contentsline {section}{\numberline {8.9}Feedback della stima della distanza con Arduino}{81}{section.8.9}
-\contentsline {chapter}{\numberline {9}Testing}{82}{chapter.9}
-\contentsline {section}{\numberline {9.1}Configurazione dell'ambiente indoor}{82}{section.9.1}
-\contentsline {section}{\numberline {9.2}Collegamento Arduino-smartphone}{83}{section.9.2}
-\contentsline {subsection}{\numberline {9.2.1}Materiale utilizzato}{84}{subsection.9.2.1}
+\contentsline {section}{\numberline {7.22}DeviceDetailInner2Fragment}{60}{section.7.22}
+\contentsline {section}{\numberline {7.23}DeviceChartFragment}{61}{section.7.23}
+\contentsline {section}{\numberline {7.24}ChartUtil}{62}{section.7.24}
+\contentsline {section}{\numberline {7.25}UsbMeasurementFragment}{63}{section.7.25}
+\contentsline {section}{\numberline {7.26}UsbUtil}{65}{section.7.26}
+\contentsline {subsubsection}{Metodo initializeUsb()}{65}{section*.58}
+\contentsline {section}{\numberline {7.27}UsbMeasurementObservable}{68}{section.7.27}
+\contentsline {section}{\numberline {7.28}FABBehavior}{69}{section.7.28}
+\contentsline {part}{IV\hspace {1em}Implementazione}{70}{part.4}
+\contentsline {chapter}{\numberline {8}GUI dell'app}{71}{chapter.8}
+\contentsline {section}{\numberline {8.1}Avvio dell'app}{71}{section.8.1}
+\contentsline {section}{\numberline {8.2}Abilitazione della radio Bluetooth}{72}{section.8.2}
+\contentsline {section}{\numberline {8.3}Scansione dei dispositivi}{73}{section.8.3}
+\contentsline {section}{\numberline {8.4}Men\IeC {\`u} a sinistra}{74}{section.8.4}
+\contentsline {section}{\numberline {8.5}Men\IeC {\`u} a destra}{75}{section.8.5}
+\contentsline {section}{\numberline {8.6}Foto ad un dispositivo}{76}{section.8.6}
+\contentsline {section}{\numberline {8.7}Dettagli e grafici real time}{77}{section.8.7}
+\contentsline {section}{\numberline {8.8}Connessione con Arduino via USB OTG}{78}{section.8.8}
+\contentsline {section}{\numberline {8.9}Feedback della stima della distanza con Arduino}{79}{section.8.9}
+\contentsline {chapter}{\numberline {9}Testing}{80}{chapter.9}
+\contentsline {section}{\numberline {9.1}Configurazione dell'ambiente indoor}{80}{section.9.1}
+\contentsline {section}{\numberline {9.2}Collegamento Arduino-smartphone}{81}{section.9.2}
+\contentsline {subsection}{\numberline {9.2.1}Materiale utilizzato}{82}{subsection.9.2.1}
+\contentsline {subsection}{\numberline {9.2.2}Dati raccolti}{83}{subsection.9.2.2}

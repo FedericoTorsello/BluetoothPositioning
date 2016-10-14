@@ -154,11 +154,11 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 \begin{DoxyCode}
 80                                                          \{
 81         super.onAttachFragment(childFragment);
-82         \textcolor{keywordflow}{if} (childFragment instanceof DeviceDetailReportFragment)\{
+82         \textcolor{keywordflow}{if} (childFragment instanceof DeviceDetailReportFragment) \{
 83             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment_afb73345c725b2c9ad4b430915d5f1b15_afb73345c725b2c9ad4b430915d5f1b15}{onRecordingReport} = (OnRecordingReport) childFragment;
 84         \}
 85 
-86         \textcolor{keywordflow}{if} (childFragment instanceof DeviceDetailResumeFragment)\{
+86         \textcolor{keywordflow}{if} (childFragment instanceof DeviceDetailResumeFragment) \{
 87             \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment_a8603d0fe3501a6267a8cf9f9f0d29360_a8603d0fe3501a6267a8cf9f9f0d29360}{onRecordingResume} = (OnRecordingResume) childFragment;
 88         \}
 89     \}
@@ -221,7 +221,7 @@ Created by Federico Torsello. \href{mailto:federico.torsello@studio.unibo.it}{\t
 116                     Snackbar.make(getActivity().findViewById(R.id.fab),
 117                             \textcolor{stringliteral}{"Start recording"}, Snackbar.LENGTH\_SHORT).show();
 118                 \} \textcolor{keywordflow}{else} \{
-119                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment_aaca0aaeea8b6532c9e2683d415adfc59_aaca0aaeea8b6532c9e2683d415adfc59}{reportUtils}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a9157e4b2593b8ceaae5448cfff96f4c4_a9157e4b2593b8ceaae5448cfff96f4c4}{createJson}();
+119                     \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment_aaca0aaeea8b6532c9e2683d415adfc59_aaca0aaeea8b6532c9e2683d415adfc59}{reportUtils}.\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a346661fa52c458c399de10f6ca494cd7_a346661fa52c458c399de10f6ca494cd7}{createReport}();
 120                 \}
 121             \}
 122         \});

@@ -188,45 +188,54 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;
+                            <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;
+                            <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;
                                 holder.altbeaconDistanceTextView.setText(String.format(<span
                                         class="stringliteral">&quot;%sm&quot;</span>, <a
                                         class="code"
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">df</a>.format(device.getAltBeaconDistance())));
                             </div>
-                            <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;
-                            </div>
                             <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;
                                 holder.standardRawDistanceTextView.setText(String.format(<span
                                         class="stringliteral">&quot;%sm&quot;</span>, <a
                                         class="code"
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">df</a>.format(device.getRawDistance())));
                             </div>
-                            <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;
-                            </div>
                             <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;
-                                <span class="keywordflow">if</span>
-                                (!device.isKalmanFilterEnabled()){
                             </div>
                             <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;
+                                <span class="keywordflow">if</span>
+                                (!device.isKalmanFilterEnabled()) {
+                            </div>
+                            <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;
                                 holder.kalmanFilterDistanceTextView.setText(<a class="code"
                                                                                href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_a0ff32c6bf5d84b68021bf586d64cacaf.html#a0ff32c6bf5d84b68021bf586d64cacaf">getActivity</a>().getText(R.string.kalman_filter_disabled));
                             </div>
-                            <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;
+                            <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;
                                 } <span class="keywordflow">else</span> {
                             </div>
-                            <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;
-                                holder.kalmanFilterDistanceTextView.setText(String.format(<span
-                                        class="stringliteral">&quot;%s&quot;</span>, <a class="code"
-                                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">df</a>.format(device.getKalmanFilterDistance())));
-                            </div>
                             <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;
-                                }
+                                holder.kalmanFilterDistanceTextView.setText(String.format(<span
+                                        class="stringliteral">&quot;%sm&quot;</span>, <a
+                                        class="code"
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">df</a>.format(device.getKalmanFilterDistance())));
                             </div>
                             <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;
+                                holder.kf2TextView.setText(String.format(<span
+                                        class="stringliteral">&quot;%sm&quot;</span>, <a
+                                        class="code"
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">df</a>.format(device.getKalmanFilter2())));
+                            </div>
+                            <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;
                                 }
                             </div>
                             <div class="ttc"
@@ -235,7 +244,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_a0ff32c6bf5d84b68021bf586d64cacaf.html#a0ff32c6bf5d84b68021bf586d64cacaf">it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter.getActivity</a>
                                 </div>
                                 <div class="ttdeci">FragmentActivity getActivity()</div>
-                                <div class="ttdef"><b>Definition:</b> DeviceCardViewAdapter.java:47
+                                <div class="ttdef"><b>Definition:</b> DeviceCardViewAdapter.java:48
                                 </div>
                             </div>
                             <div class="ttc"
@@ -244,7 +253,7 @@ $(function() {
                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1adapter_1_1DeviceCardViewAdapter_ae3a2fe6b4e69e1f9b8edfb9bcba14057.html#ae3a2fe6b4e69e1f9b8edfb9bcba14057">it.unibo.torsello.bluetoothpositioning.adapter.DeviceCardViewAdapter.df</a>
                                 </div>
                                 <div class="ttdeci">DecimalFormat df</div>
-                                <div class="ttdef"><b>Definition:</b> DeviceCardViewAdapter.java:32
+                                <div class="ttdef"><b>Definition:</b> DeviceCardViewAdapter.java:33
                                 </div>
                             </div>
                         </div><!-- fragment -->

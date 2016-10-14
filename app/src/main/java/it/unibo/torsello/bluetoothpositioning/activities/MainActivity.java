@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         replaceFragment(DEVICE_FRAGMENT);
 
         checkAndroidMPermission();
+
+
     }
 
     @Override

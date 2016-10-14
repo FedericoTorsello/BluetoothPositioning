@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // android support
     // android beacon library AltBeacon
-    // library for Kalman Filter
+    // library for KFilter2 Filter
     // chart library
     // realm library
     //    compile 'com.github.PhilJay:MPAndroidChart-Realm:v1.1.0@aar'

@@ -7,30 +7,32 @@
   \indexspace
 
   \item {A}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{98}
+		\hyperpage{101}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101, 102}
+		\hyperpage{106, 107}
   \item {A\+P\+P\+L\+E\+\_\+\+B\+E\+A\+C\+O\+N\+\_\+\+L\+A\+Y\+O\+UT}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Device\+Constants}, 
 		\hyperpage{53}
   \item {A\+R\+M\+A\+\_\+\+O\+P\+T\+I\+ON}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {A\+V\+G\+\_\+\+O\+P\+T\+I\+ON}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {activity}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{45}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{127}
+		\hyperpage{135}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{28}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{35}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{130}
   \item {add\+Child\+Fragment}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}, 
 		\hyperpage{56}
@@ -40,46 +42,54 @@
 		\hyperpage{70}
   \item {add\+Measurement}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{112}
+		\hyperpage{117}
   \item {address}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{40}
   \item {alt\+Beacon\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{130}
   \item {altbeacon\+Distance\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{86}
+  \item {append\+Data}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{124}
+  \item {append\+Resume}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{124}
   \item {application\+Activity}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{147}
-  \item {Application\+Activity.\+java}, \hyperpage{148}
+		\hyperpage{155}
+  \item {Application\+Activity.\+java}, \hyperpage{156}
   \item {arduino\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{50}
   \item {arduino\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{130}
   \item {arma\+Measurement}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{113}
+		\hyperpage{118}
   \item {arma\+Speed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{113}
+		\hyperpage{118}
 
   \indexspace
 
   \item {B}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101, 102}
+		\hyperpage{106, 107}
   \item {B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{147}
+		\hyperpage{155}
   \item {back\+\_\+pressed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{109}
+		\hyperpage{114}
   \item {background\+Power\+Saver}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{17}
@@ -91,32 +101,29 @@
 		\hyperpage{17}
   \item {build}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101}
+		\hyperpage{106}
 
   \indexspace
 
   \item {C}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101, 102}
-  \item {calculate\+Average}
-    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{118}
+		\hyperpage{106, 107}
   \item {calculate\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
 		\hyperpage{90}
   \item {calculate\+Rssi}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{112}
+		\hyperpage{117}
   \item {camera}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Camera\+Fragment}, 
 		\hyperpage{21}
-  \item {Camera\+Fragment.\+java}, \hyperpage{148}
+  \item {Camera\+Fragment.\+java}, \hyperpage{156}
   \item {Camera\+Preview\+Util}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{24}
-  \item {Camera\+Preview\+Util.\+java}, \hyperpage{149}
+  \item {Camera\+Preview\+Util.\+java}, \hyperpage{157}
   \item {chart}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{35}
@@ -129,19 +136,19 @@
   \item {chart\+Util}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{50}
-  \item {Chart\+Util.\+java}, \hyperpage{149}
+  \item {Chart\+Util.\+java}, \hyperpage{157}
   \item {check}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment}, 
 		\hyperpage{62}
   \item {check\+Android\+M\+Permission}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{107}
+		\hyperpage{112}
   \item {clear\+Recorded\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{118}
+		\hyperpage{124}
   \item {close\+Port}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{145}
+		\hyperpage{153}
   \item {color}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{40}
@@ -150,13 +157,13 @@
 		\hyperpage{86}
   \item {cov}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
   \item {create\+Data\+Set}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{32}
-  \item {create\+Json}
+  \item {create\+Report}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{118}
+		\hyperpage{124}
 
   \indexspace
 
@@ -183,7 +190,7 @@
 		\hyperpage{45}
   \item {D\+E\+V\+I\+C\+E\+\_\+\+F\+R\+A\+G\+M\+E\+NT}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{109}
+		\hyperpage{114}
   \item {D\+E\+V\+I\+C\+E\+\_\+\+M\+AP}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Device\+Constants}, 
 		\hyperpage{53}
@@ -196,7 +203,7 @@
 		\hyperpage{71}
   \item {D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+S\+O\+R\+T\+I\+NG}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {data\+Sets}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{35}
@@ -206,19 +213,19 @@
   \item {Device}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{37}
-  \item {Device.\+java}, \hyperpage{149}
+  \item {Device.\+java}, \hyperpage{157}
   \item {Device\+Card\+View\+Adapter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{42}
-  \item {Device\+Card\+View\+Adapter.\+java}, \hyperpage{149}
-  \item {Device\+Chart\+Fragment.\+java}, \hyperpage{150}
-  \item {Device\+Constants.\+java}, \hyperpage{150}
-  \item {Device\+Detail\+Fragment.\+java}, \hyperpage{150}
-  \item {Device\+Detail\+Inner0\+Fragment.\+java}, \hyperpage{150}
-  \item {Device\+Detail\+Inner1\+Fragment.\+java}, \hyperpage{150}
-  \item {Device\+Detail\+Inner2\+Fragment.\+java}, \hyperpage{151}
-  \item {Device\+Detail\+Report\+Fragment.\+java}, \hyperpage{151}
-  \item {Device\+Detail\+Resume\+Fragment.\+java}, \hyperpage{151}
+  \item {Device\+Card\+View\+Adapter.\+java}, \hyperpage{157}
+  \item {Device\+Chart\+Fragment.\+java}, \hyperpage{158}
+  \item {Device\+Constants.\+java}, \hyperpage{158}
+  \item {Device\+Detail\+Fragment.\+java}, \hyperpage{158}
+  \item {Device\+Detail\+Inner0\+Fragment.\+java}, \hyperpage{158}
+  \item {Device\+Detail\+Inner1\+Fragment.\+java}, \hyperpage{158}
+  \item {Device\+Detail\+Inner2\+Fragment.\+java}, \hyperpage{159}
+  \item {Device\+Detail\+Report\+Fragment.\+java}, \hyperpage{159}
+  \item {Device\+Detail\+Resume\+Fragment.\+java}, \hyperpage{159}
   \item {device\+List}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{17}
@@ -228,11 +235,11 @@
 		\hyperpage{67}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{80}
-  \item {Device\+List\+Fragment.\+java}, \hyperpage{151}
+  \item {Device\+List\+Fragment.\+java}, \hyperpage{159}
   \item {Device\+Observable}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Device\+Observable}, 
 		\hyperpage{82}
-  \item {Device\+Observable.\+java}, \hyperpage{152}
+  \item {Device\+Observable.\+java}, \hyperpage{160}
   \item {device\+View\+Adapter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner1\+Fragment}, 
 		\hyperpage{67}
@@ -240,22 +247,29 @@
 		\hyperpage{80}
   \item {Device\+View\+Holder}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{85}
+		\hyperpage{86}
   \item {df}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{46}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{134}
+		\hyperpage{142}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{141}
+		\hyperpage{149}
+  \item {df\+Json\+File}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
+  \item {df\+Values}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{131}
   \item {distance\+Estimated}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
   \item {do\+In\+Background}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{126}
+		\hyperpage{134}
+  \item {dt}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
 
   \indexspace
 
@@ -264,7 +278,7 @@
 		\hyperpage{54}
   \item {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
+		\hyperpage{145}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{50}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}, 
@@ -282,44 +296,57 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{81}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{134}
+		\hyperpage{142}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{141}
+		\hyperpage{149}
   \item {enable\+Arma\+Filter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{112}
+		\hyperpage{117}
+  \item {esimate\+Position}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{103}
+  \item {estimate\+Kalman\+Filter2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{90}
   \item {estimate\+Kalman\+Filter\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
 		\hyperpage{90}
   \item {estimate\+Raw\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{90}
+		\hyperpage{91}
   \item {Estimation}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
 		\hyperpage{89}
   \item {estimation}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{40}
-  \item {Estimation.\+java}, \hyperpage{152}
+  \item {Estimation.\+java}, \hyperpage{160}
 
   \indexspace
 
   \item {F\+A\+B\+Behavior}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior}, 
-		\hyperpage{94}
-  \item {F\+A\+B\+Behavior.\+java}, \hyperpage{152}
+		\hyperpage{95}
+  \item {F\+A\+B\+Behavior.\+java}, \hyperpage{160}
   \item {F\+I\+L\+T\+E\+R\+\_\+\+R\+S\+SI}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {filter}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{97}
+		\hyperpage{98, 99}
   \item {formatted\+Date}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{50}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{131}
+  \item {formatted\+Time}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{131}
   \item {fragments}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
+		\hyperpage{145}
   \item {friendly\+Name}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{40}
@@ -333,15 +360,15 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{42}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{126}
+		\hyperpage{134}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{24}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{32}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{119}
+		\hyperpage{125}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{145}
+		\hyperpage{153}
   \item {get\+Address}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{37}
@@ -350,13 +377,19 @@
 		\hyperpage{37}
   \item {get\+Arma\+Speed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{112}
+		\hyperpage{117}
+  \item {get\+Avg}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{125}
+  \item {get\+Avg\+As\+String}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{126}
   \item {get\+Beacon}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{38}
   \item {get\+Calculated\+Noise}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{131}
+		\hyperpage{139}
   \item {get\+Camera}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{24}
@@ -368,10 +401,13 @@
 		\hyperpage{38}
   \item {get\+Count}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
+		\hyperpage{145}
+  \item {get\+Deviation}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{126}
   \item {get\+Distance\+W\+O\+SC}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{90}
+		\hyperpage{91}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{38}
   \item {get\+Fragments}
@@ -394,30 +430,45 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Device\+Observable}, 
 		\hyperpage{83}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Usb\+Measurement\+Observable}, 
-		\hyperpage{143}
+		\hyperpage{151}
   \item {get\+Item}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
+		\hyperpage{145}
   \item {get\+Item\+Count}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{42}
   \item {get\+Json}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{120}
+		\hyperpage{126}
+  \item {get\+Kalman\+Distance2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{91}
+  \item {get\+Kalman\+Filter2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
+		\hyperpage{39}
   \item {get\+Kalman\+Filter\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
 		\hyperpage{91}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{39}
+  \item {get\+Max\+As\+String}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{126}
+  \item {get\+Min\+As\+String}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{127}
+  \item {get\+Name\+File}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{127}
   \item {get\+Optimal\+Preview\+Size}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{25}
   \item {get\+Page\+Title}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
+		\hyperpage{145}
   \item {get\+Proximity}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{91}
+		\hyperpage{92}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{39}
   \item {get\+Random\+Color}
@@ -425,27 +476,33 @@
 		\hyperpage{32}
   \item {get\+Raw\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{91}
+		\hyperpage{92}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{39}
   \item {get\+Resume}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{120}
+		\hyperpage{127}
   \item {get\+Rssi\+Filter\+Selected}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{12}
   \item {gson}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
+
+  \indexspace
+
+  \item {H}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
 
   \indexspace
 
   \item {I\+N\+I\+T\+I\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+\_\+\+N\+O\+I\+SE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}, 
-		\hyperpage{103}
+		\hyperpage{109}
   \item {I\+N\+I\+T\+I\+A\+L\+\_\+\+P\+R\+O\+C\+E\+S\+S\+\_\+\+N\+O\+I\+SE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}, 
-		\hyperpage{103}
+		\hyperpage{109}
   \item {ID}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{50}
@@ -465,7 +522,7 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner2\+Fragment}, 
 		\hyperpage{72}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
   \item {image\+Beacon}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{40}
@@ -477,7 +534,7 @@
 		\hyperpage{40}
   \item {index\+File}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
   \item {initialize\+Beacon\+Manager}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{12}
@@ -497,41 +554,42 @@
 		\hyperpage{12}
   \item {initialize\+Usb}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{145}
+		\hyperpage{153}
   \item {instance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Device\+Observable}, 
 		\hyperpage{83}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Usb\+Measurement\+Observable}, 
-		\hyperpage{144}
+		\hyperpage{152}
   \item {instance\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{86}
+		\hyperpage{87}
   \item {is\+Back\+Pressed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{109}
+		\hyperpage{114}
   \item {is\+Bluetooth\+Available}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{13}
   \item {is\+Enabled}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{113}
+		\hyperpage{118}
   \item {is\+External\+Storage\+Writable}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{126}
+		\hyperpage{134}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{121}
+		\hyperpage{127}
   \item {is\+Initialized}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{113}
+		\hyperpage{118}
   \item {is\+Kalman\+Filter\+Enabled}
-    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{91}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
 		\hyperpage{39}
+  \item {is\+Kf1\+Enabled}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{92}
   \item {is\+Run\+Scan}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{17}
-  \item {it}, \hyperpage{6}
+  \item {it}, \hyperpage{7}
   \item {it.\+unibo}, \hyperpage{7}
   \item {it.\+unibo.\+torsello}, \hyperpage{7}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning}, \hyperpage{7}
@@ -540,7 +598,7 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+activities.\+Application\+Activity}, 
 		\hyperpage{10}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+activities.\+Main\+Activity}, 
-		\hyperpage{105}
+		\hyperpage{110}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+adapter}, 
 		\hyperpage{7}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+adapter.\+Device\+Card\+View\+Adapter}, 
@@ -548,15 +606,15 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+adapter.\+Device\+Card\+View\+Adapter.\+Device\+View\+Holder}, 
 		\hyperpage{84}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+adapter.\+State\+Pager\+Adapter}, 
-		\hyperpage{135}
+		\hyperpage{143}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+constant}, 
 		\hyperpage{8}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+constant.\+Device\+Constants}, 
 		\hyperpage{52}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+constant.\+K\+Filter\+Constants}, 
-		\hyperpage{103}
+		\hyperpage{108}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+constant.\+Setting\+Constants}, 
-		\hyperpage{127}
+		\hyperpage{135}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation}, 
 		\hyperpage{8}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+distance\+Estimation.\+Estimation}, 
@@ -564,19 +622,23 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+extra}, 
 		\hyperpage{8}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+extra.\+F\+A\+B\+Behavior}, 
-		\hyperpage{93}
+		\hyperpage{94}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters}, 
 		\hyperpage{8}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter}, 
 		\hyperpage{8}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter.\+K\+Filter}, 
-		\hyperpage{95}
+		\hyperpage{97}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter.\+K\+Filter\+Builder}, 
-		\hyperpage{100}
-  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{110}
-  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment}, 
+		\hyperpage{105}
+  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2}, 
 		\hyperpage{8}
+  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2}, 
+		\hyperpage{102}
+  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+My\+Arma\+Rssi\+Filter}, 
+		\hyperpage{115}
+  \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment}, 
+		\hyperpage{9}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Camera\+Fragment}, 
 		\hyperpage{18}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Chart\+Fragment}, 
@@ -586,9 +648,9 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner0\+Fragment}, 
 		\hyperpage{58}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner0\+Fragment.\+On\+Recording\+Report}, 
-		\hyperpage{114}
+		\hyperpage{119}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner0\+Fragment.\+On\+Recording\+Resume}, 
-		\hyperpage{115}
+		\hyperpage{120}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner1\+Fragment}, 
 		\hyperpage{64}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+Detail\+Inner2\+Fragment}, 
@@ -600,9 +662,9 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Device\+List\+Fragment}, 
 		\hyperpage{77}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Settings\+Fragment}, 
-		\hyperpage{129}
+		\hyperpage{137}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+fragment.\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{138}
+		\hyperpage{146}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+model}, 
 		\hyperpage{9}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+model.\+Device}, 
@@ -612,11 +674,11 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+observables.\+Device\+Observable}, 
 		\hyperpage{81}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+observables.\+Usb\+Measurement\+Observable}, 
-		\hyperpage{142}
+		\hyperpage{150}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+task}, 
 		\hyperpage{9}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+task.\+Save\+Image\+Task}, 
-		\hyperpage{124}
+		\hyperpage{132}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+util}, 
 		\hyperpage{9}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Camera\+Preview\+Util}, 
@@ -624,9 +686,9 @@
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Chart\+Util}, 
 		\hyperpage{30}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Report\+Utils}, 
-		\hyperpage{116}
+		\hyperpage{122}
   \item {it.\+unibo.\+torsello.\+bluetoothpositioning.\+util.\+Usb\+Util}, 
-		\hyperpage{144}
+		\hyperpage{152}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}
     \subitem {background\+Power\+Saver}, \hyperpage{17}
     \subitem {beacon\+Manager}, \hyperpage{17}
@@ -650,20 +712,20 @@
     \subitem {set\+Settings\+Visible}, \hyperpage{17}
     \subitem {usb\+Util}, \hyperpage{18}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}
-    \subitem {back\+\_\+pressed}, \hyperpage{109}
-    \subitem {check\+Android\+M\+Permission}, \hyperpage{107}
+    \subitem {back\+\_\+pressed}, \hyperpage{114}
+    \subitem {check\+Android\+M\+Permission}, \hyperpage{112}
     \subitem {D\+E\+V\+I\+C\+E\+\_\+\+F\+R\+A\+G\+M\+E\+NT}, 
-		\hyperpage{109}
-    \subitem {is\+Back\+Pressed}, \hyperpage{109}
-    \subitem {on\+Back\+Pressed}, \hyperpage{107}
-    \subitem {on\+Create}, \hyperpage{107}
-    \subitem {on\+Navigation\+Item\+Selected}, \hyperpage{108}
-    \subitem {on\+Request\+Permissions\+Result}, \hyperpage{108}
+		\hyperpage{114}
+    \subitem {is\+Back\+Pressed}, \hyperpage{114}
+    \subitem {on\+Back\+Pressed}, \hyperpage{112}
+    \subitem {on\+Create}, \hyperpage{112}
+    \subitem {on\+Navigation\+Item\+Selected}, \hyperpage{113}
+    \subitem {on\+Request\+Permissions\+Result}, \hyperpage{113}
     \subitem {R\+E\+Q\+U\+E\+S\+T\+\_\+\+C\+O\+D\+E\+\_\+\+A\+S\+K\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+P\+E\+R\+M\+I\+S\+S\+I\+O\+NS}, 
-		\hyperpage{109}
-    \subitem {replace\+Fragment}, \hyperpage{109}
+		\hyperpage{114}
+    \subitem {replace\+Fragment}, \hyperpage{114}
     \subitem {U\+S\+B\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+\_\+\+F\+R\+A\+G\+M\+E\+NT}, 
-		\hyperpage{110}
+		\hyperpage{115}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}
     \subitem {activity}, \hyperpage{45}
     \subitem {D\+E\+V\+I\+C\+E\+\_\+\+D\+E\+T\+A\+I\+L\+\_\+\+F\+R\+A\+G\+M\+E\+NT}, 
@@ -681,11 +743,12 @@
     \subitem {altbeacon\+Distance\+Text\+View}, \hyperpage{86}
     \subitem {color\+Text\+View}, \hyperpage{86}
     \subitem {default\+Name\+Text\+View}, \hyperpage{86}
-    \subitem {Device\+View\+Holder}, \hyperpage{85}
+    \subitem {Device\+View\+Holder}, \hyperpage{86}
     \subitem {friendly\+Name\+Text\+View}, \hyperpage{86}
     \subitem {image\+View}, \hyperpage{86}
-    \subitem {instance\+Text\+View}, \hyperpage{86}
-    \subitem {kalman\+Filter\+Distance\+Text\+View}, \hyperpage{86}
+    \subitem {instance\+Text\+View}, \hyperpage{87}
+    \subitem {kalman\+Filter\+Distance\+Text\+View}, \hyperpage{87}
+    \subitem {kf2\+Text\+View}, \hyperpage{87}
     \subitem {mac\+Text\+View}, \hyperpage{87}
     \subitem {major\+Text\+View}, \hyperpage{87}
     \subitem {minor\+Text\+View}, \hyperpage{87}
@@ -693,18 +756,18 @@
     \subitem {proximity\+Text\+View}, \hyperpage{87}
     \subitem {rssi\+Text\+View}, \hyperpage{87}
     \subitem {standard\+Raw\+Distance\+Text\+View}, \hyperpage{87}
-    \subitem {tx\+Power\+Text\+View}, \hyperpage{87}
-    \subitem {uuid\+Text\+View}, \hyperpage{87}
-    \subitem {view}, \hyperpage{87}
+    \subitem {tx\+Power\+Text\+View}, \hyperpage{88}
+    \subitem {uuid\+Text\+View}, \hyperpage{88}
+    \subitem {view}, \hyperpage{88}
     \subitem {visibility\+Name\+Space\+Linear\+Layout}, \hyperpage{88}
     \subitem {visibility\+U\+U\+I\+D\+Linear\+Layout}, \hyperpage{88}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}
-    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{137}
-    \subitem {fragments}, \hyperpage{137}
-    \subitem {get\+Count}, \hyperpage{137}
-    \subitem {get\+Item}, \hyperpage{137}
-    \subitem {get\+Page\+Title}, \hyperpage{137}
-    \subitem {State\+Pager\+Adapter}, \hyperpage{137}
+    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{145}
+    \subitem {fragments}, \hyperpage{145}
+    \subitem {get\+Count}, \hyperpage{145}
+    \subitem {get\+Item}, \hyperpage{145}
+    \subitem {get\+Page\+Title}, \hyperpage{145}
+    \subitem {State\+Pager\+Adapter}, \hyperpage{145}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Device\+Constants}
     \subitem {[static initializer]}, \hyperpage{53}
     \subitem {A\+P\+P\+L\+E\+\_\+\+B\+E\+A\+C\+O\+N\+\_\+\+L\+A\+Y\+O\+UT}, 
@@ -720,83 +783,104 @@
 		\hyperpage{54}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}
     \subitem {I\+N\+I\+T\+I\+A\+L\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+\_\+\+N\+O\+I\+SE}, 
-		\hyperpage{103}
+		\hyperpage{109}
     \subitem {I\+N\+I\+T\+I\+A\+L\+\_\+\+P\+R\+O\+C\+E\+S\+S\+\_\+\+N\+O\+I\+SE}, 
-		\hyperpage{103}
+		\hyperpage{109}
     \subitem {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+AX}, 
-		\hyperpage{104}
+		\hyperpage{109}
     \subitem {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+IN}, 
-		\hyperpage{104}
-    \subitem {W\+I\+N\+D\+OW}, \hyperpage{104}
+		\hyperpage{109}
+    \subitem {W\+I\+N\+D\+OW}, \hyperpage{109}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}
-    \subitem {A\+R\+M\+A\+\_\+\+O\+P\+T\+I\+ON}, \hyperpage{128}
-    \subitem {A\+V\+G\+\_\+\+O\+P\+T\+I\+ON}, \hyperpage{128}
+    \subitem {A\+R\+M\+A\+\_\+\+O\+P\+T\+I\+ON}, \hyperpage{136}
+    \subitem {A\+V\+G\+\_\+\+O\+P\+T\+I\+ON}, \hyperpage{136}
     \subitem {D\+I\+S\+T\+A\+N\+C\+E\+\_\+\+S\+O\+R\+T\+I\+NG}, 
-		\hyperpage{128}
-    \subitem {F\+I\+L\+T\+E\+R\+\_\+\+R\+S\+SI}, \hyperpage{128}
+		\hyperpage{136}
+    \subitem {F\+I\+L\+T\+E\+R\+\_\+\+R\+S\+SI}, \hyperpage{136}
     \subitem {K\+A\+L\+M\+A\+N\+\_\+\+F\+I\+L\+T\+E\+R\+\_\+\+E\+N\+A\+B\+L\+ED}, 
-		\hyperpage{128}
+		\hyperpage{136}
     \subitem {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+V\+A\+L\+UE}, 
-		\hyperpage{128}
+		\hyperpage{136}
     \subitem {K\+A\+L\+M\+A\+N\+\_\+\+S\+E\+E\+K\+B\+A\+R\+\_\+\+V\+A\+L\+UE}, 
-		\hyperpage{128}
+		\hyperpage{136}
     \subitem {S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+C\+ES}, 
-		\hyperpage{129}
+		\hyperpage{137}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}
     \subitem {calculate\+Distance}, \hyperpage{90}
-    \subitem {distance\+Estimated}, \hyperpage{92}
+    \subitem {distance\+Estimated}, \hyperpage{93}
+    \subitem {estimate\+Kalman\+Filter2}, \hyperpage{90}
     \subitem {estimate\+Kalman\+Filter\+Distance}, \hyperpage{90}
-    \subitem {estimate\+Raw\+Distance}, \hyperpage{90}
+    \subitem {estimate\+Raw\+Distance}, \hyperpage{91}
     \subitem {Estimation}, \hyperpage{89}
-    \subitem {get\+Distance\+W\+O\+SC}, \hyperpage{90}
+    \subitem {get\+Distance\+W\+O\+SC}, \hyperpage{91}
+    \subitem {get\+Kalman\+Distance2}, \hyperpage{91}
     \subitem {get\+Kalman\+Filter\+Distance}, \hyperpage{91}
-    \subitem {get\+Proximity}, \hyperpage{91}
-    \subitem {get\+Raw\+Distance}, \hyperpage{91}
-    \subitem {is\+Kalman\+Filter\+Enabled}, \hyperpage{91}
-    \subitem {kalman\+Filter\+Enabled}, \hyperpage{92}
-    \subitem {kf}, \hyperpage{92}
-    \subitem {raw\+Distance\+Estimated}, \hyperpage{92}
-    \subitem {recent\+R\+S\+SI}, \hyperpage{92}
-    \subitem {recent\+Tx\+Power}, \hyperpage{92}
-    \subitem {update\+Distance}, \hyperpage{91}
-    \subitem {W\+O\+SC}, \hyperpage{92}
+    \subitem {get\+Proximity}, \hyperpage{92}
+    \subitem {get\+Raw\+Distance}, \hyperpage{92}
+    \subitem {is\+Kf1\+Enabled}, \hyperpage{92}
+    \subitem {kalman\+Distance2}, \hyperpage{93}
+    \subitem {kf1}, \hyperpage{93}
+    \subitem {kf1\+Enabled}, \hyperpage{93}
+    \subitem {kf2}, \hyperpage{93}
+    \subitem {raw\+Distance\+Estimated}, \hyperpage{93}
+    \subitem {recent\+R\+S\+S\+I1}, \hyperpage{93}
+    \subitem {recent\+R\+S\+SI}, \hyperpage{93}
+    \subitem {recent\+Tx\+Power}, \hyperpage{93}
+    \subitem {recent\+Tx\+Power1}, \hyperpage{93}
+    \subitem {update\+Distance}, \hyperpage{92}
+    \subitem {W\+O\+SC}, \hyperpage{93}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior}
-    \subitem {F\+A\+B\+Behavior}, \hyperpage{94}
-    \subitem {on\+Nested\+Scroll}, \hyperpage{94}
-    \subitem {on\+Start\+Nested\+Scroll}, \hyperpage{94}
+    \subitem {F\+A\+B\+Behavior}, \hyperpage{95}
+    \subitem {on\+Nested\+Scroll}, \hyperpage{96}
+    \subitem {on\+Start\+Nested\+Scroll}, \hyperpage{96}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}
-    \subitem {add\+Measurement}, \hyperpage{112}
-    \subitem {arma\+Measurement}, \hyperpage{113}
-    \subitem {arma\+Speed}, \hyperpage{113}
-    \subitem {calculate\+Rssi}, \hyperpage{112}
-    \subitem {enable\+Arma\+Filter}, \hyperpage{112}
-    \subitem {get\+Arma\+Speed}, \hyperpage{112}
-    \subitem {is\+Enabled}, \hyperpage{113}
-    \subitem {is\+Initialized}, \hyperpage{113}
-    \subitem {no\+Measurements\+Available}, \hyperpage{112}
-    \subitem {set\+Arma\+Speed}, \hyperpage{113}
+    \subitem {add\+Measurement}, \hyperpage{117}
+    \subitem {arma\+Measurement}, \hyperpage{118}
+    \subitem {arma\+Speed}, \hyperpage{118}
+    \subitem {calculate\+Rssi}, \hyperpage{117}
+    \subitem {enable\+Arma\+Filter}, \hyperpage{117}
+    \subitem {get\+Arma\+Speed}, \hyperpage{117}
+    \subitem {is\+Enabled}, \hyperpage{118}
+    \subitem {is\+Initialized}, \hyperpage{118}
+    \subitem {no\+Measurements\+Available}, \hyperpage{117}
+    \subitem {set\+Arma\+Speed}, \hyperpage{118}
+  \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}
+    \subitem {A}, \hyperpage{104}
+    \subitem {B}, \hyperpage{104}
+    \subitem {dt}, \hyperpage{104}
+    \subitem {esimate\+Position}, \hyperpage{103}
+    \subitem {filter}, \hyperpage{104}
+    \subitem {H}, \hyperpage{104}
+    \subitem {K\+Filter2}, \hyperpage{103}
+    \subitem {measurement\+Noise}, \hyperpage{104}
+    \subitem {P0}, \hyperpage{104}
+    \subitem {p\+Noise}, \hyperpage{104}
+    \subitem {process\+Noise}, \hyperpage{105}
+    \subitem {Q}, \hyperpage{105}
+    \subitem {R}, \hyperpage{105}
+    \subitem {x}, \hyperpage{105}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}
-    \subitem {A}, \hyperpage{98}
-    \subitem {B}, \hyperpage{99}
-    \subitem {C}, \hyperpage{99}
-    \subitem {cov}, \hyperpage{99}
-    \subitem {filter}, \hyperpage{97}
-    \subitem {K\+Filter}, \hyperpage{96}
-    \subitem {last\+Measurement}, \hyperpage{98}
-    \subitem {Q}, \hyperpage{99}
-    \subitem {R}, \hyperpage{99}
-    \subitem {set\+Measurement\+Noise}, \hyperpage{98}
-    \subitem {set\+Process\+Noise}, \hyperpage{98}
-    \subitem {x}, \hyperpage{99}
-    \subitem {x1}, \hyperpage{99}
-    \subitem {x2}, \hyperpage{99}
+    \subitem {A}, \hyperpage{101}
+    \subitem {B}, \hyperpage{101}
+    \subitem {C}, \hyperpage{101}
+    \subitem {cov}, \hyperpage{101}
+    \subitem {filter}, \hyperpage{98, 99}
+    \subitem {K\+Filter}, \hyperpage{98}
+    \subitem {last\+Measurement}, \hyperpage{99}
+    \subitem {Q}, \hyperpage{101}
+    \subitem {R}, \hyperpage{101}
+    \subitem {set\+Measurement\+Noise}, \hyperpage{99}
+    \subitem {set\+Process\+Noise}, \hyperpage{101}
+    \subitem {x}, \hyperpage{101}
+    \subitem {x1}, \hyperpage{102}
+    \subitem {x2}, \hyperpage{102}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}
-    \subitem {A}, \hyperpage{101, 102}
-    \subitem {B}, \hyperpage{101, 102}
-    \subitem {build}, \hyperpage{101}
-    \subitem {C}, \hyperpage{101, 102}
-    \subitem {Q}, \hyperpage{101, 102}
-    \subitem {R}, \hyperpage{101, 102}
+    \subitem {A}, \hyperpage{106, 107}
+    \subitem {B}, \hyperpage{106, 107}
+    \subitem {build}, \hyperpage{106}
+    \subitem {C}, \hyperpage{106, 107}
+    \subitem {Q}, \hyperpage{107}
+    \subitem {R}, \hyperpage{107}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Camera\+Fragment}
     \subitem {camera}, \hyperpage{21}
     \subitem {new\+Instance}, \hyperpage{19}
@@ -854,9 +938,9 @@
     \subitem {report\+Utils}, \hyperpage{63}
     \subitem {update}, \hyperpage{62}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment\+::\+On\+Recording\+Report}
-    \subitem {record}, \hyperpage{115}
+    \subitem {record}, \hyperpage{120}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment\+::\+On\+Recording\+Resume}
-    \subitem {record}, \hyperpage{116}
+    \subitem {record}, \hyperpage{121}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner1\+Fragment}
     \subitem {device\+List}, \hyperpage{67}
     \subitem {device\+View\+Adapter}, \hyperpage{67}
@@ -907,30 +991,31 @@
     \subitem {preferences}, \hyperpage{81}
     \subitem {update}, \hyperpage{80}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}
-    \subitem {df}, \hyperpage{134}
-    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{134}
-    \subitem {get\+Calculated\+Noise}, \hyperpage{131}
-    \subitem {new\+Instance}, \hyperpage{131}
-    \subitem {on\+Create}, \hyperpage{131}
-    \subitem {on\+Create\+View}, \hyperpage{131}
-    \subitem {preferences}, \hyperpage{134}
-    \subitem {set\+Arma\+Option}, \hyperpage{132}
-    \subitem {set\+Avg\+Option}, \hyperpage{132}
-    \subitem {set\+Filtering}, \hyperpage{132}
-    \subitem {set\+Kalman\+Filter\+Seek\+Bar}, \hyperpage{133}
-    \subitem {set\+Sorting}, \hyperpage{133}
+    \subitem {df}, \hyperpage{142}
+    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{142}
+    \subitem {get\+Calculated\+Noise}, \hyperpage{139}
+    \subitem {new\+Instance}, \hyperpage{139}
+    \subitem {on\+Create}, \hyperpage{139}
+    \subitem {on\+Create\+View}, \hyperpage{139}
+    \subitem {preferences}, \hyperpage{142}
+    \subitem {set\+Arma\+Option}, \hyperpage{140}
+    \subitem {set\+Avg\+Option}, \hyperpage{140}
+    \subitem {set\+Enabled\+Kalman\+Filter}, \hyperpage{140}
+    \subitem {set\+Filtering}, \hyperpage{141}
+    \subitem {set\+Kalman\+Filter\+Seek\+Bar}, \hyperpage{141}
+    \subitem {set\+Sorting}, \hyperpage{142}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}
-    \subitem {df}, \hyperpage{141}
-    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{141}
-    \subitem {my\+Usb\+Observable}, \hyperpage{141}
-    \subitem {new\+Instance}, \hyperpage{140}
-    \subitem {on\+Create}, \hyperpage{140}
-    \subitem {on\+Create\+View}, \hyperpage{140}
-    \subitem {on\+Pause}, \hyperpage{140}
-    \subitem {on\+Resume}, \hyperpage{140}
-    \subitem {tw\+Distance}, \hyperpage{141}
-    \subitem {tw\+State}, \hyperpage{141}
-    \subitem {update}, \hyperpage{140}
+    \subitem {df}, \hyperpage{149}
+    \subitem {E\+X\+T\+R\+A\+\_\+\+M\+E\+S\+S\+A\+GE}, \hyperpage{149}
+    \subitem {my\+Usb\+Observable}, \hyperpage{149}
+    \subitem {new\+Instance}, \hyperpage{148}
+    \subitem {on\+Create}, \hyperpage{148}
+    \subitem {on\+Create\+View}, \hyperpage{148}
+    \subitem {on\+Pause}, \hyperpage{148}
+    \subitem {on\+Resume}, \hyperpage{148}
+    \subitem {tw\+Distance}, \hyperpage{149}
+    \subitem {tw\+State}, \hyperpage{149}
+    \subitem {update}, \hyperpage{148}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}
     \subitem {address}, \hyperpage{40}
     \subitem {beacon}, \hyperpage{40}
@@ -946,6 +1031,7 @@
     \subitem {get\+Friendly\+Name}, \hyperpage{38}
     \subitem {get\+Image\+Beacon}, \hyperpage{38}
     \subitem {get\+Index}, \hyperpage{38}
+    \subitem {get\+Kalman\+Filter2}, \hyperpage{39}
     \subitem {get\+Kalman\+Filter\+Distance}, \hyperpage{39}
     \subitem {get\+Proximity}, \hyperpage{39}
     \subitem {get\+Raw\+Distance}, \hyperpage{39}
@@ -953,24 +1039,24 @@
     \subitem {index}, \hyperpage{40}
     \subitem {is\+Kalman\+Filter\+Enabled}, \hyperpage{39}
     \subitem {set\+Beacon}, \hyperpage{39}
-    \subitem {update\+Distance}, \hyperpage{39}
+    \subitem {update\+Distance}, \hyperpage{40}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Device\+Observable}
     \subitem {Device\+Observable}, \hyperpage{82}
     \subitem {get\+Instance}, \hyperpage{83}
     \subitem {instance}, \hyperpage{83}
     \subitem {notify\+Observers}, \hyperpage{83}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Usb\+Measurement\+Observable}
-    \subitem {get\+Instance}, \hyperpage{143}
-    \subitem {instance}, \hyperpage{144}
-    \subitem {notify\+Observers}, \hyperpage{143}
-    \subitem {Usb\+Measurement\+Observable}, \hyperpage{143}
+    \subitem {get\+Instance}, \hyperpage{151}
+    \subitem {instance}, \hyperpage{152}
+    \subitem {notify\+Observers}, \hyperpage{151}
+    \subitem {Usb\+Measurement\+Observable}, \hyperpage{151}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}
-    \subitem {activity}, \hyperpage{127}
-    \subitem {do\+In\+Background}, \hyperpage{126}
-    \subitem {get\+Activity}, \hyperpage{126}
-    \subitem {is\+External\+Storage\+Writable}, \hyperpage{126}
-    \subitem {refresh\+Gallery}, \hyperpage{126}
-    \subitem {Save\+Image\+Task}, \hyperpage{126}
+    \subitem {activity}, \hyperpage{135}
+    \subitem {do\+In\+Background}, \hyperpage{134}
+    \subitem {get\+Activity}, \hyperpage{134}
+    \subitem {is\+External\+Storage\+Writable}, \hyperpage{134}
+    \subitem {refresh\+Gallery}, \hyperpage{134}
+    \subitem {Save\+Image\+Task}, \hyperpage{134}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}
     \subitem {activity}, \hyperpage{28}
     \subitem {Camera\+Preview\+Util}, \hyperpage{24}
@@ -1013,48 +1099,59 @@
     \subitem {thread}, \hyperpage{35}
     \subitem {update\+Data\+Set}, \hyperpage{35}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}
-    \subitem {activity}, \hyperpage{123}
-    \subitem {alt\+Beacon\+Values}, \hyperpage{123}
-    \subitem {arduino\+Values}, \hyperpage{123}
-    \subitem {calculate\+Average}, \hyperpage{118}
-    \subitem {clear\+Recorded\+Values}, \hyperpage{118}
-    \subitem {create\+Json}, \hyperpage{118}
-    \subitem {df}, \hyperpage{123}
-    \subitem {get\+Activity}, \hyperpage{119}
-    \subitem {get\+Json}, \hyperpage{120}
-    \subitem {get\+Resume}, \hyperpage{120}
-    \subitem {gson}, \hyperpage{123}
-    \subitem {id\+Device\+Selected\+Name}, \hyperpage{123}
-    \subitem {index\+File}, \hyperpage{123}
-    \subitem {is\+External\+Storage\+Writable}, \hyperpage{121}
-    \subitem {json\+File}, \hyperpage{123}
-    \subitem {k\+Filter\+Values}, \hyperpage{123}
-    \subitem {preferences}, \hyperpage{124}
-    \subitem {raw\+Values}, \hyperpage{124}
-    \subitem {refresh\+Directory}, \hyperpage{121}
-    \subitem {Report\+Utils}, \hyperpage{118}
-    \subitem {rssi\+Filter\+Selected}, \hyperpage{124}
-    \subitem {sdf}, \hyperpage{124}
-    \subitem {set\+Alt\+Beacon\+Values}, \hyperpage{121}
-    \subitem {set\+Arduino\+Values}, \hyperpage{121}
-    \subitem {set\+Raw\+Values}, \hyperpage{122}
-    \subitem {setk\+Filter\+Values}, \hyperpage{121}
-    \subitem {write\+Json\+File}, \hyperpage{122}
+    \subitem {activity}, \hyperpage{130}
+    \subitem {alt\+Beacon\+Values}, \hyperpage{130}
+    \subitem {append\+Data}, \hyperpage{124}
+    \subitem {append\+Resume}, \hyperpage{124}
+    \subitem {arduino\+Values}, \hyperpage{130}
+    \subitem {clear\+Recorded\+Values}, \hyperpage{124}
+    \subitem {create\+Report}, \hyperpage{124}
+    \subitem {df\+Json\+File}, \hyperpage{131}
+    \subitem {df\+Values}, \hyperpage{131}
+    \subitem {formatted\+Date}, \hyperpage{131}
+    \subitem {formatted\+Time}, \hyperpage{131}
+    \subitem {get\+Activity}, \hyperpage{125}
+    \subitem {get\+Avg}, \hyperpage{125}
+    \subitem {get\+Avg\+As\+String}, \hyperpage{126}
+    \subitem {get\+Deviation}, \hyperpage{126}
+    \subitem {get\+Json}, \hyperpage{126}
+    \subitem {get\+Max\+As\+String}, \hyperpage{126}
+    \subitem {get\+Min\+As\+String}, \hyperpage{127}
+    \subitem {get\+Name\+File}, \hyperpage{127}
+    \subitem {get\+Resume}, \hyperpage{127}
+    \subitem {gson}, \hyperpage{131}
+    \subitem {id\+Device\+Selected\+Name}, \hyperpage{131}
+    \subitem {index\+File}, \hyperpage{131}
+    \subitem {is\+External\+Storage\+Writable}, \hyperpage{127}
+    \subitem {json\+File}, \hyperpage{131}
+    \subitem {k\+Filter\+Values}, \hyperpage{131}
+    \subitem {preferences}, \hyperpage{131}
+    \subitem {process\+Noise}, \hyperpage{131}
+    \subitem {raw\+Values}, \hyperpage{131}
+    \subitem {refresh\+Directory}, \hyperpage{128}
+    \subitem {Report\+Utils}, \hyperpage{123}
+    \subitem {rssi\+Filter\+Selected}, \hyperpage{132}
+    \subitem {set\+Alt\+Beacon\+Values}, \hyperpage{128}
+    \subitem {set\+Arduino\+Values}, \hyperpage{128}
+    \subitem {set\+Raw\+Values}, \hyperpage{128}
+    \subitem {setk\+Filter\+Values}, \hyperpage{128}
+    \subitem {write\+Json\+File}, \hyperpage{129}
+    \subitem {write\+Resume\+File}, \hyperpage{130}
   \item {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}
-    \subitem {application\+Activity}, \hyperpage{147}
-    \subitem {B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}, \hyperpage{147}
-    \subitem {close\+Port}, \hyperpage{145}
-    \subitem {get\+Activity}, \hyperpage{145}
-    \subitem {initialize\+Usb}, \hyperpage{145}
-    \subitem {m\+Executor}, \hyperpage{148}
-    \subitem {m\+Serial\+Io\+Manager}, \hyperpage{148}
-    \subitem {my\+Usb\+Observable}, \hyperpage{148}
-    \subitem {on\+Pause}, \hyperpage{146}
-    \subitem {on\+Resume}, \hyperpage{146}
-    \subitem {port}, \hyperpage{148}
-    \subitem {start\+Io\+Manager}, \hyperpage{147}
-    \subitem {stop\+Io\+Manager}, \hyperpage{147}
-    \subitem {Usb\+Util}, \hyperpage{145}
+    \subitem {application\+Activity}, \hyperpage{155}
+    \subitem {B\+O\+U\+N\+D\+\_\+\+R\+A\+TE}, \hyperpage{155}
+    \subitem {close\+Port}, \hyperpage{153}
+    \subitem {get\+Activity}, \hyperpage{153}
+    \subitem {initialize\+Usb}, \hyperpage{153}
+    \subitem {m\+Executor}, \hyperpage{156}
+    \subitem {m\+Serial\+Io\+Manager}, \hyperpage{156}
+    \subitem {my\+Usb\+Observable}, \hyperpage{156}
+    \subitem {on\+Pause}, \hyperpage{154}
+    \subitem {on\+Resume}, \hyperpage{154}
+    \subitem {port}, \hyperpage{156}
+    \subitem {start\+Io\+Manager}, \hyperpage{155}
+    \subitem {stop\+Io\+Manager}, \hyperpage{155}
+    \subitem {Usb\+Util}, \hyperpage{153}
 
   \indexspace
 
@@ -1063,49 +1160,62 @@
 		\hyperpage{28}
   \item {json\+File}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
 
   \indexspace
 
   \item {K\+A\+L\+M\+A\+N\+\_\+\+F\+I\+L\+T\+E\+R\+\_\+\+E\+N\+A\+B\+L\+ED}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+AX}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}, 
-		\hyperpage{104}
+		\hyperpage{109}
   \item {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+M\+IN}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}, 
-		\hyperpage{104}
+		\hyperpage{109}
   \item {K\+A\+L\+M\+A\+N\+\_\+\+N\+O\+I\+S\+E\+\_\+\+V\+A\+L\+UE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {K\+A\+L\+M\+A\+N\+\_\+\+S\+E\+E\+K\+B\+A\+R\+\_\+\+V\+A\+L\+UE}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{128}
+		\hyperpage{136}
   \item {K\+Filter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{96}
-  \item {K\+Filter.\+java}, \hyperpage{152}
-  \item {K\+Filter\+Builder.\+java}, \hyperpage{152}
-  \item {K\+Filter\+Constants.\+java}, \hyperpage{153}
+		\hyperpage{98}
+  \item {K\+Filter.\+java}, \hyperpage{160}
+  \item {K\+Filter2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{103}
+  \item {K\+Filter2.\+java}, \hyperpage{160}
+  \item {K\+Filter\+Builder.\+java}, \hyperpage{161}
+  \item {K\+Filter\+Constants.\+java}, \hyperpage{161}
   \item {k\+Filter\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{123}
+		\hyperpage{131}
+  \item {kalman\+Distance2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{93}
   \item {kalman\+Filter\+Distance\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{86}
-  \item {kalman\+Filter\+Enabled}
+		\hyperpage{87}
+  \item {kf1}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
-  \item {kf}
+		\hyperpage{93}
+  \item {kf1\+Enabled}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
+  \item {kf2}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{93}
+  \item {kf2\+Text\+View}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
+		\hyperpage{87}
 
   \indexspace
 
   \item {last\+Measurement}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{98}
+		\hyperpage{99}
 
   \indexspace
 
@@ -1114,7 +1224,7 @@
 		\hyperpage{28}
   \item {m\+Executor}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{148}
+		\hyperpage{156}
   \item {m\+Holder}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{29}
@@ -1123,7 +1233,7 @@
 		\hyperpage{29}
   \item {m\+Serial\+Io\+Manager}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{148}
+		\hyperpage{156}
   \item {m\+Supported\+Preview\+Sizes}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{29}
@@ -1133,14 +1243,17 @@
   \item {mac\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{87}
-  \item {Main\+Activity.\+java}, \hyperpage{153}
+  \item {Main\+Activity.\+java}, \hyperpage{161}
   \item {major\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{87}
+  \item {measurement\+Noise}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
   \item {minor\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{87}
-  \item {My\+Arma\+Rssi\+Filter.\+java}, \hyperpage{153}
+  \item {My\+Arma\+Rssi\+Filter.\+java}, \hyperpage{161}
   \item {my\+Device\+Observable}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{17}
@@ -1159,9 +1272,9 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment}, 
 		\hyperpage{63}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{141}
+		\hyperpage{149}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{148}
+		\hyperpage{156}
 
   \indexspace
 
@@ -1188,17 +1301,17 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{79}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{131}
+		\hyperpage{139}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
   \item {no\+Measurements\+Available}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{112}
+		\hyperpage{117}
   \item {notify\+Observers}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Device\+Observable}, 
 		\hyperpage{83}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Usb\+Measurement\+Observable}, 
-		\hyperpage{143}
+		\hyperpage{151}
 
   \indexspace
 
@@ -1210,7 +1323,7 @@
 		\hyperpage{60}
   \item {on\+Back\+Pressed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{107}
+		\hyperpage{112}
   \item {on\+Beacon\+Service\+Connect}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{13}
@@ -1221,7 +1334,7 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{14}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{107}
+		\hyperpage{112}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{48}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Fragment}, 
@@ -1237,9 +1350,9 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{79}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{131}
+		\hyperpage{139}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
   \item {on\+Create\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Camera\+Fragment}, 
 		\hyperpage{20}
@@ -1260,9 +1373,9 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{79}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{131}
+		\hyperpage{139}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
   \item {on\+Create\+View\+Holder}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{44}
@@ -1277,10 +1390,10 @@
 		\hyperpage{26}
   \item {on\+Navigation\+Item\+Selected}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{108}
+		\hyperpage{113}
   \item {on\+Nested\+Scroll}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior}, 
-		\hyperpage{94}
+		\hyperpage{96}
   \item {on\+Nothing\+Selected}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{33}
@@ -1302,11 +1415,11 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{79}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{26}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{146}
+		\hyperpage{154}
   \item {on\+Recording\+Report}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment}, 
 		\hyperpage{63}
@@ -1315,7 +1428,7 @@
 		\hyperpage{63}
   \item {on\+Request\+Permissions\+Result}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{108}
+		\hyperpage{113}
   \item {on\+Resume}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{15}
@@ -1330,36 +1443,47 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{80}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{146}
+		\hyperpage{154}
   \item {on\+Start\+Nested\+Scroll}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::extra\+::\+F\+A\+B\+Behavior}, 
-		\hyperpage{94}
+		\hyperpage{96}
   \item {on\+Value\+Selected}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{34}
 
   \indexspace
 
+  \item {P0}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
+  \item {p\+Noise}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{104}
   \item {plot\+Value}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{34}
   \item {port}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{148}
+		\hyperpage{156}
   \item {preferences}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{18}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{81}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{134}
+		\hyperpage{142}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{124}
+		\hyperpage{131}
   \item {preview}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Camera\+Fragment}, 
 		\hyperpage{21}
+  \item {process\+Noise}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{105}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{131}
   \item {proximity\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{87}
@@ -1367,61 +1491,71 @@
   \indexspace
 
   \item {Q}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{105}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101, 102}
+		\hyperpage{107}
 
   \indexspace
 
   \item {R}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{105}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter\+Builder}, 
-		\hyperpage{101, 102}
+		\hyperpage{107}
   \item {R\+E\+Q\+U\+E\+S\+T\+\_\+\+C\+O\+D\+E\+\_\+\+A\+S\+K\+\_\+\+M\+U\+L\+T\+I\+P\+L\+E\+\_\+\+P\+E\+R\+M\+I\+S\+S\+I\+O\+NS}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{109}
+		\hyperpage{114}
   \item {raw\+Callback}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{29}
   \item {raw\+Distance\+Estimated}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
   \item {raw\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{124}
+		\hyperpage{131}
+  \item {recent\+R\+S\+S\+I1}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{93}
   \item {recent\+R\+S\+SI}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
   \item {recent\+Tx\+Power}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
+  \item {recent\+Tx\+Power1}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
+		\hyperpage{93}
   \item {record}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment\+::\+On\+Recording\+Report}, 
-		\hyperpage{115}
+		\hyperpage{120}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment\+::\+On\+Recording\+Resume}, 
-		\hyperpage{116}
+		\hyperpage{121}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Report\+Fragment}, 
 		\hyperpage{74}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Resume\+Fragment}, 
 		\hyperpage{76}
   \item {refresh\+Directory}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{121}
+		\hyperpage{128}
   \item {refresh\+Gallery}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{126}
+		\hyperpage{134}
   \item {replace\+Fragment}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{109}
+		\hyperpage{114}
   \item {Report\+Utils}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{118}
+		\hyperpage{123}
   \item {report\+Utils}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Detail\+Inner0\+Fragment}, 
 		\hyperpage{63}
-  \item {Report\+Utils.\+java}, \hyperpage{153}
+  \item {Report\+Utils.\+java}, \hyperpage{162}
   \item {reset\+Camera}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{26}
@@ -1429,7 +1563,7 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{18}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{124}
+		\hyperpage{132}
   \item {rssi\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{87}
@@ -1438,7 +1572,7 @@
 
   \item {S\+E\+T\+T\+I\+N\+G\+S\+\_\+\+P\+R\+E\+F\+E\+R\+E\+N\+C\+ES}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+Setting\+Constants}, 
-		\hyperpage{129}
+		\hyperpage{137}
   \item {S\+T\+R\+I\+N\+GS}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{51}
@@ -1447,29 +1581,26 @@
 		\hyperpage{34}
   \item {Save\+Image\+Task}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::task\+::\+Save\+Image\+Task}, 
-		\hyperpage{126}
-  \item {Save\+Image\+Task.\+java}, \hyperpage{154}
-  \item {sdf}
-    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{124}
+		\hyperpage{134}
+  \item {Save\+Image\+Task.\+java}, \hyperpage{162}
   \item {set\+Alt\+Beacon\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{121}
+		\hyperpage{128}
   \item {set\+Arduino\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{121}
+		\hyperpage{128}
   \item {set\+Arma\+Option}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{132}
+		\hyperpage{140}
   \item {set\+Arma\+Options\+Visible}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{15}
   \item {set\+Arma\+Speed}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::\+My\+Arma\+Rssi\+Filter}, 
-		\hyperpage{113}
+		\hyperpage{118}
   \item {set\+Avg\+Option}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{132}
+		\hyperpage{140}
   \item {set\+Avg\+Options\+Visible}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{15}
@@ -1485,24 +1616,27 @@
   \item {set\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{44}
+  \item {set\+Enabled\+Kalman\+Filter}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
+		\hyperpage{140}
   \item {set\+Filtering}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{132}
+		\hyperpage{141}
   \item {set\+Info\+Device}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter}, 
 		\hyperpage{44}
   \item {set\+Kalman\+Filter\+Seek\+Bar}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{133}
+		\hyperpage{141}
   \item {set\+Measurement\+Noise}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{98}
+		\hyperpage{99}
   \item {set\+Process\+Noise}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{98}
+		\hyperpage{101}
   \item {set\+Raw\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{122}
+		\hyperpage{128}
   \item {set\+Rssi\+Filter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{16}
@@ -1511,12 +1645,12 @@
 		\hyperpage{17}
   \item {set\+Sorting}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Settings\+Fragment}, 
-		\hyperpage{133}
+		\hyperpage{142}
   \item {setk\+Filter\+Values}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{121}
-  \item {Setting\+Constants.\+java}, \hyperpage{154}
-  \item {Settings\+Fragment.\+java}, \hyperpage{154}
+		\hyperpage{128}
+  \item {Setting\+Constants.\+java}, \hyperpage{162}
+  \item {Settings\+Fragment.\+java}, \hyperpage{162}
   \item {shutter\+Callback}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Camera\+Preview\+Util}, 
 		\hyperpage{29}
@@ -1525,14 +1659,14 @@
 		\hyperpage{87}
   \item {start\+Io\+Manager}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{147}
+		\hyperpage{155}
   \item {State\+Pager\+Adapter}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+State\+Pager\+Adapter}, 
-		\hyperpage{137}
-  \item {State\+Pager\+Adapter.\+java}, \hyperpage{154}
+		\hyperpage{145}
+  \item {State\+Pager\+Adapter.\+java}, \hyperpage{162}
   \item {stop\+Io\+Manager}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{147}
+		\hyperpage{155}
   \item {string\+Array\+List}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{51}
@@ -1561,19 +1695,19 @@
 		\hyperpage{35}
   \item {tw\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{141}
+		\hyperpage{149}
   \item {tw\+State}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{141}
+		\hyperpage{149}
   \item {tx\+Power\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{87}
+		\hyperpage{88}
 
   \indexspace
 
   \item {U\+S\+B\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+\_\+\+F\+R\+A\+G\+M\+E\+NT}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Main\+Activity}, 
-		\hyperpage{110}
+		\hyperpage{115}
   \item {update}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+Chart\+Fragment}, 
 		\hyperpage{49}
@@ -1584,36 +1718,36 @@
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Device\+List\+Fragment}, 
 		\hyperpage{80}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::fragment\+::\+Usb\+Measurement\+Fragment}, 
-		\hyperpage{140}
+		\hyperpage{148}
   \item {update\+Data\+Set}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Chart\+Util}, 
 		\hyperpage{35}
   \item {update\+Distance}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{91}
+		\hyperpage{92}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::model\+::\+Device}, 
-		\hyperpage{39}
-  \item {Usb\+Measurement\+Fragment.\+java}, \hyperpage{154}
+		\hyperpage{40}
+  \item {Usb\+Measurement\+Fragment.\+java}, \hyperpage{163}
   \item {Usb\+Measurement\+Observable}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::observables\+::\+Usb\+Measurement\+Observable}, 
-		\hyperpage{143}
-  \item {Usb\+Measurement\+Observable.\+java}, \hyperpage{155}
+		\hyperpage{151}
+  \item {Usb\+Measurement\+Observable.\+java}, \hyperpage{163}
   \item {Usb\+Util}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Usb\+Util}, 
-		\hyperpage{145}
+		\hyperpage{153}
   \item {usb\+Util}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::activities\+::\+Application\+Activity}, 
 		\hyperpage{18}
-  \item {Usb\+Util.\+java}, \hyperpage{155}
+  \item {Usb\+Util.\+java}, \hyperpage{163}
   \item {uuid\+Text\+View}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{87}
+		\hyperpage{88}
 
   \indexspace
 
   \item {view}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
-		\hyperpage{87}
+		\hyperpage{88}
   \item {visibility\+Name\+Space\+Linear\+Layout}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::adapter\+::\+Device\+Card\+View\+Adapter\+::\+Device\+View\+Holder}, 
 		\hyperpage{88}
@@ -1625,24 +1759,29 @@
 
   \item {W\+I\+N\+D\+OW}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::constant\+::\+K\+Filter\+Constants}, 
-		\hyperpage{104}
+		\hyperpage{109}
   \item {W\+O\+SC}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::distance\+Estimation\+::\+Estimation}, 
-		\hyperpage{92}
+		\hyperpage{93}
   \item {write\+Json\+File}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
-		\hyperpage{122}
+		\hyperpage{129}
+  \item {write\+Resume\+File}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::util\+::\+Report\+Utils}, 
+		\hyperpage{130}
 
   \indexspace
 
   \item {x}
+    \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}, 
+		\hyperpage{105}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{101}
   \item {x1}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{102}
   \item {x2}
     \subitem {it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter\+::\+K\+Filter}, 
-		\hyperpage{99}
+		\hyperpage{102}
 
 \end{theindex}

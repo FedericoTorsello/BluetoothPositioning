@@ -12,6 +12,6 @@ public class KFilterConstants {
     public static final double INITIAL_PROCESS_NOISE = 5D; // Initial process noise
     public static final double INITIAL_MEASUREMENT_NOISE = 5D; // Initial measurement noise
 
-    public static final int WINDOW = 5;
+    public static final int WINDOW = 10;
 
 }

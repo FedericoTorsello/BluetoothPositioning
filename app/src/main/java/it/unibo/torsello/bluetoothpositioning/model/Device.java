@@ -59,13 +59,17 @@ public class Device {
         return estimation.getProximity();
     }
 
-    /* Kalman filter*/
+    /* KFilter2 filter*/
     public double getKalmanFilterDistance() {
-        if (!estimation.isKalmanFilterEnabled()) {
+        if (!estimation.isKf1Enabled()) {
             return 0;
         }
 
         return estimation.getKalmanFilterDistance();
+    }
+
+    public double getKalmanFilter2() {
+        return estimation.getKalmanDistance2();
     }
 
     public double getRawDistance() {
@@ -87,7 +91,7 @@ public class Device {
     }
 
     public boolean isKalmanFilterEnabled() {
-        return estimation.isKalmanFilterEnabled();
+        return estimation.isKf1Enabled();
     }
 
 }

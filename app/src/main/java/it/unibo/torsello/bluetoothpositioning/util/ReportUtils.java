@@ -60,6 +60,8 @@ public class ReportUtils {
 
     private SharedPreferences preferences;
 
+    private double processNoise;
+
     public ReportUtils(FragmentActivity fragmentActivity, String deviceName) {
         this.activity = fragmentActivity;
         this.idDeviceSelectedName = deviceName;
@@ -84,7 +86,6 @@ public class ReportUtils {
 
         preferences = getActivity().
                 getSharedPreferences(SettingConstants.SETTINGS_PREFERENCES, 0);
-
     }
 
     public FragmentActivity getActivity() {
@@ -195,6 +196,12 @@ public class ReportUtils {
 
         StringBuilder sb = new StringBuilder();
 
+        sb.append("Date: ").append(formattedDate).append("\n");
+
+        sb.append("Time: ").append(formattedTime).append("\n");
+
+        sb.append("Filter: ").append(rssiFilterSelected).append("\n");
+
         sb.append("Reference: ").append(indexFile).append("m").append("\n\n");
 
         sb.append(appendResume("Raw", rawValues));
@@ -202,9 +209,10 @@ public class ReportUtils {
         sb.append(appendResume("AltBeacon", altBeaconValues));
 
         if (isKalmanFilterEnabled) {
-            sb.append(appendResume("Kalman Filter", kFilterValues));
+            sb.append(appendResume("KFilter Filter", kFilterValues));
+            sb.append("ProcessNoise: ").append(processNoise).append("\n\n");
         } else {
-            sb.append("Kalman Filter").append("\n");
+            sb.append("KFilter Filter").append("\n");
             sb.append("no data - filter disabled").append("\n\n");
         }
         if (!arduinoValues.isEmpty()) {
@@ -228,7 +236,7 @@ public class ReportUtils {
                 .append("\t\tdeviation:\t").append(getDeviation(Collections.max(value))).append("\n");
         sb.append("Avg:\t").append(getAvgAsString(value))
                 .append("\t\tdeviation:\t").append(getDeviation(getAvg(value))).append("\n");
-        sb.append("\n\n");
+        sb.append("\n");
         return String.valueOf(sb);
     }
 
@@ -286,7 +294,7 @@ public class ReportUtils {
 
     private void writeJsonFile() {
 
-        double processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
+        processNoise = preferences.getFloat(SettingConstants.KALMAN_NOISE_VALUE, 0);
         boolean isKalmanFilterEnabled = preferences.getBoolean(SettingConstants.KALMAN_FILTER_ENABLED, true);
 
         try {

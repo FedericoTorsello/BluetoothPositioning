@@ -1,11 +1,17 @@
 package it.unibo.torsello.bluetoothpositioning.distanceEstimation;
 
+import android.util.Log;
+
 import org.altbeacon.beacon.Beacon;
+import org.apache.commons.math3.random.JDKRandomGenerator;
+import org.apache.commons.math3.random.RandomGenerator;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.apache.commons.math3.util.FastMath;
 
 import it.unibo.torsello.bluetoothpositioning.constant.KFilterConstants;
 import it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter.KFilterBuilder;
 import it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter.KFilter;
+import it.unibo.torsello.bluetoothpositioning.filters.kalmanFilter2.KFilter2;
 
 /**
  * Created by Federico Torsello.
@@ -15,12 +21,19 @@ public class Estimation {
 
     private DescriptiveStatistics recentRSSI;
     private DescriptiveStatistics recentTxPower;
-    private KFilter kf;
+    private KFilter kf1;
     private double distanceEstimated;
     private double rawDistanceEstimated;
     private double WOSC;
 
-    private boolean kalmanFilterEnabled;
+    private boolean kf1Enabled;
+
+    private KFilter2 kf2;
+
+    private double kalmanDistance2;
+
+    private DescriptiveStatistics recentRSSI1;
+    private DescriptiveStatistics recentTxPower1;
 
     public Estimation() {
 
@@ -35,15 +48,23 @@ public class Estimation {
         distanceEstimated = 0;
         WOSC = 0;
 
-        kf = new KFilterBuilder()
+        kf1 = new KFilterBuilder()
                 // filter for RSSI
                 .R(KFilterConstants.INITIAL_PROCESS_NOISE) // Initial process noise
                 .Q(KFilterConstants.INITIAL_MEASUREMENT_NOISE) // Initial measurement noise
                 .build();
+
+        recentRSSI1 = new DescriptiveStatistics();
+        recentRSSI1.setWindowSize(KFilterConstants.WINDOW);
+        recentTxPower1 = new DescriptiveStatistics();
+        recentTxPower1.setWindowSize(KFilterConstants.WINDOW);
+
+        kf2 = new KFilter2();
+
     }
 
-    public boolean isKalmanFilterEnabled() {
-        return kalmanFilterEnabled;
+    public boolean isKf1Enabled() {
+        return kf1Enabled;
     }
 
     public void updateDistance(Beacon b, double processNoise) {
@@ -51,6 +72,20 @@ public class Estimation {
         estimateRawDistance(b);
 
         estimateKalmanFilterDistance(b, processNoise);
+
+        estimateKalmanFilter2(b, processNoise);
+
+    }
+
+    private void estimateKalmanFilter2(Beacon b, double myProcess) {
+
+        double rssiFiltered = kf2.esimatePosition(b.getRssi(), myProcess);
+//        rssiFiltered = Math.round(rssiFiltered * 10.0) / 10.0;
+        kalmanDistance2 = calculateDistance(b.getTxPower(), rssiFiltered);
+    }
+
+    public double getKalmanDistance2() {
+        return kalmanDistance2;
     }
 
     private void estimateRawDistance(Beacon b) {
@@ -61,10 +96,10 @@ public class Estimation {
     private void estimateKalmanFilterDistance(Beacon b, double processNoise) {
 
         if (!(processNoise > 0)) {
-            kalmanFilterEnabled = false;
+            kf1Enabled = false;
             distanceEstimated = 0;
         } else {
-            kalmanFilterEnabled = true;
+            kf1Enabled = true;
 
             recentRSSI.addValue(b.getRssi());
             recentTxPower.addValue(b.getTxPower());
@@ -74,13 +109,12 @@ public class Estimation {
                     Math.log(1 + Math.pow(recentRSSI.getMean() / recentRSSI.getStandardDeviation(), 2)));
 
             if (!Double.isInfinite(mNoise) && !Double.isNaN(mNoise)) {
-                kf.setMeasurementNoise(mNoise);
+                Log.i("cuai1", "asd " + mNoise);
+                kf1.setMeasurementNoise(mNoise);
             }
 
-            kf.setProcessNoise(processNoise);
-
             // update measurement, z parameter
-            double lastFilteredReading = kf.filter(recentRSSI.getPercentile(50));
+            double lastFilteredReading = kf1.filter(recentRSSI.getPercentile(50));
 
             WOSC = calculateDistance(b.getTxPower(), lastFilteredReading);
 

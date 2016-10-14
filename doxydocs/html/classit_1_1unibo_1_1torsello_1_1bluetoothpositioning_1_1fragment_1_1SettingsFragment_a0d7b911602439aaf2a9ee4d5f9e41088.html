@@ -130,6 +130,11 @@ $(function() {
                             </td>
                         </tr>
                         <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_ae16c093ba7bc137acf21dfc221cdcf56.html#ae16c093ba7bc137acf21dfc221cdcf56">setEnabledKalmanFilter</a>
+                            </td>
+                        </tr>
+                        <tr>
                             <td class="navtab"><a class="qindexHL"
                                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a0d7b911602439aaf2a9ee4d5f9e41088.html#a0d7b911602439aaf2a9ee4d5f9e41088">setFiltering</a>
                             </td>
@@ -179,66 +184,66 @@ $(function() {
                     </div>
                     <div class="memdoc">
                         <div class="fragment">
-                            <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;
+                            <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;
                                 {
                             </div>
-                            <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;
+                            <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;
                                 RadioGroup rg = (RadioGroup)
                                 root.findViewById(R.id.radioGroupFilter);
                             </div>
-                            <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;
+                            <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;
                                 <span class="keywordtype">int</span> checkedRadioButton;
                             </div>
-                            <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;
+                            <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;
                                 <span class="keywordflow">if</span> (rg.getCheckedRadioButtonId() !=
                                 0) {
                             </div>
-                            <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;
+                            <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;
                                 checkedRadioButton = <a class="code"
                                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4.html#a52480c4d5d81ca59fe4a98ae3c623ea4">preferences</a>.getInt(SettingConstants.FILTER_RSSI,
                                 rg.getCheckedRadioButtonId());
                             </div>
-                            <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;
+                            <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;
                                 } <span class="keywordflow">else</span> {
                             </div>
-                            <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;
+                            <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;
                                 checkedRadioButton = 0;
                             </div>
-                            <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;
+                            <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;
+                            <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;
                                 rg.check(checkedRadioButton);
                             </div>
-                            <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;
+                            <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;
                                 rg.setOnCheckedChangeListener(<span class="keyword">new</span>
                                 RadioGroup.OnCheckedChangeListener() {
                             </div>
-                            <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;
+                            <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;
                                 @Override
                             </div>
-                            <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;
+                            <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;
                                 <span class="keyword">public</span> <span
                                         class="keywordtype">void</span> onCheckedChanged(RadioGroup
                                 group, <span class="keywordtype">int</span> checkedId) {
                             </div>
-                            <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;
+                            <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;
                                 SharedPreferences.Editor editor = <a class="code"
                                                                      href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1SettingsFragment_a52480c4d5d81ca59fe4a98ae3c623ea4.html#a52480c4d5d81ca59fe4a98ae3c623ea4">preferences</a>.edit();
                             </div>
-                            <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;
+                            <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;
                                 editor.putInt(SettingConstants.FILTER_RSSI, checkedId);
                             </div>
-                            <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;
+                            <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;
                                 editor.apply();
                             </div>
-                            <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;
+                            <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;
                                 }
                             </div>
-                            <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;
+                            <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;
                                 });
                             </div>
-                            <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;
+                            <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;
                                 }
                             </div>
                             <div class="ttc"

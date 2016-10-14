@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.altbeacon.beacon.Beacon;
+import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -73,9 +74,9 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
             holder.imageView.setImageResource(R.drawable.beacon_unknown);
         }
 
-        holder.rssiTextView.setText(String.format("%sdb", beacon.getTxPower()));
+        holder.rssiTextView.setText(String.format("%sdb", beacon.getRssi()));
 
-        holder.txPowerTextView.setText(String.format("%sdb", beacon.getRssi()));
+        holder.txPowerTextView.setText(String.format("%sdb", beacon.getTxPower()));
 
         final String friendlyName = device.getFriendlyName();
         if (friendlyName != null) {
@@ -155,8 +156,10 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
         if (!device.isKalmanFilterEnabled()) {
             holder.kalmanFilterDistanceTextView.setText(getActivity().getText(R.string.kalman_filter_disabled));
         } else {
-            holder.kalmanFilterDistanceTextView.setText(String.format("%s", df.format(device.getKalmanFilterDistance())));
+            holder.kalmanFilterDistanceTextView.setText(String.format("%sm", df.format(device.getKalmanFilterDistance())));
         }
+
+        holder.kf2TextView.setText(String.format("%sm", df.format(device.getKalmanFilter2())));
     }
 
     private void setInfoDevice(DeviceViewHolder holder, Beacon beacon) {
@@ -244,6 +247,8 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
         TextView standardRawDistanceTextView;
         TextView kalmanFilterDistanceTextView;
 
+        TextView kf2TextView;
+
         LinearLayout visibilityUUIDLinearLayout;
         LinearLayout visibilityNameSpaceLinearLayout;
 
@@ -268,6 +273,8 @@ public class DeviceCardViewAdapter extends RecyclerView.Adapter<DeviceCardViewAd
             altbeaconDistanceTextView = (TextView) view.findViewById(R.id.value_altbeacon_distance);
             kalmanFilterDistanceTextView = (TextView) view.findViewById(R.id.value_kalman_filter_distance);
             standardRawDistanceTextView = (TextView) view.findViewById(R.id.value_standard_raw_distance);
+
+            kf2TextView = (TextView) view.findViewById(R.id.value_kalman_filter_2);
 
             visibilityUUIDLinearLayout = (LinearLayout) view.findViewById(R.id.visibility_uuid_minor_major_nmb);
             visibilityNameSpaceLinearLayout = (LinearLayout) view.findViewById(R.id.visibilityNameSpace_Instance);

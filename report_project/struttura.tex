@@ -103,7 +103,7 @@ Classe in cui si settano le costanti relative ai settaggi. Tali costanti sono in
 \section{DeviceListFragment}\label{ch:device_list}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceListFragment__inherit__graph.png}
+	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceListFragment__inherit__graph.png}
 	\caption{Classe - DeviceListFragment}
 \end{figure}
 
@@ -149,7 +149,7 @@ Nel dettaglio si aggiorna la lista in base alle preferenze impostate in \texttt{
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.9\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceListFragment__coll__graph.png}
+	\includegraphics[width=1.6\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceListFragment__coll__graph.png}
 	\caption{Collaborazione - DeviceListFragment}
 \end{figure}
 
@@ -191,7 +191,7 @@ Classe che serve ad inizializzare i vari oggetti grafici da visualizzare nel Rec
 \section{MyArmaRssiFilter}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1configuration_1_1MyArmaRssiFilter__inherit__graph.png}
+	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1MyArmaRssiFilter__inherit__graph.png}
 	\caption{Classe - MyArmaRssiFilter}
 \end{figure}
 
@@ -199,7 +199,7 @@ Classe in cui si esegue il filtraggio ARMA spiegato in \ref{ch:filtro_arma}.
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.65\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1configuration_1_1MyArmaRssiFilter__coll__graph.png}
+	\includegraphics[width=0.65\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1MyArmaRssiFilter__coll__graph.png}
 	\caption{Collaborazione - MyArmaRssiFilter}
 \end{figure}
 
@@ -208,7 +208,7 @@ Classe in cui si esegue il filtraggio ARMA spiegato in \ref{ch:filtro_arma}.
 Classe di supporto per la creazione di un \texttt{KFilter}. Il suo scopo è inizializzare tale oggetto con dei parametri passati al costruttore.
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilterBuilder__coll__graph.png}
+	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilterBuilder__coll__graph.png}
 	\caption{Collaborazione - KFilterBuildertFragment}
 \end{figure}
 
@@ -219,7 +219,7 @@ Classe per l'implementazione del filtro di Kalman. Il suo funzionamento viene sp
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1kalmanFilter_1_1KFilter__coll__graph.png}
+	\includegraphics[width=0.8\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2__coll__graph.png}
 	\caption{Collaborazione - KFilter}
 \end{figure}
 
@@ -275,7 +275,7 @@ Classe per implementare una SurfaceView come preview delle fotocamera presente n
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.7\linewidth, angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment__coll__graph.png}
+	\includegraphics[width=1.5\linewidth, angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1CameraFragment__coll__graph.png}
 	\caption{Collaborazione - CameraFragment}
 \end{figure}
 
@@ -315,17 +315,11 @@ Classe che serve a salvare le foto scattate dalla fotocamera. Implementa un Asyn
 \section{DeviceDetailInner1Fragment}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceDe8362efa0b556f228cc3338a27b7e447c.png}
+	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner1Fragment__inherit__graph.png}
 	\caption{Classe - DeviceDetailInner1Fragment}
 \end{figure}
 
 Simile a \ref{ch:device_list}, aggiorna i dati di un solo beacon e visualizza la distanza dall'Arduino. Per la distanza stimata da Arduino si utilizza il fragment \texttt{UsbMeasurementFragment}, istanziato come fragment statico nel file XML.
-
-\begin{figure}[ph]
-	\centering
-	\includegraphics[width=1.8\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceDetailInner1Fragment__coll__graph.png}
-	\caption{Collaborazione - DeviceDetailInner1Fragment}
-\end{figure}
 
 \newpage
 \section{DeviceDetailInner2Fragment}
@@ -347,17 +341,11 @@ Questa classe estende Fragment per inserire al proprio interno i dettagli dei be
 \section{DeviceChartFragment}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceChartFragment__inherit__graph.png}
+	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceChartFragment__inherit__graph.png}
 	\caption{Classe - DeviceChartFragment}
 \end{figure}
 
 Classe in cui si generano i grafici in realtime. I valori che vengono plottati sono le stime della distanza secondo Arduino e in base ai vari filtri su RSSI.
-
-\begin{figure}[ph]
-	\centering
-	\includegraphics[width=1.8\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1devicesObservers_1_1DeviceChartFragment__coll__graph.png}
-	\caption{Collaborazione - DeviceChartFragment}
-\end{figure}
 
 \newpage
 \section{ChartUtil}
@@ -373,7 +361,7 @@ Classe per la creazione di grafici in real time. Viene sfuttata da \texttt{Devic
 \section{UsbMeasurementFragment}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment__inherit__graph.png}
+	\includegraphics[width=0.5\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1UsbMeasurementFragment__inherit__graph.png}
 	\caption{Classe - UsbMeasurementFragment}
 \end{figure}
 
@@ -389,7 +377,7 @@ Classe che visualizza su di un fragment i valori di distanza stimati dall'Arduin
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.6\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1usbObservers_1_1UsbMeasurementFragment__coll__graph.png}
+	\includegraphics[width=1.6\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1UsbMeasurementFragment__coll__graph.png}
 	\caption{Collaborazione - UsbMeasurementFragment}
 \end{figure}
 

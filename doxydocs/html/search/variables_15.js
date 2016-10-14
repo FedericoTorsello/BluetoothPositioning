@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['x',['x',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_ad07c13a7c5d92b40ff76743a8734014b.html#ad07c13a7c5d92b40ff76743a8734014b',1,'it::unibo::torsello::bluetoothpositioning::filters::kalmanFilter::KFilter']]],
-  ['x1',['x1',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_a18787a3e158476e584bd39d10b944f85.html#a18787a3e158476e584bd39d10b944f85',1,'it::unibo::torsello::bluetoothpositioning::filters::kalmanFilter::KFilter']]],
-  ['x2',['x2',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter_1_1KFilter_a47a49df3a17886229a33cf468029b477.html#a47a49df3a17886229a33cf468029b477',1,'it::unibo::torsello::bluetoothpositioning::filters::kalmanFilter::KFilter']]]
+  ['window',['WINDOW',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1constant_1_1KFilterConstants_a3c2618e53ad77fcb50785f62868e4c9c.html#a3c2618e53ad77fcb50785f62868e4c9c',1,'it::unibo::torsello::bluetoothpositioning::constant::KFilterConstants']]],
+  ['wosc',['WOSC',['../classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation_a53237b14bc1d27ae4f751b02d798b595.html#a53237b14bc1d27ae4f751b02d798b595',1,'it::unibo::torsello::bluetoothpositioning::distanceEstimation::Estimation']]]
 ];

@@ -224,6 +224,7 @@ public void addMeasurement(Integer rssi) {
 
 Per il settaggio dinamico del coefficiente $ c $ si utilizza il metodo \texttt{setArmaSpeed(double arma\_speed)}. Visto che i segnali considerati tendono a variare piuttosto frequentemente (alla frequenza di 1Hz o superiore), il valore consigliato per 1HZ sarebbe 0,1 (cioè l'input viene modificato del 10\% della differenza tra la misurazione attuale e la media effettiva). Per segnali a frequenza superiori (10Hz) si consiglia un valore compreso tra 0,25 e 0,5.
 
+\newpage
 \subsection{Grafici in tempo reale}
 Si è scelto di far visualizzare a schermo, direttamente dall'app, dei grafici in tempo reale in modo da rendere più chiaro l'andamento delle stime.
 Per far questo è stata utilizzata la libreria \href{https://github.com/PhilJay/MPAndroidChart}{\textbf{MPAndroidChart}}\footnote{\href{https://github.com/PhilJay/MPAndroidChart}{\textbf{MPAndroidChart}} - \url{https://github.com/PhilJay/MPAndroidChart}}.

@@ -10,6 +10,7 @@ var searchData=
   ['fragment',['fragment',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment.html',1,'it::unibo::torsello::bluetoothpositioning']]],
   ['it',['it',['../namespaceit.html',1,'']]],
   ['kalmanfilter',['kalmanFilter',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter.html',1,'it::unibo::torsello::bluetoothpositioning::filters']]],
+  ['kalmanfilter2',['kalmanFilter2',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2.html',1,'it::unibo::torsello::bluetoothpositioning::filters']]],
   ['model',['model',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model.html',1,'it::unibo::torsello::bluetoothpositioning']]],
   ['observables',['observables',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1observables.html',1,'it::unibo::torsello::bluetoothpositioning']]],
   ['task',['task',['../namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1task.html',1,'it::unibo::torsello::bluetoothpositioning']]],

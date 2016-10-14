@@ -65,7 +65,7 @@ public class KFilter {
             double predX = (A * x) + (B * u);
             double predCov = ((A * cov) * A) + R;
 
-            // Kalman gain
+            // KFilter2 gain
             double K = predCov * C * (1 / ((C * predCov * C) + Q));
 
             // Correction
