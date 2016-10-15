@@ -1,0 +1,631 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta name="generator" content="Doxygen 1.8.12"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>BluetoothPositioning:
+        it.unibo.torsello.bluetoothpositioning.util.ReportUtils.createReport</title>
+    <link href="tabs.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="search/searchdata.js"></script>
+    <script type="text/javascript" src="search/search.js"></script>
+    <link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+    <div id="titlearea">
+        <table cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr style="height: 56px;">
+                <td id="projectalign" style="padding-left: 0.5em;">
+                    <div id="projectname">BluetoothPositioning
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- end header part -->
+    <!-- Generato da Doxygen 1.8.12 -->
+    <script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Cerca');
+
+    </script>
+    <script type="text/javascript" src="menudata.js"></script>
+    <script type="text/javascript" src="menu.js"></script>
+    <script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Cerca');
+  $(document).ready(function() { init_search(); });
+});
+
+    </script>
+    <div id="main-nav"></div>
+    <!-- window showing the filter options -->
+    <div id="MSearchSelectWindow"
+         onmouseover="return searchBox.OnSearchSelectShow()"
+         onmouseout="return searchBox.OnSearchSelectHide()"
+         onkeydown="return searchBox.OnSearchSelectKey(event)">
+    </div>
+
+    <!-- iframe showing the search results (closed by default) -->
+    <div id="MSearchResultsWindow">
+        <iframe src="javascript:void(0)" frameborder="0"
+                name="MSearchResults" id="MSearchResults">
+        </iframe>
+    </div>
+
+    <div id="nav-path" class="navpath">
+        <ul>
+            <li class="navelem"><a class="el" href="namespaceit.html">it</a></li>
+            <li class="navelem"><a class="el" href="namespaceit_1_1unibo.html">unibo</a></li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello.html">torsello</a></li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning.html">bluetoothpositioning</a>
+            </li>
+            <li class="navelem"><a class="el"
+                                   href="namespaceit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util.html">util</a>
+            </li>
+            <li class="navelem"><a class="el"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils.html">ReportUtils</a>
+            </li>
+        </ul>
+    </div>
+</div><!-- top -->
+<div class="contents">
+    <table cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td valign="top">
+                <div class="navtab">
+                    <table>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ae36eb3321f2d7f96753d7854f5cb6923.html#ae36eb3321f2d7f96753d7854f5cb6923">activity</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a6e72cc0d840390d44e6cbccece68e240.html#a6e72cc0d840390d44e6cbccece68e240">altBeaconValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad5cf6eb0aa41a0e3eeaabfec16f47c28.html#ad5cf6eb0aa41a0e3eeaabfec16f47c28">appendData</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ac57226bb543cd32d89c205a41ff23ae3.html#ac57226bb543cd32d89c205a41ff23ae3">appendResume</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3557dcc1662461b46fcd4d18eee9780e.html#a3557dcc1662461b46fcd4d18eee9780e">arduinoValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_aa83960dff58c2975a142c6b093abf72a.html#aa83960dff58c2975a142c6b093abf72a">clearRecordedValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindexHL"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a346661fa52c458c399de10f6ca494cd7.html#a346661fa52c458c399de10f6ca494cd7">createReport</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a29b88de66ca4b3e85b3cc86e9621c26a.html#a29b88de66ca4b3e85b3cc86e9621c26a">dfJsonFile</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afb07df801c89068760b260fb09916895.html#afb07df801c89068760b260fb09916895">dfValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0339d8306f408d438720a67d1801f46c.html#a0339d8306f408d438720a67d1801f46c">formattedDate</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a6e6b0d302bb7d2e8f128154f0a80965c.html#a6e6b0d302bb7d2e8f128154f0a80965c">formattedTime</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a397da2904c606315301d19eb39451181.html#a397da2904c606315301d19eb39451181">getActivity</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a4efc733750ef3ab7dddb613291bff1c4.html#a4efc733750ef3ab7dddb613291bff1c4">getAvg</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a174ea1d2c8b7e5effd484c65d1b5488c.html#a174ea1d2c8b7e5effd484c65d1b5488c">getAvgAsString</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af24755a01c03201bca86e0c2e03cf81d.html#af24755a01c03201bca86e0c2e03cf81d">getDeviation</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a768356af2517bb604a39daf2497fc761.html#a768356af2517bb604a39daf2497fc761">getJson</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ada05f889f861205ac0687db4442cad63.html#ada05f889f861205ac0687db4442cad63">getMaxAsString</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad44a97d58ebf0e48fc15b573be05eae9.html#ad44a97d58ebf0e48fc15b573be05eae9">getMinAsString</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0f5823e8ff4bd5e3accc20a7313b075f.html#a0f5823e8ff4bd5e3accc20a7313b075f">getNameFile</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a2b62843f2c0da4743686ca60edfc3aed.html#a2b62843f2c0da4743686ca60edfc3aed">getResume</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a974d9bac8edb83847a34b20db0299fca.html#a974d9bac8edb83847a34b20db0299fca">gson</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a4c838a130a922b6f26b79c7d7bdcaf9c.html#a4c838a130a922b6f26b79c7d7bdcaf9c">idDeviceSelectedName</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a58e7513f3cbe12723359b8dee541ed14.html#a58e7513f3cbe12723359b8dee541ed14">isExternalStorageWritable</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a9a40344497c5522bbc90f03581c2713a.html#a9a40344497c5522bbc90f03581c2713a">kFilterValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af1f57227f8c42073b4f8f2b65e86ebd7.html#af1f57227f8c42073b4f8f2b65e86ebd7">preferences</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ab1f0b60e037c211df9cc6dc34ebb8030.html#ab1f0b60e037c211df9cc6dc34ebb8030">processNoise</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_adbe56bea0813a48932ef94b8b27c3314.html#adbe56bea0813a48932ef94b8b27c3314">rawValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a5d2a51b68c3344f5aa41abaa118282b4.html#a5d2a51b68c3344f5aa41abaa118282b4">refreshDirectory</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af9975aaf0a16c6a51afd258b8c3f77c0.html#af9975aaf0a16c6a51afd258b8c3f77c0">ReportUtils</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ae68aaee9a1033dd6659cc3d6af970f60.html#ae68aaee9a1033dd6659cc3d6af970f60">setAltBeaconValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3fbc76f4a952ebae654b238dbef6ca1d.html#a3fbc76f4a952ebae654b238dbef6ca1d">setArduinoValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a081697bebaa8ef8f7d245f9a7da917fa.html#a081697bebaa8ef8f7d245f9a7da917fa">setkFilterValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a6a65fe55f37edba3871801600cdf48f4.html#a6a65fe55f37edba3871801600cdf48f4">setRawValues</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_aa14b78ad82095e13e057308f4b5da594.html#aa14b78ad82095e13e057308f4b5da594">writeJsonFile</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="navtab"><a class="qindex"
+                                                  href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af8578f11822b403410e46f023b68dd7b.html#af8578f11822b403410e46f023b68dd7b">writeResumeFile</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <td valign="top" class="mempage">
+                <a id="a346661fa52c458c399de10f6ca494cd7"></a>
+                <h2 class="memtitle"><span class="permalink"><a
+                        href="#a346661fa52c458c399de10f6ca494cd7">&sect;&nbsp;</a></span>createReport()
+                </h2>
+
+                <div class="memitem">
+                    <div class="memproto">
+                        <table class="memname">
+                            <tr>
+                                <td class="memname">void
+                                    it.unibo.torsello.bluetoothpositioning.util.ReportUtils.createReport
+                                </td>
+                                <td>(</td>
+                                <td class="paramname"></td>
+                                <td>)</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="memdoc">
+                        <div class="fragment">
+                            <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;
+                                {
+                            </div>
+                            <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;
+                                <span class="keywordtype">double</span> <a class="code"
+                                                                           href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ab1f0b60e037c211df9cc6dc34ebb8030.html#ab1f0b60e037c211df9cc6dc34ebb8030">processNoise</a>
+                                = <a class="code"
+                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af1f57227f8c42073b4f8f2b65e86ebd7.html#af1f57227f8c42073b4f8f2b65e86ebd7">preferences</a>.getFloat(SettingConstants.KALMAN_NOISE_VALUE,
+                                0);
+                            </div>
+                            <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;
+                                String tempFilter = <span class="stringliteral">&quot;&quot;</span>;
+                            </div>
+                            <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;
+                                <span class="keywordflow">if</span> (<a class="code"
+                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>
+                                != null) {
+                            </div>
+                            <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;
+                                tempFilter = <a class="code"
+                                                href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>;
+                            </div>
+                            <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>
+                                = ((ApplicationActivity) <a class="code"
+                                                            href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a397da2904c606315301d19eb39451181.html#a397da2904c606315301d19eb39451181">getActivity</a>()).getRssiFilterSelected();
+                            </div>
+                            <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;
+                                <span class="keywordflow">if</span> (<a class="code"
+                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a58e7513f3cbe12723359b8dee541ed14.html#a58e7513f3cbe12723359b8dee541ed14">isExternalStorageWritable</a>())
+                                {
+                            </div>
+                            <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;
+                                File root = Environment.getExternalStorageDirectory();
+                            </div>
+                            <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;
+                                File dir = <span class="keyword">new</span>
+                                File(root.getAbsolutePath()
+                            </div>
+                            <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;
+                                + File.separator
+                            </div>
+                            <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;
+                                + <a class="code"
+                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a397da2904c606315301d19eb39451181.html#a397da2904c606315301d19eb39451181">getActivity</a>().getString(R.string.app_name)
+                            </div>
+                            <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;
+                                + <span class="stringliteral">&quot; Report&quot;</span>);
+                            </div>
+                            <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;
+                                dir.mkdirs();
+                            </div>
+                            <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;
+                                File subDir1 = <span class="keyword">new</span>
+                                File(dir.getAbsolutePath() + File.separator
+                            </div>
+                            <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;
+                                + <a class="code"
+                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0339d8306f408d438720a67d1801f46c.html#a0339d8306f408d438720a67d1801f46c">formattedDate</a>);
+                            </div>
+                            <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;
+                                subDir1.mkdirs();
+                            </div>
+                            <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;
+                                File subDir2 = <span class="keyword">new</span>
+                                File(subDir1.getAbsolutePath() + File.separator
+                            </div>
+                            <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;
+                                + <span class="stringliteral">&quot;KF process noise &quot;</span> +
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ab1f0b60e037c211df9cc6dc34ebb8030.html#ab1f0b60e037c211df9cc6dc34ebb8030">processNoise</a>);
+                            </div>
+                            <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;
+                                subDir2.mkdirs();
+                            </div>
+                            <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;
+                                File subDir3 = <span class="keyword">new</span>
+                                File(subDir2.getAbsolutePath() + File.separator
+                            </div>
+                            <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;
+                                + <a class="code"
+                                     href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>);
+                            </div>
+                            <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;
+                                subDir3.mkdirs();
+                            </div>
+                            <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;
+                                <span class="keywordflow">if</span> (!<a class="code"
+                                                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>.equals(tempFilter))
+                                {
+                            </div>
+                            <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>
+                                = 1;
+                            </div>
+                            <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>
+                                = <span class="keyword">new</span> File(subDir3, <a class="code"
+                                                                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0f5823e8ff4bd5e3accc20a7313b075f.html#a0f5823e8ff4bd5e3accc20a7313b075f">getNameFile</a>());
+                            </div>
+                            <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;
+                                <span class="keywordflow">if</span> (<a class="code"
+                                                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>.exists())
+                                {
+                            </div>
+                            <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;
+                                <span class="keywordflow">if</span> (!<a class="code"
+                                                                         href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">rssiFilterSelected</a>.equals(tempFilter))
+                                {
+                            </div>
+                            <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>
+                                = 1;
+                            </div>
+                            <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;
+                                } <span class="keywordflow">else</span> {
+                            </div>
+                            <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;
+                                String name = <a class="code"
+                                                 href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>.getName();
+                            </div>
+                            <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;
+                                String substring = name.substring(name.length() - 7, name.length() -
+                                5);
+                            </div>
+                            <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>
+                                = Integer.parseInt(substring);
+                            </div>
+                            <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>++;
+                            </div>
+                            <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>
+                                = <span class="keyword">new</span> File(subDir3, <a class="code"
+                                                                                    href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0f5823e8ff4bd5e3accc20a7313b075f.html#a0f5823e8ff4bd5e3accc20a7313b075f">getNameFile</a>());
+                            </div>
+                            <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;
+                                } <span class="keywordflow">else</span> {
+                            </div>
+                            <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">indexFile</a>
+                                = 1;
+                            </div>
+                            <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;
+                                <span class="keywordflow">try</span> {
+                            </div>
+                            <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">jsonFile</a>.createNewFile();
+                            </div>
+                            <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;
+                                } <span class="keywordflow">catch</span> (IOException e) {
+                            </div>
+                            <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;
+                                e.printStackTrace();
+                            </div>
+                            <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_aa14b78ad82095e13e057308f4b5da594.html#aa14b78ad82095e13e057308f4b5da594">writeJsonFile</a>();
+                            </div>
+                            <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;
+                            </div>
+                            <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;
+                                <a class="code"
+                                   href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af8578f11822b403410e46f023b68dd7b.html#af8578f11822b403410e46f023b68dd7b">writeResumeFile</a>();
+                            </div>
+                            <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;
+                                }
+                            </div>
+                            <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;
+                                }
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0f5823e8ff4bd5e3accc20a7313b075f_html_a0f5823e8ff4bd5e3accc20a7313b075f">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0f5823e8ff4bd5e3accc20a7313b075f.html#a0f5823e8ff4bd5e3accc20a7313b075f">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.getNameFile</a>
+                                </div>
+                                <div class="ttdeci">String getNameFile()</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:160</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da_html_ad51884bc9ff99e0ed1e7d5f8054de6da">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ad51884bc9ff99e0ed1e7d5f8054de6da.html#ad51884bc9ff99e0ed1e7d5f8054de6da">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.rssiFilterSelected</a>
+                                </div>
+                                <div class="ttdeci">String rssiFilterSelected</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:44</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af1f57227f8c42073b4f8f2b65e86ebd7_html_af1f57227f8c42073b4f8f2b65e86ebd7">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af1f57227f8c42073b4f8f2b65e86ebd7.html#af1f57227f8c42073b4f8f2b65e86ebd7">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.preferences</a>
+                                </div>
+                                <div class="ttdeci">SharedPreferences preferences</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:61</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_aa14b78ad82095e13e057308f4b5da594_html_aa14b78ad82095e13e057308f4b5da594">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_aa14b78ad82095e13e057308f4b5da594.html#aa14b78ad82095e13e057308f4b5da594">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.writeJsonFile</a>
+                                </div>
+                                <div class="ttdeci">void writeJsonFile()</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:295</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af8578f11822b403410e46f023b68dd7b_html_af8578f11822b403410e46f023b68dd7b">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_af8578f11822b403410e46f023b68dd7b.html#af8578f11822b403410e46f023b68dd7b">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.writeResumeFile</a>
+                                </div>
+                                <div class="ttdeci">void writeResumeFile()</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:276</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6_html_afcda83ce8a192e352a399e5454fcbba6">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_afcda83ce8a192e352a399e5454fcbba6.html#afcda83ce8a192e352a399e5454fcbba6">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.indexFile</a>
+                                </div>
+                                <div class="ttdeci">int indexFile</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:59</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a58e7513f3cbe12723359b8dee541ed14_html_a58e7513f3cbe12723359b8dee541ed14">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a58e7513f3cbe12723359b8dee541ed14.html#a58e7513f3cbe12723359b8dee541ed14">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.isExternalStorageWritable</a>
+                                </div>
+                                <div class="ttdeci">boolean isExternalStorageWritable()</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:423</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0339d8306f408d438720a67d1801f46c_html_a0339d8306f408d438720a67d1801f46c">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a0339d8306f408d438720a67d1801f46c.html#a0339d8306f408d438720a67d1801f46c">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.formattedDate</a>
+                                </div>
+                                <div class="ttdeci">String formattedDate</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:50</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85_html_a3d54acab8d9785425b61d7a294444f85">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a3d54acab8d9785425b61d7a294444f85.html#a3d54acab8d9785425b61d7a294444f85">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.jsonFile</a>
+                                </div>
+                                <div class="ttdeci">File jsonFile</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:58</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a397da2904c606315301d19eb39451181_html_a397da2904c606315301d19eb39451181">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_a397da2904c606315301d19eb39451181.html#a397da2904c606315301d19eb39451181">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.getActivity</a>
+                                </div>
+                                <div class="ttdeci">FragmentActivity getActivity()</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:91</div>
+                            </div>
+                            <div class="ttc"
+                                 id="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ab1f0b60e037c211df9cc6dc34ebb8030_html_ab1f0b60e037c211df9cc6dc34ebb8030">
+                                <div class="ttname"><a
+                                        href="classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils_ab1f0b60e037c211df9cc6dc34ebb8030.html#ab1f0b60e037c211df9cc6dc34ebb8030">it.unibo.torsello.bluetoothpositioning.util.ReportUtils.processNoise</a>
+                                </div>
+                                <div class="ttdeci">double processNoise</div>
+                                <div class="ttdef"><b>Definition:</b> ReportUtils.java:63</div>
+                            </div>
+                        </div><!-- fragment -->
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/>
+<address class="footer">
+    <small>
+        Generato da &#160;<a href="http://www.doxygen.org/index.html">
+        <img class="footer" src="doxygen.png" alt="doxygen"/>
+    </a> 1.8.12
+    </small>
+</address>
+</body>
+</html>

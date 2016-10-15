@@ -1,0 +1,199 @@
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2}{}\subsection{Riferimenti per la classe it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2}
+\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2}\index{it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2@{it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2}}
+
+
+Diagramma di collaborazione per it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2__coll__graph}
+\end{center}
+\end{figure}
+\subsubsection*{Membri pubblici}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7b8d897944a753c29b80361daf3d62b5_a7b8d897944a753c29b80361daf3d62b5}{K\+Filter2} ()
+\item 
+double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7cacbca71c01195a1ac7e00945d46f2f_a7cacbca71c01195a1ac7e00945d46f2f}{esimate\+Position} (double pos, double my\+Process)
+\end{DoxyCompactItemize}
+\subsubsection*{Attributi privati}
+\begin{DoxyCompactItemize}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be}{A}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_af6f8f43cdc86ac20a3525bebc1ba848c_af6f8f43cdc86ac20a3525bebc1ba848c}{B}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b}{H}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a5eb690def3c277c815619aa2363abd74_a5eb690def3c277c815619aa2363abd74}{Q}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a0a503e88a9652eea4e417784039b23df_a0a503e88a9652eea4e417784039b23df}{R}
+\item 
+Real\+Vector \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x}
+\item 
+Real\+Matrix \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4f9d600775e0926ef0ccf08cd196f1a5_a4f9d600775e0926ef0ccf08cd196f1a5}{P0}
+\item 
+final double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4484e3e6e2f16ea29241f1e2d490de3c_a4484e3e6e2f16ea29241f1e2d490de3c}{dt} = 0.\+1d
+\item 
+final double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa9286d6fd8b985e85e9b605ca43834bc_aa9286d6fd8b985e85e9b605ca43834bc}{measurement\+Noise} = 0.\+15d
+\item 
+Real\+Vector \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a68fea74e8a3686178679321fd707835f_a68fea74e8a3686178679321fd707835f}{p\+Noise}
+\item 
+double \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa134d4ebc0ce26d332937a66641188b2_aa134d4ebc0ce26d332937a66641188b2}{process\+Noise} = 0.\+00001d
+\item 
+Kalman\+Filter \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{filter}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Descrizione dettagliata}
+Created by federico on 13/10/16. 
+
+\subsubsection{Documentazione dei costruttori e dei distruttori}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7b8d897944a753c29b80361daf3d62b5_a7b8d897944a753c29b80361daf3d62b5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7b8d897944a753c29b80361daf3d62b5_a7b8d897944a753c29b80361daf3d62b5} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!K\+Filter2@{K\+Filter2}}
+\index{K\+Filter2@{K\+Filter2}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{K\+Filter2()}{KFilter2()}}
+{\footnotesize\ttfamily it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+K\+Filter2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+48                       \{
+49 
+50         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be}{A} = \textcolor{keyword}{new} Array2DRowRealMatrix(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[]\{1d\});
+51 
+52         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_af6f8f43cdc86ac20a3525bebc1ba848c_af6f8f43cdc86ac20a3525bebc1ba848c}{B} = null;
+53 
+54         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b}{H} = \textcolor{keyword}{new} Array2DRowRealMatrix(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[]\{1d\});
+55 
+56         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a5eb690def3c277c815619aa2363abd74_a5eb690def3c277c815619aa2363abd74}{Q} = \textcolor{keyword}{new} Array2DRowRealMatrix(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[]\{\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa134d4ebc0ce26d332937a66641188b2_aa134d4ebc0ce26d332937a66641188b2}{processNoise}\});
+57 
+58         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4f9d600775e0926ef0ccf08cd196f1a5_a4f9d600775e0926ef0ccf08cd196f1a5}{P0} = \textcolor{keyword}{new} Array2DRowRealMatrix(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[][]\{\{65d\}\});
+59 
+60         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a0a503e88a9652eea4e417784039b23df_a0a503e88a9652eea4e417784039b23df}{R} = \textcolor{keyword}{new} Array2DRowRealMatrix(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[]\{
+61                 Math.pow(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa9286d6fd8b985e85e9b605ca43834bc_aa9286d6fd8b985e85e9b605ca43834bc}{measurementNoise}, 2d)
+62         \});
+63 
+64         ProcessModel pm = \textcolor{keyword}{new} DefaultProcessModel(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be}{A}, B, Q, \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x}, P0);
+65         MeasurementModel mm = \textcolor{keyword}{new} DefaultMeasurementModel(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b}{H}, R);
+66         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{filter} = \textcolor{keyword}{new} KalmanFilter(pm, mm);
+67 
+68         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a68fea74e8a3686178679321fd707835f_a68fea74e8a3686178679321fd707835f}{pNoise} = \textcolor{keyword}{new} ArrayRealVector(1);
+69     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentazione delle funzioni membro}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7cacbca71c01195a1ac7e00945d46f2f_a7cacbca71c01195a1ac7e00945d46f2f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a7cacbca71c01195a1ac7e00945d46f2f_a7cacbca71c01195a1ac7e00945d46f2f} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!esimate\+Position@{esimate\+Position}}
+\index{esimate\+Position@{esimate\+Position}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{esimate\+Position()}{esimatePosition()}}
+{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+esimate\+Position (\begin{DoxyParamCaption}\item[{double}]{pos,  }\item[{double}]{my\+Process }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+71                                                                 \{
+72 
+73 \textcolor{comment}{//        pNoise.setEntry(0, myProcess);}
+74 
+75         \textcolor{comment}{// x = [ 0 0 0 0] state consists of position and velocity[pX, pY, vX, vY]}
+76         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x} = \textcolor{keyword}{new} ArrayRealVector(\textcolor{keyword}{new} \textcolor{keywordtype}{double}[]\{pos\});
+77 
+78         \textcolor{comment}{// predict the state estimate one time-step ahead}
+79         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{filter}.predict();
+80 
+81         \textcolor{comment}{// x = A * x + B * u (state prediction)}
+82 \textcolor{comment}{//        x = A.operate(x).add(pNoise);}
+83         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x} = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be}{A}.operate(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x});
+84 
+85         \textcolor{comment}{// z = H * x  (measurement prediction)}
+86         RealVector z = \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b}{H}.operate(\hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{x});
+87 
+88         \textcolor{comment}{// correct the state estimate with the latest measurement}
+89         \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{filter}.correct(z);
+90 
+91         \textcolor{comment}{//get the corrected state - the position}
+92 
+93         \textcolor{keywordflow}{return} \hyperlink{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{filter}.getStateEstimation()[0];
+94     \}
+\end{DoxyCode}
+
+
+\subsubsection{Documentazione dei membri dato}
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a2db5c0d45a13585f71e24dbb433d20be_a2db5c0d45a13585f71e24dbb433d20be} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!A@{A}}
+\index{A@{A}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+A\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_af6f8f43cdc86ac20a3525bebc1ba848c_af6f8f43cdc86ac20a3525bebc1ba848c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_af6f8f43cdc86ac20a3525bebc1ba848c_af6f8f43cdc86ac20a3525bebc1ba848c} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!B@{B}}
+\index{B@{B}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{B}{B}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+B\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4484e3e6e2f16ea29241f1e2d490de3c_a4484e3e6e2f16ea29241f1e2d490de3c}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4484e3e6e2f16ea29241f1e2d490de3c_a4484e3e6e2f16ea29241f1e2d490de3c} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!dt@{dt}}
+\index{dt@{dt}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily final double it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+dt = 0.\+1d\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a421a61f6c29cfad7a9faac33935a0b96_a421a61f6c29cfad7a9faac33935a0b96} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!filter@{filter}}
+\index{filter@{filter}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{filter}{filter}}
+{\footnotesize\ttfamily Kalman\+Filter it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+filter\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4a7f02c99b3659ca45be7d0a336fe37b_a4a7f02c99b3659ca45be7d0a336fe37b} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!H@{H}}
+\index{H@{H}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+H\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa9286d6fd8b985e85e9b605ca43834bc_aa9286d6fd8b985e85e9b605ca43834bc}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa9286d6fd8b985e85e9b605ca43834bc_aa9286d6fd8b985e85e9b605ca43834bc} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!measurement\+Noise@{measurement\+Noise}}
+\index{measurement\+Noise@{measurement\+Noise}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{measurement\+Noise}{measurementNoise}}
+{\footnotesize\ttfamily final double it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+measurement\+Noise = 0.\+15d\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4f9d600775e0926ef0ccf08cd196f1a5_a4f9d600775e0926ef0ccf08cd196f1a5}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4f9d600775e0926ef0ccf08cd196f1a5_a4f9d600775e0926ef0ccf08cd196f1a5} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!P0@{P0}}
+\index{P0@{P0}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{P0}{P0}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+P0\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a68fea74e8a3686178679321fd707835f_a68fea74e8a3686178679321fd707835f}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a68fea74e8a3686178679321fd707835f_a68fea74e8a3686178679321fd707835f} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!p\+Noise@{p\+Noise}}
+\index{p\+Noise@{p\+Noise}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{p\+Noise}{pNoise}}
+{\footnotesize\ttfamily Real\+Vector it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+p\+Noise\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa134d4ebc0ce26d332937a66641188b2_aa134d4ebc0ce26d332937a66641188b2}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_aa134d4ebc0ce26d332937a66641188b2_aa134d4ebc0ce26d332937a66641188b2} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!process\+Noise@{process\+Noise}}
+\index{process\+Noise@{process\+Noise}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{process\+Noise}{processNoise}}
+{\footnotesize\ttfamily double it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+process\+Noise = 0.\+00001d\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a5eb690def3c277c815619aa2363abd74_a5eb690def3c277c815619aa2363abd74}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a5eb690def3c277c815619aa2363abd74_a5eb690def3c277c815619aa2363abd74} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!Q@{Q}}
+\index{Q@{Q}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{Q}{Q}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+Q\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a0a503e88a9652eea4e417784039b23df_a0a503e88a9652eea4e417784039b23df}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a0a503e88a9652eea4e417784039b23df_a0a503e88a9652eea4e417784039b23df} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!R@{R}}
+\index{R@{R}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily Real\+Matrix it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+R\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217}{}\label{classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1filters_1_1kalmanFilter2_1_1KFilter2_a4def28b2f975a9eb35e2b250e7585217_a4def28b2f975a9eb35e2b250e7585217} 
+\index{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}!x@{x}}
+\index{x@{x}!it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2@{it\+::unibo\+::torsello\+::bluetoothpositioning\+::filters\+::kalman\+Filter2\+::\+K\+Filter2}}
+\paragraph{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily Real\+Vector it.\+unibo.\+torsello.\+bluetoothpositioning.\+filters.\+kalman\+Filter2.\+K\+Filter2.\+x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentazione per questa classe è stata generata a partire dal seguente file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{KFilter2_8java}{K\+Filter2.\+java}\end{DoxyCompactItemize}

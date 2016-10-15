@@ -21,8 +21,6 @@ Purtroppo questo approccio non è particolarmente preciso in quanto l’ambiente
 	\caption{RSSI - Modello dell'andamento di RSSI in funzione della distanza}
 \end{figure}
 
-
-
 \section{Calcolo di RSSI}
 Per il calcolo di RSSI (in dBm) si assume:
 \begin{enumerate}
@@ -102,10 +100,10 @@ Con questa formula si può stimare la distanza .
 I principali fenomeni negativi che inficiano l'utilizzo di RSSI come approccio per determinare la distanza tra due punti sono:
 \begin{itemize}
 	\item \textbf{Riflessione:} il segnale si propaga anche attraverso un percorso riflesso, provocando un \textbf{multi-path fading}. Al ricevitore giungono segnali con ampiezze e fasi differenti che vanno a sommarsi o sottrarsi in funzione della frequenza, causando un fading selettivo. Può essere causato da metalli e altri materiali riflettenti.
-	\item \textbf{Intralcio:} shadowing che altera il normale decadimento dell’intensità che si avrebbe in spazio libero. L’attenuazione improvvisa del segnale è causata degli ostacoli (mobili, muri, alberi, edifici, ecc.) nel cammino trasmettitore-ricevitore
+	\item \textbf{Intralcio:} shadowing che altera il normale decadimento dell’intensità che si avrebbe in spazio libero. L’attenuazione improvvisa del segnale è causata degli ostacoli (mobili, muri, alberi, edifici, ecc.) nel cammino trasmettitore-ricevitore.
 	\item \textbf{Assorbimento:} oggetti, come elementi liquidi o corpi umani, che assorbono la potenza del segnale.
-	\item \textbf{Altezza:} la differenza di altezza può falsare la stima
-	\item \textbf{Orientamento relativo:} il segnale decade se il ricevitore non è direzionato verso l'emettitore
+	\item \textbf{Altezza:} la differenza di altezza può falsare la stima.
+	\item \textbf{Orientamento relativo:} il segnale decade se il ricevitore non è direzionato verso l'emettitore.
 \end{itemize}
 
 \begin{figure}[!ht]
@@ -114,6 +112,7 @@ I principali fenomeni negativi che inficiano l'utilizzo di RSSI come approccio p
 	\caption{RSSI - Problemi di riflessione}
 \end{figure}
 
+\newpage
 \section{Filtro di Kalman}
 \begin{quotation}
 	\textbf{Definizione 1}: Il filtro di Kalman è stato sviluppato da Rudolf Kalman. 
@@ -140,7 +139,7 @@ I principali fenomeni negativi che inficiano l'utilizzo di RSSI come approccio p
 	
 	La costruzione del filtraggio dei dati avviene sulla base di una media pesata tra il prossimo valore predetto e il successivo valore stimato.
 	
-	L'algoritmo e composto da alcune equazioni matematiche che effettuano operazioni ricorsive per dare un efficace soluzione al metodo dei minimi quadrati.
+	L'algoritmo è composto da alcune equazioni matematiche che effettuano operazioni ricorsive per dare una soluzione efficace al metodo dei minimi quadrati.
 	
 	Per la sua costruzione il filtro di Kalman necessita di \textbf{tre ingredienti	fondamentali} vincolati al sistema che si sta studiando:
 	\begin{enumerate}

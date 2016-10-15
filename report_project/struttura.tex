@@ -6,11 +6,11 @@
 	\includegraphics[width=0.40\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity__inherit__graph.png}
 	\caption{Classe - MainActivity}
 \end{figure}
-La classe \texttt{Main} viene istanziata per prima all'avvio dell'app. Serve ad inizializzare gli oggetti grafici, controllare la compatibilità con Android 5.0+ e rimpiazzare i fragment da visualizzare selezionati dal menu a sinistra.
+La classe \texttt{Main} viene istanziata per prima all'avvio dell'app. Serve ad inizializzare gli oggetti grafici, controllare la compatibilità con Android 5.0+ e rimpiazzare i fragment da visualizzare selezionati dal menù a sinistra.
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.8\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity__coll__graph.png}
+	\includegraphics[width=1.6\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1MainActivity__coll__graph.png}
 	\caption{Collaborazione - MainActivity}
 \end{figure}
 
@@ -28,7 +28,7 @@ Alla ricezione dei dati, questi vengono spediti al \texttt{DeviceObservable} a c
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.9\linewidth, angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity__coll__graph.png}
+	\includegraphics[width=1.55\linewidth, angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1activities_1_1ApplicationActivity__coll__graph.png}
 	\caption{Collaborazione - ApplicationActivity}
 \end{figure}
 
@@ -36,7 +36,7 @@ Alla ricezione dei dati, questi vengono spediti al \texttt{DeviceObservable} a c
 \section{Device}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=0.9\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device__coll__graph.png}
+	\includegraphics[width=1.2\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1model_1_1Device__coll__graph.png}
 	\caption{Collaborazione - Device}
 \end{figure}
 
@@ -66,9 +66,32 @@ Lo scopo di questa classe è creare un Observable che notifichi a tutti gli Obse
 \section{Estimation}
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.2\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation__coll__graph.png}
+	\includegraphics[width=1.3\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1distanceEstimation_1_1Estimation__coll__graph.png}
 	\caption{Collaborazione - Estimation}
 \end{figure}
+
+Classe in cui sono presenti i metodi per la stima della distanza in base ai RSSI ricevuti. Qui si istanzia ed utilizza il filtro di Kalman e si ricevono le stime della libreria AltBeacon.
+
+Uno dei metodi più importanti in questa classe è \texttt{calculateDistance(double txPower, double rssi)} in quanto in base agli input restituisce la distanza stimata.
+
+\subsubsection{Metodo calculateDistance}
+\begin{lstlisting}[language=Java]
+private double calculateDistance(double txPower, double rssi) {
+
+	if (rssi == 0.0D) {
+		return -1.0D; // if we cannot determine accuracy, return -1.
+	}
+
+	double ratio = (rssi * 1.0D) / txPower;
+	if (ratio < 1.0D) {
+		return Math.pow(ratio, 10.0D);
+	}
+
+	return (0.89976D * Math.pow(ratio, 7.7095D)) + 0.111D;
+}
+\end{lstlisting}
+
+
 
 \newpage
 \section{SettingsFragment}
@@ -78,7 +101,7 @@ Lo scopo di questa classe è creare un Observable che notifichi a tutti gli Obse
 	\caption{Classe - SettingsFragment}
 \end{figure}
 
-Classe che implementa Fragment per creare una vista disposta in un menu a destra. Il suo scopo è permettere all'utente di interagire con l'app e con il sistema fisico in cui ci si esegue la stima modificando dei semplici parametri.
+Classe che implementa Fragment per creare una vista disposta in un menù a destra. Il suo scopo è permettere all'utente di interagire con l'app e con il sistema fisico in cui si esegue la stima modificando dei semplici parametri.
 
 \newpage
 Nel particolare si usa l'oggetto \texttt{SharedPreferences} per salvare le impostazioni utilizzate. Nel caso in cui l'app fosse chiusa, le impostazioni salvate precedentemente vengono reimpostate come se l'app non fosse mai stata terminata.
@@ -161,7 +184,7 @@ Nel dettaglio si aggiorna la lista in base alle preferenze impostate in \texttt{
 	\caption{Classe - DeviceCardViewAdapter}
 \end{figure}
 
-Classe responsabile della visualizzazione delle nuove informazioni a schermo. Qui si gestiscono gli elementi grafici da fare vedere o nascondere (valori testuali o immagini) nella RecyclerView.
+Classe responsabile della visualizzazione delle nuove informazioni a schermo. Qui si gestiscono gli elementi grafici da visualizzare o nascondere (valori testuali o immagini) nella RecyclerView.
 
 Viene utilizzata nella schermata principale e nel fragment dei dettagli.
 
@@ -271,7 +294,7 @@ Classe che istanzia \texttt{StatePagerAdapter} per aggiunge i fragment dei detta
 	\caption{Classe - CameraFragment}
 \end{figure}
 
-Classe per implementare una SurfaceView come preview delle fotocamera presente nello smartphone e scattare delle foto (agli iBeacon). Per scattare le foto si è utilizzato un FloatingActionButton, mentre per fare l'autozoom basta cliccare sulla surface stessa.
+Classe per implementare una SurfaceView come preview delle fotocamera presente nello smartphone e scattare delle foto (agli iBeacon). Per scattare le foto si è utilizzato un FloatingActionButton, mentre per fare l'autozoom basta cliccare sulla \textit{surface}.
 
 \begin{figure}[ph]
 	\centering
@@ -287,7 +310,7 @@ Classe per implementare una SurfaceView come preview delle fotocamera presente n
 	\caption{Classe - CameraPreviewUtil}
 \end{figure}
 
-Classe che controlla la SurfaceView di preview delle fotocamera e la telecamera stessa. Viene istanziata in \texttt{CameraFragment}.
+Classe che controlla la fotocamera e la \texttt{SurfaceView} per la  preview. Viene istanziata in \texttt{CameraFragment}.
 
 \begin{figure}[ph]
 	\centering
@@ -312,6 +335,22 @@ Classe che serve a salvare le foto scattate dalla fotocamera. Implementa un Asyn
 \end{figure}
 
 \newpage
+\section{DeviceDetailInner0Fragment}
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=0.6\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment__inherit__graph.png}
+	\caption{Classe - DeviceDetailInner0Fragment}
+\end{figure}
+
+In questa classe si definisce il fragment che al suo interno conterrà il bottone per eseguire la registrazione dei dati di testing e i due fragment Report e Resume.
+
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=1.55\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner0Fragment__coll__graph.png}
+	\caption{Collaborazione - DeviceDetailInner0Fragment}
+\end{figure}
+
+\newpage
 \section{DeviceDetailInner1Fragment}
 \begin{figure}[ph]
 	\centering
@@ -329,13 +368,57 @@ Simile a \ref{ch:device_list}, aggiorna i dati di un solo beacon e visualizza la
 	\caption{Classe - DeviceDetailInner2Fragment}
 \end{figure}
 
-Questa classe estende Fragment per inserire al proprio interno i dettagli dei beacon sotto forma di grafici in real time. L'obiettivo è permettere all'utente di controllare l'evoluzione del sistema e salvare i grafici sotto forma di immagini JPG.
+Questa classe estende \texttt{Fragment} per inserire al proprio interno i dettagli dei beacon sotto forma di grafici in real time. L'obiettivo è permettere all'utente di controllare l'evoluzione del sistema e salvare i grafici sotto forma di immagini JPG.
 
 \begin{figure}[ph]
 	\centering
 	\includegraphics[width=0.55\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailInner2Fragment__coll__graph.png}
-	\caption{Collaborazione - }
+	\caption{Collaborazione - DeviceDetailInner2Fragment}
 \end{figure}
+
+\newpage
+\section{DeviceDetailReportFragment}
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=0.65\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailReportFragment__inherit__graph.png}
+	\caption{Classe - DeviceDetailReportFragment}
+\end{figure}
+
+In questa classe si definisce il fragment che riceverà il report dei dati raccolti durante il testing. Gli stessi dati saranno visualizzati sul file .txt nella cartella dell'app.
+
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailReportFragment__coll__graph.png}
+	\caption{Collaborazione - DeviceDetailReportFragment}
+\end{figure}
+
+\newpage
+\section{DeviceDetailResumeFragment}
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailResumeFragment__inherit__graph.png}
+	\caption{Classe - DeviceDetailResumeFragment}
+\end{figure}
+
+In questa classe si definisce il fragment che riceverà il report dei dati raccolti durante il testing. Gli stessi dati saranno visualizzati sul file .txt nella cartella dell'app.
+
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1fragment_1_1DeviceDetailResumeFragment__coll__graph.png}
+	\caption{Collaborazione - DeviceDetailResumeFragment}
+\end{figure}
+
+\newpage
+\section{ReportUtils}
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=1.2\linewidth]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1ReportUtils__coll__graph.png}
+	\caption{Classe - ReportUtils}
+\end{figure}
+
+Classe di supporto a \texttt{DeviceDetailReportFragment} e \texttt{DeviceDetailResumeFragment} per creare il report ed il resume da visualizzare e salvare come file di testo .txt e .json.
+
+Per la creazione del file .json è stata utilizzata la libreria Google \href{https://github.com/google/gson}{\textbf{Gson}}\footnote{\href{https://github.com/google/gson}{\textbf{Gson}} - \url{https://github.com/google/gson}};
 
 \newpage
 \section{DeviceChartFragment}
@@ -365,7 +448,7 @@ Classe per la creazione di grafici in real time. Viene sfuttata da \texttt{Devic
 	\caption{Classe - UsbMeasurementFragment}
 \end{figure}
 
-Classe che visualizza su di un fragment i valori di distanza stimati dall'Arduino. Questa visualizzazione viene riutilizzata da sola se si seleziona "Measurement" dal menu a sinistra che nei dettagli. Nel caso dei dettagli il fragment è istanziato come statico dal file XML come segue:
+Classe che visualizza su di un fragment i valori di distanza stimati dall'Arduino. Questa visualizzazione viene riutilizzata da sola se si seleziona "Measurement" dal menù a sinistra oppure è posta in alto ad ogni fragment dei dettagli. Nel caso dei dettagli il fragment è istanziato come statico dal file XML come segue:
 
 \begin{lstlisting}[language=XML]
 <android.support.v7.widget.CardView android:layout_width="match_parent"	android:layout_height="wrap_content" android:layout_margin="@dimen/card_margin">
@@ -382,11 +465,11 @@ Classe che visualizza su di un fragment i valori di distanza stimati dall'Arduin
 \end{figure}
 
 \newpage
-\section{UsbUtil}
+\section{UsbUtil}\label{ch:usb_util}
 
-Classe che permette di comunicare con la porta USB dello smartphone e in questo caso di ricevere i dati della distanza stimata da Arduino. 
+Classe che permette di comunicare con la porta USB dello smartphone e in questo progetto permette di ricevere i dati della distanza stimata da Arduino. 
 
-Per inizializzare la comunicazione su USB si utilizza il metodo \texttt{initializeUsb()}
+Per inizializzare la comunicazione su USB si utilizza il metodo \texttt{initializeUsb()}.
 \subsubsection{Metodo initializeUsb()}
 \begin{lstlisting}[language=Java]
 private void initializeUsb() {
@@ -443,7 +526,7 @@ private void initializeUsb() {
 
 \begin{figure}[ph]
 	\centering
-	\includegraphics[width=1.85\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil__coll__graph.png}
+	\includegraphics[width=1.5\linewidth,angle=90]{img/uml/class/classit_1_1unibo_1_1torsello_1_1bluetoothpositioning_1_1util_1_1UsbUtil__coll__graph.png}
 	\caption{Collaborazione - UsbUtil}
 \end{figure}
 
@@ -473,3 +556,11 @@ Classe Observable che emette le distanze stimate da Arduino a tutti gli Observer
 
 Classe che amplia il comportamento del FloatingActionButton in basso a destra, facendolo scomparire per un secondo quando una RecyclerView viene scrollata in alto o in basso.
 Per funzionare si è dovuto modificare il file XML in cui il FAB è inserito con la regola \texttt{app:layout\_behavior=".extra.FABBehavior"}.
+
+\newpage
+\section{Riassunto Fragment e Observer}
+\begin{figure}[ph]
+	\centering
+	\includegraphics[width=1.25\linewidth]{img/uml/inherit_graph/inherit_graph_13.png}
+	\caption{Riassunto Fragment e Observer}
+\end{figure}

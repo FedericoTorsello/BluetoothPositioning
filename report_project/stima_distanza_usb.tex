@@ -1,43 +1,19 @@
 \chapter{Stima della distanza con Arduino}
 \section{Progetto per stimare la distanza con un sensore ultrasonico ed un Arduino}
-Per poter stimare la distanza con Arduino è stato utilizzato un sensore ultrasonico. Questo sensore è stato connesso direttamente alla board attraverso cavi maschio-femmina.
+Per poter stimare la distanza con Arduino è stato realizzato un mini-progetto con \href{https://atom.io/}{\textbf{Atom}}\footnote{\href{https://atom.io/}{\textbf{Atom}} - \url{https://atom.io/}}. La stima della distanza è stata possibile sfruttando un sensore ultrasonico connesso direttamente alla board attraverso cavi maschio-femmina.
 
-\begin{lstlisting}[language=XML]
-<intent-filter>
-	<action android:name="android.intent.action.MAIN" />
-	<action android:name="android.hardware.usb.action
-		.USB_DEVICE_ATTACHED"/>
+Per ridurre gli errori di rilevazione del sensore si è fatto uso della libreria NewPing.
 
-	<category android:name="android.intent.category.DEFAULT" />
-	<category android:name="android.intent.category.LAUNCHER" />
-
-</intent-filter>
-
-<meta-data android:name="android.hardware.usb.action
-		.USB_DEVICE_ATTACHED" 
-	android:resource="@xml/device_filter" />
-\end{lstlisting}
-
-
-
-\begin{itemize}
-	 \item Implementare un progetto Arduino che faccia uso della libreria \href{http://playground.arduino.cc/Code/NewPing}{\textbf{NewPing}}\footnote{\href{http://playground.arduino.cc/Code/NewPing}{\textbf{NewPing}} - \url{http://playground.arduino.cc/Code/NewPing}};
-	 
-	 \item Sfruttare la libreria \href{https://github.com/mik3y/usb-serial-for-android}{\textbf{usb-serial-for-android}}\footnote{\href{https://github.com/mik3y/usb-serial-for-android}{\textbf{usb-serial-for-android}} - \url{https://github.com/mik3y/usb-serial-for-android}} per connettere l'Arduino ad Android e ricevere i dati seriali in tempo reale.
-	 
-	 \item Sviluppare un mini progetto su \href{https://netbeans.org/}{\textbf{NetBeans}}\footnote{\href{https://netbeans.org/}{\textbf{NetBeans}} - \url{https://netbeans.org/}} ed impiegare la libreria \href{https://github.com/scream3r/java-simple-serial-connector}{\textbf{jSSC}}\footnote{\href{https://github.com/scream3r/java-simple-serial-connector}{\textbf{jSSC}} - \url{https://github.com/scream3r/java-simple-serial-connector}} (\textit{java-simple-serial-connector}) per testare il sensore di prossimità collegando l'Arduino al PC e visualizzando la distanza a schermo.
-\end{itemize}
-
-\subsubsection{\underline{\href{http://playground.arduino.cc/Code/NewPing}{NewPing}}}\label{sec:newping}
+\subsubsection{\underline{\href{http://playground.arduino.cc/Code/NewPing}{NewPing nel dettaglio}}}\label{sec:newping}
 \textbf{Caratteristiche}
 \begin{itemize}
-	\item Compatibile con diversi modelli di sensori ad ultrasuoni: SR04, SRF05, SRF06, DYP-ME007 e Parallax Ping™.
+	\item Libreria compatibile con diversi modelli di sensori ad ultrasuoni: SR04, SRF05, SRF06, DYP-ME007 e Parallax Ping™.
 	
 	\item Non soffre di \textbf{lag} di un secondo se non si riceve un ping di eco.
 	
 	\item Produce un ping coerente e affidabile fino a 30 volte al secondo.
 	
-	\item Timer interrupt method per sketch event-driven.
+	\item \textit{Timer interrupt method} per sketch event-driven.
 	
 	\item Metodo di filtro digitale built-in \texttt{ping\_median()} per facilitare la correzione degli errori.
 	
@@ -49,25 +25,26 @@ Per poter stimare la distanza con Arduino è stato utilizzato un sensore ultraso
 	
 	\item Calcolo distanza preciso, in centimetri, pollici e uS.
 	
-	\item Non fa uso di \texttt{pulseIn}, metodo che risulterebbe lento e che con alcuni modelli di sensore a ultrasuoni restituisce risultati errati.
+	\item Non fa uso del metodo \texttt{pulseIn()}, il quale risulterebbe più lento.
 	
 	\item Attualmente in sviluppo, con caratteristiche che vengono aggiunte e bug/issues affrontati.
 \end{itemize}
 
 \section{Progetto di test della comunicazione seriale PC - Arduino}
+Al fine di testare la comunicazione PC-Arduino si è sviluppato un mini progetto su \href{https://netbeans.org/}{\textbf{NetBeans}}\footnote{\href{https://netbeans.org/}{\textbf{NetBeans}} - \url{https://netbeans.org/}}. Nel dettaglio si è impiegata la libreria \href{https://github.com/scream3r/java-simple-serial-connector}{\textbf{jSSC}}\footnote{\href{https://github.com/scream3r/java-simple-serial-connector}{\textbf{jSSC}} - \url{https://github.com/scream3r/java-simple-serial-connector}} (\textit{java-simple-serial-connector}) la quale permette la comunicazione seriale via USB. La distanza stimata è stata visualizzata a schermo su una view \textit{Java Swing}.
+
 Il metodo più importante di questo mini progetto è \texttt{updateDistance()}. Questo metodo è di tipo \textbf{void}. Il suo scopo è quello di riceve in input i \textit{byte} dalla porta seriale e convertirli in stringhe da visualizzare a schermo su una \textit{jLabel}.
 
 Per poter fare I/O sulla porta seriale si deve istanziare e configurare l'oggetto SerialPort, abilitando la comunicazione via USB con una board Arduino.
 
 Per avviare la comunicazione:
 \begin{itemize}
-	\item si settano i parametri di ingaggio (baund rate, numero di bit dei pacchetti, numero dei bit di stop e se è presente un controllo di parità)
+	\item si settano i parametri di ingaggio (baund rate, numero di bit dei pacchetti, numero dei bit di stop e, se presente, un controllo di parità)
 	
-	\item si imposta l'event mask in modo da controllare se sul canale sono prenti \textit{char}
+	\item si imposta l'event mask in modo da controllare se sul canale sono presenti \textit{char}
 	
 	\item si registra l'istanza di SerialPort in un listener di eventi di I/O della seriale per poi considerare solo i dati di tipo \textit{char} e scartare tutti gli altri. 
 \end{itemize}
-
 
 Metodo updateDistance()
 \begin{lstlisting}[language=Java]
@@ -100,3 +77,28 @@ private void updateDistance() {
 }
 \end{lstlisting}
 
+\section{Stima della distanza Arduino-Android}
+Per poter impiegare direttamente Arduino nell'app al fine di avere una stima di riferimento sono state necessarie alcune modifiche al file AndroidManifest.xml. Le seguenti istruzioni permettono di registrare l'app all'evento "\texttt{USB\_DEVICE\_ATTACHED}", quindi quando un Arduino viene connesso all'ingresso USB dello smartphone l'app viene richiamata a questo \textit{Intent} e può avvenire la comunicazione.
+
+\begin{lstlisting}[language=XML]
+<intent-filter>
+	<action android:name="android.intent.action.MAIN" />
+	<action android:name="android.hardware.usb.action
+		.USB_DEVICE_ATTACHED"/>
+
+	<category android:name="android.intent.category.DEFAULT" />
+	<category android:name="android.intent.category.LAUNCHER" />
+
+</intent-filter>
+
+<meta-data android:name="android.hardware.usb.action
+		.USB_DEVICE_ATTACHED" 
+	android:resource="@xml/device_filter" />
+\end{lstlisting}
+
+Nel progetto dell'app è la classe UsbUtil che fa da \textit{Observable} per la comunicazione USB. 
+
+
+Tale classe sfrutta la libreria \href{https://atom.io/}{\textbf{usb-serial-for-android}}\footnote{\href{https://github.com/mik3y/usb-serial-for-android}{\textbf{usb-serial-for-android}} - \url{https://github.com/mik3y/usb-serial-for-android}} per registrare l'app all'UsbManager ogni qual volta si ha la connessione di un Arduino.
+
+Nella sezione \ref{ch:usb_util} viene analizzato un frammento di codice riguardante questa classe.

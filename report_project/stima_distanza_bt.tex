@@ -21,7 +21,7 @@ Al fine di inibire l'installazione a smartphone con API minori a 18, nel file \t
 \end{lstlisting}
 
 \section{Compatibilità con Android 5.0+}
-Per rendere eseguibile l'app a smarphone con Android dalla versione 5.0 in poi è stato aggiunto un metodo (\texttt{checkAndroidMPermission()}) per fare il check dei permessi di Android. Senza questo accorgimento l'app sarebbe stata installata ma non avrebbe funzionato la scansione dei dispositivi BT.
+Per rendere eseguibile l'app a smartphone con Android dalla versione 5.0 in poi è stato aggiunto un metodo (\texttt{checkAndroidMPermission()}) per fare il check dei permessi di Android. Senza questo accorgimento l'app sarebbe stata installata ma non avrebbe funzionato la scansione dei dispositivi BT.
 
 \subsubsection{Controllo della compatibilità con Android 5.0+}
 \begin{lstlisting}[language=Java]
@@ -67,7 +67,7 @@ private void checkAndroidMPermission() {
 \section{Libreria AltBeacon - android-beacon-library}
 Per estendere il supporto nativo fornito alla connettività Bluetooth è stata utilizzata la libreria \href{https://github.com/AltBeacon/android-beacon-library}{\textbf{AltBeacon}}\footnote{\href{https://github.com/AltBeacon/android-beacon-library}{\textbf{AltBeacon}} - \url{https://github.com/AltBeacon/android-beacon-library}}. Questa permette di generare delle regioni di interesse, degli avvisi all'utente, filtrare i dispositivi BT, ecc. Con essa è inoltre fornito un modulo per il risparmio energetico.
 
-Per l'inclusione di questa libreria si inserita la seguente stringa nel file \texttt{build.gradle}.
+Per l'inclusione di questa libreria si è inserita la seguente stringa nel file \texttt{build.gradle}.
 \begin{lstlisting}[language=Java]
 dependencies {
 	...
@@ -101,7 +101,7 @@ private double calculateDistance(double txPower, double rssi) {
 \section{Filtri}
 Per ridurre le problematiche di rilevamento di RSSI(\ref{ch:problematiche}) sono stati sviluppati e/o utilizzati tre filtri: RunningAverageRssi, filtro di Kalman, filtro ARMA. Questi possono essere combinati tra loro senza inficiare le prestazioni del sistema. Presentano delle parametrizzazioni controllabili dal \textit{Settings} per adattarsi a tutti vari contesti di stima.
 
-Per scelta progettuale il filtro di Kalman è sempre attivo. Si è fatto in modo che il valore filtrato col questo filtro sia confrontabile con la misurazione della distanza RAW e con quella filtrata dalla libreria AltBeacon.
+Per scelta progettuale il filtro di Kalman può essere attivato o disattivato sempre da Settings variando il rumore di processo (0 per disattivare). Il valore elaborato da questo filtro è confrontabile con la misurazione della distanza Raw e la stima della libreria AltBeacon.
 
 \subsection{Filtro RunningAverageRssi}
 Il filtro \textit{RunningAverageRssi} calcola il valore RSSI sulla base di un elenco arbitrario di valori RSSI misurati. L'elenco viene troncato da una certa lunghezza all'inizio e alla fine. Il valore calcolato è una semplice media aritmetica. Viene fornito dalla libreria AltBeacon come filtro di default, ma non sembra essere particolarmente preciso.
@@ -123,14 +123,16 @@ Parametri passati a KFilter:
 	\item C = vettore delle misurazioni.
 \end{itemize}
 
-Questo filtro è inizializzato nella classe \texttt{Estimation} (istanziata volta alla creazione di degli oggetti \textit{Device}). Ogni volta che viene richiamato il metodo \texttt{updateDistance(Beacon b, double processNoise)} di \texttt{EStimation};
+Questo filtro è inizializzato nella classe \texttt{Estimation} (istanziata a sua volta alla creazione degli oggetti \textit{Device}).
+
+Ogni volta che viene richiamato il metodo \texttt{updateDistance(Beacon b, double processNoise)} di \texttt{Estimation}:
 \begin{itemize}
-	\item si aggiunge un nuovo valore alla variabile \texttt{recentRSSI}, istanza di un oggetto \texttt{DescriptiveStatistics}
-	\item si aggiunge un nuovo valore alla variabile \texttt{recentTxPower}, istanza di un oggetto \texttt{DescriptiveStatistics}
-	\item si calcola il nuovo valore di rumore in base ai nuovi input
-	\item se il nuovo valore di rumore non è un numero infinito e non è un Not-a-Number, si passa al metodo \texttt{setMeasurementNoise(mNoise)} di \texttt{KFilter}
-	\item si setta il nuovo rumore di processo, che dipende dall'input dato da \texttt{Settings}
-	\item si calcola la distanza con i parametri appena calcolati
+	\item si aggiunge un nuovo valore alla variabile \texttt{recentRSSI}, istanza di un oggetto \texttt{DescriptiveStatistics};
+	\item si aggiunge un nuovo valore alla variabile \texttt{recentTxPower}, istanza di un oggetto \texttt{DescriptiveStatistics};
+	\item si calcola il nuovo valore di rumore in base ai nuovi input;
+	\item se il nuovo valore di rumore non è un numero infinito e non è un Not-a-Number, si passa al metodo \texttt{setMeasurementNoise(mNoise)} di \texttt{KFilter};
+	\item si setta il nuovo rumore di processo, che dipende dall'input dato da \texttt{Settings};
+	\item si calcola la distanza con i parametri appena calcolati.
 \end{itemize}
 
 \subsubsection{Filtraggio in base agli input}
@@ -205,6 +207,7 @@ dove $ c $ è il coefficiente che denota l'uniformità (\textit{smoothness}). Pi
 
 Il metodo più importante di questa classe è \texttt{addMeasurement(Integer rssi)} dove si ricevono in input gli RSSI e si esegue il filtraggio in base al coefficiente $ c $ (qui tradotto nella variabile \texttt{armaSpeed}).
 
+\newpage
 \subsubsection{Aggiornamento del filtro ARMA}
 \begin{lstlisting}[language=Java]
 @Override
@@ -229,7 +232,7 @@ Per il settaggio dinamico del coefficiente $ c $ si utilizza il metodo \texttt{s
 Si è scelto di far visualizzare a schermo, direttamente dall'app, dei grafici in tempo reale in modo da rendere più chiaro l'andamento delle stime.
 Per far questo è stata utilizzata la libreria \href{https://github.com/PhilJay/MPAndroidChart}{\textbf{MPAndroidChart}}\footnote{\href{https://github.com/PhilJay/MPAndroidChart}{\textbf{MPAndroidChart}} - \url{https://github.com/PhilJay/MPAndroidChart}}.
 
-Per l'inclusione di questa libreria si inserita la seguente stringa nel file \texttt{build.gradle}.
+Per l'inclusione di questa libreria si è inserita la seguente stringa nel file \texttt{build.gradle}.
 \begin{lstlisting}[language=Java]
 dependencies {
 	...
